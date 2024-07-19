@@ -1,0 +1,4 @@
+#+BRAIN_CHILDREN: .emacs
+
+#+BRAIN_PARENTS: index
+

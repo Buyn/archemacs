@@ -1,0 +1,91 @@
+#+BRAIN_PARENTS: index
+
+Инструкция по созданию нового орг файла
+на основе уже сушествующего элфайла
+и подмена его на таг версию
+
+* path
+запоняем нужное
+путь к ель файлу
+"~/INI/hydra-cfg.el"
+(find-file-other-frame "~/INI/hydra-cfg.el")
+(load "~/INI/hydra-cfg.el")
+назавние будущего орг файла
+hydra-cfg.el HYDRA MENU
+* .el : 
+(find-file-other-frame "~/INI/hydra-cfg.el")
+* copy .el
+делаем копию предыдущего ельфайла
+#+begin_src eshell
+cp ~/INI/hydra-cfg.el ~/INI/1hydra-cfg.el
+#+end_src
+
+#+RESULTS:
+
+проверяем что фаил появился
+#+begin_src eshell
+ls ~/INI/1hydra-cfg.el
+#+end_src
+
+#+RESULTS:
+: d:/Development/lisp/Home/INI/1hydra-cfg.el
+* org
+создаём орг фаил
+hydra-cfg.el HYDRA MENU CUSTOMIZATION
+добовляем в орг фаил
+
+	* Commands
+(find-file-other-frame "~/INI/hydra-cfg.el")
+(load "~/INI/hydra-cfg.el")
+(org-babel-tangle)
+	* Source
+#+PROPERTY:    :tangle ~/INI/hydra-cfg.el
+	*** INSTALL PACKAGES
+#+HEADER: :tangle ~/INI/hydra-cfg.el
+#+begin_src emacs-lisp 
+текст лисп кода
+(load "~/hydra-cfg.el")
+#+end_src
+* tangle
+такое работаь не будет
+:PROPERTIES:
+:tangle:   "~/INI/hydra-cfg.el"
+:END:
+работает такое
+:PROPERTIES:
+:header-args: :tangle  "~/INI/hydra-cfg.el"
+:END:
+и сразу на все сорс блоки
+как будто у всех сказано что они тангл
+причём сразу после добовления блока
+но похоже есть ошибка
+он вначале делает ел и в папке с оргом
+а потом где надо
+:tangle yes или нет в хедере
+просто приводит к тому что он не будет добавлен
+впрочем возможно это причиина глюка удваивания
+:tangle yes
+подтверждаю это приводит что все отправились по адресу
+а один в папке с орг файлом
+:tangle no
+естественно приводит что этот конкретно блог игнорится
+
+* remove file line from
+[[file:index.org::*init files not in braine][init files not in braine]]
+
+* удалить доп фаил 
+после того как имаг дебаг загрузился
+удаляем бекап фаил
+#+begin_src eshell
+rm ~/INI/1hydra-cfg.el
+#+end_src
+
+#+RESULTS:
+
+#+begin_src eshell
+ls ~/INI/1hydra-cfg.el
+#+end_src
+
+#+RESULTS:
+
+

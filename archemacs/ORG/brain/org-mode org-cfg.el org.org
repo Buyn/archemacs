@@ -1,0 +1,4 @@
+#+BRAIN_CHILDREN: babel-cfg.el%20org
+
+#+BRAIN_PARENTS: init.el%20Start%20of%20manual%20config
+

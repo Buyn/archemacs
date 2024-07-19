@@ -1,0 +1,222 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file f:/Dev/Emacs/Home/Emacsini/ORG/start.org
+
+
+* DONE настроить редактор 
+  CLOSED: [2020-02-28 Пт 10:42]
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2020-02-28 Пт 10:42
+  :ARCHIVE_FILE: f:/Dev/Emacs/Home/Emacsini/ORG/start.org
+  :ARCHIVE_OLPATH: натройка емака
+  :ARCHIVE_CATEGORY: start
+  :ARCHIVE_TODO: DONE
+  :END:
+** DONE Понять что делать с языком 
+   CLOSED: [2020-02-28 Пт 10:41]
+- заменить в ивеле команду замены чтоб она понимала язык
+** DONE добовлять один символ
+   CLOSED: [2020-02-28 Пт 10:41]
+- [X] энтер2
+- [X] 2пробел
+- [X] пробел + i\a(I\A)
+
+* DONE Add lisp code
+  CLOSED: [2020-02-28 Пт 10:43]
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2020-02-28 Пт 10:43
+  :ARCHIVE_FILE: f:/Dev/Emacs/Home/Emacsini/ORG/start.org
+  :ARCHIVE_OLPATH: натройка емака
+  :ARCHIVE_CATEGORY: start
+  :ARCHIVE_TODO: DONE
+  :END:
+** Folding on Org Mode vs C mode
+If you want to exclude one specific mode, you can do the following:
+
+(global-set-key (kbd "<C-S-down>") 'move-line-down) 
+
+to make it globally available, and
+
+(define-key KEYMAP (kbd "<C-S-down>") nil) 
+
+to exclude one mode where KEYMAP is the name name of the mode, followed by "mode-map" (e.g. ess-mode-map). You could also bind the original thing to the key instead of nil.
+shareimprove this answer
+
+* DONE Добавить функционал 
+  CLOSED: [2020-02-28 Пт 10:46]
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2020-02-28 Пт 10:46
+  :ARCHIVE_FILE: f:/Dev/Emacs/Home/Emacsini/ORG/start.org
+  :ARCHIVE_OLPATH: натройка емака
+  :ARCHIVE_CATEGORY: start
+  :ARCHIVE_TODO: DONE
+  :END:
+** DONE пробел символ
+   CLOSED: [2019-08-06 Вт 06:03]
+** ентер для пост символа
+** сдвиг строк
+** копия строк
+
+* DONE натройка емака
+  CLOSED: [2020-02-28 Пт 10:48]
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2020-02-28 Пт 10:48
+  :ARCHIVE_FILE: f:/Dev/Emacs/Home/Emacsini/ORG/start.org
+  :ARCHIVE_CATEGORY: start
+  :ARCHIVE_TODO: DONE
+  :END:
+
+* DONE Оргаизовать Org Mod
+  CLOSED: [2020-02-28 Пт 10:51]
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2020-02-28 Пт 10:51
+  :ARCHIVE_FILE: f:/Dev/Emacs/Home/Emacsini/ORG/start.org
+  :ARCHIVE_CATEGORY: start
+  :ARCHIVE_TODO: DONE
+  :END:
+** DONE Разобратся с агендой
+   CLOSED: [2020-02-28 Пт 10:51]
+*** DONE разобрать фаил по подфайлам
+	CLOSED: [2019-08-06 Вт 06:05]
+*** DONE понять как разбить на карты повторного выполнения
+	CLOSED: [2019-08-06 Вт 06:04]
+*** настроить агеду чтоб показывать только глаыный фаили и зависиый родитель
+*** DONE что делать с выполненыемт заданиями чтоб не замусоривать 
+	CLOSED: [2019-08-06 Вт 06:04]
+
+* Org-Roam : 
+:PROPERTIES:
+:ARCHIVE_TIME: 2023-07-15 Сб 19:08
+:ARCHIVE_FILE: ~/ORG/start.org
+:ARCHIVE_OLPATH: Команды/Install/experement pack
+:ARCHIVE_CATEGORY: start
+:END:
+** configs 
+*** basic configuration : 
+  ;; Org-Roam basic configuration
+  (setq org-directory (concat (getenv "HOME") "/Documents/notes/"))
+;;  D:\Development\lisp\Dropbox\orgs\Org-roam\default 
+;;  D:/Development/lisp/Dropbox/orgs/Org-roam/default 
+
+  (use-package org-roam
+    :after org
+    :init (setq org-roam-v2-ack t) ;; Acknowledge V2 upgrade
+    :custom
+    (org-roam-directory (file-truename org-directory))
+    :config
+    (org-roam-setup)
+    :bind (("C-c n f" . org-roam-node-find)
+           ("C-c n r" . org-roam-node-random)		    
+           (:map org-mode-map
+                 (("C-c n i" . org-roam-node-insert)
+                  ("C-c n o" . org-id-get-create)
+                  ("C-c n t" . org-roam-tag-add)
+                  ("C-c n a" . org-roam-alias-add)
+                  ("C-c n l" . org-roam-buffer-toggle)))))
+*** github
+(use-package org-roam
+  :ensure t
+  :custom
+  (org-roam-directory (file-truename "/path/to/org-files/"))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n i" . org-roam-node-insert)
+         ("C-c n c" . org-roam-capture)
+         ;; Dailies
+         ("C-c n j" . org-roam-dailies-capture-today))
+  :config
+  ;; If you're using a vertical completion framework, you might want a more informative completion interface
+  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+  (org-roam-db-autosync-mode)
+  ;; If using org-roam-protocol
+  (require 'org-roam-protocol))
+** docs
+*** git 
+https://github.com/org-roam/org-roam
+Org-roam GitHub Release MELPA License GPL 3
+
+Org-roam Logo
+
+Org-roam is a plain-text knowledge management system. It brings some of Roam's more powerful features into the Org-mode ecosystem.
+
+Org-roam borrows principles from the Zettelkasten method, providing a solution for non-hierarchical note-taking. It should also work as a plug-and-play solution for anyone already using Org-mode for their personal wiki.
+
+    Private and Secure: Edit your personal wiki completely offline, entirely in your control. Encrypt your notes with GPG. Take lasting notes in plain-text.
+    Networked Thought: Connect notes and thoughts together with ease using backlinks. Discover surprising and previously unseen connections in your notes with the built-in graph visualization.
+    Extensible and Powerful: Leverage Emacs' fantastic text-editing interface, and the mature Emacs and Org-mode ecosystem of packages.
+    Free and Open Source: Org-roam is licensed under the GNU General Public License version 3 or later.
+
+Org-roam Screenshot
+
+    Documentation
+    Discourse
+    Slack
+    Frequently Asked Questions
+    Changelog
+
+Installation
+
+Down below you will find basic installation instructions for how to quickly install org-roam using various environments for various purposes. For more detailed information, please read the manual.
+Using package.el
+Toggle instructions
+Using straight.el
+Toggle instructions
+Using Doom Emacs
+Toggle instructions
+Without a package manager
+Toggle instructions
+Configuration
+
+Here's a very basic sample for configuration of org-roam using use-package:
+
+(use-package org-roam
+  :ensure t
+  :custom
+  (org-roam-directory (file-truename "/path/to/org-files/"))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n i" . org-roam-node-insert)
+         ("C-c n c" . org-roam-capture)
+         ;; Dailies
+         ("C-c n j" . org-roam-dailies-capture-today))
+  :config
+  ;; If you're using a vertical completion framework, you might want a more informative completion interface
+  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+  (org-roam-db-autosync-mode)
+  ;; If using org-roam-protocol
+  (require 'org-roam-protocol))
+
+Note that the file-truename function is only necessary when you use symbolic link to org-roam-directory. Org-roam won't automatically resolve symbolic link to the directory.
+Getting Started
+
+David Wilson of System Crafters has produced an introductory video that covers the basic commands:
+
+Getting Started with Org Roam - Build a Second Brain in Emacs
+Getting Help
+
+Before creating a new topic/issue, please be mindful of our time and ensure that it has not already been addressed on GitHub or on Discourse.
+
+    If you are new to Emacs and have problem setting up Org-roam, please ask your question on Slack, channel #how-do-i.
+    For quick questions, please ask them on Slack, channel #troubleshooting.
+    If something is not working as it should, or if you would like to suggest a new feature, please create a new issue.
+    If you have questions about your workflow with the slip-box method, please find a relevant topic on Discourse, or create a new one.
+
+Knowledge Bases using Org-roam
+
+    Jethro Kuan (Source)
+    Alexey Shmalko
+    Sidharth Arya
+
+Contributing
+
+To report bugs and suggest new feature use the issue tracker. If you have some code which you would like to be merged, then open a pull request. Please also see CONTRIBUTING.md.
+License
+
+Copyright © Jethro Kuan and contributors. Distributed under the GNU General Public License, Version 3.
+
+*** tutorial 
+*** Org-roam User Manual
+https://www.orgroam.com/manual.html#Links-between-Nodes

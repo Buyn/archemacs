@@ -1,0 +1,12 @@
+[[file:todo_plan.org][ToDo Plan org]]
+[[file:GTD.org][GTD file]]
+[[file:~/ORG/gtd/tickler.org][Tikler Todo File]]
+[[file:today.org][Today org file]]
+[[file:d:/My_Docs/Ofice/PaperFlow/TODO/weekly.org::*Weekly][Weekly Org File]]
+[[file:d:/My_Docs/Ofice/PaperFlow/TODO/monthly.org][Monthly Org File]]
+[[file:~/ORG/gtd/inbox.org][Inbox GTD File]]
+
+* Tasks
+** TODO emacs C+F10 on\off menu 
+* DangenKeepr
+* Tools

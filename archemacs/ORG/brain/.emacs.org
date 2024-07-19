@@ -1,0 +1,9 @@
+#+BRAIN_CHILDREN: init.el%20Start%20of%20manual%20config
+
+#+BRAIN_PARENTS: HOME
+
+
+
+(load "~/INI/init.el")
+(find-file-other-frame "~/.emacs")
+

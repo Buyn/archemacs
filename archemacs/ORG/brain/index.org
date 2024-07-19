@@ -1,0 +1,81 @@
+#+BRAIN_FRIENDS: init.el%20Start%20of%20manual%20config
+
+#+BRAIN_CHILDREN: Unsorted HOME man4el2org
+
+
+  init files
+* init files not in braine
+** vanila
+(find-file-other-frame "~/INI/vanila_cfg.el")
+** Evil 	 C+c C+o
+	[[elisp:(find-file-other-frame "~/INI/evil-mod-cfg.el")]["~/INI/evil-mod-cfg.el"]]
+	(find-file-other-frame "~/INI/evil-mod-cfg.el")
+		[[elisp:(find-file-other-frame "~/INI/Evil/evil-tabs-cfg.el")]["~/INI/Evil/evil-tabs-cfg.el"]]
+		(find-file-other-frame "~/INI/Evil/evil-tabs-cfg.el")
+		[[elisp:(find-file-other-frame "~/ELs/Evil/evil-respect-input.el")]["~/ELs/Evil/evil-respect-input.el"]]
+		(find-file-other-frame "~/ELs/Evil/evil-respect-input.el")
+
+	(find-file-other-frame "~/ELs/Evil/onecharadd.el") not used
+	(find-file-other-frame "~/ELs/Evil/copylines.el") пока нет
+** Orgs
+(find-file-other-frame "~/INI/org-cfg.el")
+	(find-file-other-frame "~/INI/ORG/org-roam-cfg.el")
+	(find-file-other-frame "~/INI/org_agend_cfg.el")
+	(find-file-other-frame "~/INI/babel-cfg.el")
+		(find-file-other-frame "~/ELs/Org/Babel/ob-eshell.el")
+	(find-file-other-frame "~/INI/org-brain-cfg.el")
+	(find-file-other-frame "~/INI/ORG/graph-tools-cfg.el")
+
+** Folding
+(find-file-other-frame "~/INI/folding-cfg.el")
+	(find-file-other-frame "~/INI/outshine_cfg.el")
+	(find-file-other-frame "~/INI/origami_cfg.el") not using
+	но содержит в себе огромное количество класных решенией
+	которые нужно перенести в outshine-mod
+		(find-file-other-frame "~/ELs/Evil/origami_triplebrase.el")
+** frame
+	(find-file-other-frame "~/INI/frame-control.el")
+															WINDMOVE
+		(find-file-other-frame "~/INI/fullscreen-cfg.el")
+		(find-file-other-frame "~/INI/frames/minimap-cfg.el")
+		minimap-mode loading
+** Other
+(find-file-other-frame "~/INI/advnsed-selections-cfg.el")
+(find-file-other-frame "~/INI/www-cfg.el") 
+** interface
+(find-file-other-frame "~/INI/interface-mods.el")
+	(find-file-other-frame "~/INI/interface/powerline-cfg.el") 
+		(find-file-other-frame "~/INI/interface/jonathanchu-emacs-powerline-cfg.el") 
+		(find-file-other-frame "~/INI/interface/input-methods-cfg.el")
+	(find-file-other-frame "~/INI/frames/minimap-cfg.el") move here
+			(find-file-other-frame "~/ELs/powerline/sm-package-powerline.el")notuse
+		(find-file-other-frame "~/INI/interface/spaceline-cfg.el") notuse
+** literary
+(find-file-other-frame "~/INI/lit-cfg.el")
+	(find-file-other-frame "~/INI/translate-cfg.el")
+	(find-file-other-frame "~/INI/lit-cfg/grammer-cfg.el") not et
+	(find-file-other-frame "~/INI/lit-cfg/read-aloud-cfg.el") 
+	(find-file-other-frame "~/INI/lit-cfg/reader-cfg.el")
+	(find-file-other-frame "~/ELs/BuYn/reader.el")
+** Programing
+(find-file-other-frame "~/INI/dev-cfg.el")
+	(find-file-other-frame "~/INI/autocomplete-cfg.el")
+	(find-file-other-frame "~/INI/snippets-cfg.el")
+	(find-file-other-frame "~/INI/delimiters-cfg.el")
+	(find-file-other-frame "~/INI/js-cfg.el") 
+	(find-file-other-frame "~/INI/lua-cfg.el")
+	(find-file-other-frame "~/INI/python-cfg.el")
+	(find-file-other-frame "~/INI/dev/csharp-cfg.el")
+	(find-file-other-frame "~/INI/dev/clojure-cfg.el")
+	(find-file-other-frame "~/INI/dev/autohotkey-cfg.el")
+	(find-file-other-frame "~/INI/dev/unity-cfg.el")
+	(find-file-other-frame "~/INI/dev/formats-mods-cfg.el")
+	(find-file-other-frame "~/INI/c-mode-cfg.el") not used
+	(find-file-other-frame "~/INI/flycheck-cfg.el")
+** My Elisp
+	(find-file-other-frame "~/ELs/BuYn/shell.el")
+	----- not auto loadet -----
+	(find-file-other-frame "~/ELs/BuYn/ai-dungon.el")
+	(find-file-other-frame "~/ELs/tts/tts-editor/tts-editor.el")
+	(find-file-other-frame "~/ELs/BuYn/tts.el")
+	----- not auto loadet -----

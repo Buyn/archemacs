@@ -1,0 +1,229 @@
+#+BRAIN_FRIENDS: index
+
+#+BRAIN_CHILDREN: inpak.el%20INSTALL%20PACKAGES fin.el%20FIN-MODS%20CUSTOMIZATION hydra-cfg.el%20HYDRA%20MENU%20CUSTOMIZATION org-mode%20org-cfg.el%20org ai.el%20org
+
+#+BRAIN_PARENTS: .emacs .emacs
+
+#+PROPERTY:    :tangle ~/INI/init.el
+
+;; init.el --- Emacs configuration
+
+Full in org
+open it for editing
+
+* Commands
+** execute-src-block : 
+(save-excursion (progn (org-babel-goto-named-src-block "auto-tangle-block") (org-babel-execute-src-block)))
+(save-excursion (let () (org-babel-goto-named-src-block "auto-tangle-block") (org-babel-execute-src-block)))
+and then name the block you want to execute automatically:
+
+** find-file : 
+(find-file-other-frame "~/INI/init.el")
+(load "~/INI/inpak.el")
+(org-babel-tangle)
+
+** auto-tangle-block : 
+#+NAME: auto-tangle-block
+#+begin_src emacs-lisp :results output silent :tangle no
+(setq org-src-preserve-indentation t)
+(untabify (point-min) (point-max))
+(save-buffer)
+(org-babel-tangle)
+(find-file-other-frame "~/INI/init.el")
+;; (load "~/INI/hydra-cfg.el")
+;; (load "~/ELs/BuYn/reader.el")
+ #+end_src
+
+* Source
+#+PROPERTY:    :tangle ~/INI/init.el
+** all
+*** comments 
+(find-file-other-frame "~/INI/init.el")
+;; --------------------------------------
+;; init.el --- Emacs configuration
+;; --------------------------------------
+;; * used in
+;; (find-file "~/INI/ .el")
+;; --------------------------------------
+*** INSTALL PACKAGES
+(find-file-other-frame "~/INI/vanila_cfg.el")
+#+HEADER: :tangle ~/INI/init.el
+#+begin_src emacs-lisp 
+(load "~/INI/inpak.el")
+#+end_src
+;; --------------------------------------
+*** VANILA CUSTOMIZATION
+(find-file-other-frame "~/INI/vanila_cfg.el")
+#+HEADER: :tangle ~/INI/init.el
+#+begin_src emacs-lisp 
+(load "~/INI/vanila_cfg.el")
+#+end_src
+;; --------------------------------------
+*** EVIL-MOD CUSTOMIZATION
+  [[elisp:(find-file-other-frame "~/INI/evil-mod-cfg.el")]["~/INI/evil-mod-cfg.el"]]
+  (find-file-other-frame "~/INI/evil-mod-cfg.el")
+#+HEADER: :tangle ~/INI/init.el
+#+begin_src emacs-lisp 
+(load "~/INI/evil-mod-cfg.el")
+#+end_src
+;; --------------------------------------
+    [[elisp:(find-file-other-frame "~/INI/Evil/evil-tabs-cfg.el")]["~/INI/Evil/evil-tabs-cfg.el"]]
+    (find-file-other-frame "~/INI/Evil/evil-tabs-cfg.el")
+    [[elisp:(find-file-other-frame "~/ELs/Evil/evil-respect-input.el")]["~/ELs/Evil/evil-respect-input.el"]]
+    (find-file-other-frame "~/ELs/Evil/evil-respect-input.el")
+
+  (find-file-other-frame "~/ELs/Evil/onecharadd.el") not used
+  (find-file-other-frame "~/ELs/Evil/copylines.el") пока нет
+*** INTERFACE-MODS CUSTOMIZATION
+#+HEADER: :tangle ~/INI/init.el
+#+begin_src emacs-lisp 
+(load "~/INI/interface-mods.el")
+#+end_src
+;; --------------------------------------
+*** ORG-MODE CUSTOMIZATION
+(find-file-other-frame "~/INI/org-cfg.el")
+#+HEADER: :tangle ~/INI/init.el
+#+begin_src emacs-lisp 
+(load "~/INI/org-cfg.el")
+#+end_src
+;; --------------------------------------
+  (find-file-other-frame "~/INI/ORG/org-roam-cfg.el")
+  (find-file-other-frame "~/INI/org_agend_cfg.el")
+  (find-file-other-frame "~/INI/babel-cfg.el")
+  (find-file-other-frame "~/ORG/brain/babel-cfg.el")
+  (find-file-other-frame "~/ORG/brain/babel-cfg.el org.org")
+    tangled (find-file-other-frame "~/INI/babel-cfg.el")
+      (find-file-other-frame "~/ELs/Org/Babel/ob-eshell.el") отключили
+  (find-file-other-frame "~/INI/org-brain-cfg.el")
+  (find-file-other-frame "~/INI/ORG/graph-tools-cfg.el")
+from (find-file "~/INI/folding-cfg.el")
+  (find-file-other-frame "~/INI/outshine_cfg.el")
+*** FIN-MODE CUSTOMIZATION>
+[[file:fin.el FIN-MODS CUSTOMIZATION.org::C-c C-v C-t to render ~/INI/FIN/fin.el][fin.el FIN-MODS CUSTOMIZATION.org]]
+(find-file-other-frame "~/INI/FIN/fin.el")
+#+HEADER: :tangle ~/INI/init.el
+#+begin_src emacs-lisp 
+(load "~/INI/FIN/fin.el")
+#+end_src
+;; --------------------------------------
+*** FRAME & WINDOWS CONTROL-MODS CUSTOMIZATION
+  (find-file-other-frame "~/INI/frame-control.el")
+                              WINDMOVE
+#+HEADER: :tangle ~/INI/init.el
+#+begin_src emacs-lisp 
+(load "~/INI/frame-control.el")
+#+end_src
+;; --------------------------------------
+    (find-file-other-frame "~/INI/fullscreen-cfg.el")
+    (find-file-other-frame "~/INI/frames/minimap-cfg.el")
+    minimap-mode loading
+*** FOLDING-MODS CUSTOMIZATION
+;; (find-file "~/INI/folding-cfg.el")
+#+HEADER: :tangle ~/INI/init.el
+#+begin_src emacs-lisp 
+(load "~/INI/folding-cfg.el")
+#+end_src
+;; --------------------------------------
+  (find-file-other-frame "~/INI/outshine_cfg.el")
+*** LITERARY-MODS CUSTOMIZATION
+;; (find-file "~/INI/lit-cfg.el")
+;; (find-file-other-frame "~/INI/lit-cfg.el")
+#+HEADER: :tangle ~/INI/init.el
+#+begin_src emacs-lisp 
+(load "~/INI/lit-cfg.el")
+#+end_src
+  (find-file-other-frame "~/INI/translate-cfg.el")
+  (find-file-other-frame "~/INI/lit-cfg/grammer-cfg.el") not et
+  (find-file-other-frame "~/INI/lit-cfg/read-aloud-cfg.el") 
+  (find-file-other-frame "~/INI/lit-cfg/reader-cfg.el")
+  (find-file-other-frame "~/ELs/BuYn/reader.el")
+;; --------------------------------------
+*** DEVELOPMENT-MODS CUSTOMIZATION
+(find-file-other-frame "~/INI/dev-cfg.el")
+#+HEADER: :tangle ~/INI/init.el
+#+begin_src emacs-lisp 
+(load "~/INI/dev-cfg.el")
+#+end_src
+;; --------------------------------------
+  (find-file-other-frame "~/INI/autocomplete-cfg.el")
+  (find-file-other-frame "~/INI/snippets-cfg.el")
+  (find-file-other-frame "~/INI/delimiters-cfg.el")
+  (find-file-other-frame "~/INI/js-cfg.el") 
+  (find-file-other-frame "~/INI/lua-cfg.el")
+  (find-file-other-frame "~/INI/python-cfg.el")
+  (find-file-other-frame "~/INI/dev/csharp-cfg.el")
+  (find-file-other-frame "~/INI/dev/clojure-cfg.el")
+  (find-file-other-frame "~/INI/dev/autohotkey-cfg.el")
+  (find-file-other-frame "~/INI/dev/unity-cfg.el")
+  (find-file-other-frame "~/INI/dev/formats-mods-cfg.el")
+  (find-file-other-frame "~/INI/c-mode-cfg.el") not used
+  (find-file-other-frame "~/INI/flycheck-cfg.el")
+from (find-file "~/INI/folding-cfg.el")
+  (find-file-other-frame "~/INI/outshine_cfg.el")
+*** HYDRA CUSTOMIZATION
+[[file:hydra-cfg.el HYDRA MENU CUSTOMIZATION.org::*Source][Source hydra-cfg.el]]
+	from (find-file-other-frame "~/INI/hydra-cfg.el")
+#+HEADER: :tangle ~/INI/init.el
+#+begin_src emacs-lisp 
+(load "~/INI/hydra-cfg.el")
+#+end_src
+;; --------------------------------------
+*** WWW CUSTOMIZATION
+(find-file-other-frame "~/INI/www-cfg.el") 
+;; (with-eval-after-load 'evil
+;;   (define-key evil-motion-state-map (kbd "g l") 'evil-end-of-line))
+;; (eval-after-load "~/INI/www-cfg.el")
+;; (find-file-other-frame "~/INI/www-cfg.el") 
+;; (find-file-other-frame "~/INI/org_agend_cfg.el")
+#+HEADER: :tangle ~/INI/init.el
+#+begin_src emacs-lisp 
+(use-package eww
+  :config
+  (load "~/INI/www-cfg.el"))
+#+end_src
+;; --------------------------------------
+*** ADVNSED SELECTIONS CUSTOMIZATION
+(find-file-other-frame "~/INI/advnsed-selections-cfg.el")
+#+HEADER: :tangle ~/INI/init.el
+#+begin_src emacs-lisp 
+(load "~/INI/advnsed-selections-cfg.el")
+#+end_src
+;; --------------------------------------
+*** AI-MODS CUSTOMIZATION
+(find-file-other-frame "~/ORG/brain/ai.el org.org")
+  from (find-file-other-frame "~/INI/ai/ai.el")
+#+HEADER: :tangle ~/INI/init.el
+#+begin_src emacs-lisp 
+(load "~/INI/ai/ai.el")
+#+end_src
+;; --------------------------------------
+*** LOAD BUYN's ELISP DEFUNS
+(find-file-other-frame "~/ELs/BuYn/shell.el")
+(find-file-other-frame "~/../Dropbox/backup/file.el")
+#+HEADER: :tangle ~/INI/init.el
+#+begin_src emacs-lisp 
+(load "~/ELs/BuYn/shell.el")
+(load "~/../Dropbox/backup/file.el")
+#+end_src
+;; --------------------------------------
+  ----- not auto loadet -----
+  (find-file-other-frame "~/ELs/BuYn/ai-dungon.el")
+  (find-file-other-frame "~/ELs/tts/tts-editor/tts-editor.el")
+  (find-file-other-frame "~/ELs/BuYn/tts.el")
+*** NOT USED
+**** TIME TRACKING-MODs CUSTOMIZATION
+#+HEADER: :tangle no
+#+begin_src emacs-lisp 
+;; (load "~/INI/time-tracking-cfg.el")
+#+end_src
+;; --------------------------------------
+*** END OF LOAD
+#+HEADER: :tangle ~/INI/init.el
+#+begin_src emacs-lisp 
+(message "Load of init.el is ended")
+#+end_src
+;; --------------------------------------
+;; init.el ends here
+;; --------------------------------------
+#+end_src
+

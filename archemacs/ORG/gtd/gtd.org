@@ -1,0 +1,6 @@
+* Tasks
+** TODO Find way to esy oprn this file                                :Learn:
+  
+   [[file:~/INI/js-cfg.el::(yas/initialize)]]
+** TODO is contekst is mandatori
+  

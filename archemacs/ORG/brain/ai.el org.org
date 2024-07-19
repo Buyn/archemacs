@@ -1,0 +1,137 @@
+#+BRAIN_PARENTS: init.el%20Start%20of%20manual%20config
+
+
+* Commands
+** execute-src-block : 
+(save-excursion (progn (org-babel-goto-named-src-block "auto-tangle-block") (org-babel-execute-src-block)))
+(save-excursion (let () (org-babel-goto-named-src-block "auto-tangle-block") (org-babel-execute-src-block)))
+and then name the block you want to execute automatically:
+
+** find-file : 
+(find-file-other-frame "~/ORG/brain/ai.el org.org")
+from (find-file-other-frame "~/INI/init.el")
+[[file:init.el Start of manual config.org::*all][init org]]
+
+(load "~/INI/babel-cfg.el")
+(org-babel-tangle)
+
+[[elisp:(org-babel-tangle)]]
+
+** auto-tangle-block : 
+#+NAME: auto-tangle-block
+#+begin_src emacs-lisp :results output silent :tangle no
+(setq org-src-preserve-indentation t)
+(untabify (point-min) (point-max))
+(save-buffer)
+(org-babel-tangle)
+(find-file-other-frame "~/INI/ai/ai.el")
+(load "~/INI/ai/ai.el")
+;; (load "~/INI/hydra-cfg.el")
+;; (load "~/ELs/BuYn/reader.el")
+ #+end_src
+
+* Source
+:PROPERTIES:
+:header-args: :tangle  "~/INI/ai/ai.el"
+:END:
+** comments 
+(find-file-other-frame "~/INI/ia/ai.el")
+;; --------------------------------------
+;; init.el --- Emacs configuration
+;; --------------------------------------
+;; * used in
+;; (find-file "~/INI/init.el")
+;; --------------------------------------
+** GPT Setup
+*** use-package gpt
+  (setq gpt-openai-engine "gpt-4")
+#+begin_src elisp
+(use-package gpt
+ :ensure t
+ :config
+  ;; (setq gpt-openai-key "sk-*")
+  (setq gpt-openai-engine "gpt-3.5-turbo")
+  (define-key evil-normal-state-map (kbd "M-a M-j M-o") 'gpt-dwim)
+  )
+
+#+end_src
+
+#+RESULTS:
+: t
+*** setq gpt-command-history
+**** def
+(setq gpt-command-history `(#("sumurize это на руский" 0 22 (ivy-index 0))
+                            #("sumurize" 0 8
+   (ivy-index 0))
+ #("Write a haiku about Emacs." 0 26
+   (ivy-index 0))))
+*** сделать по разным модам
+**** орг
+**** пайсон
+**** лисп 
+**** хтмл 
+*** возможно загружать из гидры
+aji
+
+** Gptel Setup
+*** use-package gptel
+  (custom-set-variables '(gptel-model "gpt-3.5-turbo"))
+#+begin_src emacs-lisp
+(use-package gptel
+ :ensure t
+ :config
+  (custom-set-variables '(gptel-model "gpt-3.5-turbo-16k"))
+  (define-key evil-normal-state-map (kbd "M-a M-j M-S-h") 'gptel-system-prompt)
+  (define-key evil-normal-state-map (kbd "M-a M-j M-j") 'gptel-send)
+  (define-key evil-normal-state-map (kbd "M-a M-j M-h") 'gptel-menu)
+  (define-key evil-normal-state-map (kbd "M-a M-j h") 'gptel-system-prompt)
+  (define-key evil-normal-state-map (kbd "M-a M-j M-S-h") 'gptel-mode)
+  ;; (setq gpt-openai-key "sk-*")
+  (setq gptel-default-mode 'org-mode)
+)
+#+end_src
+
+#+RESULTS:
+: t
+*** error
+**** googlet
+gptel let: Wrong number of arguments: setq, 1
+**** toggle-debug-on-error : 
+    Try using M-x toggle-debug-on-error, then include the resulting backtrace into the question. – 
+    wasamasa
+    Oct 31, 2016 at 10:58
+    I finally find the problem is caused by using 'subfigure' package in my latex file. And this problem has been solved by changing 'subfigure.el'. And specific salutation is given in link. Hope this helps. – 
+    Raymond
+    Oct 31, 2016 at 11:02
+
+Add a comment
+2 Answers
+Sorted by:
+2
+
+As I said in https://emacs.stackexchange.com/questions/28155/unable-to-update-packages-on-emacs-25-1#comment43164_28155 one of the changes in emacs is that now setq requires an even number of arguments. If you set the debug-on-error variable to t then when you get this error you should enter the debugger and see where the error is coming from. Adding nil as a final argument should resolve your problem.
+
+ (setq in-src-block nil)
+ (setq in-src-block )
+**** я этог не ожидал но я его подченил 
+[[file:~/.emacs.d/elpa/gptel-20230411.549/gptel.el::letrec ((in-src-block nil]]
+поменял исходник с
+  (letrec ((in-src-block)
+на
+  (letrec ((in-src-block nil)
+*** Docs 
+**** Promts
+***** gptel--system-message
+(setq gptel--system-message "You are a large language model living in Emacs and a helpful assistant.")
+***** gptel-menu
+откроет меню с настройками 
+  (define-key evil-normal-state-map (kbd "M-a M-j M-h") 'gptel-menu)
+***** 
+  (define-key evil-normal-state-map (kbd "M-a M-j h") 'gptel-system-prompt)
+***** 
+  (define-key evil-normal-state-map (kbd "M-a M-j M-S-h") 'gptel-mode)
+** (gptel-system-prompt)
+(gptel-system-prompt)
+You are a helpful assistant. Answer as concisely as possible.
+Reply only with shell commands and no prose.
+You are a poet. Reply only in verse.

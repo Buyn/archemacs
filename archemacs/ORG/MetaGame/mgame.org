@@ -1,0 +1,302 @@
+* Пример как это выглфдит с играми 
+** Пример
+*** нужно
+**** Крос сылачная база игр
+     в которой можно
+     такое в печатления что всё что нужно это просто набор тегов
+     максимум рубрицированый набор тегов(для удобства подсказки)
+***** найти игры отвечаюшие  требованиям
+****** стиль
+****** временая линия
+****** аспекты
+**** список мирова игровых закономерностей
+**** сестема правил и расчётов перехода ресурсов между мирами
+**** список описания имеюшихся значимых ресурсов
+**** история описываюшая события между мирами
+*** Список состовляюших Игр по Требованиям
+**** питание и сон
+    надено ~рим ворлд~ (персонажи могут жить и выжмвать с возможно возможность изобразить корабль)
+    игра где тратятся ресурсы для потдержания жизни в космическом сетинге
+**** тактический комбат
+   икском афтер лайт ( космический тактический комбат)
+   можно применять для комботов не героями а отрядами более маштабными
+**** ФПС комбат
+     бордер ланд
+**** хак и слеш комбат \ аркадный 
+   дреликт (комбат иследование с уникальными придметами и уникальными героями)
+**** стратегицеская состовляюшая
+     стеларум
+**** ФПС + постройка базы
+     галактик империум
+**** постройка карабля
+     хардбендер
+**** иследование на карабле + торговля + некоторые аут посты
+     спора
+**** иследование космоса флотом
+     хардбендер
+**** Добыча ресурсов с местности
+     факторио
+**** Добыча ресурсов с Планеты 
+     Омега аут зере
+* А как можно былобы на основе задачи
+** описание истории 
+   вкоторой каждое реальное явление излогается ввиде элементов этой истории
+   кроме того эту систему можно дополнить набором карт историй встреченых в других книгах
+** Пример 
+   я прогамис  - значит маг и моё жлание написать програму это маг разрабатываюший новое заклятие
+метод описания может быть любым
+одно и тоже событие можно описать множеством разных способов
+возможность получить деньгии за прогу это квест который принесёт новый предмет обмундерования
+* а как добавить зомби ран
+  можно сделать карты события  
+  так можно разбить любую книгу на набор карт
+  - которые могут предпологать некотыр набор действий
+    генерируюших следуюшую карту и \ или  награду наказание за эту карту
+** пример 
+   вы видите зомби попробуйтесь прокрастся
+- игрок уменьшает скорость  и чем медленее идёт тем выше шансы
+  вы в местности с возможными ресурсами
+- можно остановится
+- можно сменить направление
+- если ускорится то можно проникнуть в более опосную трудно доступную зону но это может превлечь других зомби
+зомби вас приследу
+* ИП
+** Маг
+*** Задачи
+*** квесты
+**** Создать новое заклятие
+**** Выполнирть квест на создание артефакта
+*** Направления
+**** Контроль сознания
+**** Контроль внутреннего мира
+**** заклятия 
+**** артефакты
+**** школы
+***** конжуринг
+***** големаси
+***** дестрактион 
+***** ресторешион
+***** чарминг
+***** некроманси
+***** Проклятия
+***** илюжинс
+***** когниус
+***** енчантинг
+***** алхими
+***** DagerFall School of Magic 	
+****** Alteration
+******* Spells 	
+  Force Bolt2
+  Jumping
+  Medusa's Gaze
+  Paralysis
+  Resist Cold
+  Resist Fire
+  Resist Poison
+  Resist Shock
+  Shield
+  Slowfalling
+  Spider Touch
+  Water Breathing
+  Wizard Rend2
+******* Description
+	  The School of Alteration is one of the six avenues of magical study. This School concerns itself with magicka's ability to change, often radically, the structure and composition of any object. Unlike the School of illusion, alteration deals with actual change, not the appearance of it. Slowfalling and Shield are two classic spells of the School of Alteration. Buying, creating, and casting spells of alteration are less expensive for mages skilled in this path.
+****** Destruction 
+******* Spells 	
+  Energy Leech
+  Fire Storm
+  Fireball
+  Force Bolt1
+  Frostbite
+  God's Fire
+  Hand of Decay
+  Hand of Sleep
+  Ice Bolt
+  Ice Storm
+  Lightning
+  Magicka Leech
+  Sleep
+  Spell Drain
+  Sphere of Negation
+  Strength Leech
+  Toxic Cloud
+  Vampiric Touch
+  Wildfire
+  Wizard Rend1
+  Wizard's Fire
+******* Description
+	  The School of Destruction is one of the six avenues of magical study. This School is concerned with the purely destructive capabilities of magicka evident in Spells like Fireball and Acidic Field. Buying, creating, and casting a spell devised to harm or destroy a target is less expensive for mages skilled in this path.
+
+****** Illusion
+******* Spells 	
+  Chameleon
+  Invisibility
+  Light
+  Shadow Form
+******* Description
+
+	  The School of Illusion is one of the six avenues of magical study. This School works with magicka in its capacity to camouflage, illuminate, or obscure without changing an object's structure. Invisibility and Light are two of the School's most basic spells. Buying, creating, and casting a spell of illusion is less expensive for mages skilled in this path.
+
+******  Mysticism
+******* Spells 	
+  Banish Daedra
+  Detect*
+  Far Silence
+  Fenrik's Door Jam
+  Holy Touch
+  Holy Word
+  Null Magicka
+  Open
+  Recall
+  Silence
+  Soul Trap
+  Tongues
+  Wizard Lock
+******* Description
+	  The School of Mysticism is one of the six avenues of magical study. The School experiments with the most arcane aspects of magicka and expanding these "accidents" into a useful if eclectic range of spells. Because the forces being manipulated by Mysticism are dangerous and unknown, the spell effects are purposefully specific. They include Far Silence and Soul Trap. Buying, creating, and casting spells of mysticism are less expensive for mages skilled in this path.
+
+****** Restoration
+******* Spells 	
+  Balyna's Antidote
+  Balyna's Balm
+  Charisma
+  Cure Disease
+  Cure Poison
+  Feet of Notorgo
+  Fortitude
+  Free Action
+  Heal
+  Iron Will
+  Jack of Trades
+  Nimbleness
+  Orc Strength
+  Spell Absorption
+  Stamina
+  Troll's Blood
+  Wisdom
+******* Description
+	  The School of Restoration is one of the six avenues of magical study. This School is devoted to the salubrious and soothing powers of magicka, evident in spells like Cure Poison and Troll's Blood. Buying, creating, and casting a spells devised to heal a target is less expensive for mages skilled in this path.
+
+******  Thaumaturgy
+******* Spells 	
+  Buoyancy
+  Calm Humanoid
+  Charm Mortal
+  Levitate
+  Quiet Undead
+  Shalidor's Mirror
+  Spell Resistance
+  Spell Shield
+  Spell Reflection
+  Tame
+  Water Walking
+******* Description
+	  The School of Thaumaturgy is one of the six avenues of magical study. This School concentrates on exposing or manipulating known forces and objects within their natural laws. It is evident in Spells like Levitation and Detection. No Thaumaturgical spell can permanently change the appearance or structure of a force or object. Buying, creating, and casting spells of thaumaturgy are less expensive for mages skilled in this path.
+****** краткое обеснение
+    Alteration - Temporary changes to physical objects (water, muscles)
+    Destruction - Permanent destruction of physical objects
+    Illusion - Changing what is seen or perceived temporarily
+    Mysticism - "True" magic, includes teleporting, dispelling beasts, and comprehending languages
+    Restoration - Fixing broken things, like health and attributes
+    Thaumaturgy - Temporary changes to animals/people to overcome physics (water, gravity, air)
+***** Morrowind:Magic
+    Illusion — Spells that alter perception, such as Invisibility and Charm.
+    Conjuration — Spells that summon creatures and equipment from other worlds, such as Bound Items and Summon.
+    Alteration — Spells that manipulate the laws of nature, such as Water Breathing and Levitation.
+    Destruction — Spells that cause physical harm, such as Fire Damage and Damage Attribute.
+    Mysticism — Spells that shape and focus ethereal forces, such as Telekinesis and Soultrap.
+    Restoration — Spells that heal, such as Restore Health and Cure Common Disease.
+All spells fall under these schools of magic, and your ability to cast a given spell is determined by your Willpower, skill level in that school, as well as your current Fatigue and Luck. The remaining skills under the magic specialization include:
+    Enchant — The ability to add magical effects to clothing, armor, and weapons.
+    Alchemy — The ability to create potions from ingredients and identify their magical effects.
+    Unarmored — The ability to resist damage when not wearing armor.
+
+**** Skills  
+***** Daggerfall:Skills
+****** Alteration
+Willpower
+  "Alteration refers to the School of Alteration, one of the six avenues of magical study. This school is concerned with magic's ability to change the very structure and composition of objects. Dimunition and Shield are two classic Alteration spells."
+****** Archery 
+ Agility 	"Archery is the skill governing one's ability to hit targets and cause damage using a bow and arrow."
+****** Axe 
+ Strength 	"Axe is the skill automatically checked whenever one uses a battleaxe or a waraxe on a target."
+****** Backstabbing 
+ Agility 	"Backstabbing is a skill checked whenever a target is struck from behind. It is easier for a person proficient at this skill to hit a target from behind. It is also probable that more damage will be dealt with a well-delivered backstab."
+****** Blunt Weapon 
+ Strength 	"Blunt Weapon is a skill checked whenever one strikes a target with a heavy, blunt weapon such as a mace or a staff. Proficient Blunt Weapon specialists have a greater chance of hitting and cause more damage with each blow."
+****** Centaurian 
+ Intelligence 	"Centaurian is a language skill checked whenever one tries to talk with a Centaur." The skill check occurs when coming within range of a Centaur. If successful, the creature will be non-hostile (will not attack unless provoked).
+****** Climbing 
+ Strength 	"Climbing is a skill checked whenever one attempts to scale a wall or a steep incline. It is continually checked until one is on level ground again."
+****** Critical Strike 
+ Agility 	"Critical Striking is a skill checked whenever one has successfully struck a target. A target that receives a successful Critical Strike suffers withering, often fatal, additional damage."
+****** Daedric 
+ Intelligence 	"Daedric is a language skill checked whenever one attempts to speak with a daedra, such as a Fire Daedra or a Daedra Lord." The skill check occurs when coming within range of a Daedra. If successful, the creature will be non-hostile (will not attack unless provoked).
+****** Destruction 
+ Willpower 	"Destruction refers to the School of Destruction, one of the six formal avenues of magical study. Destruction spells are those with a primary purpose of causing damage to a target, such as Fireball or Acidic Field."
+****** Dodging 
+ Speed 	"Dodging is a skill checked before one is struck by an enemy's weapon or spell."
+****** Dragonish 
+ Intelligence 	"Dragon is a language skill checked whenever one attempts to speak with a dragon." The skill check occurs when coming within range of a Dragonling. If successful, the creature will be non-hostile (will not attack unless provoked).
+****** Etiquette 
+ Personality 	"Etiquette is a skill checked whenever one attempts to be polite, deferential, and charming in conversation."
+****** Giantish 
+ Intelligence 	"Giantish is a language skill checked whenever one attempts to speak with a Giant." The skill check occurs when coming within range of a Giant. If successful, the creature will be non-hostile (will not attack unless provoked).
+****** Hand-to-Hand 
+ Agility 	"Hand-to-Hand is a skill checked whenever one attempts to strike a target with a punch or a kick."
+****** Harpy 
+ Intelligence 	"Harpy is a language skill checked whenever one attempts to speak with a Harpy." The skill check occurs when coming within range of a Harpy. If successful, the creature will be non-hostile (will not attack unless provoked).
+****** Illusion 
+ Willpower 	"Illusion refers to the School of Illusion, one of the six avenues of magical study. Illusion spells are capable of camouflaging, illuminating, or obscuring objects, as the spells Invisibility and Light demonstrate."
+****** Impish 
+ Intelligence 	"Impish is a language skill checked whenever one attempts to speak with an Imp." The skill check occurs when coming within range of an Imp. If successful, the creature will be non-hostile (will not attack unless provoked).
+****** Jumping 
+ Strength 	"Jumping is a skill checked to determine the height and distance one is capable of leaping."
+****** Lockpicking 
+ Intelligence 	"Lockpicking is a skill automatically checked whenever one attempts to pick the lock on a door or a chest."
+****** Long Blade 
+ Agility 	"Long Blade is a skill checked whenever one attempts to strike a target with a long-bladed, slashing weapon such as a claymore or a katana."
+****** Medical 
+ Intelligence 	"Medical skill is automatically checked whenever one rests, allowing one to diagnose minor injuries and illnesses."
+****** Mercantile 
+ Personality 	"Mercantile is a skill checked whenever one enters into negotiations with a merchant, attempting to buy or sell an item at the best possible price."
+****** Mysticism 
+ Willpower 	"Mysticism refers to the School of Mysticism, one of the six avenues of magical study. Mysticism is the most arcane school, and the spells created by its application are as varied as Far Silence and Soul Trap."
+****** Nymph 
+ Intelligence 	"Nymph is a language skill checked whenever one attempts to speak with a Nymph." The skill check occurs when coming within range of a Nymph. If successful, the creature will be non-hostile (will not attack unless provoked).
+****** Orcish 
+ Intelligence 	"Orcish is a language skill checked whenever one attempts to speak with an Orc." The skill check occurs when coming within range of an Orc. If successful, the creature will be non-hostile (will not attack unless provoked).
+****** Pickpocket 
+ Agility 	"Pickpocketing is a skill automatically checked whenever one attempts to steal an item off a person or shelf without being detected."
+****** Restoration 
+ Willpower 	"Restoration refers to the School of Restoration, one of the six avenues of magical study. Any healing spell such as Cure Poison and [sic] Troll's Blood hails from Restoration."
+****** Running 
+ Speed 	"Running is a skill automatically checked whenever one begins to run, to check the possible speed."
+****** Short Blade 
+ Agility 	"Short Blade is a skill checked whenever one attempts to strike a target with a short-bladed stabbing weapon such as daggers and tantos, to determine the aim and damage possible in a strike."
+****** Spriggan 
+ Intelligence 	"Spriggan is a language skill checked whenever one attempts to speak with a Spriggan." The skill check occurs when coming within range of a Spriggan. If successful, the creature will be non-hostile (will not attack unless provoked).
+****** Stealth 
+ Agility 	"Stealth is a skill which allows one to avoid the attention of a hostile creature. It is automatically checked at every encounter."
+****** Streetwise 
+ Personality 	"Streetwise is a skill checked whenever one attempts to be blunt, colloquial, or otherwise informal in conversation."
+****** Swimming 
+ Endurance 	"Swimming is a skill automatically checked whenever one encounters water to see how fast one can swim, how fatigued one gets while swimming, and how long one can stay underwater."
+****** Thaumaturgy
+ Willpower 	"Thaumaturgy refers to the School of Thaumaturgy, one of the six avenues of magica [sic] study. A Thaumaturgical spell does not change the appearance or structure of a force or object, but can manipulate laws temporarily, as evident in such spells as Levitate and Detection."
+****** The following skills are found inside the game files, however they have been removed prior to the release of the game Skill 	Attribute 	Description of skill
+******* Disguise
+ Personality 	"Disguise is a skill automatically checked whenever one attempts either to infiltrate a hostile environment or to secrete items away from prying eyes."
+******* Elvish
+ Intelligence 	"Elvish is a language skill checked whenever one attempts to speak with a Wild Elf."
+******* Faerie
+ Intelligence 	"Faerie is a language skill checked whenever one attempts to speak with a Faerie."
+* настолка
+** описание
+   Представить метаигры компютера ввиде настольной игры
+   тоесть некоторая комбинация ряда игр это конкретное поле с отображением элементов содержашхся в иггре  на этом поле для дальнейшего преобразования с помошью настольных механик в элементы другой игры
+** вариант
+   культист симулятор содержет пример как используя механики настольной игры сделть компютерную в 3д пространстве приэтом таким оброзом можно нетолько преобразовать элменты одной игры в другу и наглядно изобразить диномично изменяюся игрову ситуацию - но позволит запускать доп програмы которы смогут как диномично приносить изменёные игровые данные так и диномично патчить необходимы даные игр как в памяти так и в сохранёных файлах
+   И нтересен также ефект того что данный подход легко может перенесён на реальную ситауцию и позволит легко представить не игровые данные
+   также это важный елемент нетолько отличия танного процеса от обычных игр но и явлется важным реферансом досковым играм в кои при прочих раыных я бы нестал играть
+   Стоит отметить что данный мотод предстовления отличается крайней лёгкость и гибкостью предстовления любых закономерностей и взамозависимостей. И обладает багато разработаным понатийным апоратом готовых для примения решений. Которы бы при прочиш равых не получили бы возможность для практического использования

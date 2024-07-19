@@ -1,0 +1,149 @@
+#+BRAIN_PARENTS: org-mode%20org-cfg.el%20org
+
+
+* Commands
+** execute-src-block : 
+(save-excursion (progn (org-babel-goto-named-src-block "auto-tangle-block") (org-babel-execute-src-block)))
+(save-excursion (let () (org-babel-goto-named-src-block "auto-tangle-block") (org-babel-execute-src-block)))
+and then name the block you want to execute automatically:
+
+** find-file : 
+(find-file-other-frame "~/ORG/brain/babel-cfg.el org.org")
+from (find-file-other-frame "~/INI/org-cfg.el")
+(find-file-other-frame "~/INI/babel-cfg.el")
+
+(load "~/INI/babel-cfg.el")
+(org-babel-tangle)
+
+[[elisp:(org-babel-tangle)]]
+"D:\Development\version-control\GitHub\My-python\pytts2d\DOCs\Brain\List of exempls.org" 
+
+** auto-tangle-block : 
+#+NAME: auto-tangle-block
+#+begin_src emacs-lisp :results output silent :tangle no
+(setq org-src-preserve-indentation t)
+(untabify (point-min) (point-max))
+(save-buffer)
+(org-babel-tangle)
+(find-file-other-frame "~/INI/babel-cfg.el")
+;; (load "~/INI/hydra-cfg.el")
+;; (load "~/ELs/BuYn/reader.el")
+ #+end_src
+
+* Source
+:PROPERTIES:
+:header-args: :tangle  "~/INI/babel-cfg.el"
+:END:
+** comments 
+(find-file-other-frame "~/INI/babel-cfg.el")
+;; --------------------------------------
+;; init.el --- Emacs configuration
+;; --------------------------------------
+;; * used in
+;; (find-file "~/INI/org-cfg.el")
+;; --------------------------------------
+** ORG BABEL CUSTOMIZATION
+*** BABEL Setup
+**** set conform
+#+begin_src emacs-lisp 
+(setq org-confirm-babel-evaluate nil) 
+#+end_src
+
+*** BABEL languages evaluations
+**** org-babel-do-load-languages : start
+#+begin_src emacs-lisp
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(
+#+end_src
+**** python evaluate
+#+begin_src emacs-lisp
+    (python . t)
+#+end_src
+**** eshell evaluate
+#+begin_src emacs-lisp
+    (eshell . t)
+#+end_src
+  ;; (find-file-other-frame "~/ELs/Org/Babel/ob-eshell.el")
+;; (load "~/ELs/Org/Babel/ob-eshell.el")
+;; (use-package ob-eshell :ensure t
+  ;; :defer 2
+  ;; :bind ("C-c c" hydra-clock/body)
+;;  **** END of use-package hydra
+  ;; )                   
+**** Other list 
+    (sh         . t)
+    (c           . t)
+    (emacs-lisp . t)
+:tangle no 
+    (cpp         . t)
+
+    #+begin_src emacs-lisp
+    (shell       . t)
+    (clojure     . t)
+    (lua         . t)
+    (sql        . t)
+    (sqlite     . t)
+    (js         . t)
+    (css        . t)
+    (plantuml   . t)
+#+end_src
+    (scala      . t)
+    (ruby       . t)
+    (dot        . t)
+    (perl       . t)
+**** org-babel-do-load-languages : end
+    #+begin_src emacs-lisp
+   ))
+#+end_src
+;; --------------------------------------
+  (find-file-other-frame "~/ELs/Org/Babel/ob-eshell.el") отключили
+;; --------------------------------------
+
+* old el
+#+begin_src emacs-lisp :results output silent :tangle no
+;; --------------------------------------
+;; init.el --- Emacs configuration
+;; --------------------------------------
+;; * used in
+;; (find-file "~/INI/org-cfg.el")
+;; --------------------------------------
+;; * ORG BABEL CUSTOMIZATION
+;; ** BABEL Setup
+;; *** set conform
+(setq org-confirm-babel-evaluate nil)
+;; ** BABEL languages evaluations
+;; *** python evaluate
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t)))
+;; *** eshell evaluate
+  ;; (find-file-other-frame "~/ELs/Org/Babel/ob-eshell.el")
+;; (load "~/ELs/Org/Babel/ob-eshell.el")
+;; (use-package ob-eshell :ensure t
+  ;; :defer 2
+  ;; :bind ("C-c c" hydra-clock/body)
+;;  **** END of use-package hydra
+  ;; )                   
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((eshell . t)))
+
+;; --------------------------------------
+ #+end_src
+* docs 
+** list exempl
+     (org-babel-do-load-languages
+      'org-babel-load-languages
+      '((sh         . t)
+        (js         . t)
+        (emacs-lisp . t)
+        (perl       . t)
+        (scala      . t)
+        (clojure    . t)
+        (python     . t)
+        (ruby       . t)
+        (dot        . t)
+        (css        . t)
+        (plantuml   . t)))
+

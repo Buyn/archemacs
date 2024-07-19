@@ -1,0 +1,82 @@
+* Python
+** Recipes
+*** Find HTML tags with a Beautiful Soup object
+API:
+
+#+BEGIN_SRC python
+  findAll(tag, attributes, recursive, text, limit, keywords)
+  find(tag, attributes, recursive, text, keywords)
+#+END_SRC
+
+Example:
+
+#+BEGIN_SRC python
+     .findAll({"h1","h2","h3","h4","h5","h6"})
+     .findAll("span", {"class":"green", "class":"red"})
+     .findAll(text="the prince")
+#+END_SRC
+
+*** Parse HTML/XML with BeautifulSoup
+1. Get the HTML structure of a URL:
+   #+BEGIN_SRC python
+     html = urlopen("http://en.wikipedia.org"+articleUrl)
+   #+END_SRC
+
+2. Use BeautifulSoup to parse:
+     #+BEGIN_SRC python
+       bsObj = BeautifulSoup(html, "lxml")
+     #+END_SRC
+
+3. Then, retrieve any data with Python e.g. regex:
+
+#+BEGIN_SRC python
+  bsObj.find("div", {"id":"bodyContent"}).findAll("a",href=re.compile("^(/wiki/)((?!:).)*$"))
+#+END_SRC
+Then, running the command org-recipes will display it like this:
+
+[[https://github.com/tuhdo/org-recipes/blob/master/helm-org-snippets.png][helm-org-snippets]]
+
+Finally, pressing C-c i inserts the raw code under a heading:
+
+findAll(tag, attributes, recursive, text, limit, keywords)
+find(tag, attributes, recursive, text, keywords)
+.findAll({"h1","h2","h3","h4","h5","h6"})
+.findAll("span", {"class":"green", "class":"red"})
+.findAll(text="the prince")
+
+*** Hello World recipe
+:PROPERTIES:
+:SYMBOL:   HelloWorld
+:END:
+
+This is a code block for inserting in the current working buffer:
+
+#+begin_src python
+print("Hello world")
+#+end_src
+
+This code block is also inserted in the current buffer:
+
+#+begin_src python
+print("Another hello world")
+#+end_src
+
+This is a code block for inserting in a file, as specified by :file parameter:
+
+#+begin_src python :file "test.py"
+print("File hello world")
+#+end_src
+
+The :SYMBOL: property gives a recipe a name. A command to expand code based
+on the object at point. An object can either be:
+
+	 A recipe name: in this case, the code snippet from the recipe with the name is
+ inserted into theh current buffer, or a file (if a code snippet specifies). For
+ example, when the cursor is on the symbol HelloWorld in a buffer, running
+ org-recipes-dwim expands the code snippets in Hello World Recipe above.
+
+	 A list that is a collection of multipole recipes: in this case, code snippets from all
+ recipes are collected and inserted into current buffer (if a code snippet specifies).
+ For example, if we have the recipe list: (RecipeA RecipeB RecipeC) in a buffer,
+ when running org-recipes-dwim, all the snippets in the recipe list is inserted
+ appropriately.
