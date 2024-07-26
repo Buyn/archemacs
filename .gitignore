@@ -16,7 +16,7 @@ quelpa
 backups 
 org-roam.db
 .history
-
+url
 .emacs~
 emacs_demon.cmd~
 *.el~
