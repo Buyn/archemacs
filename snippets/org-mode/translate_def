@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: translate defult 
+# key: trans_ 
+# --
+#+begin_src translate ${1:dest ru} 
+$0
+#+end_src

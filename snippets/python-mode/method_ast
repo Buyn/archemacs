@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: method with asteds
+# key: m*
+# group: object oriented
+# --
+# ** def ${1:method} : 
+    def $1(self${3:, arg}): 
+        # $3
+        ${4:pass}
+

@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: deftest with stract
+# key: tf*
+# group: testing
+# --
+# ** test_${1:name} : 
+#  ----------------------------------------------:
+def test_$1(self):
+	${2:ase}$0
+
+
+#  ----------------------------------------------:
+
+

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: print with format
+# key: pf
+# --
+print(\"$1 {0}$2 {1}\".format($3, $4))
+ 
