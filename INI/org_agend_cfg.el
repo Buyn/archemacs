@@ -13,8 +13,8 @@
 ;; (setq org-agenda-log-mode-items '(closed clock))
 (setq org-agenda-log-mode-items '(closed clock state))
 (setq org-agenda-files '(	
-	"~/../Dropbox/orgs/GTD/todo_today.org"
-	"~/../Dropbox/orgs/GTD/todo_nottoday.org"))
+	"~/Dropbox/orgs/GTD/todo_today.org"
+	"~/Dropbox/orgs/GTD/todo_nottoday.org"))
 
 ;; (setq org-agenda-time-grid
 ;; 		'((daily today require-timed)
@@ -196,33 +196,33 @@
          ((org-agenda-files (file-expand-wildcards "~/archive/*.org")))) 
         ("Qn" "Todo next search" todo "NEXT"
 						(
-						;; (org-agenda-files (file-expand-wildcards "~/../Dropbox/orgs/GTD/*.org"))
-						(org-agenda-files '(		"~/../Dropbox/orgs/GTD/todo_today.org" 
-																		;; "~/../Dropbox/orgs/capture/emagus.org" 
-																		;; "~/../Dropbox/orgs/capture/Necronomicon.org" 
-																		;; "~/../Dropbox/Office/Research/Doc/Grimoire/Grimoire.org"
+						;; (org-agenda-files (file-expand-wildcards "~/Dropbox/orgs/GTD/*.org"))
+						(org-agenda-files '(		"~/Dropbox/orgs/GTD/todo_today.org" 
+																		;; "~/Dropbox/orgs/capture/emagus.org" 
+																		;; "~/Dropbox/orgs/capture/Necronomicon.org" 
+																		;; "~/Dropbox/Office/Research/Doc/Grimoire/Grimoire.org"
 																		) 
 								))) 
         ("QN" todo "NEXT"
-						((org-agenda-files '(		"~/../Dropbox/orgs/GTD/todo_today.org" 
-																		;; "~/../Dropbox/orgs/capture/emagus.org" 
-																		;; "~/../Dropbox/orgs/capture/Necronomicon.org" 
-																		;; "~/../Dropbox/Office/Research/Doc/Grimoire/Grimoire.org"
+						((org-agenda-files '(		"~/Dropbox/orgs/GTD/todo_today.org" 
+																		;; "~/Dropbox/orgs/capture/emagus.org" 
+																		;; "~/Dropbox/orgs/capture/Necronomicon.org" 
+																		;; "~/Dropbox/Office/Research/Doc/Grimoire/Grimoire.org"
 																		) 
 						))) 
         ("QH" "My-agenda"
               (	(agenda "")
 								(org-agenda-files '(
-																						"~/../Dropbox/orgs/capture/emagus.org" 
-																						"~/../Dropbox/Office/Research/Doc/Grimoire/Grimoire.org"
-																						"~/../Dropbox/orgs/capture/Necronomicon.org" 
+																						"~/Dropbox/orgs/capture/emagus.org" 
+																						"~/Dropbox/Office/Research/Doc/Grimoire/Grimoire.org"
+																						"~/Dropbox/orgs/capture/Necronomicon.org" 
 																						) 
 								))) 
         ("Qh" agenda "My-agenda" (	
 								(org-agenda-files '(
-																		"~/../Dropbox/orgs/capture/emagus.org" 
-																		"~/../Dropbox/orgs/GTD/todo_today.org"
-																		"~/../Dropbox/Office/Research/Doc/Grimoire/Grimoire.org"
+																		"~/Dropbox/orgs/capture/emagus.org" 
+																		"~/Dropbox/orgs/GTD/todo_today.org"
+																		"~/Dropbox/Office/Research/Doc/Grimoire/Grimoire.org"
 																		) 
 								))) 
         ("Qw" "Website search" search ""

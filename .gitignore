@@ -17,6 +17,7 @@ backups
 org-roam.db
 .history
 url
+session.*
 .emacs~
 emacs_demon.cmd~
 *.el~

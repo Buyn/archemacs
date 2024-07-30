@@ -31,6 +31,7 @@
 ;;       evil-visual-state-cursor '(box "#F86155"))
 		(setq evil-shift-width 2)
 		(setq-default evil-shift-width 2)
+		(evil-set-undo-system 'undo-redo)
 ;; --------------------------------------
 ;; (define-key key-translation-map (kbd "ch") (kbd "C-h"))
 ;; (define-key evil-normal-state-map "c" nil)

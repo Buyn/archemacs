@@ -16,7 +16,7 @@
 ;;  already keep your org files if you wish to transform your existing org files into
 ;;  org-brain files). You can set this with the example config presented above or
 ;;  through M-x customize-group RET org-brain.
-  (setq org-brain-path "~/../Dropbox/orgs/org-Brain")
+  (setq org-brain-path "~/Dropbox/orgs/org-Brain")
 ;; ****  Evil : 
 ;; For Evil users
 ;; 3 If you’re an evil user, you’ll want to add (evil-set-initial-state
@@ -56,7 +56,7 @@
 ;;  the command org-brain-ensure-ids-in-buffer. Even more comfortable is to add that
 ;;  to before-save-hook, so that it runs when saving.
   (setq org-id-track-globally t)
-  (setq org-id-locations-file "~/../Dropbox/orgs/org-Brain/.org-id-locations")
+  (setq org-id-locations-file "~/Dropbox/orgs/org-Brain/.org-id-locations")
   ;; (add-hook 'before-save-hook #'org-brain-ensure-ids-in-buffer)
 ;; **** org-capture-templates : 
 ;; 6 You might want to add information at the end of an entry, without visiting the file. A

@@ -1281,43 +1281,16 @@ initial-scratch-message
 ")
 
 * Pathes
-** Brain
-#+begin_src emacs-lisp :results code silent output 
-;; (package-refresh-contents)
-(setq org-brain-path "~/ORG/brain/")
-(setq org-id-track-globally t)
-(setq org-id-locations-file "~/ORG/brain/.org-id-locations")
-(org-brain-switch-brain "~/ORG/brain/")
-(find-file-other-frame "~/ORG/brain/index.org")
-(org-brain-visualize "index")
-(load-theme 'solarized-dark t)
-;; (disable-theme 'material)
-#+end_src
-
-** emacs orgs
-*** 2023
-**** 07
-(find-file-other-frame "~/../Dropbox/orgs/code/emacs_GPT_2023-07-20.org")
-(find-file-other-frame "~/../Dropbox/orgs/code/emacs_EAF_2023-07-17.org")
-(find-file-other-frame "~/../Dropbox/orgs/code/emacs_sound_keys_2023-07-11.org")
-**** 06
-(find-file-other-frame "~/../Dropbox/orgs/adm/emacs_ledger_2023-06-15.org")
-(find-file-other-frame "~/../Dropbox/orgs/adm/2023-06-08_trans.org")
-
-**** 05
-(find-file-other-frame "~/../Dropbox/orgs/adm/cygwin_gcc.org")
-(find-file-other-frame "~/../Dropbox/orgs/adm/emacs_org-roam_2023-05-19.org")
-
 ** init files
 *** root
-(find-file-other-frame "~/.emacs")
-	(find-file-other-frame "~/INI/init.el")
+(find-file-other-frame (expand-file-name ".emacs" user-emacs-directory))
+	(find-file-other-frame (expand-file-name "INI/inpak.el" user-emacs-directory))
 *** vanila
-(find-file-other-frame "~/INI/inpak.el")
-(find-file-other-frame "~/INI/vanila_cfg.el")
+(find-file-other-frame (expand-file-name "INI/inpak.el" user-emacs-directory))
+(find-file-other-frame (expand-file-name "INI/vanila_cfg.el" user-emacs-directory))
 *** Evil 	 C+c C+o
 	[[elisp:(find-file-other-frame "~/INI/evil-mod-cfg.el")]["~/INI/evil-mod-cfg.el"]]
-	(find-file-other-frame "~/INI/evil-mod-cfg.el")
+	(find-file-other-frame (expand-file-name "INI/evil-mod-cfg.el" user-emacs-directory))
 		[[elisp:(find-file-other-frame "~/INI/Evil/evil-tabs-cfg.el")]["~/INI/Evil/evil-tabs-cfg.el"]]
 		(find-file-other-frame "~/INI/Evil/evil-tabs-cfg.el")
 		[[elisp:(find-file-other-frame "~/ELs/Evil/evil-respect-input.el")]["~/ELs/Evil/evil-respect-input.el"]]
@@ -1389,6 +1362,33 @@ initial-scratch-message
 	(find-file-other-frame "~/ELs/tts/tts-editor/tts-editor.el")
 	(find-file-other-frame "~/ELs/BuYn/tts.el")
 	----- not auto loadet -----
+** Brain
+#+begin_src emacs-lisp :results code silent output 
+;; (package-refresh-contents)
+(setq org-brain-path "~/ORG/brain/")
+(setq org-id-track-globally t)
+(setq org-id-locations-file "~/ORG/brain/.org-id-locations")
+(org-brain-switch-brain "~/ORG/brain/")
+(find-file-other-frame "~/ORG/brain/index.org")
+(org-brain-visualize "index")
+(load-theme 'solarized-dark t)
+;; (disable-theme 'material)
+#+end_src
+
+** emacs orgs
+*** 2023
+**** 07
+(find-file-other-frame "~/../Dropbox/orgs/code/emacs_GPT_2023-07-20.org")
+(find-file-other-frame "~/../Dropbox/orgs/code/emacs_EAF_2023-07-17.org")
+(find-file-other-frame "~/../Dropbox/orgs/code/emacs_sound_keys_2023-07-11.org")
+**** 06
+(find-file-other-frame "~/../Dropbox/orgs/adm/emacs_ledger_2023-06-15.org")
+(find-file-other-frame "~/../Dropbox/orgs/adm/2023-06-08_trans.org")
+
+**** 05
+(find-file-other-frame "~/../Dropbox/orgs/adm/cygwin_gcc.org")
+(find-file-other-frame "~/../Dropbox/orgs/adm/emacs_org-roam_2023-05-19.org")
+
 ** all orgs Grimoire
 *** link
 (find-file-other-frame "~/../Dropbox/Office/Research/Doc/Grimoire/Grimoire.org")
