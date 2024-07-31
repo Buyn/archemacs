@@ -7,10 +7,6 @@
 ;; --------------------------------------
 ;; * DEVELOPMENT-MODs CUSTOMIZATION
 ;; --------------------------------------
-;; ** AUTOCOMPLETE-MOD CUSTOMIZATION
-;; (find-file-other-frame "~/.archemacs/INI/autocomplete-cfg.el")
-(load "~/.archemacs/INI/autocomplete-cfg.el")
-;; --------------------------------------
 ;; ** PROJECTILE CUSTOMIZATION
 (use-package projectile
   :ensure t
@@ -19,10 +15,6 @@
   :bind (:map projectile-mode-map
               ("s-p" . projectile-command-map)
               ("C-c p" . projectile-command-map)))
-;; --------------------------------------
-;; ** SNIPPETS-MOD CUSTOMIZATION
-;; (find-file "~/.archemacs/INI/snippets-cfg.el")
-(load "~/.archemacs/INI/snippets-cfg.el")
 ;; --------------------------------------
 ;; ** DELIMITERS-MOD CUSTOMIZATION
 ;; (find-file "~/.archemacs/INI/delimiters-cfg.el")

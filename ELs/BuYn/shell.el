@@ -13,6 +13,20 @@
 (setq path-to-emagus-client "d:/Development/lisp/Emacs/bin/emacsclientw.exe -n -c -a ''") 
 (setq path-to-emagus-client-buyn "d:/Development/lisp/Emacs/bin/emacsclientw.exe -n -c -a 'buyn'") 
 ;; ** functions
+;; *** buyn-shell-start :
+(defun buyn-shell-start (cmd-params)
+  "	buyn start new process
+		as parametr  
+		get comand to execute
+		"
+  (shell-command
+		(concat 
+						cmd-params
+						" &"
+						)
+		)
+  )
+
 ;; *** buyn-cmd-start :
 (defun buyn-cmd-start (cmd-params)
   "	buyn start new cmd process

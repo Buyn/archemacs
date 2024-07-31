@@ -1284,7 +1284,7 @@ initial-scratch-message
 ** init files
 *** root
 (find-file-other-frame (expand-file-name ".emacs" user-emacs-directory))
-	(find-file-other-frame (expand-file-name "INI/inpak.el" user-emacs-directory))
+	(find-file-other-frame (expand-file-name "INI/init.el" user-emacs-directory))
 *** vanila
 (find-file-other-frame (expand-file-name "INI/inpak.el" user-emacs-directory))
 (find-file-other-frame (expand-file-name "INI/vanila_cfg.el" user-emacs-directory))
@@ -1334,27 +1334,30 @@ initial-scratch-message
 *** HYDRA MENU
 (find-file-other-frame "~/INI/hydra-cfg.el")
 *** literary
-(find-file-other-frame "~/INI/lit-cfg.el")
-	(find-file-other-frame "~/INI/translate-cfg.el")
-	(find-file-other-frame "~/INI/lit-cfg/grammer-cfg.el") not et
-	(find-file-other-frame "~/INI/lit-cfg/read-aloud-cfg.el") 
-	(find-file-other-frame "~/INI/lit-cfg/reader-cfg.el")
-	(find-file-other-frame "~/ELs/BuYn/reader.el")
+	(find-file-other-frame "~/INI/lit-cfg.el")
+		(find-file-other-frame "~/INI/translate-cfg.el")
+		(find-file-other-frame "~/INI/lit-cfg/grammer-cfg.el") not et
+		(find-file-other-frame "~/INI/lit-cfg/read-aloud-cfg.el") 
+		(find-file-other-frame "~/INI/lit-cfg/reader-cfg.el")
+		(find-file-other-frame "~/ELs/BuYn/reader.el")
+*** auto
+	(find-file-other-frame (expand-file-name "INI/auto-cfg.el" user-emacs-directory))
+		(find-file-other-frame (expand-file-name "INI/auto/autocomplete-cfg.el" user-emacs-directory))
+		(find-file-other-frame (expand-file-name "INI/auto/snippets-cfg.el" user-emacs-directory))
 *** Programing
-(find-file-other-frame "~/INI/dev-cfg.el")
-	(find-file-other-frame "~/INI/autocomplete-cfg.el")
-	(find-file-other-frame "~/INI/snippets-cfg.el")
-	(find-file-other-frame "~/INI/delimiters-cfg.el")
-	(find-file-other-frame "~/INI/js-cfg.el") 
-	(find-file-other-frame "~/INI/lua-cfg.el")
-	(find-file-other-frame "~/INI/python-cfg.el")
-	(find-file-other-frame "~/INI/dev/csharp-cfg.el")
-	(find-file-other-frame "~/INI/dev/clojure-cfg.el")
-	(find-file-other-frame "~/INI/dev/autohotkey-cfg.el")
-	(find-file-other-frame "~/INI/dev/unity-cfg.el")
-	(find-file-other-frame "~/INI/dev/formats-mods-cfg.el")
-	(find-file-other-frame "~/INI/c-mode-cfg.el") not used
-	(find-file-other-frame "~/INI/flycheck-cfg.el")
+	(find-file-other-frame (expand-file-name "INI/dev-cfg.el" user-emacs-directory))
+		# (find-file-other-frame "~/INI/delimiters-cfg.el")
+		(find-file-other-frame (expand-file-name "INI/delimiters-cfg.el" user-emacs-directory))
+		(find-file-other-frame "~/INI/js-cfg.el") 
+		(find-file-other-frame "~/INI/lua-cfg.el")
+		(find-file-other-frame "~/INI/python-cfg.el")
+		(find-file-other-frame "~/INI/dev/csharp-cfg.el")
+		(find-file-other-frame "~/INI/dev/clojure-cfg.el")
+		(find-file-other-frame "~/INI/dev/autohotkey-cfg.el")
+		(find-file-other-frame "~/INI/dev/unity-cfg.el")
+		(find-file-other-frame "~/INI/dev/formats-mods-cfg.el")
+		(find-file-other-frame "~/INI/c-mode-cfg.el") not used
+		(find-file-other-frame "~/INI/flycheck-cfg.el")
 *** My Elisp
 	(find-file-other-frame "~/ELs/BuYn/shell.el")
 	----- not auto loadet -----

@@ -16,6 +16,8 @@
 
 (load (expand-file-name "INI/lit-cfg.el" user-emacs-directory))
 
+(load (expand-file-name "INI/auto-cfg.el" user-emacs-directory))
+
 (load (expand-file-name "INI/dev-cfg.el" user-emacs-directory))
 
 (load (expand-file-name "INI/hydra-cfg.el" user-emacs-directory))
