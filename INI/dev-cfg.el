@@ -18,17 +18,21 @@
 ;; --------------------------------------
 ;; ** DELIMITERS-MOD CUSTOMIZATION
 ;; (find-file "~/.archemacs/INI/delimiters-cfg.el")
-(load "~/.archemacs/INI/delimiters-cfg.el")
+(load "~/.archemacs/INI/dev/delimiters-cfg.el")
 ;; --------------------------------------
 ;; ** PYTHON-MOD CUSTOMIZATION
 ;; (find-file "~/.archemacs/INI/python-cfg.el") 
 ;; (find-file-other-frame "~/.archemacs/INI/python-cfg.el")
-(load "~/.archemacs/INI/python-cfg.el")
+(load "~/.archemacs/INI/dev/python-cfg.el")
 ;; --------------------------------------
 ;; ** LUA-MOD CUSTOMIZATION
 ;; --------------------------------------
 ;; (find-file "~/.archemacs/INI/lua-cfg.el")
-(load "~/.archemacs/INI/lua-cfg.el")
+(load "~/.archemacs/INI/dev/lua-cfg.el")
+;; --------------------------------------
+;; ** OUTSHINE-MOD CUSTOMIZATION
+;; --------------------------------------
+(load "~/.archemacs/INI/dev/outshine_cfg.el")
 ;; --------------------------------------
 ;; ** AHK-MODE CUSTOMIZATION
 ;; --------------------------------------
@@ -49,14 +53,14 @@
 ;; --------------------------------------
 ;; ** JS-MOD CUSTOMIZATION
 ;; (find-file-other-frame "~/.archemacs/INI/js-cfg.el") 
-(load "~/.archemacs/INI/js-cfg.el")
+(load "~/.archemacs/INI/dev/js-cfg.el")
 ;; --------------------------------------
 ;; ** FORMATS-MOD CUSTOMIZATION
 ;; (find-file-other-frame "~/.archemacs/INI/dev/formats-mods-cfg.el")
 (load "~/.archemacs/INI/dev/formats-mods-cfg.el")
 ;; --------------------------------------
 ;; ** FLYCHECK CUSTOMIZATION
-(load "~/.archemacs/INI/flycheck-cfg.el")
+(load "~/.archemacs/INI/dev/flycheck-cfg.el")
 ;; (find-file "~/.archemacs/INI/flycheck-cfg.el") 
 ;; --------------------------------------
 ;; ** DEVELOPMENT SETINGS CUSTOMIZATION

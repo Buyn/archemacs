@@ -12,7 +12,7 @@
 
 (load (expand-file-name "INI/frame-control.el" user-emacs-directory))
 
-(load (expand-file-name "INI/folding-cfg.el" user-emacs-directory))
+;; (load (expand-file-name "INI/folding-cfg.el" user-emacs-directory))
 
 (load (expand-file-name "INI/lit-cfg.el" user-emacs-directory))
 
