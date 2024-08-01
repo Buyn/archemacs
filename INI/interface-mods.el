@@ -4,6 +4,13 @@
 ;; * used in
 ;; (find-file "~/INI/init.el")
 ;;  --------------------------------------
+;; * WHICH-KEY CUSTOMIZATION
+;; --------------------------------------
+ (use-package which-key
+   :ensure t
+   :config
+     (which-key-mode))
+;;  --------------------------------------
 ;; * IVY CUSTOMIZATION
 ;; --------------------------------------
 (require 'use-package)
