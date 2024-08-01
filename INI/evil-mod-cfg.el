@@ -153,8 +153,6 @@
 (define-key evil-normal-state-map "gl" 'evil-end-of-visual-line)
 (define-key evil-normal-state-map (kbd "gj") 'next-logical-line)
 (define-key evil-normal-state-map (kbd "gk") 'previous-logical-line)
-(define-key evil-normal-state-map (kbd "f") 'evil-avy-goto-char-in-line)
-(define-key evil-visual-state-map (kbd "f") 'evil-avy-goto-char-in-line)
 
 
 ;; (define-key evil-normal-state-map  "gj" 'evil-next-visual-line)

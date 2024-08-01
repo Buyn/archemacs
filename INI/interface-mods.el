@@ -21,7 +21,9 @@
 	;; :init
 	;; (elpy-enable)
 	:config
-	(define-key evil-normal-state-map (kbd "M-f") 'avy-goto-word-1)
+		(define-key evil-normal-state-map (kbd "M-f") 'avy-goto-word-1)
+		(define-key evil-normal-state-map (kbd "f") 'evil-avy-goto-char-in-line)
+		(define-key evil-visual-state-map (kbd "f") 'evil-avy-goto-char-in-line)
 	)
 ;; --------------------------------------
 
@@ -31,7 +33,7 @@
 ;; (find-file-other-frame "~/.archemacs/INI/interface/powerline-cfg.el")
 (load "~/.archemacs/INI/interface/powerline-cfg.el")
 ;; --------------------------------------
-;; * REVERSE-IM CUSTOMIZATION: 
+;; * INPUT-METHODS CUSTOMIZATION: 
 ;; --------------------------------------
 ;; (find-file-other-frame "~/.archemacs/INI/interface/input-methods-cfg.el")
 (load "~/.archemacs/INI/interface/input-methods-cfg.el")
