@@ -7,6 +7,11 @@
 ;; --------------------------------------
 ;; * AUTO-MODs CUSTOMIZATION
 ;; --------------------------------------
+;; **  MAGIT-MOD CUSTOMIZATION
+(use-package magit
+ :ensure t
+	)
+;; --------------------------------------
 ;; ** AUTOCOMPLETE-MOD CUSTOMIZATION
 ;; (find-file-other-frame "~/.archemacs/INI/autocomplete-cfg.el")
 (load (expand-file-name "INI/auto/autocomplete-cfg.el" user-emacs-directory))

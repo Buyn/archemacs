@@ -1,0 +1,11 @@
+# key: elisp_use
+# name: elisp usetuse-package block ensure
+# --
+#+begin_src elisp
+(use-package ${1:name}
+	${2::ensure t}
+	${3::config}
+	$0
+	)
+
+#+end_src
