@@ -7,11 +7,11 @@
 (require 'cl) ;;used to Fix error if theres an error with above code
 (load "~/.archemacs/ELs/framemove/framemove.el")
 (require 'framemove)
-    (windmove-default-keybindings)
+    ;; (windmove-default-keybindings)
     (setq framemove-hook-into-windmove t) ;;Hook framemove into windmove keys
 ;; Common lisp stuff to fix windmove/framemove 
-(when (fboundp 'windmove-default-keybindings)
-  (windmove-default-keybindings))
+;; (when (fboundp 'windmove-default-keybindings)
+;;   (windmove-default-keybindings))
 ;; --------------------------------------
 ;; ** Remap windmove keys to home keys
 (global-set-key (kbd "M-h") nil)
@@ -138,6 +138,7 @@
 ;; (define-key evil-normal-state-map "gtt" 'make-frame-command)
 (global-set-key (kbd " M-g M-t M-f") 'find-file-other-frame)
 (global-set-key (kbd " M-g M-t M-b") 'switch-to-buffer-other-frame)
+(global-set-key (kbd " M-g M-t M-i") 'switch-to-buffer)
 (define-key evil-normal-state-map "ZO" 'switch-to-buffer-other-frame)
 (global-set-key (kbd " M-g M-t M-d") 'ido-dired-other-frame)
 (setq org-indirect-buffer-display `new-frame)
@@ -165,7 +166,7 @@
 ;; --------------------------------------
 ;; ** FRAMS CLOSE  {{{
 (define-key evil-normal-state-map "ZD" '(lambda() (interactive)
-					(delete-frame)))
+					(kill-buffer (current-buffer))))
 (define-key evil-normal-state-map "ZX" '(lambda() (interactive)
 					(kill-buffer (current-buffer))
 					(evil-quit)))
@@ -178,15 +179,14 @@
 					(kill-buffer (current-buffer))
 					(evil-quit)))
 (define-key evil-normal-state-map "ZQ" '(lambda() (interactive)
-					(kill-buffer (current-buffer))
-					))
+					(evil-quit)))
 (define-key evil-normal-state-map "ZZ" '(lambda() (interactive)
 					(evil-quit)
 					(org-save-all-org-buffers)))
 (define-key evil-normal-state-map "ZC" '(lambda() (interactive)
 					(save-buffer)
 					(kill-buffer (current-buffer))
-					(evil-quit)))
+					))
 
 ;; ** Split in new window {{{
 (define-key evil-normal-state-map "ZH" '(lambda() (interactive)
@@ -221,6 +221,8 @@
 ;; ** Buffer control  {{{
 (define-key evil-normal-state-map "ZI" '(lambda() (interactive)
 					(ivy-switch-buffer)))
+(define-key evil-normal-state-map "ZR" '(lambda() (interactive)
+					(ranger)))
 ;; (define-key evil-normal-state-map "Zh" '(lambda() (interactive)
 ;; 					;; (previous-buffer)))
 ;; 					(evil-prev-buffer)))

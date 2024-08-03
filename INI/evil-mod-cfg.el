@@ -25,13 +25,12 @@
 (require 'evil)
 (evil-mode t)
 ;; --------------------------------------
-;; ** Setings  {{{
+;; ** Setings
 ;; (setq evil-mode-line-format nil
 ;;       evil-insert-state-cursor '(bar "White")
 ;;       evil-visual-state-cursor '(box "#F86155"))
 		(setq evil-shift-width 2)
 		(setq-default evil-shift-width 2)
-		(evil-set-undo-system 'undo-redo)
 ;; --------------------------------------
 ;; (define-key key-translation-map (kbd "ch") (kbd "C-h"))
 ;; (define-key evil-normal-state-map "c" nil)
@@ -147,14 +146,23 @@
 (define-key evil-insert-state-map (kbd "M-p ") '(lambda() (interactive)
 				(yank)))
 ;; -------------------------------------- }}}
+;; ** Registers Clipboard
+(define-key evil-normal-state-map (kbd "M-y M-f") 'evil-use-register)
+(define-key evil-visual-state-map (kbd "M-y M-f") 'evil-use-register)
+(define-key evil-normal-state-map (kbd "M-p M-f") 'evil-use-register)
+(define-key evil-visual-state-map (kbd "M-p M-f") 'evil-use-register)
 ;; ** Movements  {{{
 (define-key evil-normal-state-map "gh" 'evil-first-non-blank-of-visual-line)
-(define-key evil-normal-state-map "GG" 'evil-goto-line)
 (define-key evil-normal-state-map "gl" 'evil-end-of-visual-line)
 (define-key evil-normal-state-map (kbd "gj") 'next-logical-line)
 (define-key evil-normal-state-map (kbd "gk") 'previous-logical-line)
 
 
+
+(define-key evil-normal-state-map (kbd "G") nil)
+(define-key evil-visual-state-map (kbd "G") nil)
+(define-key evil-normal-state-map (kbd "G G") 'evil-goto-line)
+(define-key evil-visual-state-map (kbd "G G") 'evil-goto-line)
 ;; (define-key evil-normal-state-map  "gj" 'evil-next-visual-line)
 ;; (define-key evil-normal-state-map  "gk" 'evil-previous-visual-line)
 ;; --------------------------------------  }}}
@@ -343,7 +351,9 @@
 (define-key evil-normal-state-map(kbd "C-\\") 'toggle-input-method)
 ;; -------------------------------------- 
 ;; ** TAB on c-i
-(define-key evil-insert-state-map (kbd "C-i") 'tab-to-tab-stop)
+;; (define-key evil-insert-state-map (kbd "C-i") 'tab-to-tab-stop)
+;; ** Undo and Redo
+(evil-set-undo-system 'undo-redo)
 ;; -------------------------------------- 
 ;; -------------------------------------- 
 ;; * EVIL COMMANDS RESPECT INPUT METHOD  

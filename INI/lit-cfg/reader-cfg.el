@@ -9,7 +9,7 @@
 ;; * READERS MODS CUSTOMIZATION 
 ;; ** fb2-mode
 ;; *** load
-(add-to-list 'load-path "~/ELs/Readers/fb2-mode/")
+;; (add-to-list 'load-path "~/ELs/Readers/fb2-mode/")
 ;; https://github.com/spline1986/fb2-mode
 ;; https://github.com/spline1986/fb2-mode.git
 ;; *** use-package fb2-mode : 
@@ -17,6 +17,9 @@
 	:ensure t
   :disabled
 	;; :load-path "~/ELs/Readers/fb2-mode"
+	:load-path (expand-file-name "ELs/Readers/fb2-mode" user-emacs-directory)
+;; (find-file (expand-file-name "ELs/Readers/fb2-mode" user-emacs-directory))
+
 	;; :init
 ;; *** :config : 
 	:config
@@ -39,7 +42,8 @@
  ;; fb2-replace-hard-spaces — if not nil then non-breaking spaces will replaced by spaces (default nil).
 ;; ** nov.el
 ;; *** load
-(add-to-list 'load-path "~/ELs/Readers/nov.el/")
+;; (add-to-list 'load-path "~/ELs/Readers/nov.el/")
+(add-to-list 'load-path (expand-file-name "ELs/Readers/nov.el/" user-emacs-directory))
 ;; *** use-package nov.el : 
 
 ;; (use-package esxml-query
@@ -51,6 +55,7 @@
 	:ensure t
   ;; :disabled
 	;; :load-path "~/ELs/Readers/nov.el/"
+	;; :load-path (expand-file-name "ELs/Readers/nov.el/" user-emacs-directory)
 	;; :load-path "~/ELs/"
 	;; :init
 ;; *** :config : 

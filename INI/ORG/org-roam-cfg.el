@@ -52,7 +52,8 @@
 ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
 ;;         a hookable mode anymore, you're advised to pick something yourself
 ;;         if you don't care about startup time, use
-	:hook (after-init . org-roam-ui-mode)
+	;; запускается сервер сразу с имаком
+	;; :hook (after-init . org-roam-ui-mode)
 	:config
 	(setq 
 				;; Org-Roam-UI can sync your Emacs theme! This is the default behavior, to disable it do
@@ -70,8 +71,8 @@
 ;; * DENDROAM CUSTOMIZATION
 ;; ** use-package : 
 (use-package dendroam
-	;; :quelpa (dendroam :repo "vicrdguez/dendroam" :fetcher github)
-	;; :ensure t
+	:quelpa (dendroam :repo "vicrdguez/dendroam" :fetcher github)
+	:ensure t
   :after org-roam
 	;; :demand t
 ;; ** config : 

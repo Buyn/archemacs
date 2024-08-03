@@ -1283,6 +1283,7 @@ initial-scratch-message
 * Pathes
 ** init files
 *** root
+(ranger)
 (find-file-other-frame (expand-file-name ".emacs" user-emacs-directory))
 	(find-file-other-frame (expand-file-name "INI/init.el" user-emacs-directory))
 *** vanila
