@@ -200,7 +200,7 @@
 (define-key evil-normal-state-map (kbd "M-m M-k") 'move-line-up)
 (define-key evil-normal-state-map (kbd "M-m M-j") 'move-line-down)
 ;; *** copy-lines : 
-;; **** buyn-copy-line : 
+;; **** buyn-copy-line:
 (defun buyn-copy-line () (interactive)
 			(setq region-text (buffer-substring (region-beginning) (region-end)))
 			(save-excursion
