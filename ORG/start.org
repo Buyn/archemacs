@@ -1300,7 +1300,8 @@ initial-scratch-message
 	# (find-file-other-frame "~/ELs/Evil/onecharadd.el") not used
 	# (find-file-other-frame "~/ELs/Evil/copylines.el") пока нет
 *** Orgs
-(find-file-other-frame "~/INI/org-cfg.el")
+# (find-file-other-frame "~/INI/org-cfg.el")
+(find-file-other-frame (expand-file-name "INI/org-cfg.el" user-emacs-directory))
 	(find-file-other-frame "~/INI/ORG/org-roam-cfg.el")
 	(find-file-other-frame "~/INI/org_agend_cfg.el")
 	(find-file-other-frame "~/INI/babel-cfg.el")
@@ -1321,7 +1322,8 @@ initial-scratch-message
 (find-file-other-frame (expand-file-name "INI/interface-mods.el" user-emacs-directory))
 	(find-file-other-frame "~/INI/interface/powerline-cfg.el") 
 		(find-file-other-frame "~/INI/interface/jonathanchu-emacs-powerline-cfg.el") 
-		(find-file-other-frame "~/INI/interface/input-methods-cfg.el")
+		# (find-file-other-frame "~/INI/interface/input-methods-cfg.el")
+		(find-file-other-frame (expand-file-name "INI/interface/input-methods-cfg.el" user-emacs-directory))
 	(find-file-other-frame "~/INI/frames/minimap-cfg.el") move here
 			# (find-file-other-frame "~/ELs/powerline/sm-package-powerline.el")notuse
 			# (find-file-other-frame "~/INI/interface/spaceline-cfg.el") notuse
@@ -1431,6 +1433,14 @@ file-ctrl
 (load "~/INI/dev-cfg.el")
 (load "~/INI/interface-mods.el")
 (load "~/ELs/BuYn/shell.el")
+** find in 
+*** init
+#+begin_src sh  
+grep --include=\*.el -rnw ~/.archemacs/INI -e '(insert " :")'
+#+end_src 	
+
+#+RESULTS:
+
 ** server 
 *** status
 ?server-start?
