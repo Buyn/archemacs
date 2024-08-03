@@ -10,17 +10,18 @@
 ;; ** fb2-mode
 ;; *** load
 ;; (add-to-list 'load-path "~/ELs/Readers/fb2-mode/")
+(add-to-list 'load-path (expand-file-name "ELs/Readers/fb2-mode/" user-emacs-directory))
 ;; https://github.com/spline1986/fb2-mode
 ;; https://github.com/spline1986/fb2-mode.git
 ;; *** use-package fb2-mode : 
 (use-package fb2-mode
-	:ensure t
-  :disabled
+	;; :ensure t
+  ;; :disabled
 	;; :load-path "~/ELs/Readers/fb2-mode"
-	:load-path (expand-file-name "ELs/Readers/fb2-mode" user-emacs-directory)
+	;; :init
+	;; :load-path (expand-file-name "ELs/Readers/fb2-mode/" user-emacs-directory)
 ;; (find-file (expand-file-name "ELs/Readers/fb2-mode" user-emacs-directory))
 
-	;; :init
 ;; *** :config : 
 	:config
 (add-to-list 'auto-mode-alist '("\\.fb2\\'" . fb2-mode))
@@ -52,7 +53,7 @@
 ;; )
 
 (use-package nov
-	:ensure t
+	;; :ensure t
   ;; :disabled
 	;; :load-path "~/ELs/Readers/nov.el/"
 	;; :load-path (expand-file-name "ELs/Readers/nov.el/" user-emacs-directory)

@@ -27,6 +27,33 @@
 ;; ***** END of def
   )
 
+(setq pixel-wait 0)
+(defhydra hydra-reader-menu (:color blue)
+  ;; "Reader menu spd: % 'pixel-wait"
+  "Reader menu "
+  ;; "Reader menu spd: %(* 10 (- 1 pixel-wait))"
+;; **** r : 
+  ("r" (if (bound-and-true-p pixel-scroll-mode)
+          (buyn-reader-end)
+          (buyn-reader-start))
+        "toggle reader")
+;; **** f : 
+  ("f" (setq pixel-wait (- pixel-wait 0.1))
+          (format "faster spd:%s" (- 1 pixel-wait)) :color pink)
+;; **** s : 
+  ("s" (setq pixel-wait (+ pixel-wait 0.1)) "slower":color pink)
+;; **** t : 
+  ("t" red-aloud-this "aloudThis")
+;; **** B : 
+  ("B" read-aloud-buf "aloudBuffer")
+;; **** s : 
+  ("S" read-aloud-stop "StopAloud")
+;; **** E : 
+  ("E" read-aloud-change-engine "AloudEngine")
+;; **** q : 
+  ("q" nil "quit"))
+;; --------------------------------------
+
 (defhydra hydra-yasnippet ( :color pink
               ;; :hint nil
               )
@@ -122,7 +149,10 @@
     ("SPC" org-roam-buffer-toggle "Roam-buffeR")
     ("j" org-roam-dailies-capture-today "joarnal")
     ("t" org-roam-tag-add "Tag-add")
-    ("S" org-roam-ui-mode "Start/StopUI")
+    ("S"
+     (progn
+       (org-roam-ui-mode)
+       (message "server start on: http://127.0.0.1:35901/")) "Start/StopUI")
     ("z" org-roam-ui-node-zoom "Zoom")
     ("s" org-roam-ui-node-local "Show-node")
     ("R" org-roam-node-random "random")
@@ -405,33 +435,6 @@ _Y_ankPageUrl  _f_rameLink              _z_oom    _q_uit
   ("q" nil "quit")
   ;; --------------------------------------
   )
-
-(setq pixel-wait 0)
-(defhydra hydra-reader-menu (:color blue)
-  ;; "Reader menu spd: % 'pixel-wait"
-  "Reader menu "
-  ;; "Reader menu spd: %(* 10 (- 1 pixel-wait))"
-;; **** r : 
-  ("r" (if (bound-and-true-p pixel-scroll-mode)
-          (buyn-reader-end)
-          (buyn-reader-start))
-        "toggle reader")
-;; **** f : 
-  ("f" (setq pixel-wait (- pixel-wait 0.1))
-          (format "faster spd:%s" (- 1 pixel-wait)) :color pink)
-;; **** s : 
-  ("s" (setq pixel-wait (+ pixel-wait 0.1)) "slower":color pink)
-;; **** t : 
-  ("t" read-aloud-this "aloudThis")
-;; **** B : 
-  ("B" read-aloud-buf "aloudBuffer")
-;; **** s : 
-  ("S" read-aloud-stop "StopAloud")
-;; **** E : 
-  ("E" read-aloud-change-engine "AloudEngine")
-;; **** q : 
-  ("q" nil "quit"))
-;; --------------------------------------
 
 (defhydra spc-main-menu01 (:color blue)
 ;; ***** hint
