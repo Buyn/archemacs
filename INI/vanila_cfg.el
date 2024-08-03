@@ -18,6 +18,8 @@
 (add-to-list 'default-frame-alist '(height . 35))
 (add-to-list 'default-frame-alist '(width . 75))
 ;; ------------------------------------------------------
+(defalias 'yes-or-no-p 'y-or-n-p)
+;; ------------------------------------------------------
 ;; ** load-theme : 
 ;; ------------------------------------------------------
 (load-theme 'material t) ;; load material theme
