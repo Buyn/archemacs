@@ -37,6 +37,7 @@
 		(wl . wl-other-frame)))
 ;; (global-reveal-mode nil)
 (setq org-edit-src-content-indentation 0)
+(setq org-src-window-setup 'other-frame)
 ;; (define-key org-mode-map (kbd "M-\~") 'insert-pair)
 ;; --------------------------------------
 
@@ -60,35 +61,40 @@
 ;; (setq org-default-notes-file (concat org-directory "~/.archemacs/org/notes.org"))
 (setq org-capture-templates '(
 	("t" "Todo" entry
-	    (file+headline "~/.archemacs/org/gtd/gtd.org" "Tasks")
+	    (file+headline "~/Dropbox/orgs/gtd/gtd.org" "Tasks")
 	    "* TODO %?\n  %i\n  %a")
+
 	("i" "Todo [inbox]" entry
-	    (file+headline "~/.archemacs/org/gtd/inbox.org" "Tasks")
+	    (file+headline "~/Dropbox/orgs/gtd/inbox.org" "unsorted")
+	    "* %i%?")
+	("a" "Agend.org" entry
+	    (file+headline "~/Dropbox/orgs/gtd/agend.org" "Agend.org")
 	    "* TODO %i%?")
-	("l" "links to transfer" entry
-	    (file+headline "~/.archemacs/org/tmp/tmp_links.org" "Tasks")
-	    "* TODO %i%?")
-	("s" "Sandbox" entry
-	    (file+headline "~/.archemacs/org/tmp/sandbox.org" )
-	    "* TODO %i%?")
-	("T" "Tickler" entry
-	    (file+headline "~/.archemacs/org/gtd/tickler.org" "Tickler")
+;; D:\Development\lisp\Home\ORG\Recipes\main.org 
+;; D:\Development\lisp\Home\ORG\Recipes\new_recipes.org 
+	;; ("r" "new recipes" entry
+	;;     (file+headline "D:\Development\lisp\Home\ORG\Recipes\new_recipes.org" "new-recipes")
+	;;     "* %i%? \n %U")
+	("n" "notebook" entry
+	    (file+headline "~/Dropbox/orgs/gtd/notebook.org" "notebook")
 	    "* %i%? \n %U")
 	("j" "Journal" entry
-	    (file+datetree "~/.archemacs/org/journal.org")
-	    "* %?\nEntered on %U\n  %i\n  %a")))
-(setq org-refile-targets '(("~/.archemacs/org/gtd/gtd.org" :maxlevel . 3)
-                           ("~/.archemacs/org/gtd/someday.org" :level . 1)
-                           ("d:/My_Docs/Ofice/PaperFlow/TODO/weekly.org" :level . 1)
-                           ("d:/My_Docs/Ofice/PaperFlow/TODO/monthly.org" :level . 1)
-                           ("d:/My_Docs/Ofice/PaperFlow/TODO/GTD.org" :level . 1)
-                           ("~/.archemacs/org/gtd/tickler.org" :maxlevel . 2)))
+	    (file+datetree "~/Dropbox/orgs/gtd/journal.org")
+	    "* %?\nEntered on %U\n  %i\n  %a")
+	("l" "links to transfer" entry
+	    (file+headline "~/.archemacs/org/tmp/tmp_links.org" "link to")
+	    "* TODO %i%?")))
+(setq org-refile-targets '(("~/Dropbox/orgs/gtd/gtd.org" :maxlevel . 3)
+                           ("~/Dropbox/orgs/gtd/inbox.org" :level . 1)
+                           ("~/Dropbox/orgs/gtd/agend.org" :level . 1)
+                           ( "~/Dropbox/orgs/gtd/notebook.org" :maxlevel . 2)))
 ;; To define special keys to capture to a particular template without going through the interactive template selection, you can create your key binding like this:
 ;; (define-key global-map "\C-cx"
 ;;   (lambda () (interactive) (org-capture nil "x")))
 ;; https://orgmode.org/manual/Capture-templates.html#Capture-templates
 ;; ** --------------     Defult Propertys
 ;; --------------------------------------
+(setq org-fold-core-style 'overlays)
 (setq org-enforce-todo-dependencies t)
 ;; Should unfinished children block state changes in the parent? 
 (setq org-enforce-todo-checkbox-dependencies t)
@@ -148,12 +154,18 @@
 					(outline-up-heading 1)
 					(hide-subtree)
 					))
+;; *** ORG babel
+(define-key org-mode-map (kbd "M-e M-i") 'org-edit-special)
+(define-key org-src-mode-map (kbd "M-e M-i") 'org-edit-src-exit)
+
 ;; *** ORG Table
 ;; (global-set-key (kbd "C-c <C-return>") 'org-table-insert-row)
 ;; move to 
-;; org-mode-map), which is an interactive autoloaded compiled Lisp
 ;; (define-key evil-normal-state-map (kbd "C-c <C-return>") 'org-table-insert-row)
 (define-key org-mode-map (kbd "C-c <C-return>") 'org-table-insert-row)
+;; (global-unset-key (kbd "<S-UP>"))
+;; (define-key org-mode-map (kbd "<S-UP>") 'org-table-move-cell-up)
+
 ;; ** ORG agenda customization
 (use-package org-agenda
   :config
