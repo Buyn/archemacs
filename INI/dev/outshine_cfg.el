@@ -6,7 +6,7 @@
 ;; --------------------------------------
 ;; * OUTSHINE-MOD CUSTOMIZATION 
 ;; --------------------------------------
-;; ** use-package outshine 
+;; ** use-package outshine
 (use-package outshine :ensure t
   ;; uncoment to instal
   ;; loding each time - resrch how to setup right
@@ -30,11 +30,13 @@
 			;; (evil-open-above 1)
 			(evil-previous-line)
 			(outshine-insert-heading)
-			(backward-char)
+			;; (backward-char)
 			(save-excursion
-				(insert " ")
+				;; (insert " ")
 				(insert region-text)
-				(insert " :")
+				(unless (eq major-mode 'org-mode)
+					(insert ":")
+					)
 			)))
 
 ;; *** outshine startup state
