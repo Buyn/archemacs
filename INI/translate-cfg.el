@@ -32,7 +32,7 @@
   :config
   (require 'google-translate-smooth-ui)
   (setq google-translate-translation-directions-alist
-        '(("ru" . "en") ("en" . "ru")))
+        '(("ru" . "en") ("en" . "ru") ("ru" . "uk")))
   (setq google-translate-output-destination nil)
   (setq google-translate-pop-up-buffer-set-focus t)
   (setq google-translate-default-source-language "ru")
