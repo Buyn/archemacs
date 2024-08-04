@@ -19,7 +19,10 @@
 	:defer t
 	;; :config
 	:bind (:map ranger-mode-map
-				 ("r r" . ranger-refresh)))
+							("r r" . ranger-refresh)
+							("g g" . ranger-goto-top)
+							("G G" . ranger-goto-bottom)
+							))
 
 ;; --------------------------------------
 ;; ** DIRED-MOD CUSTOMIZATION

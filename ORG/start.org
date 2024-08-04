@@ -1330,7 +1330,6 @@ initial-scratch-message
 			# (find-file-other-frame "~/ELs/powerline/sm-package-powerline.el")notuse
 			# (find-file-other-frame "~/INI/interface/spaceline-cfg.el") notuse
 *** file management
-file-mng-cfg.el
 (find-file-other-frame (expand-file-name "INI/file-mng-cfg.el" user-emacs-directory))
 *** HYDRA MENU
 (find-file-other-frame "~/INI/hydra-cfg.el")
