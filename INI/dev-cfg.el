@@ -40,11 +40,16 @@
 							("ZPPP" . 'projectile-commander)
 							("ZPgg" . 'projectile-grep)
 							("ZPgr" . 'projectile-ripgrep)
+							("ZPRR" . 'projectile-replace)
+							("ZPRE" . 'projectile-replace-regexp)
 							("M-e M-p M-o" . 'projectile-multi-occur)
 							("M-e M-t M-t" . 'projectile-toggle-between-implementation-and-test)
 					:map evil-normal-state-map
 							("M-e M-p M-o" . (lambda() (interactive)
-					(projectile-multi-occur (buffer-substring (region-beginning) (region-end)))))
+																 (projectile-multi-occur
+																	(buffer-substring (region-beginning) (region-end)))))
+    ;; build/compile project (s-p c)
+    ;; test project (s-p T)
 ))
 
 ;; --------------------------------------
