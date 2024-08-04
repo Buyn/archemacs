@@ -34,9 +34,10 @@
 							("ZPTT" . 'projectile-toggle-between-implementation-and-test)
 							("ZPGG" . 'projectile-find-tag)
 							("ZPGR" . 'projectile-regenerate-tags)
-							("ZPSS" . 'projectile-switch-project-by-name)
-							("ZPSP" . 'projectile-switch-project)
-							("ZPSO" . 'projectile-switch-open-project)
+							("ZPPN" . 'projectile-switch-project-by-name)
+							("ZPPS" . 'projectile-switch-project)
+							("ZPPO" . 'projectile-switch-open-project)
+							("ZPPP" . 'projectile-commander)
 							("M-e M-p M-o" . 'projectile-multi-occur)
 							("M-e M-t M-t" . 'projectile-toggle-between-implementation-and-test)
 					:map evil-normal-state-map
