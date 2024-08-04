@@ -12,9 +12,29 @@
   :ensure t
   ;; :init
   ;; (projectile-mode +1)
-  :bind (:map projectile-mode-map
-              ("s-p" . projectile-command-map)
-              ("C-c p" . projectile-command-map)))
+  :bind (
+					:map projectile-mode-map
+              ;; ("s-p" . projectile-command-map)
+              ("C-c p" . projectile-command-map)
+					:map evil-normal-state-map
+							("ZPFF" . 'projectile-find-file-other-frame)
+							("ZPFO" . 'projectile-find-other-file-other-frame)
+							("ZPFR" . 'projectile-find-related-file-other-frame)
+							("ZPFD" . 'projectile-find-file-dwim-other-frame)
+							("ZPFT" . 'projectile-find-implementation-or-test-other-frame)
+							("ZPFB" . 'projectile-switch-to-buffer-other-frame)
+							("Zo" . 'projectile-switch-to-buffer-other-frame)
+							("ZPTT" . 'projectile-find-test-file)
+							("ZPTM" . 'projectile-find-matching-test)
+							("ZPTC" . 'projectile-create-missing-test-files)
+							("ZPTT" . 'projectile-test)
+							("ZPDD" . 'projectile-dired-other-frame)
+							("M-e M-p M-o" . 'projectile-multi-occur)
+					:map evil-normal-state-map
+							("M-e M-p M-o" . (lambda() (interactive)
+					(projectile-multi-occur (buffer-substring (region-beginning) (region-end)))))
+))
+
 ;; --------------------------------------
 ;; ** DELIMITERS-MOD CUSTOMIZATION
 ;; (find-file "~/.archemacs/INI/delimiters-cfg.el")
@@ -134,9 +154,6 @@
 		(highlight-indentation-mode t)
 ;; *** projectile-mode : 
 		(projectile-mode +1)
-		(define-key evil-visual-state-map (kbd "M-e M-p M-o") '(lambda() (interactive)
-					(projectile-multi-occur (buffer-substring (region-beginning) (region-end)))))
-		(define-key evil-normal-state-map (kbd "M-e M-p M-o") 'projectile-multi-occur)
 
 ;; *** outshine-mode : 
 		;; #'outshine-mode on in outshine cfg

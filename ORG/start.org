@@ -1439,7 +1439,7 @@ initial-scratch-message
 ** find in 
 *** init
 #+begin_src sh  
-grep --include=\*.el -rnw ~/.archemacs/INI -e "'load-path"
+grep --include=\*.el -rnw ~/.archemacs/INI -e "projectile-multi-occur"
 #+end_src 	
 
 #+RESULTS:
