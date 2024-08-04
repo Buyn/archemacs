@@ -223,6 +223,8 @@
 					(ivy-switch-buffer)))
 (define-key evil-normal-state-map "ZR" nil)
 (define-key evil-normal-state-map "ZRR" 'ranger)
+(define-key evil-visual-state-map "ZRR" '(lambda() (interactive)
+					(ranger (buffer-substring (region-beginning) (region-end)))))
 ;; (define-key evil-normal-state-map "Zh" '(lambda() (interactive)
 ;; 					;; (previous-buffer)))
 ;; 					(evil-prev-buffer)))
