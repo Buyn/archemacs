@@ -11,8 +11,11 @@
 ;; (find-file-other-frame "~/INI/lit-cfg/read-aloud-cfg.el") 
 ;; (load "~/ELs/text-to-speech/read-aloud/read-aloud.el")
 ;; *** use-package read-aloud : 
-(add-to-list 'load-path "~/ELs/text-to-speech/read-aloud")
-(use-package read-aloud :ensure t
+;; (add-to-list 'load-path "~/ELs/text-to-speech/read-aloud")
+(use-package read-aloud
+	:defer t
+	:load-path "ELs/text-to-speech/read-aloud"
+	;; :ensure t
 ;; *** :config : 
   :config
 ;; **** plist read-aloud-engines : 

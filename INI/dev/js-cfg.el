@@ -51,7 +51,7 @@
 ;; This is Tern. Tern is a stand-alone, editor-independent
 ;; JavaScript analyzer that can be used to improve the JavaScript
 ;; integration of existing editors.
-(add-to-list 'load-path "~/.emacs.d/Els/Tern/emacs/")
+;; (add-to-list 'load-path "~/.emacs.d/Els/Tern/emacs/")
 ;; (autoload 'tern-mode "tern.el" nil t)
 ;; (add-hook 'js-mode-hook (lambda () (tern-mode t)))
 ;; ** company-tern
@@ -59,6 +59,7 @@
   :disabled
   ;; :defer 2
   ;; :bind ("C-c c" hydra-clock/body)
+	:load-path "Els/Tern/emacs/"
 	:config
 	(add-to-list 'company-backends 'company-tern)
 	;; (add-hook 'js2-mode-hook (lambda ()

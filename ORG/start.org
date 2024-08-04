@@ -1440,7 +1440,7 @@ file-mng-cfg.el
 ** find in 
 *** init
 #+begin_src sh  
-grep --include=\*.el -rnw ~/.archemacs/INI -e '(insert " :")'
+grep --include=\*.el -rnw ~/.archemacs/INI -e "'load-path"
 #+end_src 	
 
 #+RESULTS:

@@ -51,10 +51,12 @@
 ;; *** :ensure :
 	;; :ensure t
 ;; *** :init :
-:init
-	(add-to-list 'load-path "~/ELs/Org/Babel/ob-dot.el")
+	;; :init
+	;; (add-to-list 'load-path "~/ELs/Org/Babel/ob-dot.el")
 ;; *** :disabled : 
   ;; :disabled
+;; *** :load-path:
+	:load-path "ELs/Org/Babel/ob-dot.el"
 ;; *** :config :
 	:config
 	(org-babel-do-load-languages
