@@ -15,6 +15,7 @@
 ;; https://github.com/spline1986/fb2-mode.git
 ;; *** use-package fb2-mode : 
 (use-package fb2-mode
+	:defer t
 	;; :ensure t
   ;; :disabled
 	;; :load-path "~/ELs/Readers/fb2-mode"
@@ -54,7 +55,7 @@
 ;; (add-to-list 'load-path "~/ELs/Readers/nov.el/")
 ;; (add-to-list 'load-path (expand-file-name "ELs/Readers/nov.el/" user-emacs-directory))
 ;; *** use-package nov.el : 
-
+	:defer t
 ;; (use-package esxml-query
 	;; :ensure t
   ;; :disabled
