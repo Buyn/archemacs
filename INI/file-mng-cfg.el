@@ -9,14 +9,18 @@
 ;; --------------------------------------
 ;; ** MAGIT-MOD CUSTOMIZATION
 (use-package magit
- :ensure t
+	:ensure t
+	:defer t
 	)
 ;; --------------------------------------
 ;; ** RANGER-MOD CUSTOMIZATION
 (use-package ranger
- :ensure t
- ;; :config
-	)
+	:ensure t
+	:defer t
+	;; :config
+	:bind (:map ranger-mode-map
+				 ("r r" . ranger-refresh)))
+
 ;; --------------------------------------
 ;; ** DIRED-MOD CUSTOMIZATION
 (use-package dired

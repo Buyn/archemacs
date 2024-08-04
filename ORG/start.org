@@ -1311,7 +1311,8 @@ initial-scratch-message
 	(find-file-other-frame "~/INI/ORG/graph-tools-cfg.el")
 
 *** frame
-	(find-file-other-frame "~/INI/frame-control.el")
+	# (find-file-other-frame "~/INI/frame-control.el")
+	(find-file-other-frame (expand-file-name "INI/frame-control.el" user-emacs-directory))
 															WINDMOVE
 		(find-file-other-frame "~/INI/fullscreen-cfg.el")
 		(find-file-other-frame "~/INI/frames/minimap-cfg.el")
@@ -5502,6 +5503,10 @@ There are a number of ways to execute (evaluate, in Lisp lingo) an Emacs Lisp fo
 	if so, a key binding is shown after the item itself. 
  To view the full ~command name~ and documentation for a menu item, type ~C-h k~,
 	and then select the menu bar with the mouse in the usual way (see Key Help). 
+**** command-apropos searches for all emacs commands
+  C-h a 	command-apropos: prompts for a string and
+  then searches for all emacs commands that contains that string
+  	ESC ? 	also does command-apropos
 *** coment line 
 26.5.1 Comment Commands
 The following commands operate on comments:
@@ -6013,7 +6018,7 @@ Here I bind C-c e to eshell globally, and M-m to eshell-bol locally.
 I have covered almost every facet of key binding that most Emacs users would care to know about. If you use use-package, then it can definitely cut down on some of the tedium and help centralize your bindings with your other settings.
 
 I recommend you read why I think keyboard macros are misunderstood as it’ll further cement just how much “no-code” Emacs you can accomplish with keyboard macros and key bindings.
-*** Emacs Movement 
+*** Emacs Movement
 ‘C-M-a’
 ‘C-M-e’
    Move point to the beginning or end of the current function or
@@ -10918,6 +10923,10 @@ Use Per-Directory Local Variables in .dir-locals.el.
 		 This function works like assoc, except that key must be a string or symbol, and comparison is done using compare-strings. Symbols are converted to strings before testing. If case-fold is non-nil, key and the elements of alist are converted to upper-case before comparison. Unlike assoc, this function can also match elements of the alist that are strings or symbols rather than conses. In particular, alist can be a list of strings or symbols rather than an actual alist. See Association Lists. 
 
  See also the function compare-buffer-substrings in Comparing Text, for a way to compare text in buffers. The function string-match, which matches a regular expression against a string, can be used for a kind of string comparison; see Regexp Search. 
+*** check major-mode
+(eq major-mode 'org-mode)
+exampl
+[[file:~/.archemacs/INI/dev/outshine_cfg.el::unless (eq major-mode 'org-mode]]
 *** check whether minor modes is enabled : 
 Most minor modes are defined using the define-minor-mode macro. For buffer-local modes, that macro creates a buffer-local variable of the same name as the mode itself1. The variable is non-nil when the mode is enabled for the current buffer.
 Therefore to check whether flymake-mode is enabled, you can test the variable flymake-mode (noting that this variable might not be defined at all if the mode has not been enabled):
