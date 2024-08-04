@@ -9,6 +9,7 @@
 ;; --------------------------------------
 ;; ** PROJECTILE CUSTOMIZATION
 (use-package projectile
+	:defer t
   :ensure t
   ;; :init
   ;; (projectile-mode +1)
@@ -20,17 +21,24 @@
 							("ZPFF" . 'projectile-find-file-other-frame)
 							("ZPFO" . 'projectile-find-other-file-other-frame)
 							("ZPFR" . 'projectile-find-related-file-other-frame)
-							("ZPFD" . 'projectile-find-file-dwim-other-frame)
+							("ZPFd" . 'projectile-find-file-dwim-other-frame)
 							("ZPFT" . 'projectile-find-implementation-or-test-other-frame)
 							("ZPFB" . 'projectile-switch-to-buffer-other-frame)
+							("ZPFD" . 'projectile-dired-other-frame)
 							("Zo" . 'projectile-switch-to-buffer-other-frame)
+							("Zi" . 'projectile-switch-to-buffer)
 							("ZPTt" . 'projectile-find-test-file)
 							("ZPTM" . 'projectile-find-matching-test)
 							("ZPTC" . 'projectile-create-missing-test-files)
 							("ZPTP" . 'projectile-current-project-test-files)
 							("ZPTT" . 'projectile-toggle-between-implementation-and-test)
-							("ZPDD" . 'projectile-dired-other-frame)
+							("ZPGG" . 'projectile-find-tag)
+							("ZPGR" . 'projectile-regenerate-tags)
+							("ZPSS" . 'projectile-switch-project-by-name)
+							("ZPSP" . 'projectile-switch-project)
+							("ZPSO" . 'projectile-switch-open-project)
 							("M-e M-p M-o" . 'projectile-multi-occur)
+							("M-e M-t M-t" . 'projectile-toggle-between-implementation-and-test)
 					:map evil-normal-state-map
 							("M-e M-p M-o" . (lambda() (interactive)
 					(projectile-multi-occur (buffer-substring (region-beginning) (region-end)))))
