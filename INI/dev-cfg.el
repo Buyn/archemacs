@@ -40,6 +40,8 @@
 							("ZPPP" . 'projectile-commander)
 							("ZPgg" . 'projectile-grep)
 							("ZPgr" . 'projectile-ripgrep)
+							("ZPrr" . 'projectile-find-references)
+							("M-e M-r M-r" . 'projectile-find-references)
 							("ZPRR" . 'projectile-replace)
 							("ZPRE" . 'projectile-replace-regexp)
 							("M-e M-p M-o" . 'projectile-multi-occur)
@@ -47,6 +49,9 @@
 					:map evil-normal-state-map
 							("M-e M-p M-o" . (lambda() (interactive)
 																 (projectile-multi-occur
+																	(buffer-substring (region-beginning) (region-end)))))
+							("M-e M-r M-r" . (lambda() (interactive)
+																 (projectile-find-references
 																	(buffer-substring (region-beginning) (region-end)))))
     ;; build/compile project (s-p c)
     ;; test project (s-p T)
