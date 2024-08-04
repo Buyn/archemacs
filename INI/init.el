@@ -8,19 +8,21 @@
 
 (load (expand-file-name "INI/org-cfg.el" user-emacs-directory))
 
-(load (expand-file-name "INI/FIN/fin.el" user-emacs-directory))
+(load (expand-file-name "INI/file-mng-cfg.el" user-emacs-directory))
+
+(load (expand-file-name "INI/hydra-cfg.el" user-emacs-directory))
 
 (load (expand-file-name "INI/frame-control.el" user-emacs-directory))
+
+(load (expand-file-name "INI/auto-cfg.el" user-emacs-directory))
 
 ;; (load (expand-file-name "INI/folding-cfg.el" user-emacs-directory))
 
 (load (expand-file-name "INI/lit-cfg.el" user-emacs-directory))
 
-(load (expand-file-name "INI/auto-cfg.el" user-emacs-directory))
-
 (load (expand-file-name "INI/dev-cfg.el" user-emacs-directory))
 
-(load (expand-file-name "INI/hydra-cfg.el" user-emacs-directory))
+(load (expand-file-name "INI/FIN/fin.el" user-emacs-directory))
 
 (use-package eww
   :config

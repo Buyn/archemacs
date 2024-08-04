@@ -1284,6 +1284,7 @@ initial-scratch-message
 ** init files
 *** root
 (ranger)
+(ranger (expand-file-name "INI/" user-emacs-directory))
 (find-file-other-frame (expand-file-name ".emacs" user-emacs-directory))
 	(find-file-other-frame (expand-file-name "INI/init.el" user-emacs-directory))
 *** vanila
@@ -1327,6 +1328,9 @@ initial-scratch-message
 	(find-file-other-frame "~/INI/frames/minimap-cfg.el") move here
 			# (find-file-other-frame "~/ELs/powerline/sm-package-powerline.el")notuse
 			# (find-file-other-frame "~/INI/interface/spaceline-cfg.el") notuse
+*** file management
+file-mng-cfg.el
+(find-file-other-frame (expand-file-name "INI/file-mng-cfg.el" user-emacs-directory))
 *** HYDRA MENU
 (find-file-other-frame "~/INI/hydra-cfg.el")
 *** literary
@@ -1340,8 +1344,6 @@ initial-scratch-message
 	(find-file-other-frame (expand-file-name "INI/auto-cfg.el" user-emacs-directory))
 		(find-file-other-frame (expand-file-name "INI/auto/autocomplete-cfg.el" user-emacs-directory))
 		(find-file-other-frame (expand-file-name "INI/auto/snippets-cfg.el" user-emacs-directory))
-*** File control
-file-ctrl
 *** Programing
 	(find-file-other-frame (expand-file-name "INI/dev-cfg.el" user-emacs-directory))
 		(find-file-other-frame (expand-file-name "INI/delimiters-cfg.el" user-emacs-directory))
