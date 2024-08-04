@@ -38,6 +38,8 @@
 							("ZPPS" . 'projectile-switch-project)
 							("ZPPO" . 'projectile-switch-open-project)
 							("ZPPP" . 'projectile-commander)
+							("ZPgg" . 'projectile-grep)
+							("ZPgr" . 'projectile-ripgrep)
 							("M-e M-p M-o" . 'projectile-multi-occur)
 							("M-e M-t M-t" . 'projectile-toggle-between-implementation-and-test)
 					:map evil-normal-state-map
