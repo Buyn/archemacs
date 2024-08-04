@@ -24,10 +24,11 @@
 							("ZPFT" . 'projectile-find-implementation-or-test-other-frame)
 							("ZPFB" . 'projectile-switch-to-buffer-other-frame)
 							("Zo" . 'projectile-switch-to-buffer-other-frame)
-							("ZPTT" . 'projectile-find-test-file)
+							("ZPTt" . 'projectile-find-test-file)
 							("ZPTM" . 'projectile-find-matching-test)
 							("ZPTC" . 'projectile-create-missing-test-files)
-							("ZPTT" . 'projectile-test)
+							("ZPTP" . 'projectile-current-project-test-files)
+							("ZPTT" . 'projectile-toggle-between-implementation-and-test)
 							("ZPDD" . 'projectile-dired-other-frame)
 							("M-e M-p M-o" . 'projectile-multi-occur)
 					:map evil-normal-state-map
