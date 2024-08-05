@@ -147,11 +147,6 @@
 (global-set-key (kbd " M-g M-t M-o") 'org-tree-to-indirect-buffer)
 ;; (define-key evil-normal-state-map (kbd "gbb") '(lambda() (interactive)
 			;; (display-buffer (last-buffer))))
-(define-key evil-normal-state-map "ZN" '(lambda() (interactive)
-			;; (make-frame-command)
-			(switch-to-buffer-other-frame "*scratch*")
-			;; (evil-buffer-new 0 "*new*")))
-			(evil-buffer-new "*new*")))
 (global-set-key (kbd " M-g M-t M-j") '(lambda() (interactive)
 			(let (buffer-name-to-close (buffer-name))
 			(evil-quit)
@@ -228,6 +223,10 @@
 (define-key evil-normal-state-map "ZRR" 'ranger)
 (define-key evil-visual-state-map "ZRR" '(lambda() (interactive)
 					(ranger (buffer-substring (region-beginning) (region-end)))))
+(define-key evil-normal-state-map "ZRH"
+						'(lambda() (interactive)
+							(switch-to-buffer-other-frame "*scratch*")
+							(ranger "~/")))
 (define-key evil-normal-state-map "ZMm" '(lambda() (interactive)
 																					 (if
 																							 (boundp 'buyn-magit-buff-name)
@@ -257,6 +256,11 @@
 ;; 					(bury-buffer)))
 (define-key evil-normal-state-map "Zn" '(lambda() (interactive)
 					(evil-buffer-new "*new*")))
+(define-key evil-normal-state-map "ZN" '(lambda() (interactive)
+			;; (make-frame-command)
+			(switch-to-buffer-other-frame "*scratch*")
+			;; (evil-buffer-new 0 "*new*")))
+			(evil-buffer-new "*new*")))
 ;; --------------------------------------
 ;; * FULLSCREEN-MOD CUSTOMIZATION;  {{{
 ;; (find-file-other-frame "~/.archemacs/INI/fullscreen-cfg.el")
