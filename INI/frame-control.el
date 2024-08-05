@@ -228,12 +228,17 @@
 (define-key evil-normal-state-map "ZMm" '(lambda() (interactive)
 																					 (if
 																							 (boundp 'buyn-magit-buff-name)
-																							 (switch-to-buffer-other-frame buyn-magit-buff-name)
+																							 (progn
+																								 (switch-to-buffer-other-frame buyn-magit-buff-name)
+																								 (magit-refresh))
+
 																						 (magit))))
 (define-key evil-normal-state-map "ZMM" '(lambda() (interactive)
 																					 (if
 																							 (boundp 'buyn-magit-buff-name)
-																							 (switch-to-buffer buyn-magit-buff-name)
+																							 (progn
+																								 (switch-to-buffer buyn-magit-buff-name)
+																								 (magit-refresh))
 																						 (magit))))
 ;; (define-key evil-normal-state-map "Zh" '(lambda() (interactive)
 ;; 					;; (previous-buffer)))
