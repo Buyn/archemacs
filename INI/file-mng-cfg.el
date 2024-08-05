@@ -11,7 +11,11 @@
 (use-package magit
 	:ensure t
 	:defer t
-	)
+	:bind (:map magit-status-mode-map
+							("M-z M-z" . (lambda() (interactive)
+														(setq buyn-magit-buff-name (buffer-name))
+														(bury-buffer)))
+							))
 ;; --------------------------------------
 ;; ** RANGER-MOD CUSTOMIZATION
 (use-package ranger

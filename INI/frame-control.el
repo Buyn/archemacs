@@ -225,6 +225,11 @@
 (define-key evil-normal-state-map "ZRR" 'ranger)
 (define-key evil-visual-state-map "ZRR" '(lambda() (interactive)
 					(ranger (buffer-substring (region-beginning) (region-end)))))
+(define-key evil-normal-state-map "ZMM" '(lambda() (interactive)
+																					 (if
+																							 (boundp 'buyn-magit-buff-name)
+																							 (switch-to-buffer-other-frame buyn-magit-buff-name)
+																						 (magit))))
 ;; (define-key evil-normal-state-map "Zh" '(lambda() (interactive)
 ;; 					;; (previous-buffer)))
 ;; 					(evil-prev-buffer)))

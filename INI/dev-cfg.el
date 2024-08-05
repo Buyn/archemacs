@@ -177,7 +177,7 @@
 ;; *** projectile-mode : 
 		(projectile-mode +1)
 
-;; *** outshine-mode : 
+;; *** outshine-mode:
 		;; #'outshine-mode on in outshine cfg
 		;; (find-file-other-frame "~/.archemacs/INI/outshine_cfg.el")
 		;; (outshine-mode t)

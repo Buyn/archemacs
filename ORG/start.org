@@ -6387,11 +6387,18 @@ You can disable highlighting of any of the supported delimiter types through the
 *** info manual : 
 s - to seach in node of manual(not work in index)
 i - 
-g - 
+m - menu chose wthe contecst(analog s for index)
+g - worck in all
    Check out the info manual for Org Mode with C-h i (info) to learn more, including how to customize the number of days initially displayed and what day your week starts on. 
    удобная систе показиваюшая мануалки по всем установленым модам
 f1-f - show funcrion doc string
 f1-F - find funcrion in manual
+
+You can also use M-x emacs-index-search to search for some keywords in the Emacs manual's index.
+g (Info-goto-node) 
+g (Info-goto-node ":bind") 
+g (Info-goto-node "use-pack") 
+
 *** (apropos)
 Search Help
 найти во всём имаксе
@@ -7257,7 +7264,9 @@ https://gitlab.com/andreyorst/infinite.el
   (save-excursion
     (set-buffer "*scratch*")
     (insert "Hello, World")))
-
+*** get buffer name
+(buffer-name)
+(frame-parameter nil 'name)
 ** keyboard macro
 *** base
 	‘C-u <F3>’
