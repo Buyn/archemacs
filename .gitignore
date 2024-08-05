@@ -26,3 +26,4 @@ emacs_demon.cmd~
 .authinfo
 .gnupg
 AddApps/
+/tramp
