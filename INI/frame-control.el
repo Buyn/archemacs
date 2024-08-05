@@ -134,7 +134,9 @@
 ;; --------------------------------------
 ;; * FRAMES&BUFFER OPEN\CLOSE\SWITCH   {{{
 ;; ** Open new frames 
-(global-set-key (kbd "M-g M-t M-t") 'make-frame-command)
+(global-set-key (kbd "M-g M-t M-t") '(lambda() (interactive)
+			(switch-to-buffer-other-frame "*scratch*")))
+(global-set-key (kbd "M-g M-t M-T") 'make-frame-command)
 ;; (define-key evil-normal-state-map "gtt" 'make-frame-command)
 (global-set-key (kbd " M-g M-t M-f") 'find-file-other-frame)
 (global-set-key (kbd " M-g M-t M-b") 'switch-to-buffer-other-frame)
