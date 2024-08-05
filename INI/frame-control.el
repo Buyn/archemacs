@@ -148,9 +148,10 @@
 ;; (define-key evil-normal-state-map (kbd "gbb") '(lambda() (interactive)
 			;; (display-buffer (last-buffer))))
 (define-key evil-normal-state-map "ZN" '(lambda() (interactive)
-			(make-frame-command)
+			;; (make-frame-command)
 			(switch-to-buffer-other-frame "*scratch*")
-			(evil-buffer-new 0 "*new*")))
+			;; (evil-buffer-new 0 "*new*")))
+			(evil-buffer-new "*new*")))
 (global-set-key (kbd " M-g M-t M-j") '(lambda() (interactive)
 			(let (buffer-name-to-close (buffer-name))
 			(evil-quit)
@@ -255,7 +256,7 @@
 ;; (define-key evil-normal-state-map "Zj" '(lambda() (interactive)
 ;; 					(bury-buffer)))
 (define-key evil-normal-state-map "Zn" '(lambda() (interactive)
-					(evil-buffer-new 0 "*new*")))
+					(evil-buffer-new "*new*")))
 ;; --------------------------------------
 ;; * FULLSCREEN-MOD CUSTOMIZATION;  {{{
 ;; (find-file-other-frame "~/.archemacs/INI/fullscreen-cfg.el")
