@@ -17,7 +17,8 @@
 ;; --------------------------------------
 (require 'org)
 (global-set-key [(control f1)] (lambda () (interactive) (find-file-other-frame "~/.archemacs/ORG/start.org")))
-(global-set-key [(meta f1)] (lambda () (interactive) (find-file-other-frame "~/.archemacs/ORG/tmp/tmp_links.org")))
+(global-set-key [(meta f1)] (lambda () (interactive) (find-file-other-frame "~/homemacs.org")))
+(global-set-key [(meta shift f1)] (lambda () (interactive) (find-file-other-frame "~/.archemacs/ORG/tmp/tmp_links.org")))
 (global-set-key [(shift f1)] (lambda () (interactive) (find-file-other-frame "~/Dropbox/Office/Research/Doc/Grimoire/Grimoire.org")))
 
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
