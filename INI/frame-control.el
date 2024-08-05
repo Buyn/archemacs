@@ -222,11 +222,24 @@
 (define-key evil-normal-state-map "ZR" nil)
 (define-key evil-normal-state-map "ZRR" 'ranger)
 (define-key evil-visual-state-map "ZRR" '(lambda() (interactive)
+					(switch-to-buffer-other-frame "*scratch*")
 					(ranger (buffer-substring (region-beginning) (region-end)))))
 (define-key evil-normal-state-map "ZRH"
 						'(lambda() (interactive)
 							(switch-to-buffer-other-frame "*scratch*")
 							(ranger "~/")))
+(define-key evil-normal-state-map "ZRB"
+						'(lambda() (interactive)
+							(switch-to-buffer-other-frame "*scratch*")
+							(ranger "~/Dropbox/")))
+(define-key evil-normal-state-map "ZRO"
+						'(lambda() (interactive)
+							(switch-to-buffer-other-frame "*scratch*")
+							(ranger "~/Dropbox/Office/")))
+(define-key evil-normal-state-map "ZRo"
+						'(lambda() (interactive)
+							(switch-to-buffer-other-frame "*scratch*")
+							(ranger "~/Dropbox/orgs/")))
 (define-key evil-normal-state-map "ZMm" '(lambda() (interactive)
 																					 (if
 																							 (boundp 'buyn-magit-buff-name)
