@@ -15,7 +15,8 @@
 							("M-z M-z" . (lambda() (interactive)
 														(setq buyn-magit-buff-name (buffer-name))
 														(bury-buffer)))
-							("<F8> m m" .
+							;; ("<F9> m m" .
+							("M-z M-m" .
 							 (lambda() (interactive)
 								 (magit-git-command
 									"git checkout master;git merge experemental;git push;git checkout experemental")))
