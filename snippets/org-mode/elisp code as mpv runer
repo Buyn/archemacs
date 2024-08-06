@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: elisp code as mpv runer
+# key: elisp_mpv
+# --
+
+#+begin_src elisp :results output silent
+(buyn-shell-start "${1:mpv} $0")
+(evil-previous-line)
+(org-cycle)
+(delete-other-windows)
+#+end_src

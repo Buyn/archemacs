@@ -1,0 +1,9 @@
+# key: elisp_shell
+# name: elisp code as shell comand  runer
+# --
+#+begin_src elisp :results output silent
+(buyn-shell-start "${1:konsole -e /bin/bash --rcfile <(echo } ${2:'ls ~/'}$0")
+(evil-previous-line)
+(org-cycle)
+(delete-other-windows)
+#+end_src
