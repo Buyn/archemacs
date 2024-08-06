@@ -36,6 +36,10 @@
 							("ZPGR" . 'projectile-regenerate-tags)
 							("ZPPN" . 'projectile-switch-project-by-name)
 							("ZPPS" . 'projectile-switch-project)
+							("ZPPF" . 'projectile-current-project-files)
+							("ZPSI" . (lambda() (interactive)
+																	(find-file-other-frame (expand-file-name "INI/dev-cfg.el" user-emacs-directory))))
+							("Z P P <F2>" . 'projectile-save-project-buffers)
 							("ZPPO" . 'projectile-switch-open-project)
 							("ZPPP" . 'projectile-commander)
 							("ZPgg" . 'projectile-grep)
@@ -79,7 +83,7 @@
 ;; ** AHK-MODE CUSTOMIZATION
 ;; --------------------------------------
 ;; (find-file-other-frame "~/.archemacs/INI/dev/autohotkey-cfg.el")
-(load "~/.archemacs/INI/dev/autohotkey-cfg.el")
+;; (load "~/.archemacs/INI/dev/autohotkey-cfg.el")
 ;; --------------------------------------
 ;; ** C#-MOD CUSTOMIZATION
 ;; (find-file-other-frame "~/.archemacs/INI/dev/csharp-cfg.el")

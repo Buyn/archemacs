@@ -1281,7 +1281,7 @@ initial-scratch-message
 ")
 
 * Pathes
-** init files
+** init files INI
 *** root
 (ranger)
 (ranger (expand-file-name "INI/" user-emacs-directory))
@@ -1355,7 +1355,7 @@ initial-scratch-message
 		(find-file-other-frame "~/INI/dev/python-cfg.el")
 		(find-file-other-frame "~/INI/dev/csharp-cfg.el")
 		(find-file-other-frame "~/INI/dev/clojure-cfg.el")
-		(find-file-other-frame "~/INI/dev/autohotkey-cfg.el")
+		# (find-file-other-frame "~/INI/dev/autohotkey-cfg.el")
 		(find-file-other-frame "~/INI/dev/unity-cfg.el")
 		(find-file-other-frame "~/INI/dev/formats-mods-cfg.el")
 		# (find-file-other-frame "~/INI/dev/c-mode-cfg.el") not used
