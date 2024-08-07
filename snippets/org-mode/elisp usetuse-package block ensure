@@ -3,6 +3,7 @@
 # --
 #+begin_src elisp
 (use-package ${1:name}
+  ;; :disabled
 	:defer t
 	${2::ensure t}
 	${3::config}

@@ -27,3 +27,4 @@ emacs_demon.cmd~
 .gnupg
 AddApps/
 /tramp
+/parinfer-rust/
