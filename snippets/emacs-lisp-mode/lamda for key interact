@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: lamda for key interact
+# key: keyl
+# --
+'(lambda() (interactive)
+	($0))
+							
