@@ -1,0 +1,4 @@
+# key: <path
+# name: insert path to emacs in org mode
+# --
+(expand-file-name "${1:INI/}" user-emacs-directory)
