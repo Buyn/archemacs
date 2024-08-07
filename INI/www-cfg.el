@@ -34,7 +34,9 @@
 				(evil-quit)
 				(switch-to-buffer-other-frame buffer-name-to-close)))
 ;; --------------------------------------
-;; ** setings 
+;; ** setings
+;; *** reader-browser : 
+(setq pixel-wait 0.1)
 ;; *** external-browser : 
 ;; default value
 ;; (setq shr-external-browser 'browse-url-default-browser)
@@ -75,7 +77,10 @@
 ;; (define-key eww-mode-map (kbd "C-RET") 'open-link-in-new-frame)
 (define-key eww-mode-map (kbd "o o") 'eww)
 (define-key eww-mode-map (kbd "O O") 'eww-browse-with-external-browser)
-(define-key eww-mode-map (kbd "SPC") 'buyn-reader-go)
+(define-key eww-mode-map (kbd "SPC")
+            '(lambda() (interactive)
+                    (pixel-scroll-mode 1)
+                    (buyn-reader-go)))
 (define-key eww-mode-map (kbd "S-SPC") 'evil-scroll-up)
 (define-key eww-mode-map (kbd "<f8>") 'read-aloud-buf)
 (define-key eww-mode-map (kbd "<f9>") 'read-aloud-stop)

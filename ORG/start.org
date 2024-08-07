@@ -1319,7 +1319,7 @@ initial-scratch-message
 		minimap-mode loading
 *** Other
 (find-file-other-frame "~/INI/advnsed-selections-cfg.el")
-(find-file-other-frame "~/INI/www-cfg.el") 
+(find-file-other-frame (expand-file-name "INI/www-cfg.el" user-emacs-directory))
 *** interface
 (find-file-other-frame (expand-file-name "INI/interface-mods.el" user-emacs-directory))
 	(find-file-other-frame "~/INI/interface/powerline-cfg.el") 

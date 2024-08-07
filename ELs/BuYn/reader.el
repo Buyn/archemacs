@@ -113,7 +113,8 @@
 			(evil-window-middle)
 			(next-line 9)
 			;; (evil-window-bottom)
-			(pixel-scroll-pixel-up stop-point)
+			;; (pixel-scroll-pixel-up stop-point)
+      ;; (pixel-scroll-mode &optional ARG)
 			))
 
 ;; --------------------------------------
