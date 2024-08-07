@@ -364,15 +364,18 @@ _Y_ankPageUrl  _f_rameLink              _z_oom    _q_uit
 (defhydra hydra-dev-menu (:color red)
   ;; (global-map "C-c")
   "dev menu"
-  ("c" company-mode "company")
+  ("c" company-mode "company" :color blue)
   ("f" program-mode-hook-customize "fuze")
   ("o" outshine-mode "outshine")
   ("e" elpy-hydra/body "elpy" :color blue)
-  ("p" python-mode "pyton")
+  ("P" python-mode "pyton")
+  ("p" parinfer-rust-mode "parinferR" :color blue)
   ("d" rainbow-delimiters-mode "delimiters")
-  ("t" 
-(save-excursion (progn (org-babel-goto-named-src-block "auto-tangle-block") (org-babel-execute-src-block)))
- "execute tangle" :color blue)
+  ("t"  (save-excursion
+          (progn
+            (org-babel-goto-named-src-block "auto-tangle-block")
+            (org-babel-execute-src-block)))
+        "execute tangle" :color blue)
   ("L" display-line-numbers-mode "line-numbers")
   ("y" hydra-yasnippet/body "yasnippet" :color blue)
   ("q" nil "quit")
