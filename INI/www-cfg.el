@@ -37,8 +37,12 @@
 ;; ** use-package
 (use-package eww
 	:defer t
+	;; :disabled
 	:config
-		(setq pixel-wait 0.1)
+		;; (setq pixel-wait 0.1)
+		(setq pixel-wait 0.9)
+		(pixel-scroll-mode 1)
+		(setq scroll-preserve-screen-position 1)
 ;; ** external-browser : 
 ;; default value
 ;; (setq shr-external-browser 'browse-url-default-browser)
@@ -74,19 +78,17 @@
 ;; *** reader-browser : 
 ;; ** define-key : 
 ;; --------------------------------------
-;; todo не загружен eww
-;; todo add riader key
-(define-key eww-mode-map (kbd "C-<return>") 'open-link-in-new-frame)
-;; (define-key eww-mode-map (kbd "C-RET") 'open-link-in-new-frame)
-(define-key eww-mode-map (kbd "o o") 'eww)
-(define-key eww-mode-map (kbd "O O") 'eww-browse-with-external-browser)
-(define-key eww-mode-map (kbd "SPC")
-            '(lambda() (interactive)
-                    (pixel-scroll-mode 1)
-                    (buyn-reader-go)))
-(define-key eww-mode-map (kbd "S-SPC") 'evil-scroll-up)
-(define-key eww-mode-map (kbd "<f8>") 'read-aloud-buf)
-(define-key eww-mode-map (kbd "<f9>") 'read-aloud-stop)
+	:bind (:map  eww-mode-map
+							("C-<return>" . open-link-in-new-frame)
+							("o o" . eww)
+							("O O" . eww-browse-with-external-browser)
+							;; (\j . evil-scroll-line-down)
+							;; (\k . evil-scroll-line-up)
+							("SPC" . buyn-reader-go)
+							("S-SPC" . evil-scroll-up)
+							("<f8>" . read-aloud-buf)
+							("<f9>" . read-aloud-stop))
+
 ;; --------------------------------------
 ;; ** hooks : 
 ;; --------------------------------------
