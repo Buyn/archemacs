@@ -34,16 +34,18 @@
 				(evil-quit)
 				(switch-to-buffer-other-frame buffer-name-to-close)))
 ;; --------------------------------------
-;; ** setings
-;; *** reader-browser : 
-(setq pixel-wait 0.1)
-;; *** external-browser : 
+;; ** use-package
+(use-package eww
+	:defer t
+	:config
+		(setq pixel-wait 0.1)
+;; ** external-browser : 
 ;; default value
 ;; (setq shr-external-browser 'browse-url-default-browser)
 ;; to set for special browse
 ;; (setq shr-external-browser 'browse-url-generic)
 ;; (setq browse-url-generic-program (executable-find "firefox"))
-;; *** url-browser : 
+;; ** url-browser : 
 (setq browse-url-browser-function
 			'((".*google.*maps.*" . browse-url-generic)
 				;; Github goes to firefox, but not gist
@@ -69,6 +71,7 @@
 				("slideshare.net" . browse-url-generic)
 				("." . eww-browse-url)))
 
+;; *** reader-browser : 
 ;; ** define-key : 
 ;; --------------------------------------
 ;; todo не загружен eww
@@ -85,7 +88,6 @@
 (define-key eww-mode-map (kbd "<f8>") 'read-aloud-buf)
 (define-key eww-mode-map (kbd "<f9>") 'read-aloud-stop)
 ;; --------------------------------------
-
 ;; ** hooks : 
 ;; --------------------------------------
 ;; *** buyn-eww-hook : 
@@ -97,5 +99,6 @@
 ;; (add-hook 'eww-mode-hook #'toggle-word-wrap)
 ;; (add-hook 'eww-mode-hook #'buyn-reader-start)
 ;; --------------------------------------
-
+;; ** the END) : 
+	)
 ;; *  --------------------------------------
