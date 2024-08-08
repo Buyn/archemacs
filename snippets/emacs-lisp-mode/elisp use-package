@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: elisp use-package
+# key: use-
+# --
+(use-package ${1:name}
+  ;; :disabled
+	:defer t
+	${2::ensure t}
+	${3::config}
+	$0
+	)
