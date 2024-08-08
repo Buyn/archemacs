@@ -34,6 +34,9 @@
 							("M-z M-z" . (lambda() (interactive)
 														(setq buyn-magit-buff-name (buffer-name))
 														(bury-buffer)))
+							("n n" . (lambda() (interactive)
+														(setq buyn-magit-buff-name (buffer-name))
+														(bury-buffer)))
 
 							("J J" . magit-display-repository-buffer)
 							("J j" . magit-status-jump)
@@ -42,6 +45,8 @@
 							("K K" . magit-file-untrack)
 							("K k" . magit-discard)
 							("k" . magit-section-backward)
+
+							("p" . magit-push)
 
 							;; ("<F9> m m" .
 							("M-z M-m" .
