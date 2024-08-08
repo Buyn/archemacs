@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: add use-package map key line
+# key: use-map
+# --
+:bind (:map ${1:name}
+				(${2:"keys"} . ${3:funame}$0)
