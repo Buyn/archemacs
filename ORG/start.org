@@ -1422,7 +1422,7 @@ initial-scratch-message
 *Help Docs Emacs 
 * Команды
 ** reload init files
-(load "~/INI/hydra-cfg.el")
+(load (expand-file-name "INI/hydra-cfg.el" user-emacs-directory))
 (load "~/INI/evil-mod-cfg.el")
 (load "~/INI/frame-control.el")
 (load "~/INI/lua-cfg.el")

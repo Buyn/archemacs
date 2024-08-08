@@ -8,8 +8,8 @@
     ^Main^             00             ^Menus^          
     ^─────^───────────────────────────^─────^────────────
     _q_ quit      _d_ev menu    _o_rg-mode   _b_Org-Brain                       
-    _w_ww         _SPC_ next    _y_nke-menu  _r_eader
-    _p_rev-menu   _e_macs-menu  ya_s_nippet  _n_ext-menu    
+    _w_ww    _a_I     _SPC_ next    _y_nke-menu  _r_eader
+    _p_rev-menu   _e_macs-menu   ya_s_nippet  _n_ext-menu    
     "
 ;; ***** keys
     ("q" nil)
@@ -17,6 +17,7 @@
     ("d" hydra-dev-menu/body)
     ("w" www-menu/body)
     ("e" hydra-emacs-menu/body)
+    ("a" hydra-ai-menu/body)
     ("SPC" spc-main-menu01/body )
     ("y" hydra-yank-menu/body)
     ("n" spc-main-menu01/body)
@@ -96,6 +97,43 @@
       (if (> i  9)
           (number-to-string i)
           (concat "0" (number-to-string i))))))
+
+(defhydra hydra-ai-menu (:color blue)
+    ("c" (hydra-ai-chat-menu/body) "AI chat")
+    ("r" (hydra-ai-role-menu/body) "AI roles")
+    ("q" nil) 
+    )
+
+(defhydra hydra-ai-role-menu (:color blue)
+    ("e" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/acid-elisp.el") "elisp Acid")
+    ("p" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/acid-python.el") "Py Acid")
+    ("s" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/ai-synod.el")
+            "Synode AI")
+    ("t" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/ted-dan.el") "Ted DAN")
+    ("h" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/ted-dan.el") "Ted holodeck")
+    ("S" org-roam-menu/body "Sasha")
+    ("g" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/glados-daen.el") "GLaDOS")
+    ("d" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/catherine-tramell-daen.el") "DAEN Tramell")
+    ("o" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/rpm-4options.el") "RPM 4option")
+    ("m" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/rpm-malu.el") "RPM MALU")
+    ("q" nil) 
+    )
+
+(defhydra hydra-ai-chat-menu (:color blue)
+    ("a" (progn
+            (load "~/Dropbox/Office/Games/aidungeon/els/acid-chat.el")
+            (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/chars-chat/2024-05-17-Acid_Burn.org")
+            ) "Acid Burn")
+    ("l" (progn
+            (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/ai-synod.el")
+            (find-file-other-frame "~/Dropbox/Office/Games/Game-logs/Tomb-of-Tyrants/2023-09-09-AI-story.org")
+            ) "LogFile")
+    ("t" (progn
+            (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/tpol-chat.el")
+            (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/chars-chat/2024-05-18-T-Pol.org"))
+        "T'pol")
+    ("q" nil) 
+  )
 
 (defhydra org-menu (:color pink)
 ;; ***** keys
