@@ -223,6 +223,7 @@
 (define-key evil-normal-state-map "ZRR" 'ranger)
 (define-key evil-visual-state-map "ZRR" '(lambda() (interactive)
 					(switch-to-buffer-other-frame "*scratch*")
+          (message (buffer-substring (region-beginning) (region-end)))
 					(ranger (buffer-substring (region-beginning) (region-end)))))
 (define-key evil-normal-state-map "ZRH"
 						'(lambda() (interactive)
