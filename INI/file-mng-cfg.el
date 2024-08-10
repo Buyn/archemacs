@@ -16,6 +16,12 @@
 							("r r" . ranger-refresh)
 							("g g" . ranger-goto-top)
 							("G G" . ranger-goto-bottom)
+							("Z F F" . find-file-other-frame)
+							("Z F I" . (lambda() (interactive)
+													 (find-file-other-frame
+														(expand-file-name
+														 "INI/file-mng-cfg.el"
+														 user-emacs-directory))))
 							))
 
 ;; --------------------------------------
@@ -37,6 +43,11 @@
 							("n n" . (lambda() (interactive)
 														(setq buyn-magit-buff-name (buffer-name))
 														(bury-buffer)))
+							("n f i" . (lambda() (interactive)
+													 (find-file-other-frame
+														(expand-file-name
+														 "INI/file-mng-cfg.el"
+														 user-emacs-directory))))
 
 							("J J" . magit-display-repository-buffer)
 							("J j" . magit-status-jump)
