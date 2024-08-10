@@ -21,6 +21,19 @@
 				(evil-quit)
 				(switch-to-buffer-other-frame buffer-name-to-close)))
 ;; --------------------------------------
+;; ** eww-of
+;; --------------------------------------
+(defun eww-of (link)
+  "open-eww-in-new-frame from link"
+  (interactive)
+			(let (buffer-name-to-close (buffer-name))
+				(evil-window-split)
+				;; (global-visual-line-mode)
+				(eww link)
+				;; (eww (shr-url-at-point nil))
+				(evil-quit)
+				(switch-to-buffer-other-frame buffer-name-to-close)))
+;; --------------------------------------
 ;; ** org-open-link-in-new-frame
 ;; --------------------------------------
 (defun org-open-link-in-new-frame ()
@@ -85,6 +98,8 @@
 							;; (\j . evil-scroll-line-down)
 							;; (\k . evil-scroll-line-up)
 							("SPC" . buyn-reader-go)
+							("Z F I" . (lambda() (interactive)
+														((find-file-other-frame (expand-file-name "INI/www-cfg.el" user-emacs-directory)))))
 							("S-SPC" . evil-scroll-up)
 							("<f8>" . read-aloud-buf)
 							("<f9>" . read-aloud-stop))
