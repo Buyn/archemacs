@@ -6,7 +6,7 @@
 ;; --------------------------------------
 ;; --------------------------------------
 ;; ** AUTOCOMPLETE-MOD CUSTOMIZATION
-;; (find-file-other-frame "~/.archemacs/INI/autocomplete-cfg.el")
+;; (find-file-other-frame "~/.archemacs/INI/auto/autocomplete-cfg.el")
 (load (expand-file-name "INI/auto/autocomplete-cfg.el" user-emacs-directory))
 ;; --------------------------------------
 ;; ** SNIPPETS-MOD CUSTOMIZATION

@@ -13,15 +13,16 @@
 ;; --------------------------------------
 ;; ** company
 (use-package company :ensure t
-  ;; :defer 2
+  :defer t
 	:config
-	(add-hook 'prog-mode-hook 'company-mode)
-	;; (setq completion-styles "basic substring emacs22")
-	(setq completion-styles '(partial-completion substring emacs22))
-	(define-key evil-insert-state-map (kbd "C-SPC") 'company-complete)
-	(setq company-minimum-prefix-length 10)
-	(setq company-idle-delay nil)
-	(setq company-show-numbers t)
+		(add-hook 'prog-mode-hook 'company-mode)
+		;; (setq completion-styles "basic substring emacs22")
+		(setq completion-styles '(partial-completion substring emacs22))
+		(define-key evil-insert-state-map (kbd "C-SPC") 'company-complete)
+		(setq company-minimum-prefix-length 10)
+		(setq company-require-match nil)
+		(setq company-idle-delay nil)
+		(setq company-show-numbers t)
 	;; :bind ("C-c c" hydra-clock/body)
 ;; ***  END use-package 
   )
