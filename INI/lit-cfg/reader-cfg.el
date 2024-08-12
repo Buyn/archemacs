@@ -51,17 +51,16 @@
  ;; fb2-images-height — height of images in fb2-mode buffer (default 500).
  ;; fb2-replace-hard-spaces — if not nil then non-breaking spaces will replaced by spaces (default nil).
 ;; ** nov.el
-;; *** load
-;; (add-to-list 'load-path "~/ELs/Readers/nov.el/")
-;; (add-to-list 'load-path (expand-file-name "ELs/Readers/nov.el/" user-emacs-directory))
-;; *** use-package nov.el : 
-	:defer t
+;; *** use-package esxml-query : 
 ;; (use-package esxml-query
+	;; :defer t
 	;; :ensure t
   ;; :disabled
 ;; )
 
+;; *** use-package nov.el : 
 (use-package nov
+	:defer t
 	;; :ensure t
   ;; :disabled
 	;; :load-path "~/ELs/Readers/nov.el/"
