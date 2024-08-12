@@ -17,13 +17,9 @@
 	:ensure t
 	;; :disabled
 ;; *** :config
-	;; :config
-	;; (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-	;; (custom-theme-set-faces
-	;; 	'material
-	;; 	`(rainbow-delimiters-depth-1-face ((t
-	;; 			(:foreground ,"aquamarine"))))
-	;; 	)
+	:config
+ (setq clojure-indent-style align-arguments)
+ (setq clojure-indent-keyword-style align-arguments)
 ;; *** END )
 	)
 ;; *** Docs 
@@ -39,6 +35,22 @@
 	;; :ensure t
 	:config
 		(setq org-babel-clojure-backend nil)
+	;; (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+	;; (custom-theme-set-faces
+	;; 	'material
+	;; 	`(rainbow-delimiters-depth-1-face ((t
+	;; 			(:foreground ,"aquamarine"))))
+	;; 	)
+	)
+;; *** --------------------------------------
+;; ** clj-refactor
+;; *** install
+(use-package clj-refactor
+	:disabled
+	:defer t
+	;; :ensure t
+	;; :config
+	;; 	(setq org-babel-clojure-backend nil)
 	;; (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 	;; (custom-theme-set-faces
 	;; 	'material
