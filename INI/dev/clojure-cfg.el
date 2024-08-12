@@ -18,8 +18,8 @@
 	;; :disabled
 ;; *** :config
 	:config
- (setq clojure-indent-style align-arguments)
- (setq clojure-indent-keyword-style align-arguments)
+ (setq clojure-indent-style 'align-arguments)
+ (setq clojure-indent-keyword-style 'align-arguments)
 ;; *** END )
 	)
 ;; *** Docs 
@@ -59,4 +59,6 @@
 	;; 	)
 	)
 ;; *** --------------------------------------
+;; ** Leiningen
+
 ;; * --------------------------------------
