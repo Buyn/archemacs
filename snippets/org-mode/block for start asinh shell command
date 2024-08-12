@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: block for start asinh shell command
+# key: elsip_start
+# --
+#+begin_src elisp :results output silent
+(buyn-shell-start "$0")
+(evil-previous-line)
+(org-cycle)
+(delete-other-windows)
+#+end_src
