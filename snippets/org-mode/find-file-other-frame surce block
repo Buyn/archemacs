@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: find-file-other-frame surce block
+# key: elisp_ffof
+# --
+
+#+begin_src elisp :results output silent
+(find-file-other-frame "$0")
+(evil-previous-line)
+(org-cycle)
+(delete-other-windows)
+#+end_src
