@@ -64,6 +64,8 @@
 ;; (setq browse-url-generic-program (executable-find "firefox"))
 ;; ** url-browser : 
 ;; (setq browse-url-browser-function
+ ;; (setq browse-url-browser-function 'browse-url-generic
+ ;;       browse-url-generic-program "qutebrowser")
 (setq browse-url-handlers
 			'((".*google.*maps.*" . browse-url-generic)
 				;; Github goes to firefox, but not gist
