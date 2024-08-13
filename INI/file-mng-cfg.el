@@ -14,6 +14,7 @@
 	;; :config
 	:bind (:map ranger-mode-map
 							("r r" . ranger-refresh)
+							("M-f" . avy-goto-word-1)
 							("g g" . ranger-goto-top)
 							("G G" . ranger-goto-bottom)
 							("Z F F" . find-file-other-frame)
