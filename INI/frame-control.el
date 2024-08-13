@@ -255,9 +255,11 @@
 																							 (progn
 																								 (switch-to-buffer buyn-magit-buff-name)
 																								 (magit-refresh))
-																						 (magit-status user-emacs-directory))))
+																						 (magit-status))))
 (define-key evil-normal-state-map "ZME" '(lambda() (interactive)
-																					 (magit-status )))
+																					 (magit-status user-emacs-directory)))
+(define-key evil-normal-state-map "ZMDS" '(lambda() (interactive)
+																					 (buyn-shell-start "emacs --debug-init")))
 ;; (define-key evil-normal-state-map "Zh" '(lambda() (interactive)
 ;; 					;; (previous-buffer)))
 ;; 					(evil-prev-buffer)))
