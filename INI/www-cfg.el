@@ -63,7 +63,8 @@
 ;; (setq shr-external-browser 'browse-url-generic)
 ;; (setq browse-url-generic-program (executable-find "firefox"))
 ;; ** url-browser : 
-(setq browse-url-browser-function
+;; (setq browse-url-browser-function
+(setq browse-url-handlers
 			'((".*google.*maps.*" . browse-url-generic)
 				;; Github goes to firefox, but not gist
 				;; ("http.*\/\/github.com" . browse-url-generic)
