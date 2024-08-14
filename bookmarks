@@ -2,16 +2,4 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("ranger-k"
- (filename . "~/.archemacs/")
- (front-context-string . "org-roam.db\n  -r")
- (rear-context-string . "20k 07-23 09:54 ")
- (position . 1136)
- (last-modified 26288 60194 252068 634000))
-("ranger-j"
- (filename . "~/.archemacs/")
- (front-context-string . "d_home.txt\n  -rw")
- (rear-context-string . "  0 06-27 21:17 ")
- (position . 914)
- (last-modified 26288 60183 444759 320000))
-)
+()
