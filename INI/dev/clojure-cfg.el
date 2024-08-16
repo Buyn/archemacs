@@ -21,7 +21,7 @@
 	:defer t
 	;; :ensure t
 	:config
-		(setq org-babel-clojure-backend nil)
+		(setq org-babel-clojure-backend 'cider)
 	;; (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 	;; (custom-theme-set-faces
 	;; 	'material

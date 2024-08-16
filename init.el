@@ -23,7 +23,7 @@
  '(ediff-window-setup-function 'ediff-setup-windows-plain)
  '(gptel-model "gpt-3.5-turbo-16k")
  '(package-selected-packages
-	 '(clj-refactor cider lsp-mode parinfer-rust-mode which-key diminish magit ranger yaml-mode yasnippet-snippets skewer-mode reverse-im read-aloud rainbow-delimiters quelpa-use-package projectile powerline plantuml-mode outshine org-roam-ui org-brain ob-translate miracle minimap material-theme lua-mode jedi ivy hydra hledger-mode graphviz-dot-mode gptel gpt flycheck expand-region evil-tabs elpy company-jedi company-fuzzy better-defaults avy ahk-mode)))
+	 '(eshell-command clj-refactor cider lsp-mode parinfer-rust-mode which-key diminish magit ranger yaml-mode yasnippet-snippets skewer-mode reverse-im read-aloud rainbow-delimiters quelpa-use-package projectile powerline plantuml-mode outshine org-roam-ui org-brain ob-translate miracle minimap material-theme lua-mode jedi ivy hydra hledger-mode graphviz-dot-mode gptel gpt flycheck expand-region evil-tabs elpy company-jedi company-fuzzy better-defaults avy ahk-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

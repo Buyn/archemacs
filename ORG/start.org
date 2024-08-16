@@ -1361,7 +1361,7 @@ initial-scratch-message
 		# (find-file-other-frame "~/INI/dev/c-mode-cfg.el") not used
 		(find-file-other-frame "~/INI/dev/flycheck-cfg.el")
 *** My Elisp
-	(find-file-other-frame "~/ELs/BuYn/shell.el")
+	(find-file-other-frame (expand-file-name "ELs/BuYn/shell.el" user-emacs-directory))
 	(find-file-other-frame "~/Dropbox/backup/file.el")
 	----- not auto loadet -----
 	(find-file-other-frame "~/ELs/BuYn/ai-dungon.el")
@@ -1439,7 +1439,7 @@ initial-scratch-message
 ** find in 
 *** init
 #+begin_src sh  
-grep --include=\*.el -rnw ~/.archemacs/INI -e "projectile-multi-occur"
+grep --include=\*.el -rnw ~/.archemacs/INI -e "call-interactively"
 #+end_src 	
 
 #+RESULTS:

@@ -151,7 +151,7 @@
 (define-key evil-visual-state-map (kbd "M-y M-f") 'evil-use-register)
 (define-key evil-normal-state-map (kbd "M-p M-f") 'evil-use-register)
 (define-key evil-visual-state-map (kbd "M-p M-f") 'evil-use-register)
-;; ** Movements  {{{
+;; ** Movements
 (define-key evil-normal-state-map "gh" 'evil-first-non-blank-of-visual-line)
 (define-key evil-normal-state-map "gl" 'evil-end-of-visual-line)
 (define-key evil-normal-state-map (kbd "gj") 'next-logical-line)
@@ -264,6 +264,9 @@
 ;; *** eval: 
 (define-key evil-normal-state-map (kbd "M-e M-l") 'eval-last-sexp)
 (define-key evil-normal-state-map (kbd "M-e M-e") 'eval-defun)
+;; *** send to other buffer: 
+(define-key evil-normal-state-map (kbd "M-e M-s M-l") 'send-activ-line-to-eshell-buffer-and-execute)
+(define-key evil-visual-state-map (kbd "M-e M-s M-l") 'send-region-to-eshell-buffer-and-execute)
 ;; *** search-forward & sexp M-e M-j : 
 (define-key evil-normal-state-map (kbd "M-e M-j") 
 		'(lambda() (interactive)
