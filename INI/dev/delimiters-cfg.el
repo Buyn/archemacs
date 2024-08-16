@@ -80,7 +80,7 @@
   :config
 		(setq  parinfer-rust-disable-troublesome-modes t)
     ;; (parinfer-rust-mode -1)
-    ;; (add-hook 'clojure-mode-hook #'parinfer-rust-mode)
+    (add-hook 'clojure-mode-hook #'parinfer-rust-mode)
     ;; (add-hook 'emacs-lisp-mode-hook #'parinfer-rust-mode)
     ;; (add-hook 'common-lisp-mode-hook #'parinfer-rust-mode)
     ;; (add-hook 'scheme-mode-hook #'parinfer-rust-mode)

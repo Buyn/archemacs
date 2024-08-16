@@ -30,3 +30,4 @@ AddApps/
 /parinfer-rust/
 /elpy/
 /.cache/
+/.lsp-session-v1

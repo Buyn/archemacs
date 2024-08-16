@@ -9,8 +9,9 @@
 ;; --------------------------------------
 ;; ** clojure-mode
 (use-package clojure-mode
-	:ensure t
+	:defer t
 	;; :disabled
+	:ensure t
 	:config
  (setq clojure-indent-style 'align-arguments)
  (setq clojure-indent-keyword-style 'align-arguments)
@@ -78,14 +79,24 @@
 	)
 
 ;; ** use-package lsp-ui:
-(use-package lsp-ui :commands lsp-ui-mode)
+(use-package lsp-ui
+	:defer t
+	:ensure t
+	:commands lsp-ui-mode)
 ;; ;; if you are helm user
 ;; (use-package helm-lsp :commands helm-lsp-workspace-symbol)
 ;; if you are ivy user
 ;; ** use-package lsp-ivy:
-(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+(use-package lsp-ivy
+	:defer t
+	:ensure t
+	:commands lsp-ivy-workspace-symbol)
 ;; ** lsp-treemacs:
-(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+(use-package lsp-treemacs
+  :disabled
+	:defer t
+	:ensure t
+	:commands lsp-treemacs-errors-list)
 
 ;; ** --------------------------------------
 ;; * use-package dap-mode:
