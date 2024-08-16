@@ -110,7 +110,7 @@
 ;; * BUYN's ELISP DEFUNS
 ;; --------------------------------------
 ;; ** send-region-to-eshell-buffer-and-execute:
-(defun send-region-to-eshell-buffer-and-execute(start end &optional INTERCT)
+(defun send-region-to-eshell-buffer-and-execute(start end );&optional INTERCT
   "	Make the custom function interactive and operative on a region
 		prepend to the buffer named *eshell*
 		switches to the buffer
@@ -125,12 +125,12 @@
 			(execute-kbd-macro "\C-m")
 			(switch-to-buffer-other-frame buffer-name-to-back)))
 ;; ** send-activ-line-to-eshell-buffer-and-execute:
-(defun send-activ-line-to-eshell-buffer-and-execute(start end)
+(defun send-activ-line-to-eshell-buffer-and-execute()
   "	Make the custom function interactive
 		evaluet send-region-to-eshell-buffer-and-execute
 		with region as from start to end line "
   (interactive) 
 	(call-interactively
-		(send-region-to-eshell-buffer-and-execute (line-beginning-position) (line-beginning-position 2)))) 
+		(send-region-to-eshell-buffer-and-execute (line-beginning-position) (line-beginning-position 2))))
 
 ;; * --------------------------------------
