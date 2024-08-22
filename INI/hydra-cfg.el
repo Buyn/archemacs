@@ -423,11 +423,19 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom    _q_uit
   ("P" python-mode "pyton")
   ("p" parinfer-rust-mode "parinferR" :color blue)
   ("d" rainbow-delimiters-mode "delimiters")
-  ("t"  (save-excursion
+  ("T"  (save-excursion
           (progn
             (org-babel-goto-named-src-block "auto-tangle-block")
             (org-babel-execute-src-block)))
-        "execute tangle" :color blue)
+        "execute auto-tangle-block" :color blue)
+  ("t" (progn
+						(setq org-src-preserve-indentation t)
+						(untabify (point-min) (point-max))
+						(save-buffer)
+						(universal-argument)
+						(universal-argument)
+						(org-babel-tangle))
+        "tangle only one file" :color blue)
   ("L" display-line-numbers-mode "line-numbers")
   ("y" hydra-yasnippet/body "yasnippet" :color blue)
   ("q" nil "quit")

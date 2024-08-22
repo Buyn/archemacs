@@ -31,3 +31,5 @@ AddApps/
 /elpy/
 /.cache/
 /.lsp-session-v1
+/.cache.tar.gz
+/eshell/
