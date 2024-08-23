@@ -101,6 +101,18 @@
 (defhydra hydra-ai-menu (:color blue)
     ("c" (hydra-ai-chat-menu/body) "AI chat")
     ("r" (hydra-ai-role-menu/body) "AI roles")
+    ("d" (hydra-ai-docs-menu/body) "AI docs")
+    ("q" nil) 
+    )
+
+(defhydra hydra-ai-docs-menu (:color blue)
+    ("c" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/open-al-chat.org") "open-al-chat")
+    ("m" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/multiagent-ai.org") "multiagent-ai")
+    ("a" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/al-Audio-gen.org") "al-Audio-gen")
+    ("s" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/Stable_Diffusion.org") "Stable_Diffusion")
+    ("k" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/KoboldAI.org") "KoboldAI")
+    ("d" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/aidungeon.org") "aidungeon")
+    ("C" (find-file-other-frame "~/../Dropbox/Office/Research/Doc/Codex/BuYn_Codex.org") "BuYn_Codex")
     ("q" nil) 
     )
 
