@@ -216,9 +216,10 @@
 						(ivy-switch-buffer)))
 (define-key evil-normal-state-map (kbd "Z S-<SPC> S-<SPC>") 'delete-other-windows)
 
-;; ** Buffer control  {{{
+;; ** Buffer control
 (define-key evil-normal-state-map "ZI" '(lambda() (interactive)
 					(ivy-switch-buffer)))
+;; *** ranger Buffer control
 (define-key evil-normal-state-map "ZR" nil)
 (define-key evil-normal-state-map "ZRR" 'ranger)
 (define-key evil-visual-state-map "ZRR" '(lambda() (interactive)
@@ -241,6 +242,15 @@
 						'(lambda() (interactive)
 							(switch-to-buffer-other-frame "*scratch*")
 							(ranger "~/Dropbox/orgs/")))
+(define-key evil-normal-state-map "ZRW"
+						'(lambda() (interactive)
+							(switch-to-buffer-other-frame "*scratch*")
+							(ranger "~/Downloads/")))
+(define-key evil-normal-state-map "ZRD"
+						'(lambda() (interactive)
+							(switch-to-buffer-other-frame "*scratch*")
+							(ranger "~/Documents/")))
+;; *** magit Buffer control
 (define-key evil-normal-state-map "ZMm" '(lambda() (interactive)
 																					 (if
 																							 (boundp 'buyn-magit-buff-name)
@@ -265,6 +275,7 @@
 ;; 					(evil-prev-buffer)))
 ;; (define-key evil-normal-state-map "Zl" '(lambda() (interactive)
 ;; 					(evil-next-buffer)))
+;; *** find-file Buffer control
 (define-key evil-normal-state-map "ZFF" 'find-file-other-frame)
 (define-key evil-visual-state-map "ZFF" '(lambda() (interactive)
 					(find-file-other-frame (buffer-substring (region-beginning) (region-end)))))
@@ -274,6 +285,7 @@
 ;; 					(unbury-buffer)))
 ;; (define-key evil-normal-state-map "Zj" '(lambda() (interactive)
 ;; 					(bury-buffer)))
+;; *** new Buffer
 (define-key evil-normal-state-map "Zn" '(lambda() (interactive)
 					(evil-buffer-new "*new*")))
 (define-key evil-normal-state-map "ZN" '(lambda() (interactive)
