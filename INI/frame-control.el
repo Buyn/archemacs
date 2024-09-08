@@ -230,6 +230,12 @@
 						'(lambda() (interactive)
 							(switch-to-buffer-other-frame "*scratch*")
 							(ranger "~/")))
+(define-key evil-normal-state-map "ZRr"
+						'(lambda() (interactive)
+							 (let
+									((file-name (file-name-directory (buffer-file-name))))
+								 (switch-to-buffer-other-frame "*scratch*")
+									(ranger file-name))))
 (define-key evil-normal-state-map "ZRB"
 						'(lambda() (interactive)
 							(switch-to-buffer-other-frame "*scratch*")

@@ -374,12 +374,12 @@ done - things I have completed. Gives feeling of satisfaction
 #+begin_src elisp :results output silent
 (buyn-cmd-start "f D:\\Development\\version-control\\GitHub\\Zmei\\Sontex\\DOCs D:\\Development\\version-control\\GitHub\\Zmei\\Sontex\\Src\\Data_files")
 #+end_src
-***** Uml 
+***** Uml
 #+begin_src emacs-lisp :results output silent
 		(find-file-other-frame "D:/Development/version-control/GitHub/Zmei/Sontex/DOCs/uml.org")
 #+end_src
 
-***** описание 
+***** описание
 на этой стадии пытаемся получить ответы на задные вопросы
 пытаемся в конце стадии заполнить предпологаемый умл
 и ответить на вопросы кодом
@@ -414,16 +414,16 @@ done - things I have completed. Gives feeling of satisfaction
 ****** urgent 
 ****** todo
 ****** done
-***** SRC 
+***** SRC
 ****** sandbox.py
 #+begin_src emacs-lisp :results output silent
 (find-file-other-frame "D:/Development/version-control/GitHub/Zmei/Sontex/Src/sandbox.py")
 #+end_src
-***** far 
+***** far
 #+begin_src elisp :results output silent
 (buyn-cmd-start "f D:\\Development\\version-control\\GitHub\\Zmei\\Sontex\\DOCs D:\\Development\\version-control\\GitHub\\Zmei\\Sontex\\Src\\Data_files")
 #+end_src
-***** Uml 
+***** Uml
 #+begin_src emacs-lisp :results output silent
 		(find-file-other-frame "D:/Development/version-control/GitHub/Zmei/Sontex/DOCs/uml.org")
 #+end_src
@@ -480,16 +480,16 @@ done - things I have completed. Gives feeling of satisfaction
 
 ***** описание 
 выделаются набор функций главных для приложения
-но приэьл самого минимально возможного набора
+но приэто самого минимально возможного набора
 реализация которых позволит считать фазу законченой
 при реализациии стади убеждаемся вверности умл
 и коректируем его при выевление ошибок
-на оканчани стадии продукт выпоняет свои функции
+на оканчани стадии продукт выпоняет свои заданые функции
 но далёк от оканчательной формы
 
 A minimum viable product is a version of a product with just enough features to be usable by early customers who can then provide feedback for future product development. A focus on releasing an MVP means that developers potentially avoid lengthy and unnecessary work.
 
-тоесть задача данной стадии прийти к клиенту с чемто что должно делать что из того что он хотел
+тоесть задача данной стадии прийти к клиенту с чемто что должно делать что-то из того что он хотел
 и понять есть ли контакт толи это?
 может это совсем не то что хотел клиен или он оказывает не это считает важным
 тоесть наладить цикл обратной связи для дальнейшей работы
@@ -528,7 +528,7 @@ A minimum viable product is a version of a product with just enough features to 
 		(find-file-other-frame "D:/Development/version-control/GitHub/Zmei/Sontex/DOCs/uml.org")
 #+end_src
 
-***** описание 
+***** описание
 	Выделаем сдадии добовления функциона и фич
 Создаём роуд меп
 на оканчании стадии продук должен быть передан 
@@ -555,23 +555,23 @@ A minimum viable product is a version of a product with just enough features to 
 ****** urgent 
 ****** todo
 ****** done
-***** SRC 
+***** SRC
 ****** sandbox.py
 #+begin_src emacs-lisp :results output silent
 (find-file-other-frame "D:/Development/version-control/GitHub/Zmei/Sontex/Src/sandbox.py")
 #+end_src
-***** far 
+***** far
 #+begin_src elisp :results output silent
 (buyn-cmd-start "f D:\\Development\\version-control\\GitHub\\Zmei\\Sontex\\DOCs D:\\Development\\version-control\\GitHub\\Zmei\\Sontex\\Src\\Data_files")
 #+end_src
-***** Uml 
+***** Uml
 #+begin_src emacs-lisp :results output silent
 		(find-file-other-frame "D:/Development/version-control/GitHub/Zmei/Sontex/DOCs/uml.org")
 #+end_src
 
 
 
-***** описание 
+***** описание
 	Стадия начинается в момент получения от клиента
 фидбека
 и направлена на создания цикла обратной связи с клиентом
@@ -599,6 +599,33 @@ A minimum viable product is a version of a product with just enough features to 
 #+TBLFM: @>$7=vsum(@<<$7..@>>$7)
 
 **** Backlog 
+**** Описание методологии orgaila
+***** орг проекта
+****** может быть
+орг проекта может как быть разделом в некротеке
+так и отдельным огром в дропбоксе с сылкой на него их некротека
+****** содержит в себе
+******* пути к проекту
+и содержит всебе пути к проекту и ко всме его файлам
+так чтоб к любому файлу получить доступ через него
+и возможно описание этих файлов
+******* пути к оргам стадиям
+тоесть сылка чтою открыть нужную стадию
+и как подразде логом стадий
+******* баклог проекта
+вне отрпавлюятся все дела и фичи которые нужно сделать
+по мере прихода их времени, они преносятся в баклог орг стадии, где и становятся дан и переносятся в лог
+***** каждая стадия отдельный орг
+в папке доков проекта исходника
+***** каждая стадия имеет орг лог
+в папке логов орга проекта 
+в него делается копия задачи
+и выполняется в коментариях возможно с кодом(сенд бокс или гугл)
+***** каждая стадия делится на спринты
+***** стадия содержит в себе беклог стадии
+в него переносятся дела из бекloga оргa проекта
+***** org
+
 *** Ezenhaur 
 **** Срочное и важное
 **** Срочное но не важное
