@@ -110,6 +110,7 @@
     ("m" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/multiagent-ai.org") "multiagent-ai")
     ("a" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/al-Audio-gen.org") "al-Audio-gen")
     ("s" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/Stable_Diffusion.org") "Stable_Diffusion")
+    ("S" (find-file-other-frame "~/Dropbox/Office/Games/Game-logs/AI/2024-06-07-SD-story.org") "SD-log")
     ("k" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/KoboldAI.org") "KoboldAI")
     ("d" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/aidungeon.org") "aidungeon")
     ("C" (find-file-other-frame "~/../Dropbox/Office/Research/Doc/Codex/BuYn_Codex.org") "BuYn_Codex")
@@ -118,6 +119,7 @@
 
 (defhydra hydra-ai-role-menu (:color blue)
     ("e" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/acid-elisp.el") "elisp Acid")
+    ("l" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/leeloo-chat.el") "elisp LeeLoo")
     ("p" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/acid-python.el") "Py Acid")
     ("s" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/ai-synod.el")
             "Synode AI")
@@ -136,6 +138,10 @@
             (load "~/Dropbox/Office/Games/aidungeon/els/acid-chat.el")
             (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/chars-chat/2024-05-17-Acid_Burn.org")
             ) "Acid Burn")
+    ("L" (progn
+            (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/leeloo-chat.el")
+            (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/chars-chat/2024-09-18-Leeloo.org")
+            ) "LeeLoo")
     ("l" (progn
             (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/ai-synod.el")
             (find-file-other-frame "~/Dropbox/Office/Games/Game-logs/Tomb-of-Tyrants/2023-09-09-AI-story.org")

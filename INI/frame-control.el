@@ -234,7 +234,7 @@
 						'(lambda() (interactive)
 							 (let
 									((file-name (file-name-directory (buffer-file-name))))
-								 (switch-to-buffer-other-frame "*scratch*")
+									(switch-to-buffer-other-frame "*scratch*")
 									(ranger file-name))))
 (define-key evil-normal-state-map "ZRB"
 						'(lambda() (interactive)

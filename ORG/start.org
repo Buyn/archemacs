@@ -3,7 +3,7 @@
 #-*- mode: org -*-
 #+STARTUP: overview 
 #+TODO: TODO DONE
-** Like a craftsman entering his workshop :
+** Like a craftsman entering his workshop:
 Whenever I open Emacs, I feel inspired. Like a craftsman entering his workshop, I feel a realm of possibility open before me. I feel the comfort of an environment that has evolved over time to fit me perfectly—an assortment of packages and key bindings that help me bring ideas to life day after day.
 https://www.braveclojure.com/basic-emacs/
 | |_| |_| |           | |_| |_| |
@@ -23,7 +23,7 @@ https://www.braveclojure.com/basic-emacs/
  /   |      ||_|_|_||      |   \
 =================================
 
-** progn :
+** progn:
 #+begin_src emacs-lisp :results output silent
 (load (expand-file-name "~/INI/hydra-cfg.el" user-emacs-directory))
 ;; (load "~/ELs/BuYn/reader.el")
@@ -1451,7 +1451,7 @@ initial-scratch-message
 ** reload init files
 (load (expand-file-name "INI/hydra-cfg.el" user-emacs-directory))
 (load "~/INI/evil-mod-cfg.el")
-(load "~/INI/frame-control.el")
+(load (expand-file-name "INI/frame-control.el" user-emacs-directory))
 (load "~/INI/lua-cfg.el")
 (load "~/ELs/BuYn/shell.el")
 (load "~/ELs/BuYn/reader.el")

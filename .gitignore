@@ -34,3 +34,4 @@ AddApps/
 /.cache.tar.gz
 /eshell/
 /bookmarks
+/projectile.cache
