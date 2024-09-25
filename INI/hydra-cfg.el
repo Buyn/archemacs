@@ -308,7 +308,7 @@
     "
                           ^WWW  Menus^          
 ──────────────────────────^──────────^───────────────────────
-_d_el buffer   _L_ist      _B_ookmarks  _v_isual  _r_enameBuf
+_d_el buffer  _L_ist  _y_t  _B_ookmarks  _v_isual  _r_enameBuf
 _S_earchOtherF _s_earch    _E_WordOthrF s_W_itch  _p_ast&go          
 _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom    _q_uit    
     "
@@ -364,6 +364,21 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom    _q_uit
 														(region-beginning)
 														(region-end))
 												 " site:en.wikipedia.org"))
+            (eww (buffer-substring
+                (line-beginning-position)
+                (line-beginning-position 2))))
+          (evil-quit)
+          (switch-to-buffer-other-frame buffer-name-to-close)))
+;; ****** "y" : 
+    ("y"  (
+      let (buffer-name-to-close (buffer-name))
+          (evil-window-split)
+          (if (use-region-p)
+							(eww (concat
+										"https://vid.puffyan.us/search?q="
+										(buffer-substring
+														(region-beginning)
+														(region-end))))
             (eww (buffer-substring
                 (line-beginning-position)
                 (line-beginning-position 2))))
