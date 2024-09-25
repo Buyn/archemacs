@@ -15,7 +15,7 @@
 ;; https://github.com/spline1986/fb2-mode.git
 ;; *** use-package fb2-mode : 
 (use-package fb2-mode
-	:defer t
+	;; :defer t
 	;; :ensure t
   ;; :disabled
 	;; :load-path "~/ELs/Readers/fb2-mode"
@@ -26,8 +26,8 @@
 
 ;; *** :config : 
 	:config
-;; (add-to-list 'auto-mode-alist '("\\.fb2\\'" . fb2-mode))
-;; (add-to-list 'auto-mode-alist '("\\.fb\\'" . fb2-mode))
+(add-to-list 'auto-mode-alist '("\\.fb2\\'" . fb2-mode))
+(add-to-list 'auto-mode-alist '("\\.fb\\'" . fb2-mode))
 
 ;; (define-key fb2-mode-map (kbd "<f9>") 'read-aloud-stop)
 ;; (define-key fb2-mode-map (kbd "SPC") 'buyn-reader-go)

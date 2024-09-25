@@ -119,10 +119,10 @@
 
 (defhydra hydra-ai-role-menu (:color blue)
     ("e" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/acid-elisp.el") "elisp Acid")
-    ("l" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/leeloo-chat.el") "elisp LeeLoo")
     ("p" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/acid-python.el") "Py Acid")
     ("s" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/ai-synod.el")
             "Synode AI")
+    ("l" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/leeloo-chat.el") "LeeLoo")
     ("t" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/ted-dan.el") "Ted DAN")
     ("h" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/ted-dan.el") "Ted holodeck")
     ("S" org-roam-menu/body "Sasha")
