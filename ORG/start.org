@@ -2770,7 +2770,7 @@ Replace With: ^J
 
 So how does it work? Well, we tell Emacs to search for any two or more newlines that are at the beginning of a string – where each line is considered a string by Emacs – and because we search for two or more we skip the ones that only have a single newline. So if there are 10 newlines in a row, we replace them all in one fell swoop with a single newline. You can omit the replacement newline to remove them altogether!
 * Help Docs Emacs
-** Tools 
+** Tools
 *** debuging : 
 **** toggle-debug-on-error
 (toggle-debug-on-error)
@@ -6586,6 +6586,11 @@ you can give each daemon its own server name like this:
 ***** start-process : 
  (start-process "12" nil "d:/Development/lisp/Emacs/bin/runemacs.exe")
 
+***** let
+(let ((marked-files (dired-get-marked-files)))
+
+            (lambda (f) (let ((process-connection-type nil)) (start-process "" nil "xdg-open" f)))
+            marked-files)
 **** My commands 
 ***** buyn-start-emagus : 
 			#+begin_src emacs-lisp :tangle yes
