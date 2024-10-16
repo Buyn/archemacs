@@ -4917,6 +4917,15 @@ To switch EWW
 
 								открыть с-x с-f
 //plink:pi@192.168.0.124:/
+**** su
+$ cd /ssh:initech|su:root@localhost:/
+**** sudo
+C-x C-f /ssh:you@remotehost|sudo:remotehost:/path/to/file RET
+**** find-file
+(find-file-other-frame "/ssh:buyn@192.168.0.109:~/.config/openbox/environment")
+C-x C-f /[method/user@remotehost]/filename
+**** tunel
+C-x C-f /ssh:bird@bastion|ssh:you@remotehost:/path
 **** Нужно сделать 
 ***** настроить дайред
 дефалтное короткиф вывод имен

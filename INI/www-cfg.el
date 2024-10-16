@@ -53,9 +53,9 @@
 	;; :disabled
 	:config
 		;; (setq pixel-wait 0.1)
-		(pixel-scroll-mode 1)
-		(setq scroll-preserve-screen-position 1)
-		(setq pixel-wait 0.10000000000000014)
+		;; (pixel-scroll-mode 1)
+		;; (setq scroll-preserve-screen-position 1)
+		;; (setq pixel-wait 0.10000000000000014)
 ;; ** external-browser : 
 ;; default value
 ;; (setq shr-external-browser 'browse-url-default-browser)

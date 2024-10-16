@@ -309,8 +309,8 @@
                           ^WWW  Menus^          
 ──────────────────────────^──────────^───────────────────────
 _d_el buffer  _L_ist  _y_t  _B_ookmarks  _v_isual  _r_enameBuf
-_S_earchOtherF _s_earch    _E_WordOthrF s_W_itch  _p_ast&go          
-_Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom    _q_uit    
+_S_earchOtherF _s_earch _E_WordOthrF s_W_itch _p_ast&go _k_hinsider        
+_Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
     "
 ;; ***** keys
 ;; ****** one-line keys
@@ -355,6 +355,19 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom    _q_uit
                 (line-beginning-position 2))))
           (evil-quit)
           (switch-to-buffer-other-frame buffer-name-to-close)))
+;; ****** "S" : 
+    ("S"  (
+      let (buffer-name-to-close (buffer-name))
+          (evil-window-split)
+          (if (use-region-p)
+            (eww (buffer-substring
+                (region-beginning)
+                (region-end)))
+            (eww (buffer-substring
+                (line-beginning-position)
+                (line-beginning-position 2))))
+          (evil-quit)
+          (switch-to-buffer-other-frame buffer-name-to-close)))
 ;; ****** "w" : 
     ("w"  (
       let (buffer-name-to-close (buffer-name))
@@ -376,6 +389,36 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom    _q_uit
           (if (use-region-p)
 							(eww (concat
 										"https://vid.puffyan.us/search?q="
+										(buffer-substring
+														(region-beginning)
+														(region-end))))
+            (eww (buffer-substring
+                (line-beginning-position)
+                (line-beginning-position 2))))
+          (evil-quit)
+          (switch-to-buffer-other-frame buffer-name-to-close)))
+;; ****** "k" : 
+    ("k"  (
+      let (buffer-name-to-close (buffer-name))
+          (evil-window-split)
+          (if (use-region-p)
+							(eww (concat
+										"https://downloads.khinsider.com/search?search="
+										(buffer-substring
+														(region-beginning)
+														(region-end))))
+            (eww (buffer-substring
+                (line-beginning-position)
+                (line-beginning-position 2))))
+          (evil-quit)
+          (switch-to-buffer-other-frame buffer-name-to-close)))
+;; ****** "i" : 
+    ("i"  (
+      let (buffer-name-to-close (buffer-name))
+          (evil-window-split)
+          (if (use-region-p)
+							(eww (concat
+										"https://www.google.com/search?gbv=1&bih=&biw=&source=hp&hl=en&ie=ISO-8859-1&tbm=isch&q="
 										(buffer-substring
 														(region-beginning)
 														(region-end))))
