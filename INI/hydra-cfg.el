@@ -111,9 +111,8 @@
     ("a" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/al-Audio-gen.org") "al-Audio-gen")
     ("s" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/Stable_Diffusion.org") "Stable_Diffusion")
     ("S" (find-file-other-frame "~/Dropbox/Office/Games/Game-logs/AI/2024-06-07-SD-story.org") "SD-log")
-    ("k" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/KoboldAI.org") "KoboldAI")
-    ("d" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/aidungeon.org") "aidungeon")
-    ("C" (find-file-other-frame "~/../Dropbox/Office/Research/Doc/Codex/BuYn_Codex.org") "BuYn_Codex")
+    ("d" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/worlds.org") "aiworlds")
+    ("C" (find-file-other-frame "~/Dropbox/Office/Research/Doc/Codex/BuYn_Codex.org") "BuYn_Codex")
     ("q" nil) 
     )
 

@@ -49,7 +49,8 @@
   (interactive)
   ;; (toggle-bars)
 	;; (setq-local fullscreen-mode-activ (not fullscreen-mode-activ))
-  (toggle-full-screen)
+  ;; (toggle-full-screen)
+	(toggle-frame-maximized)
   (toggle-fonte-lage-size)
 	(toggle-fullscreen-minimap)
 	;; (evil-window-set-width 0)
@@ -60,7 +61,8 @@
   (interactive)
   ;; (toggle-bars)
 	(setq-local fullscreen-mode-activ (not fullscreen-mode-activ))
-  (toggle-full-screen)
+	(toggle-frame-maximized)
+  ;; (toggle-full-screen)
   (toggle-fonte-lage-size)
 	(toggle-fullscreen-minimap)
 	;; (evil-window-set-width 0)
@@ -93,7 +95,8 @@
 			"indictate is fullscreen mode is activ or not
 				or if not init nil
 				set it aftar init to false"))
-  (toggle-frame-fullscreen)
+  ;; (toggle-frame-fullscreen)
+	(toggle-frame-maximized)
   (if fullscreen-mode-activ
 				(text-scale-set 0)
 				(text-scale-set +3))
