@@ -156,8 +156,8 @@
 					(hide-subtree)
 					))
 ;; *** ORG babel
-(define-key org-mode-map (kbd "M-e M-i") 'org-edit-special)
-(define-key org-src-mode-map (kbd "M-e M-i") 'org-edit-src-exit)
+(define-key org-mode-map (kbd "M-e M-i M-o") 'org-edit-special)
+(define-key org-src-mode-map (kbd "M-e M-i M-o") 'org-edit-src-exit)
 
 ;; *** ORG Table
 ;; (global-set-key (kbd "C-c <C-return>") 'org-table-insert-row)

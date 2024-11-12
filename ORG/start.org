@@ -25,83 +25,16 @@ https://www.braveclojure.com/basic-emacs/
 
 ** progn:
 #+begin_src emacs-lisp :results output silent
-(load (expand-file-name "~/INI/hydra-cfg.el" user-emacs-directory))
+;; (load (expand-file-name "~/INI/hydra-cfg.el" user-emacs-directory))
 ;; (load "~/ELs/BuYn/reader.el")
 
-(load "~/INI/babel-cfg.el")
-
-(define-key evil-normal-state-map (kbd "M-a M-j M-S-h") 'gptel-system-prompt)
-(define-key evil-normal-state-map (kbd "M-a M-j M-j") 'gptel-send)
-(define-key evil-normal-state-map (kbd "M-a M-j M-h") 'gptel-menu)
-(define-key evil-normal-state-map (kbd "M-a M-j h") 'gptel-system-prompt)
-(define-key evil-normal-state-map (kbd "M-a M-j M-S-h") 'gptel-mode)
-
-(define-key evil-visual-state-map (kbd "M-a M-l M-w") 'ispell-region)
-(define-key evil-normal-state-map (kbd "M-a M-l M-w") 'ispell-word)
-
-(define-key evil-visual-state-map (kbd "<f7>") '(lambda() (interactive)
-	(let ((region-text (buffer-substring (region-beginning) (region-end))))
-		(exchange-point-and-mark)
-		(evil-normal-state)
-		(query-replace
-			region-text
-			(read-string (concat "replace(" region-text "):")
-						nil
-						nil
-						(current-kill 0 "DO-NOT-MOVE"))
-			))))
-
-(define-key evil-normal-state-map (kbd "q") 'evil-execute-macro)
-(define-key evil-normal-state-map (kbd "Q Q") 'evil-record-macro)
+;; (load "~/INI/babel-cfg.el")
 
 
-(define-key evil-normal-state-map "ZH" '(lambda() (interactive)
-					(evil-window-vsplit)
-					(ivy-switch-buffer)))
-(define-key evil-normal-state-map "Zh" 'evil-window-vsplit)
-(define-key evil-normal-state-map "ZL"
-					'(lambda() (interactive)
-						(evil-window-vsplit)
-						(windmove-right)))
-(define-key evil-normal-state-map "Zl"
-					'(lambda() (interactive)
-						(evil-window-split)
-						(windmove-right
-						(ivy-switch-buffer))))
-(define-key evil-normal-state-map "ZK"
-					'(lambda() (interactive)
-						(evil-window-split)
-						(ivy-switch-buffer)))
-(define-key evil-normal-state-map "Zk" 'evil-window-split)
-(define-key evil-normal-state-map "ZJ" 
-					'(lambda() (interactive)
-						(evil-window-split)
-						(windmove-down)))
-(define-key evil-normal-state-map "Zj" 
-					'(lambda() (interactive)
-						(evil-window-split)
-						(windmove-down)
-						(ivy-switch-buffer)))
-(define-key evil-normal-state-map (kbd "Z S-<SPC> S-<SPC>") 'delete-other-windows)
+(define-key org-mode-map (kbd "M-e M-i") 'org-edit-special)
+(define-key org-src-mode-map (kbd "M-e M-i") 'org-edit-src-exit)
+(define-key evil-visual-state-map (kbd "M-e M-i M-i") 'indent-pp-sexp)
 
-(load "~/INI/ai/ai.el")
-(load "~/INI/translate-cfg.el")
-(load "~/.emacs.d/elpa/gptel-20230411.549/gptel.el")
-(load "~/../Dropbox/backup/file.el")
-
-
-;; (fset 'get-named-link
-;;    (kmacro-lambda-form [?y ?\C-c ?l] 0 "%d"))
-;; (fset 'insert-named-link
-;;    (kmacro-lambda-form [?\C-c ?\C-l return ?\C-y return] 0 "%d"))
-;; (define-key evil-visual-state-map (kbd "M-e M-f M-l") 'get-named-link)
-;; (define-key evil-normal-state-map (kbd "M-e M-f M-l") 'insert-named-link)
-;; (define-key evil-visual-state-map (kbd "M-o M-f") '(lambda() (interactive)
-;; 	(let ((region-text (buffer-substring (region-beginning) (region-end))))
-;; 		(occur region-text))))
-;; (define-key evil-visual-state-map (kbd "M-e M-p M-o") '(lambda() (interactive)
-;; 			(projectile-multi-occur (buffer-substring (region-beginning) (region-end)))))
-;; 		(define-key evil-normal-state-map (kbd "M-e M-p M-o") 'projectile-multi-occur)
 (kill-buffer (current-buffer))
 (evil-quit)
  #+end_src
