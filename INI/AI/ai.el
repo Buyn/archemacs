@@ -16,7 +16,6 @@
 	:config
 		;; (custom-set-variables '(gptel-model "gpt-3.5-turbo-16k"))
 		;; (custom-set-variables '(gptel-model "gpt-4o"))
-		(custom-set-variables '(gptel-model "gpt-4o-mini"))
 		;; (custom-set-variables '(gptel-model "gpt-4o-mini-2024-07-18"))
 		;; (setq gptel-model "gpt-4o-mini-2024-07-18")
 		(define-key evil-normal-state-map (kbd "M-a M-j M-S-h") 'gptel-system-prompt)
@@ -24,4 +23,7 @@
 		(define-key evil-normal-state-map (kbd "M-a M-j M-h") 'gptel-mode)
 		;; (setq gpt-openai-key "sk-*")
 		(setq gptel-default-mode 'org-mode)
+		(custom-set-variables '(gptel-model "gpt-4o-mini"))
 )
+
+(custom-set-variables '(gptel-model "gpt-4o-mini"))

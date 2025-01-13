@@ -387,5 +387,5 @@
 ;; * EVIL TABS  
 ;; ** load el
 ;; (find-file-other-frame "~/.archemacs/INI/Evil/evil-tabs-cfg.el")
-;; (load "~/.archemacs/INI/Evil/evil-tabs-cfg.el")
+(load "~/.archemacs/INI/Evil/evil-tabs-cfg.el")
 ;; *  --------------------------------------

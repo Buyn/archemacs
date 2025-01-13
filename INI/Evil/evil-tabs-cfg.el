@@ -19,9 +19,15 @@
 ;; ** define-key evil-normal-state-map : 
   ;; :bind ("C-c c" hydra-clock/body)
 	(evil-define-key 'normal evil-tabs-mode-map
-		"gt" 'elscreen-next
-		"gT" 'elscreen-previous
-		"gt" 'next-or-make-new-tab
+		"gT" nil
+		"gTT" 'elscreen-previous
+		"gTS" 'elscreen-toggle-display-tab
+		"gTL" 'elscreen-clone
+		"gTC" 'elscreen-kill
+		"gt" nil
+		;; "gtt" 'elscreen-next
+		"gtt" 'next-or-make-new-tab
+		"gtg" 'elscreen-goto
 		"T" 'evil-tabs-current-buffer-to-tab)
 ;; ** END of use-package evil-tabs
   )
@@ -72,10 +78,12 @@
   "Swircg on next tab or
 		make new tab and open in it indirect buffer"
   (interactive)
-		(let ((num-of-scr (elscreen-get-number-of-screens))) (cond
+	(let ((num-of-scr (elscreen-get-number-of-screens)))
+		(cond
 			((= num-of-scr 1)
-				(make-new-indirect-tab
-				(gen-name-for-curennt-indirect-buffer "<2>")))
+				;; (make-new-indirect-tab (gen-name-for-curennt-indirect-buffer "<2>"))
+				(elscreen-clone)
+				)
 			((= num-of-scr 2)
 						(elscreen-next))
 			((= num-of-scr 3)

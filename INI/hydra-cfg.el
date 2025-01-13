@@ -100,8 +100,20 @@
 
 (defhydra hydra-ai-menu (:color blue)
     ("c" (hydra-ai-chat-menu/body) "AI chat")
+    ("a" (hydra-ai-model-menu/body) "AI model")
     ("r" (hydra-ai-role-menu/body) "AI roles")
     ("d" (hydra-ai-docs-menu/body) "AI docs")
+    ("q" nil) 
+    )
+
+(defhydra hydra-ai-model-menu (:color blue)
+		;; (find-file-other-frame "~/Dropbox/backup/file.el")
+		;; (find-file-other-frame "~/Dropbox/backup/models/gemeni1-5.el")
+    ("g" (load "~/Dropbox/backup/models/gemeni1-5.el") "Gemeni1.5")
+		;; (find-file-other-frame "~/Dropbox/backup/models/claude.el")
+    ("c" (load "~/Dropbox/backup/models/claude.el") "Claude")
+		;; (find-file-other-frame "~/Dropbox/backup/models/openai.el")
+    ("o" (load "~/Dropbox/backup/models/openai.el") "OpenAI")
     ("q" nil) 
     )
 
