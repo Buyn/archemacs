@@ -1292,7 +1292,7 @@ initial-scratch-message
 *** file management
 (find-file-other-frame (expand-file-name "INI/file-mng-cfg.el" user-emacs-directory))
 *** HYDRA MENU
-(find-file-other-frame "~/INI/hydra-cfg.el")
+(find-file-other-frame (expand-file-name "INI/hydra-cfg.el" user-emacs-directory))
 *** literary
 	(find-file-other-frame "~/INI/lit-cfg.el")
 		(find-file-other-frame "~/INI/translate-cfg.el")
@@ -1335,6 +1335,12 @@ initial-scratch-message
 		# но содержит в себе огромное количество класных решенией
 		# которые нужно перенести в outshine-mod
 		# (find-file-other-frame "~/ELs/Evil/origami_triplebrase.el")
+*** models
+;; (find-file-other-frame "~/Dropbox/backup/models/gemeni1-5.el")
+;; (find-file-other-frame "~/Dropbox/backup/models/claude.el")
+;; (find-file-other-frame "~/Dropbox/backup/models/openai.el")
+;; (find-file-other-frame "~/Dropbox/backup/models/mixtral.el")
+;; (find-file-other-frame "~/Dropbox/backup/models/llama70v.el")
 ** Brain
 #+begin_src emacs-lisp :results code silent output 
 ;; (package-refresh-contents)
@@ -1367,7 +1373,7 @@ initial-scratch-message
 (find-file-other-frame "~/../Dropbox/Office/Research/Doc/Grimoire/Grimoire.org")
 *** админс fro grimuar 
 (find-file-other-frame "~/../Dropbox/orgs/adm/2023-06-08_trans.org")
-*** Des 
+*** Des
 	Главная книга 
 отвечает за все остальные
 остальные книги рождаются здесь
@@ -1434,6 +1440,14 @@ server-force-delete
 Connection file "d:/Development/lisp/Home/.emacs.d/server/server" deleted
 *** emacs_client
 D:\Development\lisp\HOME\emacs_client.cmd
+*** run client
+**** in console
+emacsclient -nw -s "archemage"
+**** file
+Tell the Emacs server to visit the specified files.
+Every FILE can be either just a FILENAME or [+LINE[:COLUMN]] FILENAME.
+**** new frame
+emacsclient -c -s "archemage" &
 
 ** load init files
 (load "~/INI/org-brain-cfg.el")
