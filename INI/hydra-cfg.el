@@ -5,11 +5,12 @@
 (defhydra spc-main-menu00 (:color blue)
 ;; ***** hint
     "
-    ^Main^             00             ^Menus^          
-    ^─────^───────────────────────────^─────^────────────
-    _q_ quit      _d_ev menu    _o_rg-mode   _b_Org-Brain                       
-    _w_ww    _a_I     _SPC_ next    _y_nke-menu  _r_eader
-    _p_rev-menu   _e_macs-menu   ya_s_nippet  _n_ext-menu    
+    ^Main^                00                ^Menus^          
+    ^─────^───────────────────────────────────^─────^────────────
+		_a_I			_d_ev menu    _o_rg-mode   _b_Org-Brain                       
+    _w_ww             _y_nke-menu  _r_eader
+		_c_ommands			_e_macs-menu   ya_s_nippet      
+    _p_rev-menu   _q_uit   _SPC_ next  _n_ext-menu    
     "
 ;; ***** keys
     ("q" nil)
@@ -17,6 +18,7 @@
     ("d" hydra-dev-menu/body)
     ("w" www-menu/body)
     ("e" hydra-emacs-menu/body)
+    ("c" hydra-commands-menu/body)
     ("a" hydra-ai-menu/body)
     ("SPC" spc-main-menu01/body )
     ("y" hydra-yank-menu/body)
@@ -543,6 +545,108 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
   ("q" nil "quit")
   ("Q" (kill-buffer "*compilation*") "quit and kill compilation buffer" :color blue)
 ;; **** END )
+  )
+
+(defhydra elpy-hydra (:color blue)
+  "
+  Elpy in venv:
+  "
+  ;; Elpy in venv: %`venv-current-name
+;; **** Keys
+  ("d" (progn (call-interactively 'elpy-test-django-runner) (elpy-nav-errors/body)) "current test, Django runner" :color blue)
+  ("t" (progn (call-interactively 'elpy-test-pytest-runner) (elpy-nav-errors/body)) "current test, pytest runner" :color blue)
+  ("w" (venv-workon) "workon venv…")
+  ("q" nil "quit")
+  ("Q" (kill-buffer "*compilation*") "quit and kill compilation buffer" :color blue)
+;; **** END )
+  )
+
+(defhydra hydra-commands-menu (:color blue)
+  "
+  commands menu:
+  "
+  ;; Elpy in venv: %`venv-current-name
+  ("e" (hydra-eshell-menu/body) "eshell...")
+  ("s" (hydra-shell-scripts-menu/body) "scripts...")
+  ("l" (hydra-applancher-menu/body) "applancher...")
+  ("m" (hydra-player-menu/body) "player...")
+  ("p" (emms-pause) "playe/pause")
+  ("q" nil "quit")
+  )
+
+(defhydra hydra-player-menu (:color blue)
+  "
+  commands menu:
+  "
+  ;; Elpy in venv: %`venv-current-name
+  ("e" (emms) "emms")
+  ("t" (progn
+				 (find-file-other-frame "~/Dropbox/Resources/Playlists/test.m3u")
+				 (emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/test.m3u"))
+	 "test.m3u")
+  ("w" (progn
+					(find-file-other-frame "~/Dropbox/Resources/Playlists/Tech/watch.m3u")
+					(emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/Tech/watch.m3u"))
+	 "test.m3u")
+  ("s" (emms-streams) "streams")
+  ("q" nil "quit")
+  )
+
+(defhydra hydra-eshell-menu (:color blue)
+  "
+  Eshell menu:
+  "
+  ;; Elpy in venv: %`venv-current-name
+  ("d" (let (buffer-name-to-close (buffer-name))
+				(evil-window-split)
+				(eshell)
+				(evil-quit)
+				(switch-to-buffer-other-frame buffer-name-to-close))
+			"Open eshell")
+  ("q" nil "quit")
+  )
+
+(defhydra hydra-shell-scripts-menu (:color blue)
+  "
+  Shell scripts menu:
+  "
+  ;; Elpy in venv: %`venv-current-name
+  ("R" (progn
+					(buyn-shell-start "sh_restart_plasmashell.sh")
+					(delete-other-windows))
+			"Restart plasmashell")
+  ("S" (progn
+					(buyn-shell-start "sh_soft.sh")
+					(delete-other-windows))
+			"Soft restart")
+  ("P" (progn
+				 (buyn-shell-start "sh_off.sh")
+				 (delete-other-windows))
+			"PoweOFF")
+  ("q" nil "quit")
+  )
+
+(defhydra hydra-applancher-menu (:color blue)
+  "
+  App Lancher menu
+  "
+  ;; Elpy in venv: %`venv-current-name
+  ("d" (progn
+					(buyn-shell-start "emacs --debug-init")
+					(delete-other-windows))
+			"emacs debug")
+  ("m" (progn
+				 (buyn-shell-start "chromium --profile-directory=Default --app-id=cbgioneaoelhfonhmabneendhdhileho")
+						(setq x-select-enable-clipboard t)
+						(kill-new "https://meet.google.com/ttu-evry-rvj")
+						(setq x-select-enable-clipboard nil)
+						(delete-other-windows))
+			"my google meetup")
+  ("g" (progn
+				 (buyn-shell-start "chromium --profile-directory=Default --app-id=bbfcdomagcggnpdkfbjfagpgafbehnkk")
+				 (delete-other-windows))
+			"Gemeni")
+  ("q" nil "quit")
   )
 
 (defhydra elpy-nav-errors (:color red)
