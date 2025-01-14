@@ -615,10 +615,18 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
 					(buyn-shell-start "sh_restart_plasmashell.sh")
 					(delete-other-windows))
 			"Restart plasmashell")
-  ("S" (progn
-					(buyn-shell-start "sh_soft.sh")
+  ("s" (progn
+					(buyn-shell-start "sudo systemctl suspend")
 					(delete-other-windows))
-			"Soft restart")
+			"sleep")
+  ("H" (progn
+					(buyn-shell-start "sudo systemctl hibernate")
+					(delete-other-windows))
+			"hibernate")
+  ("Y" (progn
+					(buyn-shell-start "sudo systemctl hybrid-sleep")
+					(delete-other-windows))
+			"hYbrid-sleep")
   ("P" (progn
 				 (buyn-shell-start "sh_off.sh")
 				 (delete-other-windows))
