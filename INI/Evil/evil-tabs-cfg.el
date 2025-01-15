@@ -83,6 +83,7 @@
 			((= num-of-scr 1)
 				;; (make-new-indirect-tab (gen-name-for-curennt-indirect-buffer "<2>"))
 				(elscreen-clone)
+				(message "clone tab")
 				)
 			((= num-of-scr 2)
 						(elscreen-next))
