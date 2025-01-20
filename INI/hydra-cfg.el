@@ -324,7 +324,7 @@
     "
                           ^WWW  Menus^          
 ──────────────────────────^──────────^───────────────────────
-_d_el buffer  _L_ist  _y_t  _B_ookmarks  _v_isual  _r_enameBuf
+_L_ist  _y_t  _B_ookmarks  _v_isual  _r_enameBuf
 _S_earchOtherF _s_earch _E_WordOthrF s_W_itch _p_ast&go _k_hinsider        
 _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
     "
@@ -333,9 +333,7 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
     ("L" (eww-list-buffers))
     ("W" (eww-switch-to-buffer))
     ("B" (eww-list-bookmarks))
-    ("v" global-visual-line-mode)
     ("f" org-open-link-in-new-frame)
-    ("d" (kill-buffer (current-buffer)) :color red)
     ("z" hydra-zoom/body)
     ("r" rename-buffer)
   ("q" nil) 
@@ -358,19 +356,6 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
                 (line-beginning-position)
                 (line-beginning-position 2))))
           (switch-to-buffer buffer-name-to-close)))
-;; ****** "S" : 
-    ("S"  (
-      let (buffer-name-to-close (buffer-name))
-          (evil-window-split)
-          (if (use-region-p)
-            (eww (buffer-substring
-                (region-beginning)
-                (region-end)))
-            (eww (buffer-substring
-                (line-beginning-position)
-                (line-beginning-position 2))))
-          (evil-quit)
-          (switch-to-buffer-other-frame buffer-name-to-close)))
 ;; ****** "S" : 
     ("S"  (
       let (buffer-name-to-close (buffer-name))
