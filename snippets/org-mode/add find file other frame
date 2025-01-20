@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: add find file other frame
+# key: ffof
+# --
+
+(find-file-other-frame "$0")

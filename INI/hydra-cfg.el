@@ -597,7 +597,7 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
   Eshell menu:
   "
   ;; Elpy in venv: %`venv-current-name
-  ("d" (let (buffer-name-to-close (buffer-name))
+  ("e" (let (buffer-name-to-close (buffer-name))
 				(evil-window-split)
 				(eshell)
 				(evil-quit)
