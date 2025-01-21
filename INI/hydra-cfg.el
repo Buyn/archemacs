@@ -322,9 +322,9 @@
 (defhydra www-menu (:color blue)
 ;; ***** hint
     "
-                          ^WWW  Menus^          
-──────────────────────────^──────────^───────────────────────
-_L_ist  _y_t  _B_ookmarks  _v_isual  _r_enameBuf
+                                   ^WWW  Menus^          
+───────────────────────────────────^──────────^────────────────────────────────
+_L_ist  _y_t  _B_ookmarks  _v_isual  _r_enameBuf _m_pv _f_irefox _c_hromium
 _S_earchOtherF _s_earch _E_WordOthrF s_W_itch _p_ast&go _k_hinsider        
 _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
     "
@@ -345,6 +345,20 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
       (setq word-wrap t)
        )
    )
+;; ****** "m" : 
+    ("m" (progn
+					(eww-copy-page-url)
+					(buyn-shell-start (concat "mpv " (current-kill 0)))))
+
+;; ****** "f" : 
+    ("f" (progn
+					(eww-copy-page-url)
+					(buyn-shell-start (concat "firefox " (current-kill 0)))))
+
+;; ****** "c" : 
+    ("c" (progn
+					(eww-copy-page-url)
+					(buyn-shell-start (concat "chromium " (current-kill 0)))))
 ;; ****** "s" : 
     ("s"  (
       let (buffer-name-to-close (buffer-name))
