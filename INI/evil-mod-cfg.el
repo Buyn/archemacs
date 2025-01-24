@@ -360,7 +360,7 @@
 (evil-set-undo-system 'undo-redo)
 ;; -------------------------------------- 
 ;; -------------------------------------- 
-;; * EVIL COMMANDS RESPECT INPUT METHOD  
+;; * EVIL COMMANDS RESPECT INPUT METHOD
 ;; ** load el
 ;; (find-file "~/.archemacs/ELs/Evil/evil-respect-input.el")
 (load "~/.archemacs/ELs/Evil/evil-respect-input.el")

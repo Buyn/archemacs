@@ -187,29 +187,29 @@
 					))
 
 ;; ** Split in new window {{{
-(define-key evil-normal-state-map "ZH" '(lambda() (interactive)
+(define-key evil-normal-state-map "ZHH" '(lambda() (interactive)
 					(evil-window-vsplit)
 					(ivy-switch-buffer)))
-(define-key evil-normal-state-map "Zh" 'evil-window-vsplit)
-(define-key evil-normal-state-map "ZL"
+(define-key evil-normal-state-map "Zhh" 'evil-window-vsplit)
+(define-key evil-normal-state-map "ZLL"
 					'(lambda() (interactive)
 						(evil-window-vsplit)
 						(windmove-right)))
-(define-key evil-normal-state-map "Zl"
+(define-key evil-normal-state-map "Zll"
 					'(lambda() (interactive)
 						(evil-window-split)
 						(windmove-right
 						(ivy-switch-buffer))))
-(define-key evil-normal-state-map "ZK"
+(define-key evil-normal-state-map "ZKK"
 					'(lambda() (interactive)
 						(evil-window-split)
 						(ivy-switch-buffer)))
-(define-key evil-normal-state-map "Zk" 'evil-window-split)
-(define-key evil-normal-state-map "ZJ" 
+(define-key evil-normal-state-map "Zkk" 'evil-window-split)
+(define-key evil-normal-state-map "ZJJ" 
 					'(lambda() (interactive)
 						(evil-window-split)
 						(windmove-down)))
-(define-key evil-normal-state-map "Zj" 
+(define-key evil-normal-state-map "Zjj" 
 					'(lambda() (interactive)
 						(evil-window-split)
 						(windmove-down)
