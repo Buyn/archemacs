@@ -24,6 +24,13 @@
 		(define-key evil-normal-state-map (kbd "M-f") 'avy-goto-word-1)
 		(define-key evil-normal-state-map (kbd "f") 'evil-avy-goto-char-in-line)
 		(define-key evil-visual-state-map (kbd "f") 'evil-avy-goto-char-in-line)
+		(define-key evil-normal-state-map (kbd "F") nil)
+		;; (define-key evil-visual-state-map (kbd "FF") 'khaoos-evil-find-char)
+		;; (define-key evil-normal-state-map (kbd "FF") 'evil-find-char)
+		(define-key evil-normal-state-map (kbd "FF") 'khaoos-evil-find-char)
+		;; (define-key evil-visual-state-map (kbd "Ff") 'khaoos-evil-find-char-backward)
+		;; (define-key evil-normal-state-map (kbd "Ff") 'evil-find-char-backward)
+		(define-key evil-normal-state-map (kbd "Ff") 'khaoos-evil-find-char-backward)
 	)
 ;; --------------------------------------
 ;; * DIMINISH CUSTOMIZATION
@@ -49,6 +56,7 @@
   ;; (diminish 'flycheck-mode)
   (diminish 'ivy-mode)
   (diminish 'outshine-mode)
+  ;; (diminish 'outshine)
   ;; (diminish 'outline-mode)
   (diminish 'company-fuzzy-mode " CpF")
   (diminish 'outline-minor-mode)
