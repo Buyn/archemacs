@@ -291,8 +291,20 @@
 (define-key evil-normal-state-map (kbd "Q") nil)
 (define-key evil-normal-state-map (kbd "QQ") 'evil-record-macro)
 ;; ** find&replace  {{{
-;; *** evil-visual <f7> : 
+;; *** evil-visual <f7> :
 (define-key evil-visual-state-map (kbd "<f7>") '(lambda() (interactive)
+	(let ((region-text (buffer-substring (region-beginning) (region-end))))
+		(exchange-point-and-mark)
+		(evil-normal-state)
+		(query-replace
+			region-text
+			(read-string (concat "replace(" region-text "):")
+						region-text
+						nil
+						(current-kill 0 "DO-NOT-MOVE"))
+			))))
+
+(define-key evil-visual-state-map (kbd "S-<f7>") '(lambda() (interactive)
 	(let ((region-text (buffer-substring (region-beginning) (region-end))))
 		(exchange-point-and-mark)
 		(evil-normal-state)
@@ -303,14 +315,14 @@
 						nil
 						(current-kill 0 "DO-NOT-MOVE"))
 			))))
-;; *** evil-visual * : 
+;; *** evil-visual * :
 (define-key evil-visual-state-map (kbd "*") '(lambda() (interactive)
 	(let ((region-text (buffer-substring (region-beginning) (region-end))))
 		(evil-normal-state)
 		(evil-search region-text t nil)
 		(push region-text regexp-search-ring)
 		)))
-;; *** evil-visual occur : 
+;; *** evil-visual occur :
 (define-key evil-visual-state-map (kbd "M-o M-f") '(lambda() (interactive)
 	(let ((region-text (buffer-substring (region-beginning) (region-end))))
 		(occur region-text))))
