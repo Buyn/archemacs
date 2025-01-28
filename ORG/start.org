@@ -1431,7 +1431,7 @@ server-force-delete
 #+end_src
 
 #+RESULTS:
-: Connection file "d:/Development/lisp/Home/.emacs.d/server/server" deleted
+: Connection file "/run/user/1000/emacs/archemage" deleted
 
 
 

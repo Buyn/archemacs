@@ -36,4 +36,15 @@
 
 (load "~/Dropbox/backup/file.el")
 
+(let ((file-path
+			 (concat
+				"~/.emacs.d/"
+				(nth 0 (split-string
+								(with-temp-buffer
+									(insert-file-contents "/etc/hostname")
+									(buffer-string))))
+				".el")))
+  (when (file-exists-p file-path)
+		(load file-path)))
+
 (message "Load of init.el is ended")
