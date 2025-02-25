@@ -1241,6 +1241,8 @@ initial-scratch-message
 ")
 
 * Pathes
+** init.org file
+(find-file-other-frame (expand-file-name "init.org" user-emacs-directory))
 ** init files INI
 *** root
 (ranger)

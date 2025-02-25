@@ -1,3 +1,24 @@
+* Index links
+** by keys
+*** f1
+(global-set-key (kbd "C-<f1> C-<f1>") (lambda () (interactive)
+                (find-file-other-frame (expand-file-name "ORG/start.org" user-emacs-directory))))
+(global-set-key (kbd "C-<f1> C-<f2>") (lambda () (interactive)
+                (find-file-other-frame (expand-file-name "init.org" user-emacs-directory))))
+*** C-c
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
+*** return
+**** org-mode-map
+(define-key org-mode-map
+      (kbd "S-M-<return>") 'org-insert-subheading)
+** mods
+global-set-key
+evil-normal-state-map
+evil-visual-state-map
+org-mode-map
+org-src-mode-map
 * **Core Initialization (Ядро)**
 :PROPERTIES:
 :header-args: :mkdirp yes
@@ -2707,6 +2728,12 @@ _?_ help            _c_urrent file
 
 *** used in
 ;; (find-file "~/.archemacs/INI/init.el")
+*** Туду
+**** перенести кнопки в орг мод юзпак
+или саму загрузку орг кфг добавить туд
+но это вроде мение логично
+поскольку это основное моё использование имакса
+без орга вроде оно не втему
 *** src
 #+begin_src elisp
 ;; * ORG-MODE CUSTOMIZATION
@@ -2720,10 +2747,21 @@ _?_ help            _c_urrent file
 ;;       '(("n" occur-tree "NEXT")))
 ;; --------------------------------------
 (require 'org)
-(global-set-key [(control f1)] (lambda () (interactive) (find-file-other-frame "~/.archemacs/ORG/start.org")))
-(global-set-key [(meta f1)] (lambda () (interactive) (find-file-other-frame "~/homemacs.org")))
-(global-set-key [(meta shift f1)] (lambda () (interactive) (find-file-other-frame "~/.archemacs/ORG/tmp/tmp_links.org")))
+(global-set-key (kbd "C-<f1>") nil)
+(global-set-key (kbd "C-<f1> C-<f1>") (lambda () (interactive)
+                (find-file-other-frame (expand-file-name "ORG/start.org" user-emacs-directory))))
+(global-set-key (kbd "C-<f1> C-<f2>") (lambda () (interactive)
+                (find-file-other-frame (expand-file-name "init.org" user-emacs-directory))))
+
+(global-set-key (kbd "M-<f1> M-<f1>") (lambda () (interactive)
+                (find-file-other-frame "~/homemacs.org")))
+
+(global-set-key (kbd "M-S-<f1> M-S-<f1>") (lambda () (interactive)
+                (expand-file-name "ORG/tmp/tmp_links.org" user-emacs-directory)))
+
 (global-set-key [(shift f1)] (lambda () (interactive) (find-file-other-frame "~/Dropbox/Office/Research/Doc/Grimoire/Grimoire.org")))
+;; (global-set-key (kbd "M-<f1> M-<f1>") (lambda () (interactive)
+;;                 (find-file-other-frame "~/homemacs.org")))
 
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (global-set-key (kbd "C-c l") 'org-store-link)
@@ -2815,10 +2853,10 @@ _?_ help            _c_urrent file
 (setq org-log-done t)
 ;; ** ORG binding : 
 ;; *** ORG heders : 
-;; (define-key evil-normal-state-map
-;;      [C-S-return] 'org-insert-subheading)
+;; (define-key org-mode-map
+;;       [S-M-return] 'org-insert-subheading)
 (define-key org-mode-map
-      [S-M-return] 'org-insert-subheading)
+      (kbd "S-M-<return>") 'org-insert-subheading)
 ;; (define-key evil-normal-state-map
 ;;      [C-M-return] 'org-insert-todo-heading-respect-content)
 ;; (define-key org-mode-map
@@ -5799,6 +5837,18 @@ CLOSED: [2025-02-25 Tue 01:20]
 #+end_src
 * блок для экспериментальных настроек
 * Babel-блокам команд
-
+* Туду орг файла
+** сделать теги и под разделы
+*** обеснение
+возность поиска как в вим
+не только по контексту
+но и тегам и сочетаниям тегов
+тоесть обеденить тег бинды и ивил
+и получить бинды ивала
+а потом сделать поиск по разделам с такими тегами
+*** биндс
+*** ивил
+** все бинды одного типа
+(define-key org-mode-map (kbd "C-c <C-return>") 'org-table-insert-row)
 * 2025-02-07
 

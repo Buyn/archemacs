@@ -9,8 +9,16 @@
 ;;       '(("n" occur-tree "NEXT")))
 ;; --------------------------------------
 (require 'org)
-(global-set-key [(control f1)] (lambda () (interactive) (find-file-other-frame "~/.archemacs/ORG/start.org")))
-(global-set-key [(meta f1)] (lambda () (interactive) (find-file-other-frame "~/homemacs.org")))
+(global-set-key (kbd "C-<f1>") nil)
+(global-set-key (kbd "C-<f1> C-<f1>") (lambda () (interactive)
+                (find-file-other-frame (expand-file-name "ORG/start.org" user-emacs-directory))))
+(global-set-key (kbd "C-<f1> C-<f2>") (lambda () (interactive)
+                (find-file-other-frame (expand-file-name "init.org" user-emacs-directory))))
+
+(global-set-key (kbd "M-<f1>") nil)
+(global-set-key (kbd "M-<f1> M-<f1>") (lambda () (interactive)
+                (find-file-other-frame "~/homemacs.org")))
+
 (global-set-key [(meta shift f1)] (lambda () (interactive) (find-file-other-frame "~/.archemacs/ORG/tmp/tmp_links.org")))
 (global-set-key [(shift f1)] (lambda () (interactive) (find-file-other-frame "~/Dropbox/Office/Research/Doc/Grimoire/Grimoire.org")))
 
@@ -104,10 +112,10 @@
 (setq org-log-done t)
 ;; ** ORG binding : 
 ;; *** ORG heders : 
-;; (define-key evil-normal-state-map
-;;      [C-S-return] 'org-insert-subheading)
+;; (define-key org-mode-map
+;;       [S-M-return] 'org-insert-subheading)
 (define-key org-mode-map
-      [S-M-return] 'org-insert-subheading)
+      (kbd "S-M-<return>") 'org-insert-subheading)
 ;; (define-key evil-normal-state-map
 ;;      [C-M-return] 'org-insert-todo-heading-respect-content)
 ;; (define-key org-mode-map
