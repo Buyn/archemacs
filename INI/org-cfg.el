@@ -15,12 +15,14 @@
 (global-set-key (kbd "C-<f1> C-<f2>") (lambda () (interactive)
                 (find-file-other-frame (expand-file-name "init.org" user-emacs-directory))))
 
-(global-set-key (kbd "M-<f1>") nil)
 (global-set-key (kbd "M-<f1> M-<f1>") (lambda () (interactive)
                 (find-file-other-frame "~/homemacs.org")))
 
-(global-set-key [(meta shift f1)] (lambda () (interactive) (find-file-other-frame "~/.archemacs/ORG/tmp/tmp_links.org")))
-(global-set-key [(shift f1)] (lambda () (interactive) (find-file-other-frame "~/Dropbox/Office/Research/Doc/Grimoire/Grimoire.org")))
+(global-set-key (kbd "M-S-<f1> M-S-<f1>") (lambda () (interactive)
+                (find-file-other-frame (expand-file-name "ORG/tmp/tmp_links.org" user-emacs-directory))))
+
+(global-set-key (kbd "S-<f1> S-<f1>") (lambda () (interactive)
+                (find-file-other-frame "~/Dropbox/Office/Research/Doc/Grimoire/Grimoire.org")))
 
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (global-set-key (kbd "C-c l") 'org-store-link)
