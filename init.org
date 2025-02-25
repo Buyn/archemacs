@@ -5,6 +5,10 @@
                 (find-file-other-frame (expand-file-name "ORG/start.org" user-emacs-directory))))
 (global-set-key (kbd "C-<f1> C-<f2>") (lambda () (interactive)
                 (find-file-other-frame (expand-file-name "init.org" user-emacs-directory))))
+*** <f2>
+(define-key evil-insert-state-map (kbd "<f2>") '(lambda() (interactive)
+                (save-buffer)
+                (evil-normal-state)))
 *** C-c
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
@@ -1032,10 +1036,13 @@ CLOSED: [2025-02-11 Tue 16:29]
 ;; -------------------------------------- }}}
 ;; ** Insert State {{{
 ;; *** Insert State F2 save {{{
-(define-key evil-insert-state-map (quote [f2]) '(lambda() (interactive)
-                          (save-buffer)
+(define-key evil-insert-state-map (kbd "<f2>") '(lambda() (interactive)
+                (save-buffer)
                 (evil-normal-state)))
-(define-key evil-replace-state-map(quote [f2]) '(lambda() (interactive)
+(define-key evil-insert-state-map (kbd "C-s") '(lambda() (interactive)
+                (save-buffer)
+                (evil-normal-state)))
+(define-key evil-replace-state-map(kbd "<f2>") '(lambda() (interactive)
                 (save-buffer)
                 (evil-normal-state)))
 (define-key evil-insert-state-map(kbd "M-<f2>") '(lambda() (interactive)
@@ -2728,11 +2735,18 @@ _?_ help            _c_urrent file
 
 *** used in
 ;; (find-file "~/.archemacs/INI/init.el")
-*** TODO
+*** TODO INI/org-cfg.el
 **** добавить меню гидры
 ***** S-f1 S-<space>
 перечень всех основных оргов
 с переходм на другие меню оргов
+***** С-f1 С-<space>
+****** запуск дебаг
+****** открытия файлов орга
+******* стар
+******* инит
+****** открыть ranger 
+**** 
 **** перенести кнопки в орг мод юзпак
 или саму загрузку орг кфг добавить туд
 но это вроде мение логично
@@ -2759,12 +2773,15 @@ _?_ help            _c_urrent file
 (global-set-key (kbd "C-<f1> C-<f2>") (lambda () (interactive)
                 (find-file-other-frame (expand-file-name "init.org" user-emacs-directory))))
 
+(global-set-key (kbd "M-<f1>") nil)
 (global-set-key (kbd "M-<f1> M-<f1>") (lambda () (interactive)
                 (find-file-other-frame "~/homemacs.org")))
 
+(global-set-key (kbd "M-S-<f1>") nil)
 (global-set-key (kbd "M-S-<f1> M-S-<f1>") (lambda () (interactive)
                 (find-file-other-frame (expand-file-name "ORG/tmp/tmp_links.org" user-emacs-directory))))
 
+(global-set-key (kbd "S-<f1>") nil)
 (global-set-key (kbd "S-<f1> S-<f1>") (lambda () (interactive)
                 (find-file-other-frame "~/Dropbox/Office/Research/Doc/Grimoire/Grimoire.org")))
 
@@ -2793,7 +2810,7 @@ _?_ help            _c_urrent file
 (setq org-todo-keywords
       '((sequence "TODO(t)" "|" "DONE(d)")
         ;; (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")
-        (sequence "NEXT(x)" 
+        (sequence "NEXT(n)" 
                   "WAITING(w)" 
                   "VERIFY(v)" 
                   "CR(r)"
@@ -2835,7 +2852,7 @@ _?_ help            _c_urrent file
 (setq org-refile-targets '(("~/Dropbox/orgs/gtd/gtd.org" :maxlevel . 3)
                            ("~/Dropbox/orgs/gtd/inbox.org" :level . 1)
                            ("~/Dropbox/orgs/gtd/agend.org" :level . 1)
-                           ( "~/Dropbox/orgs/gtd/notebook.org" :maxlevel . 2)))
+                           ("~/Dropbox/orgs/gtd/notebook.org" :maxlevel . 2)))
 ;; To define special keys to capture to a particular template without going through the interactive template selection, you can create your key binding like this:
 ;; (define-key global-map "\C-cx"
 ;;   (lambda () (interactive) (org-capture nil "x")))
@@ -5842,7 +5859,7 @@ CLOSED: [2025-02-25 Tue 01:20]
 #+end_src
 * блок для экспериментальных настроек
 * Babel-блокам команд
-* Туду орг файла
+* TODO орг файла
 ** сделать теги и под разделы
 *** обеснение
 возность поиска как в вим
@@ -5860,5 +5877,23 @@ CLOSED: [2025-02-25 Tue 01:20]
 *** по типам туду
 получить список всех туду
 *** возможно с учётом приоритетов
+** ranger hydra menu
+*** список папок куда открыть на ZR<space>
+*** меню ганжера из ренжера
+перейти в папку
+набор действий
+* start to use
+** org-refile
+*** link
+(setq org-refile-targets '(("~/Dropbox/orgs/gtd/gtd.org" :maxlevel . 3)
+*** review
+некий инбокс с лёгкой класификацикй
+** журнал для логирования
+*** туду?
+*** более одного журнал?
+для логов туду машины
+и отдельно имакса
+журнал для каждого проекат
+или всётаеи проще просто один орг лог фаил
 * 2025-02-07
 

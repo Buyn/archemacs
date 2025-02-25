@@ -15,12 +15,15 @@
 (global-set-key (kbd "C-<f1> C-<f2>") (lambda () (interactive)
                 (find-file-other-frame (expand-file-name "init.org" user-emacs-directory))))
 
+(global-set-key (kbd "M-<f1>") nil)
 (global-set-key (kbd "M-<f1> M-<f1>") (lambda () (interactive)
                 (find-file-other-frame "~/homemacs.org")))
 
+(global-set-key (kbd "M-S-<f1>") nil)
 (global-set-key (kbd "M-S-<f1> M-S-<f1>") (lambda () (interactive)
                 (find-file-other-frame (expand-file-name "ORG/tmp/tmp_links.org" user-emacs-directory))))
 
+(global-set-key (kbd "S-<f1>") nil)
 (global-set-key (kbd "S-<f1> S-<f1>") (lambda () (interactive)
                 (find-file-other-frame "~/Dropbox/Office/Research/Doc/Grimoire/Grimoire.org")))
 
@@ -49,7 +52,7 @@
 (setq org-todo-keywords
       '((sequence "TODO(t)" "|" "DONE(d)")
         ;; (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")
-        (sequence "NEXT(x)" 
+        (sequence "NEXT(n)" 
                   "WAITING(w)" 
                   "VERIFY(v)" 
                   "CR(r)"
@@ -91,7 +94,7 @@
 (setq org-refile-targets '(("~/Dropbox/orgs/gtd/gtd.org" :maxlevel . 3)
                            ("~/Dropbox/orgs/gtd/inbox.org" :level . 1)
                            ("~/Dropbox/orgs/gtd/agend.org" :level . 1)
-                           ( "~/Dropbox/orgs/gtd/notebook.org" :maxlevel . 2)))
+                           ("~/Dropbox/orgs/gtd/notebook.org" :maxlevel . 2)))
 ;; To define special keys to capture to a particular template without going through the interactive template selection, you can create your key binding like this:
 ;; (define-key global-map "\C-cx"
 ;;   (lambda () (interactive) (org-capture nil "x")))

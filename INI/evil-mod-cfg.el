@@ -337,10 +337,13 @@
 ;; -------------------------------------- }}}
 ;; ** Insert State {{{
 ;; *** Insert State F2 save {{{
-(define-key evil-insert-state-map (quote [f2]) '(lambda() (interactive)
-                          (save-buffer)
+(define-key evil-insert-state-map (kbd "<f2>") '(lambda() (interactive)
+                (save-buffer)
                 (evil-normal-state)))
-(define-key evil-replace-state-map(quote [f2]) '(lambda() (interactive)
+(define-key evil-insert-state-map (kbd "C-s") '(lambda() (interactive)
+                (save-buffer)
+                (evil-normal-state)))
+(define-key evil-replace-state-map(kbd "<f2>") '(lambda() (interactive)
                 (save-buffer)
                 (evil-normal-state)))
 (define-key evil-insert-state-map(kbd "M-<f2>") '(lambda() (interactive)
