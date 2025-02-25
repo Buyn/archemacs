@@ -1,18 +1,12 @@
-;; --------------------------------------
-;; init.el --- Emacs configuration
-;; --------------------------------------
-;; --------------------------------------
-;; * not used in
-;; (find-file "~/INI/dev-cfg.el")
-;; --------------------------------------
 ;; * Setting up js2-mode
 ;; ** use-package js2-mode
 (use-package js2-mode :ensure t
+  :defer t
   ;; :disabled
   ;; :config
 ;; *** END of use-package 
   )
-(require 'js2-mode)
+;; (require 'js2-mode)
 ;; --------------------------------------
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 ;; Better imenu
@@ -21,23 +15,25 @@
 ;; ** D use-package js2-refactor
 (use-package js2-refactor
   :disabled
-	:ensure t
+  :defer t
+  :ensure t
 ;; *** END of use-package hydra
   )
 ;; ** D use-package xref-js2
 (use-package xref-js2 :ensure t
   :disabled
+  :defer t
   :config
   ;; :defer 2
-	(require 'js2-refactor)
-	(add-hook 'js2-mode-hook #'js2-refactor-mode)
-	(js2r-add-keybindings-with-prefix "C-c C-r")
-	(define-key js2-mode-map (kbd "C-k") #'js2r-kill)
-	;; js-mode (which js2 is based on) binds "M-." which conflicts with xref, so
-	;; unbind it.
-	(define-key js-mode-map (kbd "M-.") nil)
-	(add-hook 'js2-mode-hook (lambda ()
-		(add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)))
+  (require 'js2-refactor)
+  (add-hook 'js2-mode-hook #'js2-refactor-mode)
+  (js2r-add-keybindings-with-prefix "C-c C-r")
+  (define-key js2-mode-map (kbd "C-k") #'js2r-kill)
+  ;; js-mode (which js2 is based on) binds "M-." which conflicts with xref, so
+  ;; unbind it.
+  (define-key js-mode-map (kbd "M-.") nil)
+  (add-hook 'js2-mode-hook (lambda ()
+    (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)))
 ;; *** END of use-package hydra
   )
 
@@ -58,16 +54,17 @@
 (use-package company-tern :ensure t
   :disabled
   ;; :defer 2
+  :defer t
   ;; :bind ("C-c c" hydra-clock/body)
-	:load-path "Els/Tern/emacs/"
-	:config
-	(add-to-list 'company-backends 'company-tern)
-	;; (add-hook 'js2-mode-hook (lambda ()
-	;;                            (tern-mode)
-	;;                            (company-mode)))
-	(add-hook 'js-mode-hook (lambda ()
-														(tern-mode)
-														(company-mode)))
+  :load-path "Els/Tern/emacs/"
+  :config
+  (add-to-list 'company-backends 'company-tern)
+  ;; (add-hook 'js2-mode-hook (lambda ()
+  ;;                            (tern-mode)
+  ;;                            (company-mode)))
+  (add-hook 'js-mode-hook (lambda ()
+                            (tern-mode)
+                            (company-mode)))
 ;; ***  END of use-package 
   )
 ;; --------------------------------------
@@ -76,11 +73,12 @@
 ;; ** use-package skewer-mode
 (use-package skewer-mode :ensure t
   ;; :disabled
+  :defer t
 ;; ** :config : 
   :config
-	(add-hook 'js2-mode-hook 'skewer-mode)
-	(add-hook 'css-mode-hook 'skewer-css-mode)
-	(add-hook 'html-mode-hook 'skewer-html-mode)
+  (add-hook 'js2-mode-hook 'skewer-mode)
+  (add-hook 'css-mode-hook 'skewer-css-mode)
+  (add-hook 'html-mode-hook 'skewer-html-mode)
 ;; ** END of use-package
   )
 ;; --------------------------------------

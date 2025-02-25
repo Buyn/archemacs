@@ -1,8 +1,3 @@
-;; --------------------------------------
-;; init.el --- Emacs configuration
-;; * used in
-;; (find-file "~/.archemacs/INI/init.el")
-;; --------------------------------------
 ;; * ADVNSED SELECTIONS CUSTOMIZATION
 ;; --------------------------------------
 ;; * expand-region cfg
@@ -13,8 +8,8 @@
 ;; *** hydra-expand-region
 ;; **** defhydra
   (defhydra hydra-expand-region
-	;; (:color blue)
-	(:body-pre 'er/expand-region)
+  ;; (:color blue)
+  (:body-pre 'er/expand-region)
   "expand-region"
 ;; ****  key list
   ("C-=" er/expand-region "more")
@@ -47,7 +42,7 @@
 ;; *** binds
 ;; (global-set-key (kbd "C-=") 'er/expand-region)
 ;; ** END of use-package outshine 
-	)
+  )
 ;; ** -------------------------------------- }}}
 
 
@@ -55,22 +50,19 @@
 ;; ** use-package evil-mc 
 (use-package evil-mc :ensure t
 ;; ** evil-mc config
-	:disabled
-	:config
-	(global-evil-mc-mode  1) ;; enable
-	(define-key evil-visual-state-map "zi" 'evil-mc-make-cursor-in-visual-selection-end)
-	 ;; (define-key evil-visual-state-map "zj" 'evil-mc-make-cursor-move-next-line)
-	 ;; (define-key evil-visual-state-map "zk" 'evil-mc-make-cursor-move-prev-line)
-	 ;; (define-key evil-visual-state-map "zn" 'evil-mc-skip-and-goto-next-match)
-	 ;; (define-key evil-visual-state-map "zp" 'evil-mc-skip-and-goto-prev-match)
-	 ;; (define-key evil-visual-state-map "zN" 'evil-mc-skip-and-goto-next-cursor)
-	 ;; (define-key evil-visual-state-map "zP" 'evil-mc-skip-and-goto-prev-cursor)
-	 (define-key evil-visual-state-map "zo" 'evil-mc-make-all-cursors)
-	 (define-key evil-visual-state-map "zI" 'evil-mc-make-cursor-in-visual-selection-beg)
-	 (define-key evil-visual-state-map "zq" 'evil-mc-undo-all-cursors)
+  :disabled
+  :config
+  (global-evil-mc-mode  1) ;; enable
+  (define-key evil-visual-state-map "zi" 'evil-mc-make-cursor-in-visual-selection-end)
+   ;; (define-key evil-visual-state-map "zj" 'evil-mc-make-cursor-move-next-line)
+   ;; (define-key evil-visual-state-map "zk" 'evil-mc-make-cursor-move-prev-line)
+   ;; (define-key evil-visual-state-map "zn" 'evil-mc-skip-and-goto-next-match)
+   ;; (define-key evil-visual-state-map "zp" 'evil-mc-skip-and-goto-prev-match)
+   ;; (define-key evil-visual-state-map "zN" 'evil-mc-skip-and-goto-next-cursor)
+   ;; (define-key evil-visual-state-map "zP" 'evil-mc-skip-and-goto-prev-cursor)
+   (define-key evil-visual-state-map "zo" 'evil-mc-make-all-cursors)
+   (define-key evil-visual-state-map "zI" 'evil-mc-make-cursor-in-visual-selection-beg)
+   (define-key evil-visual-state-map "zq" 'evil-mc-undo-all-cursors)
 ;; ** END of use-package outshine 
-	)
-;; ** -------------------------------------- 
-
-
-;; * --------------------------------------
+  )
+;; ** --------------------------------------

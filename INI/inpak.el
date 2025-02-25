@@ -1,12 +1,3 @@
-;; --------------------------------------
-;; init.el --- Emacs configuration
-;; --------------------------------------
-;; * used in
-;; (find-file "~/INI/init.el")
-;; --------------------------------------
-;; --------------------------------------
-;; * INSTALL PACKAGES
-;; --------------------------------------
 ;; ** add package-archives
 ;; --------------------------------------
 (require 'package)
@@ -32,9 +23,9 @@ There are two things you can do about this warning:
 ;; ;;        '("melpa" . "http://melpa.org/packages/") t)
 ;;        '("melpa" . "http://melpa.org/packages/") )
 ;; (add-to-list 'package-archives 
-;; 		 '("org" . "http://orgmode.org/elpa/") t)
+;;     '("org" . "http://orgmode.org/elpa/") t)
 (add-to-list 'package-archives 
-		 '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+     '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 ;; --------------------------------------
 ;; ** Automatically Installing Packages
 ;; --------------------------------------
@@ -51,8 +42,8 @@ There are two things you can do about this warning:
   (package-refresh-contents))
 
 (defvar myPackages '(
-	better-defaults
-	use-package
+  better-defaults
+  use-package
     material-theme))
 
 (mapc #'(lambda (package)
@@ -75,4 +66,3 @@ There are two things you can do about this warning:
 (require 'use-package) 
 (use-package quelpa-use-package :ensure t)
 ;; --------------------------------------
-;; * --------------------------------------

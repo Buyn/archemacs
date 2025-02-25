@@ -1,10 +1,3 @@
-;; --------------------------------------
-;; init.el --- Emacs configuration
-;; --------------------------------------
-;; * used in
-;; (find-file "~/INI/init.el")
-;; --------------------------------------
-;; --------------------------------------
 ;; * VANILA CUSTOMIZATION
 ;; --------------------------------------
 ;; ** startup : 
@@ -150,28 +143,28 @@
 ;; *** defun buyn-menu-bar-open : 
 (defun buyn-menu-bar-open ()
   "Show Menu bar on all frames
-		and open menu 
-		set f10 to (buyn-menu-bar-close)"
+    and open menu 
+    set f10 to (buyn-menu-bar-close)"
   (interactive)
-	(menu-bar-mode 1)
-	(menu-bar-open)
-	(global-set-key (kbd "<f10>") 'buyn-menu-bar-close)
+  (menu-bar-mode 1)
+  (menu-bar-open)
+  (global-set-key (kbd "<f10>") 'buyn-menu-bar-close)
   )
 ;; ------------------------------------------------------
 ;; ------------------------------------------------------
 ;; *** defun buyn-menu-bar-close : 
 (defun buyn-menu-bar-close()
   "Hide Menu bar on all frames
-		and set f10 to (buyn-menu-bar-open)"
+    and set f10 to (buyn-menu-bar-open)"
   (interactive)
-	(menu-bar-mode -1)
-	;; (menu-bar-open)
-	(global-set-key (kbd "<f10>") 'buyn-menu-bar-open)
+  (menu-bar-mode -1)
+  ;; (menu-bar-open)
+  (global-set-key (kbd "<f10>") 'buyn-menu-bar-open)
   )
 ;; ------------------------------------------------------
 ;; *** set-key f10 : 
 ;; ------------------------------------------------------
-	(global-set-key (kbd "<f10>") 'buyn-menu-bar-open)
+  (global-set-key (kbd "<f10>") 'buyn-menu-bar-open)
 ;; ------------------------------------------------------
 ;; *EDIFF CUSTOMIZATION
 ;; --------------------------------------
@@ -195,22 +188,21 @@
 ;; 
 ;;| |_| |_| |           | |_| |_| |
 ;; \\ _____ /      o_     \\ _____ /
-;; 	|     |       |_|     |     |
-;; 	|  |  |       |       |  |  |
-;; 	|   _ l _   _ | _   _ l _   |
-;; 	|  | |_| |_| ||| |_| |_| |  |
-;; 	|  |                     |  |
-;; 	|| |                     | ||
-;; 	|  |        _____        |  |
-;; 	|  |       /_|_|_\\       |  |
-;; 	|  |      /|_|_|_|\\      |  |
-;; 	|  |      ||_|_|_||      |  |
-;; 	|  |      ||_|_|_||      |  |
-;; 	|__|      ||_|_|_||      |__|
+;;  |     |       |_|     |     |
+;;  |  |  |       |       |  |  |
+;;  |   _ l _   _ | _   _ l _   |
+;;  |  | |_| |_| ||| |_| |_| |  |
+;;  |  |                     |  |
+;;  || |                     | ||
+;;  |  |        _____        |  |
+;;  |  |       /_|_|_\\       |  |
+;;  |  |      /|_|_|_|\\      |  |
+;;  |  |      ||_|_|_||      |  |
+;;  |  |      ||_|_|_||      |  |
+;;  |__|      ||_|_|_||      |__|
 ;; /   |      ||_|_|_||      |   \\
 ;; =================================
 ;; * Whenever I open Emacs, I feel inspired. 
 ;; Like a craftsman entering his workshop, I feel a realm of possibility open before me. I feel the comfort of an environment that has evolved over time to fit me perfectly—an assortment of packages and key bindings that help me bring ideas to life day after day.
 ")
 ;; * --------------------------------------
-

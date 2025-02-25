@@ -1,10 +1,3 @@
-;; --------------------------------------
-;; init.el --- Emacs configuration
-;; --------------------------------------
-;; --------------------------------------
-;; * used in
-;; (find-file "~/INI/dev-cfg.el")
-;; --------------------------------------
 ;; * SNIPPETS  CUSTOMIZATION
 ;; ** yasnippet 
 ;; *** del: 
@@ -16,20 +9,20 @@
 
 ;; *** use-package:
 (use-package yasnippet
-	:defer t
-	;; :ensure t
+  :defer t
+  ;; :ensure t
   ;; :disabled
-	;; :init
+  ;; :init
 ;; *** :config : 
-	:config
-	(use-package yasnippet-snippets
-		:defer t)
+  :config
+  (use-package yasnippet-snippets
+    :defer t)
 
-	;; (yas/initialize)
-	(add-to-list 'ac-sources 'ac-source-yasnippet)
-	(yas-global-mode 1)
+  ;; (yas/initialize)
+  (add-to-list 'ac-sources 'ac-source-yasnippet)
+  (yas-global-mode 1)
 ;; *** ===========END========= ) : 
-	)
+  )
 ;; ** yasnippet-snippets 
 ;; (unless (package-installed-p 'yasnippet-snippets)
 ;;   (package-install 'yasnippet-snippets))
@@ -46,4 +39,3 @@
 ;; ** Let's have snippets in the auto-complete dropdown
 ;; (add-to-list 'ac-sources 'ac-source-yasnippet)
 ;; --------------------------------------
-;; * --------------------------------------

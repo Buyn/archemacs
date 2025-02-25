@@ -1,10 +1,3 @@
-;; --------------------------------------
-;; init.el --- Emacs configuration
-;; --------------------------------------
-;; uncoment Evil
-;; * used in
-;; (find-file "~/INI/org-cfg.el")
-;; --------------------------------------
 ;; * ORG BRAIN CUSTOMIZATION
 ;; ** org-brain use-package: 
 (use-package org-brain :ensure t
@@ -30,22 +23,22 @@
 ;;  accessable if you edit entries from org-mode. See Editing from org-mode under
 ;;  Usage below.
   (bind-key "C-c b" 'org-brain-prefix-map org-mode-map)
-	(define-key org-brain-visualize-mode-map (kbd "M-f") 'avy-goto-word-1)
-	(define-key org-brain-visualize-mode-map (kbd "S-C-<return>")
-		'(lambda() (interactive)
-			(push-button)
-			(org-brain-goto-current) 
-			(let (buffer-name-to-close (buffer-name))
-			(evil-quit)
-			(switch-to-buffer-other-frame buffer-name-to-close))))
-	(define-key org-brain-visualize-mode-map (kbd "C-<return>")
-		'(lambda() (interactive)
-				(push-button)
-				(org-brain-goto-current) 
-				(let (buffer-name-to-close (buffer-name))
-				(evil-quit)
-				(org-brain-visualize-back)
-				(switch-to-buffer-other-frame buffer-name-to-close))))
+  (define-key org-brain-visualize-mode-map (kbd "M-f") 'avy-goto-word-1)
+  (define-key org-brain-visualize-mode-map (kbd "S-C-<return>")
+    '(lambda() (interactive)
+      (push-button)
+      (org-brain-goto-current) 
+      (let (buffer-name-to-close (buffer-name))
+      (evil-quit)
+      (switch-to-buffer-other-frame buffer-name-to-close))))
+  (define-key org-brain-visualize-mode-map (kbd "C-<return>")
+    '(lambda() (interactive)
+        (push-button)
+        (org-brain-goto-current) 
+        (let (buffer-name-to-close (buffer-name))
+        (evil-quit)
+        (org-brain-visualize-back)
+        (switch-to-buffer-other-frame buffer-name-to-close))))
 ;; *org-brain*
 
 ;; **** org-id : 
@@ -85,7 +78,7 @@
   ;; (setq org-brain-include-file-entries nil
   ;;       org-brain-file-entries-use-title nil)
 ;; *** end use-package : 
-	)
+  )
 
 ;; ** polymode use-package: 
 ;; Allows you to edit entries directly from org-brain-visualize
@@ -96,6 +89,3 @@
 ;;  major-modes in the same buffer. If you have required the package you can use
 ;;  M-x org-brain-polymode inside org-brain-visualize, or (as in the example above)
 ;;  add org-brain-polymode to org-brain-visualize-mode-hook.
-
-
-;; * --------------------------------------

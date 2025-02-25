@@ -1,10 +1,3 @@
-;; --------------------------------------
-;; init.el --- Emacs configuration
-;; --------------------------------------
-;; * used in
-;; (find-file "~/INI/dev-cfg.el")
-;; --------------------------------------
-;; --------------------------------------
 ;; * DELIMITERS-MOD CUSTOMIZATION
 ;; --------------------------------------
 ;; ** rainbow-delimiters
@@ -13,15 +6,15 @@
 (require 'use-package)
 (use-package rainbow-delimiters :ensure t
 ;; *** :config
-	:config
-	(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-	(custom-theme-set-faces
-		'material
-		`(rainbow-delimiters-depth-1-face ((t
-				(:foreground ,"aquamarine"))))
-		)
+  :config
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+  (custom-theme-set-faces
+    'material
+    `(rainbow-delimiters-depth-1-face ((t
+        (:foreground ,"aquamarine"))))
+    )
 ;; *** END )
-	)
+  )
 ;; *** Docs 
 ;; **** links:
 ;; https://github.com/Fanael/rainbow-delimiters
@@ -47,7 +40,7 @@
 ;; *** install
 (use-package parinfer
   :disabled
-	:defer t
+  :defer t
   :ensure t
   :bind
   (("C-," . parinfer-toggle-mode))
@@ -67,18 +60,18 @@
     (add-hook 'scheme-mode-hook #'parinfer-mode)
     (add-hook 'lisp-mode-hook #'parinfer-mode))
 ;; *** END )
-	)
+  )
 ;; ** parinfer-rust-mode
 ;; *** install
 (use-package parinfer-rust-mode
   ;; :disabled
-	:defer t
-	:ensure t
-	;; :hook emacs-lisp-mode
-	;; :init
-		;; (setq parinfer-rust-auto-download t)
+  :defer t
+  :ensure t
+  ;; :hook emacs-lisp-mode
+  ;; :init
+    ;; (setq parinfer-rust-auto-download t)
   :config
-		(setq  parinfer-rust-disable-troublesome-modes t)
+    (setq  parinfer-rust-disable-troublesome-modes t)
     ;; (parinfer-rust-mode -1)
     (add-hook 'clojure-mode-hook #'parinfer-rust-mode)
     ;; (add-hook 'emacs-lisp-mode-hook #'parinfer-rust-mode)
@@ -86,5 +79,4 @@
     ;; (add-hook 'scheme-mode-hook #'parinfer-rust-mode)
     ;; (add-hook 'lisp-mode-hook #'parinfer-rust-mode)
 ;; *** END )
-	)
-;; * --------------------------------------
+  )

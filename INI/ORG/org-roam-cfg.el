@@ -1,9 +1,3 @@
-;; --------------------------------------
-;; init.el --- Emacs configuration
-;; --------------------------------------
-;; * used in
-;; (find-file "~/.archemacs/INI/org-cfg.el")
-;; --------------------------------------
 ;; * ORG-ROAM CUSTOMIZATION
 ;; --------------------------------------
 ;; Org-Roam basic configuration
@@ -11,107 +5,107 @@
 ;;  D:\Development\lisp\Dropbox\orgs\Org-roam\default 
 ;;  D:/Development/lisp/Dropbox/orgs/Org-roam/default 
 (use-package org-roam
-	;; :disabled
-	:ensure t
-	:after org
-	:init (setq org-roam-v2-ack t) ;; Acknowledge V2 upgrade
-	:custom
-	;; (org-roam-directory (file-truename org-directory))
-	;; (org-roam-directory (file-truename "D:/Development/lisp/Dropbox/orgs/Org-roam/default/"))
-	(org-roam-directory (file-truename "~/Dropbox/orgs/Org-roam/default/"))
-	:config
-	(org-roam-setup)
+  ;; :disabled
+  :ensure t
+  :after org
+  :init (setq org-roam-v2-ack t) ;; Acknowledge V2 upgrade
+  :custom
+  ;; (org-roam-directory (file-truename org-directory))
+  ;; (org-roam-directory (file-truename "D:/Development/lisp/Dropbox/orgs/Org-roam/default/"))
+  (org-roam-directory (file-truename "~/Dropbox/orgs/Org-roam/default/"))
+  :config
+  (org-roam-setup)
   ;; If you're using a vertical completion framework, you might want a more informative completion interface пологаю 10 максимальное количство символо для тагов - можно убрать
   (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
-	;; (require 'dendroam)
+  ;; (require 'dendroam)
   ;; (org-roam-db-autosync-mode)
   ;; If using org-roam-protocol
   ;; (require 'org-roam-protocol)
-	:bind ( ("C-c n f" . org-roam-node-find)
-					("C-c n l" . org-roam-buffer-toggle)
+  :bind ( ("C-c n f" . org-roam-node-find)
+          ("C-c n l" . org-roam-buffer-toggle)
           ("C-c n c" . org-roam-capture)
           ("C-c n j" . org-roam-dailies-capture-today)
-					(:map org-mode-map
-								(("C-c n i" . org-roam-node-insert)
-								("C-c n o" . org-id-get-create)
-								("C-c n t" . org-roam-tag-add)
-								("C-c n g" . org-roam-graph)
-								;; ("C-c n r" . org-roam-node-random)		    
-								("C-c n a" . org-roam-alias-add)))))
+          (:map org-mode-map
+                (("C-c n i" . org-roam-node-insert)
+                ("C-c n o" . org-id-get-create)
+                ("C-c n t" . org-roam-tag-add)
+                ("C-c n g" . org-roam-graph)
+                ;; ("C-c n r" . org-roam-node-random)       
+                ("C-c n a" . org-roam-alias-add)))))
 
 
 ;; --------------------------------------
 ;; * ORG-ROAM-UI CUSTOMIZATION
 (use-package org-roam-ui
-	:ensure t
-	;; :disabled
+  :ensure t
+  ;; :disabled
   ;; :straight
   ;;   (:host github :repo "org-roam/org-roam-ui" :branch "main" :files ("*.el" "out"))
-	;; :demand t
-	;; :after org-roam
+  ;; :demand t
+  ;; :after org-roam
 ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
 ;;         a hookable mode anymore, you're advised to pick something yourself
 ;;         if you don't care about startup time, use
-	;; запускается сервер сразу с имаком
-	;; :hook (after-init . org-roam-ui-mode)
-	:config
-	(setq 
-				;; Org-Roam-UI can sync your Emacs theme! This is the default behavior, to disable it do
-				;; org-roam-ui-sync-theme t
-				org-roam-ui-sync-theme nil
-				;; ORUI follows you around Emacs by default. To disable this, set
-				;; org-roam-ui-follow nil
-				org-roam-ui-follow t
-				;; By default, org-roam-ui will try to open itself in your default browser. To disable this, set
-				org-roam-ui-open-on-start nil
-				org-roam-ui-update-on-save t))
+  ;; запускается сервер сразу с имаком
+  ;; :hook (after-init . org-roam-ui-mode)
+  :config
+  (setq 
+        ;; Org-Roam-UI can sync your Emacs theme! This is the default behavior, to disable it do
+        ;; org-roam-ui-sync-theme t
+        org-roam-ui-sync-theme nil
+        ;; ORUI follows you around Emacs by default. To disable this, set
+        ;; org-roam-ui-follow nil
+        org-roam-ui-follow t
+        ;; By default, org-roam-ui will try to open itself in your default browser. To disable this, set
+        org-roam-ui-open-on-start nil
+        org-roam-ui-update-on-save t))
 ;; Usage
 ;; Use M-x org-roam-ui-mode RET to enable the global mode. It will start a web server on http://127.0.0.1:35901/ and connect to it via a WebSocket for real-time updates.
 ;; --------------------------------------
 ;; * DENDROAM CUSTOMIZATION
 ;; ** use-package : 
 (use-package dendroam
-	:quelpa (dendroam :repo "vicrdguez/dendroam" :fetcher github)
-	:ensure t
+  :quelpa (dendroam :repo "vicrdguez/dendroam" :fetcher github)
+  :ensure t
   :after org-roam
-	;; :demand t
+  ;; :demand t
 ;; ** config : 
-	:config
-	(setq org-roam-node-display-template "${hierarchy}:${title}")
+  :config
+  (setq org-roam-node-display-template "${hierarchy}:${title}")
   ;; (setq org-roam-node-display-template
-	;; 			(concat "${hierarchy}:${title}" (propertize "${tags}" 'face 'org-tag)))
-	(setq org-roam-capture-templates
-				'(("d" "default" plain
-					"%?"
-					:if-new (file+head "${slug}.org"
-															"#+title: ${hierarchy-title}\n")
-					:immediate-finish t
-					:unnarrowed t)))
-	;; :after org-roam
-	;; dailies : 
-	;; (setq org-roam-dailies-capture-templates
-	;; 			'(("d" "default" entry
-	;; 				"* %?"
-	;; 				:if-new (file+head "journal.daily.%<%Y.%m.%d>.org"
-	;; 														"#+title: %<%Y-%m-%d>\n"))))
-	;; "Scratch note"
-	;; (setq dendroam-capture-templates
-	;; 			'(("t" "Time note" entry
-	;; 				"* %?"
-	;; 				:if-new (file+head "${current-file}.%<%Y.%m.%d>.org"
-	;; 														"#+title: %^{title}\n"))
-	;; 				("s" "Scratch note" entry
-	;; 				"* %?"
-	;; 				:if-new (file+head "scratch.%<%Y.%m.%d.%.%M%S%3N>.org"
-	;; 														"#+title: %^{title}\n"))))
+  ;;      (concat "${hierarchy}:${title}" (propertize "${tags}" 'face 'org-tag)))
+  (setq org-roam-capture-templates
+        '(("d" "default" plain
+          "%?"
+          :if-new (file+head "${slug}.org"
+                              "#+title: ${hierarchy-title}\n")
+          :immediate-finish t
+          :unnarrowed t)))
+  ;; :after org-roam
+  ;; dailies : 
+  ;; (setq org-roam-dailies-capture-templates
+  ;;      '(("d" "default" entry
+  ;;        "* %?"
+  ;;        :if-new (file+head "journal.daily.%<%Y.%m.%d>.org"
+  ;;                            "#+title: %<%Y-%m-%d>\n"))))
+  ;; "Scratch note"
+  ;; (setq dendroam-capture-templates
+  ;;      '(("t" "Time note" entry
+  ;;        "* %?"
+  ;;        :if-new (file+head "${current-file}.%<%Y.%m.%d>.org"
+  ;;                            "#+title: %^{title}\n"))
+  ;;        ("s" "Scratch note" entry
+  ;;        "* %?"
+  ;;        :if-new (file+head "scratch.%<%Y.%m.%d.%.%M%S%3N>.org"
+  ;;                            "#+title: %^{title}\n"))))
 ;; ** defun : 
-	(defun dendroam-node-find-initial-input ()
-		(interactive)
-		(require 'org-roam)
-		(require 'dendroam)
-		(org-roam-node-find nil (if (buffer-file-name)
-													(file-name-base (buffer-file-name))
-													"")))
+  (defun dendroam-node-find-initial-input ()
+    (interactive)
+    (require 'org-roam)
+    (require 'dendroam)
+    (org-roam-node-find nil (if (buffer-file-name)
+                          (file-name-base (buffer-file-name))
+                          "")))
 ;; ** defun FIX : 
 (cl-defmethod org-roam-node-slug ((node org-roam-node))
   "Return the slug of NODE."
@@ -154,7 +148,6 @@
 
 ;; ** bind : 
   :bind (("C-c n F" . dendroam-node-find-initial-input))
-;; ** 	) : 
-	)
+;; **   ) : 
+  )
 ;; --------------------------------------
-;; * ------------------------------------

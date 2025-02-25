@@ -26,7 +26,8 @@
 
 (use-package eww
   :config
-	(load (expand-file-name "INI/www-cfg.el" user-emacs-directory)))
+  :defer t
+  (load (expand-file-name "INI/www-cfg.el" user-emacs-directory)))
 
 (load (expand-file-name "INI/advnsed-selections-cfg.el" user-emacs-directory))
 
@@ -34,17 +35,20 @@
 
 (load (expand-file-name "ELs/BuYn/shell.el" user-emacs-directory))
 
-(load "~/Dropbox/backup/file.el")
+;; (load "~/Dropbox/backup/file.el")
+(let ((file-path "~/Dropbox/backup/file.el"))
+  (when (file-exists-p file-path)
+    (load file-path)))
 
 (let ((file-path
-			 (concat
-				"~/.emacs.d/"
-				(nth 0 (split-string
-								(with-temp-buffer
-									(insert-file-contents "/etc/hostname")
-									(buffer-string))))
-				".el")))
+       (concat
+        "~/.emacs.d/"
+        (nth 0 (split-string
+                (with-temp-buffer
+                  (insert-file-contents "/etc/hostname")
+                  (buffer-string))))
+        ".el")))
   (when (file-exists-p file-path)
-		(load file-path)))
+    (load file-path)))
 
 (message "Load of init.el is ended")

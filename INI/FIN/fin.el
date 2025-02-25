@@ -1,11 +1,11 @@
 (use-package hledger-mode
-	;; :disabled
-	:ensure t
+  ;; :disabled
+  :ensure t
   :mode ("\\.journal\\'" "\\.hledger\\'")
   :init
   (setq hledger-jfile
         (expand-file-name "~/Dropbox/Office/finance/hledger/personal/accounting.journal"))
-	:config
+  :config
   (add-hook 'hledger-mode-hook
             (lambda ()
               (make-local-variable 'company-backends)
@@ -23,7 +23,7 @@
     (hledger-pulse-momentary-current-entry))
   :bind (("C-c M-j" . hledger-jentry)
          :map hledger-mode-map
-				 ("C-c e" . hledger-run-command)
+         ("C-c e" . hledger-run-command)
          ("M-N" . hledger/prev-entry)
          ("M-n" . hledger/next-entry))
-	)
+  )

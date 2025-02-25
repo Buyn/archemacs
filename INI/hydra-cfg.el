@@ -7,9 +7,9 @@
     "
     ^Main^                00                ^Menus^          
     ^─────^───────────────────────────────────^─────^────────────
-		_a_I			_d_ev menu    _o_rg-mode   _b_Org-Brain                       
+    _a_I      _d_ev menu    _o_rg-mode   _b_Org-Brain                       
     _w_ww             _y_nke-menu  _r_eader
-		_c_ommands			_e_macs-menu   ya_s_nippet      
+    _c_ommands      _e_macs-menu   ya_s_nippet      
     _p_rev-menu   _q_uit   _SPC_ next  _n_ext-menu    
     "
 ;; ***** keys
@@ -109,15 +109,15 @@
     )
 
 (defhydra hydra-ai-model-menu (:color blue)
-		;; (find-file-other-frame "~/Dropbox/backup/models/gemeni1-5.el")
+    ;; (find-file-other-frame "~/Dropbox/backup/models/gemeni1-5.el")
     ("g" (load "~/Dropbox/backup/models/gemeni1-5.el") "Gemeni1.5")
-		;; (find-file-other-frame "~/Dropbox/backup/models/claude.el")
+    ;; (find-file-other-frame "~/Dropbox/backup/models/claude.el")
     ("c" (load "~/Dropbox/backup/models/claude.el") "Claude")
-		;; (find-file-other-frame "~/Dropbox/backup/models/openai.el")
+    ;; (find-file-other-frame "~/Dropbox/backup/models/openai.el")
     ("o" (load "~/Dropbox/backup/models/openai.el") "gpt-4o-mini")
-		;; (find-file-other-frame "~/Dropbox/backup/models/mixtral.el")
+    ;; (find-file-other-frame "~/Dropbox/backup/models/mixtral.el")
     ("m" (load "~/Dropbox/backup/models/mixtral.el") "mixtral")
-		;; (find-file-other-frame "~/Dropbox/backup/models/llama70v.el")
+    ;; (find-file-other-frame "~/Dropbox/backup/models/llama70v.el")
     ("l" (load "~/Dropbox/backup/models/llama70v.el") "llama70v")
     ("q" nil) 
     )
@@ -134,18 +134,18 @@
     )
 
 (defhydra hydra-ai-role-menu (:color blue)
-    ("e" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/acid-elisp.el") "elisp Acid")
-    ("p" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/acid-python.el") "Py Acid")
-    ("s" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/ai-synod.el")
+    ("e" (load "~/Dropbox/Office/Games/aidungeon/els/acid-elisp.el") "elisp Acid")
+    ("p" (load "~/Dropbox/Office/Games/aidungeon/els/acid-python.el") "Py Acid")
+    ("s" (load "~/Dropbox/Office/Games/aidungeon/els/ai-synod.el")
             "Synode AI")
-    ("l" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/leeloo-chat.el") "LeeLoo")
-    ("t" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/ted-dan.el") "Ted DAN")
-    ("h" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/ted-dan.el") "Ted holodeck")
+    ("l" (load "~/Dropbox/Office/Games/aidungeon/els/leeloo-chat.el") "LeeLoo")
+    ("t" (load "~/Dropbox/Office/Games/aidungeon/els/ted-dan.el") "Ted DAN")
+    ("h" (load "~/Dropbox/Office/Games/aidungeon/els/ted-dan.el") "Ted holodeck")
     ("S" org-roam-menu/body "Sasha")
-    ("g" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/glados-daen.el") "GLaDOS")
-    ("d" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/catherine-tramell-daen.el") "DAEN Tramell")
-    ("o" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/rpm-4options.el") "RPM 4option")
-    ("m" (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/rpm-malu.el") "RPM MALU")
+    ("g" (load "~/Dropbox/Office/Games/aidungeon/els/glados-daen.el") "GLaDOS")
+    ("d" (load "~/Dropbox/Office/Games/aidungeon/els/catherine-tramell-daen.el") "DAEN Tramell")
+    ("o" (load "~/Dropbox/Office/Games/aidungeon/els/rpm-4options.el") "RPM 4option")
+    ("m" (load "~/Dropbox/Office/Games/aidungeon/els/rpm-malu.el") "RPM MALU")
     ("q" nil) 
     )
 
@@ -155,15 +155,15 @@
             (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/chars-chat/2024-05-17-Acid_Burn.org")
             ) "Acid Burn")
     ("L" (progn
-            (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/leeloo-chat.el")
+            (load "~/Dropbox/Office/Games/aidungeon/els/leeloo-chat.el")
             (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/chars-chat/2024-09-18-Leeloo.org")
             ) "LeeLoo")
     ("l" (progn
-            (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/ai-synod.el")
+            (load "~/Dropbox/Office/Games/aidungeon/els/ai-synod.el")
             (find-file-other-frame "~/Dropbox/Office/Games/Game-logs/Tomb-of-Tyrants/2023-09-09-AI-story.org")
             ) "LogFile")
     ("t" (progn
-            (load "/home/buyn/Dropbox/Office/Games/aidungeon/els/tpol-chat.el")
+            (load "~/Dropbox/Office/Games/aidungeon/els/tpol-chat.el")
             (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/chars-chat/2024-05-18-T-Pol.org"))
         "T'pol")
     ("q" nil) 
@@ -267,7 +267,7 @@
 ;; ****** m : 
     ("m" (progn
           (unless (fboundp 'mask_win_path)
-              (load-file "~/.archemacs/keymac/mask_win_path.el"))
+              (load (expand-file-name "keymac/mask_win_path.el" user-emacs-directory)))
           (mask_win_path)) "maskSlesh")
 ;; ****** f : 
     ("f" hydra-emaks-fonts/body "fonts")
@@ -347,18 +347,18 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
    )
 ;; ****** "m" : 
     ("m" (progn
-					(eww-copy-page-url)
-					(buyn-shell-start (concat "mpv " (current-kill 0)))))
+          (eww-copy-page-url)
+          (buyn-shell-start (concat "mpv " (current-kill 0)))))
 
 ;; ****** "f" : 
     ("f" (progn
-					(eww-copy-page-url)
-					(buyn-shell-start (concat "firefox " (current-kill 0)))))
+          (eww-copy-page-url)
+          (buyn-shell-start (concat "firefox " (current-kill 0)))))
 
 ;; ****** "c" : 
     ("c" (progn
-					(eww-copy-page-url)
-					(buyn-shell-start (concat "chromium " (current-kill 0)))))
+          (eww-copy-page-url)
+          (buyn-shell-start (concat "chromium " (current-kill 0)))))
 ;; ****** "s" : 
     ("s"  (
       let (buffer-name-to-close (buffer-name))
@@ -389,9 +389,9 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
           (evil-window-split)
           (if (use-region-p)
             (eww (concat (buffer-substring
-														(region-beginning)
-														(region-end))
-												 " site:en.wikipedia.org"))
+                            (region-beginning)
+                            (region-end))
+                         " site:en.wikipedia.org"))
             (eww (buffer-substring
                 (line-beginning-position)
                 (line-beginning-position 2))))
@@ -402,11 +402,11 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
       let (buffer-name-to-close (buffer-name))
           (evil-window-split)
           (if (use-region-p)
-							(eww (concat
-										"https://vid.puffyan.us/search?q="
-										(buffer-substring
-														(region-beginning)
-														(region-end))))
+              (eww (concat
+                    "https://vid.puffyan.us/search?q="
+                    (buffer-substring
+                            (region-beginning)
+                            (region-end))))
             (eww (buffer-substring
                 (line-beginning-position)
                 (line-beginning-position 2))))
@@ -417,11 +417,11 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
       let (buffer-name-to-close (buffer-name))
           (evil-window-split)
           (if (use-region-p)
-							(eww (concat
-										"https://downloads.khinsider.com/search?search="
-										(buffer-substring
-														(region-beginning)
-														(region-end))))
+              (eww (concat
+                    "https://downloads.khinsider.com/search?search="
+                    (buffer-substring
+                            (region-beginning)
+                            (region-end))))
             (eww (buffer-substring
                 (line-beginning-position)
                 (line-beginning-position 2))))
@@ -432,11 +432,11 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
       let (buffer-name-to-close (buffer-name))
           (evil-window-split)
           (if (use-region-p)
-							(eww (concat
-										"https://www.google.com/search?gbv=1&bih=&biw=&source=hp&hl=en&ie=ISO-8859-1&tbm=isch&q="
-										(buffer-substring
-														(region-beginning)
-														(region-end))))
+              (eww (concat
+                    "https://www.google.com/search?gbv=1&bih=&biw=&source=hp&hl=en&ie=ISO-8859-1&tbm=isch&q="
+                    (buffer-substring
+                            (region-beginning)
+                            (region-end))))
             (eww (buffer-substring
                 (line-beginning-position)
                 (line-beginning-position 2))))
@@ -520,12 +520,12 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
             (org-babel-execute-src-block)))
         "execute auto-tangle-block" :color blue)
   ("t" (progn
-						(setq org-src-preserve-indentation t)
-						(untabify (point-min) (point-max))
-						(save-buffer)
-						(universal-argument)
-						(universal-argument)
-						(org-babel-tangle))
+            (setq org-src-preserve-indentation t)
+            (untabify (point-min) (point-max))
+            (save-buffer)
+            (universal-argument)
+            (universal-argument)
+            (org-babel-tangle))
         "tangle only one file" :color blue)
   ("L" display-line-numbers-mode "line-numbers")
   ("y" hydra-yasnippet/body "yasnippet" :color blue)
@@ -580,13 +580,13 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
   ;; Elpy in venv: %`venv-current-name
   ("e" (emms) "emms")
   ("t" (progn
-				 (find-file-other-frame "~/Dropbox/Resources/Playlists/test.m3u")
-				 (emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/test.m3u"))
-	 "test.m3u")
+         (find-file-other-frame "~/Dropbox/Resources/Playlists/test.m3u")
+         (emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/test.m3u"))
+   "test.m3u")
   ("w" (progn
-					(find-file-other-frame "~/Dropbox/Resources/Playlists/Tech/watch.m3u")
-					(emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/Tech/watch.m3u"))
-	 "test.m3u")
+          (find-file-other-frame "~/Dropbox/Resources/Playlists/Tech/watch.m3u")
+          (emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/Tech/watch.m3u"))
+   "test.m3u")
   ("s" (emms-streams) "streams")
   ("q" nil "quit")
   )
@@ -597,11 +597,11 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
   "
   ;; Elpy in venv: %`venv-current-name
   ("e" (let (buffer-name-to-close (buffer-name))
-				(evil-window-split)
-				(eshell)
-				(evil-quit)
-				(switch-to-buffer-other-frame buffer-name-to-close))
-			"Open eshell")
+        (evil-window-split)
+        (eshell)
+        (evil-quit)
+        (switch-to-buffer-other-frame buffer-name-to-close))
+      "Open eshell")
   ("q" nil "quit")
   )
 
@@ -611,25 +611,25 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
   "
   ;; Elpy in venv: %`venv-current-name
   ("R" (progn
-					(buyn-shell-start "sh_restart_plasmashell.sh")
-					(delete-other-windows))
-			"Restart plasmashell")
+          (buyn-shell-start "sh_restart_plasmashell.sh")
+          (delete-other-windows))
+      "Restart plasmashell")
   ("s" (progn
-					(buyn-shell-start "sudo systemctl suspend")
-					(delete-other-windows))
-			"sleep")
+          (buyn-shell-start "sudo systemctl suspend")
+          (delete-other-windows))
+      "sleep")
   ("H" (progn
-					(buyn-shell-start "sudo systemctl hibernate")
-					(delete-other-windows))
-			"hibernate")
+          (buyn-shell-start "sudo systemctl hibernate")
+          (delete-other-windows))
+      "hibernate")
   ("Y" (progn
-					(buyn-shell-start "sudo systemctl hybrid-sleep")
-					(delete-other-windows))
-			"hYbrid-sleep")
+          (buyn-shell-start "sudo systemctl hybrid-sleep")
+          (delete-other-windows))
+      "hYbrid-sleep")
   ("P" (progn
-				 (buyn-shell-start "sh_off.sh")
-				 (delete-other-windows))
-			"PoweOFF")
+         (buyn-shell-start "sh_off.sh")
+         (delete-other-windows))
+      "PoweOFF")
   ("q" nil "quit")
   )
 
@@ -639,20 +639,20 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
   "
   ;; Elpy in venv: %`venv-current-name
   ("d" (progn
-					(buyn-shell-start "emacs --debug-init")
-					(delete-other-windows))
-			"emacs debug")
+          (buyn-shell-start "emacs --debug-init")
+          (delete-other-windows))
+      "emacs debug")
   ("m" (progn
-				 (buyn-shell-start "chromium --profile-directory=Default --app-id=cbgioneaoelhfonhmabneendhdhileho")
-						(setq x-select-enable-clipboard t)
-						(kill-new "https://meet.google.com/ttu-evry-rvj")
-						(setq x-select-enable-clipboard nil)
-						(delete-other-windows))
-			"my google meetup")
+         (buyn-shell-start "chromium --profile-directory=Default --app-id=cbgioneaoelhfonhmabneendhdhileho")
+            (setq x-select-enable-clipboard t)
+            (kill-new "https://meet.google.com/ttu-evry-rvj")
+            (setq x-select-enable-clipboard nil)
+            (delete-other-windows))
+      "my google meetup")
   ("g" (progn
-				 (buyn-shell-start "chromium --profile-directory=Default --app-id=bbfcdomagcggnpdkfbjfagpgafbehnkk")
-				 (delete-other-windows))
-			"Gemeni")
+         (buyn-shell-start "chromium --profile-directory=Default --app-id=bbfcdomagcggnpdkfbjfagpgafbehnkk")
+         (delete-other-windows))
+      "Gemeni")
   ("q" nil "quit")
   )
 

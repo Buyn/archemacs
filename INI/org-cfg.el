@@ -1,10 +1,3 @@
-;; --------------------------------------
-;; init.el --- Emacs configuration
-;; --------------------------------------
-;; * used in
-;; (find-file "~/.archemacs/INI/init.el")
-;; --------------------------------------
-;; --------------------------------------
 ;; * ORG-MODE CUSTOMIZATION
 ;; --------------------------------------
 ;; ** ---------------     ORG setup
@@ -31,11 +24,11 @@
 (setq org-adapt-indentation nil)
 (setq org-startup-folded t)
 (setq org-link-frame-setup
-	'((vm . vm-visit-folder-other-frame)
-		(vm-imap . vm-visit-imap-folder-other-frame)
-		(gnus . org-gnus-no-new-news)
-		(file . find-file-other-frame)
-		(wl . wl-other-frame)))
+  '((vm . vm-visit-folder-other-frame)
+    (vm-imap . vm-visit-imap-folder-other-frame)
+    (gnus . org-gnus-no-new-news)
+    (file . find-file-other-frame)
+    (wl . wl-other-frame)))
 ;; (global-reveal-mode nil)
 (setq org-edit-src-content-indentation 0)
 (setq org-src-window-setup 'other-frame)
@@ -47,12 +40,12 @@
       '((sequence "TODO(t)" "|" "DONE(d)")
         ;; (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")
         (sequence "NEXT(x)" 
-									"WAITING(w)" 
-									"VERIFY(v)" 
-									"CR(r)"
-									"|" 
-									"CANCELED(c)" 
-									"DELEGATED(g)")))
+                  "WAITING(w)" 
+                  "VERIFY(v)" 
+                  "CR(r)"
+                  "|" 
+                  "CANCELED(c)" 
+                  "DELEGATED(g)")))
 ;; (setq org-agenda-custom-commands
 ;;       '(("n" occur-tree "NEXT")))
 ;; --------------------------------------
@@ -61,30 +54,30 @@
 (global-set-key (kbd "C-c c") 'org-capture)
 ;; (setq org-default-notes-file (concat org-directory "~/.archemacs/org/notes.org"))
 (setq org-capture-templates '(
-	("t" "Todo" entry
-	    (file+headline "~/Dropbox/orgs/gtd/gtd.org" "Tasks")
-	    "* TODO %?\n  %i\n  %a")
+  ("t" "Todo" entry
+      (file+headline "~/Dropbox/orgs/gtd/gtd.org" "Tasks")
+      "* TODO %?\n  %i\n  %a")
 
-	("i" "Todo [inbox]" entry
-	    (file+headline "~/Dropbox/orgs/gtd/inbox.org" "unsorted")
-	    "* %i%?")
-	("a" "Agend.org" entry
-	    (file+headline "~/Dropbox/orgs/gtd/agend.org" "Agend.org")
-	    "* TODO %i%?")
+  ("i" "Todo [inbox]" entry
+      (file+headline "~/Dropbox/orgs/gtd/inbox.org" "unsorted")
+      "* %i%?")
+  ("a" "Agend.org" entry
+      (file+headline "~/Dropbox/orgs/gtd/agend.org" "Agend.org")
+      "* TODO %i%?")
 ;; D:\Development\lisp\Home\ORG\Recipes\main.org 
 ;; D:\Development\lisp\Home\ORG\Recipes\new_recipes.org 
-	;; ("r" "new recipes" entry
-	;;     (file+headline "D:\Development\lisp\Home\ORG\Recipes\new_recipes.org" "new-recipes")
-	;;     "* %i%? \n %U")
-	("n" "notebook" entry
-	    (file+headline "~/Dropbox/orgs/gtd/notebook.org" "notebook")
-	    "* %i%? \n %U")
-	("j" "Journal" entry
-	    (file+datetree "~/Dropbox/orgs/gtd/journal.org")
-	    "* %?\nEntered on %U\n  %i\n  %a")
-	("l" "links to transfer" entry
-	    (file+headline "~/.archemacs/org/tmp/tmp_links.org" "link to")
-	    "* TODO %i%?")))
+  ;; ("r" "new recipes" entry
+  ;;     (file+headline "D:\Development\lisp\Home\ORG\Recipes\new_recipes.org" "new-recipes")
+  ;;     "* %i%? \n %U")
+  ("n" "notebook" entry
+      (file+headline "~/Dropbox/orgs/gtd/notebook.org" "notebook")
+      "* %i%? \n %U")
+  ("j" "Journal" entry
+      (file+datetree "~/Dropbox/orgs/gtd/journal.org")
+      "* %?\nEntered on %U\n  %i\n  %a")
+  ("l" "links to transfer" entry
+      (file+headline "~/.archemacs/org/tmp/tmp_links.org" "link to")
+      "* TODO %i%?")))
 (setq org-refile-targets '(("~/Dropbox/orgs/gtd/gtd.org" :maxlevel . 3)
                            ("~/Dropbox/orgs/gtd/inbox.org" :level . 1)
                            ("~/Dropbox/orgs/gtd/agend.org" :level . 1)
@@ -112,13 +105,13 @@
 ;; ** ORG binding : 
 ;; *** ORG heders : 
 ;; (define-key evil-normal-state-map
-;; 			[C-S-return] 'org-insert-subheading)
+;;      [C-S-return] 'org-insert-subheading)
 (define-key org-mode-map
-			[S-M-return] 'org-insert-subheading)
+      [S-M-return] 'org-insert-subheading)
 ;; (define-key evil-normal-state-map
-;; 			[C-M-return] 'org-insert-todo-heading-respect-content)
+;;      [C-M-return] 'org-insert-todo-heading-respect-content)
 ;; (define-key org-mode-map
-;; 			[C-M-return] 'org-insert-todo-heading-respect-content)
+;;      [C-M-return] 'org-insert-todo-heading-respect-content)
 ;; *** ORG Foldings
 ;; **** foldings on lavel navigations
 (define-key evil-normal-state-map "zj" 'org-forward-element)
@@ -137,24 +130,24 @@
 (define-key evil-normal-state-map "zL" 'org-shiftmetaright)
 ;; **** z[
 (define-key evil-normal-state-map "z[" '(lambda() (interactive)
-					(outline-up-heading 1)
-					))
+          (outline-up-heading 1)
+          ))
 ;; **** z]
 (define-key evil-normal-state-map "z]" '(lambda() (interactive)
-					(outline-up-heading 3)
-					))
+          (outline-up-heading 3)
+          ))
 ;; **** zc
 (define-key evil-normal-state-map "zc" '(lambda() (interactive)
-					;; (outline-previous-visible-heading 1)
-					(move-beginning-of-line nil)
-					(org-up-element)
-					(hide-subtree)
-					))
+          ;; (outline-previous-visible-heading 1)
+          (move-beginning-of-line nil)
+          (org-up-element)
+          (hide-subtree)
+          ))
 ;; **** zC
 (define-key evil-normal-state-map "zC" '(lambda() (interactive)
-					(outline-up-heading 1)
-					(hide-subtree)
-					))
+          (outline-up-heading 1)
+          (hide-subtree)
+          ))
 ;; *** ORG babel
 (define-key org-mode-map (kbd "M-e M-i M-o") 'org-edit-special)
 (define-key org-src-mode-map (kbd "M-e M-i M-o") 'org-edit-src-exit)
@@ -171,24 +164,26 @@
 (use-package org-agenda
   :config
 ;; (find-file-other-frame "~/.archemacs/INI/org_agend_cfg.el")
-	(load "~/.archemacs/INI/org_agend_cfg.el"))
+  ;; (load "~/.archemacs/INI/org_agend_cfg.el")
+(load (expand-file-name "INI/org_agend_cfg.el" user-emacs-directory)))
 ;; ** ORG babel 
 ;; (find-file-other-frame "~/.archemacs/INI/babel-cfg.el")
-(load "~/.archemacs/INI/babel-cfg.el")
+(load (expand-file-name "INI/babel-cfg.el" user-emacs-directory))
 ;; ** ORG-BRAIN 
 ;; (find-file-other-frame "~/.archemacs/INI/org-brain-cfg.el")
-(load "~/.archemacs/INI/org-brain-cfg.el")
+(load (expand-file-name "INI/org-brain-cfg.el" user-emacs-directory))
 ;; --------------------------------------
 
 ;; * GRAPH ORG TOOLS
 ;; --------------------------------------
 ;; (find-file-other-frame "~/.archemacs/INI/ORG/graph-tools-cfg.el")
-(load "~/.archemacs/INI/ORG/graph-tools-cfg.el")
+;; (load "~/.archemacs/INI/ORG/graph-tools-cfg.el")
+(load (expand-file-name "INI/ORG/graph-tools-cfg.el" user-emacs-directory))
 ;; --------------------------------------
 
 ;; * ORG-ROAM CUSTOMIZATION
 ;; --------------------------------------
 ;; (find-file-other-frame "~/.archemacs/INI/org-brain-cfg.el")
 ;; (load "~/.archemacs/INI/ORG/org-roam-cfg.el")
+;; (load (expand-file-name "INI/ORG/org-roam-cfg.el" user-emacs-directory))
 ;; --------------------------------------
-;; * ------------------------------------
