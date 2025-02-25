@@ -25,8 +25,8 @@
 (load (expand-file-name "INI/FIN/fin.el" user-emacs-directory))
 
 (use-package eww
-  :config
   :defer t
+  :config
   (load (expand-file-name "INI/www-cfg.el" user-emacs-directory)))
 
 (load (expand-file-name "INI/advnsed-selections-cfg.el" user-emacs-directory))

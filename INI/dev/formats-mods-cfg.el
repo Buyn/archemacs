@@ -6,11 +6,11 @@
 ;; *** use-package read-aloud : 
 (use-package yaml-mode
   ;; :ensure t
-  :load-path "ELs/formats/YAML/yaml-mode.el"
+  ;; :load-path "ELs/formats/YAML/yaml-mode.el"
+  :load-path "ELs/formats/YAML/"
   ;; :init
 ;; *** :config : 
   :config
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
   (add-to-list 'auto-mode-alist '("\\.rul\\'" . yaml-mode))
-;; *** ===========END========= ) : 
   )

@@ -50,7 +50,8 @@
 ;; *** :disabled : 
   ;; :disabled
 ;; *** :load-path:
-  :load-path "ELs/Org/Babel/ob-dot.el"
+  ;; :load-path "ELs/Org/Babel/ob-dot.el"
+  :load-path "ELs/Org/Babel/"
 ;; *** :config :
   :config
   (org-babel-do-load-languages
