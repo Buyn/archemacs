@@ -1,4 +1,3 @@
-;; * HYDRA CUSTOMIZATION
 (use-package hydra :ensure t
   )
 
@@ -57,6 +56,94 @@
   ("q" nil "quit"))
 ;; --------------------------------------
 
+(defhydra spc-main-menu01 (:color blue)
+;; ***** hint
+    "
+    ^Main^       01        ^Menus^          
+    ^────^─────────────────^─────^─────────
+    _q_ quit              _o_ outline 
+    _c_ calculus          _d_ ediff
+    _t_ transpose         _l_it-menu
+    _f_ occur-dwim        _SPC_ next    
+    _p_rev-menu           _n_ext-menu    
+    "
+;; ***** keys
+    ("q" nil)
+    ("SPC" spc-main-menu98/body)
+    ("c" calc)
+    ("o" hydra-outline/body) 
+    ("d" hydra-ediff/body) 
+    ("t" hydra-transpose/body) 
+    ("f" hydra-occur-dwim/body)
+    ("p" spc-main-menu00/body)
+    ("n" spc-main-menu98/body)
+    ("l" lit-menu/body)
+;; ***** END of def
+  )
+
+(defhydra spc-main-menu98 (:color blue)
+;; ***** hint
+    "
+    ^Main^             ^98^             ^  Menus^          
+    ^─────^────────────^──^─────────────^───────^─────────
+    _q_ quit  _R_evert-buffer  _L_ong-line 
+    _K_eyboard-sound  off_k_eyboard-sound 
+    _p_rev-menu                     _SPC_ _n_ext-menu    
+    "
+;; ***** keys
+  ("q" nil)
+  ("R" revert-buffer)
+  ("L" toggle-truncate-lines)
+  ("K" (progn
+      (require 'async)
+      (defun play-keyboard-sound ()
+        (interactive)
+        (async-start
+          (play-sound-file "E:/Temp/wav/selectric-move.wav")))
+        (add-hook 'pre-command-hook 'play-keyboard-sound)))
+
+  ("k" (remove-hook 'pre-command-hook 'play-keyboard-sound))
+  ("SPC" spc-main-menu99/body)
+  ("n" spc-main-menu99/body)
+  ("p" spc-main-menu01/body)
+;; ***** END of def
+  )
+
+(defhydra spc-main-menu99 (:color blue)
+;; ***** hint
+    "
+    ^Main^             ^99^             ^  Menus^          
+    ^─────^────────────^──^─────────────^───────^─────────
+    _q_uit            _i_n       _h_elp 
+    ^^                _j_ump     _l_it-menu
+    _p_rev-menu       _n_ext-menu    
+    "
+;; ***** keys
+    ("q" nil)
+    ("i" org-clock-in)
+    ("j" org-clock-goto)
+    ("o" org-clock-out)
+  ("h" hydra-help-menu/body)
+    ;; ("r" org-clock-report)
+  ("n" spc-main-menu00/body)
+  ("p" spc-main-menu98/body)
+  ("l" lit-menu/body)
+;; ***** END of def
+  )
+
+(fset 'mac-done-copy
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("dzadd`dpza``" 0 "%d")) arg)))
+
+(defun curent-time-format-hh-mm (p-h p-m)
+  "curent-time-format-hh-mm"
+  (concat
+    (number-to-string (+ p-h (nth 2 (decode-time))))
+    ":"
+    (let ((i (+ p-m (nth 1 (decode-time)))))
+      (if (> i  9)
+          (number-to-string i)
+          (concat "0" (number-to-string i))))))
+
 (defhydra hydra-yasnippet ( :color pink
               ;; :hint nil
               )
@@ -86,19 +173,6 @@
   ("q" nil "quit")
 ;; **** END )
   )
-
-(fset 'mac-done-copy
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("dzadd`dpza``" 0 "%d")) arg)))
-
-(defun curent-time-format-hh-mm (p-h p-m)
-  "curent-time-format-hh-mm"
-  (concat
-    (number-to-string (+ p-h (nth 2 (decode-time))))
-    ":"
-    (let ((i (+ p-m (nth 1 (decode-time)))))
-      (if (> i  9)
-          (number-to-string i)
-          (concat "0" (number-to-string i))))))
 
 (defhydra hydra-ai-menu (:color blue)
     ("c" (hydra-ai-chat-menu/body) "AI chat")
@@ -230,6 +304,33 @@
     ("R" org-roam-node-random "random")
     ("B" (org-roam-db-sync 'FORCE) "dB-Build")
 ;; ***** END of def
+  )
+
+(defhydra hydra-brain-org-menu (:color blue)
+  ;; (global-map "C-c")
+  "Org-Brain menu"
+  ("i" (org-brain-get-id)
+    "addID2header")
+  ("I" (org-brain-headline-to-file)
+    "addID2All")
+  ("v" (org-brain-visualize "index")
+    "2index")
+  ("V" (org-brain-entry-at-pt)
+    "visualize-org")
+  ("R" (org-brain-rename-file)
+    "rename-file")
+  ("U" (org-brain-update-id-location)
+    "updateID")
+  ("F" (org-brain-headline-to-file)
+    "Hline2file")
+  ;; ("w" (progn  
+  ;;    ;; (find-file-other-frame "~/.archemacs/ELs/org-eww/org-eww.el")
+  ;;    ;; (require 'org-eww "~/.archemacs/ELs/org-eww/org-eww.el")
+  ;;    (org-eww-copy-for-org-mode)
+  ;;    )
+    ;; "web-page2Org")
+  ("q" nil "quit")
+  ;; --------------------------------------
   )
 
 (defhydra hydra-emacs-menu (:color blue)
@@ -508,7 +609,8 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
   ;; (global-map "C-c")
   "dev menu"
   ("c" company-mode "company" :color blue)
-  ("f" program-mode-hook-customize "fuze")
+  ("F" program-mode-hook-customize "fuze")
+  ("f" flycheck-mode "flycheck")
   ("o" outshine-mode "outshine")
   ("e" elpy-hydra/body "elpy" :color blue)
   ("P" python-mode "pyton")
@@ -557,6 +659,61 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
   ("w" (venv-workon) "workon venv…")
   ("q" nil "quit")
   ("Q" (kill-buffer "*compilation*") "quit and kill compilation buffer" :color blue)
+;; **** END )
+  )
+
+(defhydra elpy-nav-errors (:color red)
+;; ***** Hint
+  "
+  Navigate errors
+  "
+;; ***** Keys
+  ("n" next-error "next error")
+  ("p" previous-error "previous error")
+  ("s" (progn
+         (switch-to-buffer-other-window "*compilation*")
+         (goto-char (point-max))) "switch to compilation buffer" :color blue)
+  ("w" (venv-workon) "Workon venv…")
+  ("q" nil "quit")
+  ("Q" (kill-buffer "*compilation*") "quit and kill compilation buffer" :color blue)
+;; ***** END )
+  )
+
+(defhydra hydra-outline (:color pink :hint nil)
+;; **** Hint
+  "
+^Hide^             ^Show^           ^Move
+^^^^^^------------------------------------------------------
+_q_: sublevels     _a_: all         _u_: up
+_t_: body          _e_: entry       _n_: next visible
+_o_: other         _i_: children    _p_: previous visible
+_c_: entry         _k_: branches    _f_: forward same level
+_l_: leaves        _s_: subtree     _b_: backward same level
+_d_: subtree
+
+"
+;; **** Keys
+  ;; Hide
+  ("q" hide-sublevels)    ; Hide everything but the top-level headings
+  ("t" hide-body)         ; Hide everything but headings (all body lines)
+  ("o" hide-other)        ; Hide other branches
+  ("c" hide-entry)        ; Hide this entry's body
+  ("l" hide-leaves)       ; Hide body lines in this entry and sub-entries
+  ("d" hide-subtree)      ; Hide everything in this entry and sub-entries
+  ;; Show
+  ("a" show-all)          ; Show (expand) everything
+  ("e" show-entry)        ; Show this heading's body
+  ("i" show-children)     ; Show this heading's immediate child sub-headings
+  ("k" show-branches)     ; Show all sub-headings under this heading
+  ("s" show-subtree)      ; Show (expand) everything in this heading & below
+  ;; Move
+  ("u" outline-up-heading)                ; Up
+  ("n" outline-next-visible-heading)      ; Next
+  ("p" outline-previous-visible-heading)  ; Previous
+  ("f" outline-forward-same-level)        ; Forward - same level
+  ("b" outline-backward-same-level)       ; Backward - same level
+  ("z" nil "leave")
+;; (global-set-key (kbd "C-c #") 'hydra-outline/body) ; by example
 ;; **** END )
   )
 
@@ -656,113 +813,6 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
   ("q" nil "quit")
   )
 
-(defhydra elpy-nav-errors (:color red)
-;; ***** Hint
-  "
-  Navigate errors
-  "
-;; ***** Keys
-  ("n" next-error "next error")
-  ("p" previous-error "previous error")
-  ("s" (progn
-         (switch-to-buffer-other-window "*compilation*")
-         (goto-char (point-max))) "switch to compilation buffer" :color blue)
-  ("w" (venv-workon) "Workon venv…")
-  ("q" nil "quit")
-  ("Q" (kill-buffer "*compilation*") "quit and kill compilation buffer" :color blue)
-;; ***** END )
-  )
-
-(defhydra hydra-brain-org-menu (:color blue)
-  ;; (global-map "C-c")
-  "Org-Brain menu"
-  ("i" (org-brain-get-id)
-    "addID2header")
-  ("I" (org-brain-headline-to-file)
-    "addID2All")
-  ("v" (org-brain-visualize "index")
-    "2index")
-  ("V" (org-brain-entry-at-pt)
-    "visualize-org")
-  ("R" (org-brain-rename-file)
-    "rename-file")
-  ("U" (org-brain-update-id-location)
-    "updateID")
-  ("F" (org-brain-headline-to-file)
-    "Hline2file")
-  ;; ("w" (progn  
-  ;;    ;; (find-file-other-frame "~/.archemacs/ELs/org-eww/org-eww.el")
-  ;;    ;; (require 'org-eww "~/.archemacs/ELs/org-eww/org-eww.el")
-  ;;    (org-eww-copy-for-org-mode)
-  ;;    )
-    ;; "web-page2Org")
-  ("q" nil "quit")
-  ;; --------------------------------------
-  )
-
-(defhydra spc-main-menu01 (:color blue)
-;; ***** hint
-    "
-    ^Main^       01        ^Menus^          
-    ^────^─────────────────^─────^─────────
-    _q_ quit              _o_ outline 
-    _c_ calculus          _d_ ediff
-    _t_ transpose         _l_it-menu
-    _f_ occur-dwim        _SPC_ next    
-    _p_rev-menu           _n_ext-menu    
-    "
-;; ***** keys
-    ("q" nil)
-    ("SPC" spc-main-menu98/body)
-    ("c" calc)
-    ("o" hydra-outline/body) 
-    ("d" hydra-ediff/body) 
-    ("t" hydra-transpose/body) 
-    ("f" hydra-occur-dwim/body)
-    ("p" spc-main-menu00/body)
-    ("n" spc-main-menu98/body)
-    ("l" lit-menu/body)
-;; ***** END of def
-  )
-
-(defhydra hydra-outline (:color pink :hint nil)
-;; **** Hint
-  "
-^Hide^             ^Show^           ^Move
-^^^^^^------------------------------------------------------
-_q_: sublevels     _a_: all         _u_: up
-_t_: body          _e_: entry       _n_: next visible
-_o_: other         _i_: children    _p_: previous visible
-_c_: entry         _k_: branches    _f_: forward same level
-_l_: leaves        _s_: subtree     _b_: backward same level
-_d_: subtree
-
-"
-;; **** Keys
-  ;; Hide
-  ("q" hide-sublevels)    ; Hide everything but the top-level headings
-  ("t" hide-body)         ; Hide everything but headings (all body lines)
-  ("o" hide-other)        ; Hide other branches
-  ("c" hide-entry)        ; Hide this entry's body
-  ("l" hide-leaves)       ; Hide body lines in this entry and sub-entries
-  ("d" hide-subtree)      ; Hide everything in this entry and sub-entries
-  ;; Show
-  ("a" show-all)          ; Show (expand) everything
-  ("e" show-entry)        ; Show this heading's body
-  ("i" show-children)     ; Show this heading's immediate child sub-headings
-  ("k" show-branches)     ; Show all sub-headings under this heading
-  ("s" show-subtree)      ; Show (expand) everything in this heading & below
-  ;; Move
-  ("u" outline-up-heading)                ; Up
-  ("n" outline-next-visible-heading)      ; Next
-  ("p" outline-previous-visible-heading)  ; Previous
-  ("f" outline-forward-same-level)        ; Forward - same level
-  ("b" outline-backward-same-level)       ; Backward - same level
-  ("z" nil "leave")
-;; (global-set-key (kbd "C-c #") 'hydra-outline/body) ; by example
-;; **** END )
-  )
-
 (defhydra hydra-ediff (:color blue :hint nil)
   "
 ;; **** Hint
@@ -836,56 +886,6 @@ _?_ help            _c_urrent file
 ;; ***** END of def
   )
 
-(defhydra spc-main-menu98 (:color blue)
-;; ***** hint
-    "
-    ^Main^             ^98^             ^  Menus^          
-    ^─────^────────────^──^─────────────^───────^─────────
-    _q_ quit  _R_evert-buffer  _L_ong-line 
-    _K_eyboard-sound  off_k_eyboard-sound 
-    _p_rev-menu                     _SPC_ _n_ext-menu    
-    "
-;; ***** keys
-  ("q" nil)
-  ("R" revert-buffer)
-  ("L" toggle-truncate-lines)
-  ("K" (progn
-      (require 'async)
-      (defun play-keyboard-sound ()
-        (interactive)
-        (async-start
-          (play-sound-file "E:/Temp/wav/selectric-move.wav")))
-        (add-hook 'pre-command-hook 'play-keyboard-sound)))
-
-  ("k" (remove-hook 'pre-command-hook 'play-keyboard-sound))
-  ("SPC" spc-main-menu99/body)
-  ("n" spc-main-menu99/body)
-  ("p" spc-main-menu01/body)
-;; ***** END of def
-  )
-
-(defhydra spc-main-menu99 (:color blue)
-;; ***** hint
-    "
-    ^Main^             ^99^             ^  Menus^          
-    ^─────^────────────^──^─────────────^───────^─────────
-    _q_uit            _i_n       _h_elp 
-    ^^                _j_ump     _l_it-menu
-    _p_rev-menu       _n_ext-menu    
-    "
-;; ***** keys
-    ("q" nil)
-    ("i" org-clock-in)
-    ("j" org-clock-goto)
-    ("o" org-clock-out)
-  ("h" hydra-help-menu/body)
-    ;; ("r" org-clock-report)
-  ("n" spc-main-menu00/body)
-  ("p" spc-main-menu98/body)
-  ("l" lit-menu/body)
-;; ***** END of def
-  )
-
 (defhydra hydra-help-menu (:color blue)
   ;; (global-map "C-c")
   "help menu"
@@ -895,7 +895,6 @@ _?_ help            _c_urrent file
   )
 
 (global-set-key (kbd "M-<SPC>") 'spc-main-menu00/body)
-
 (define-key evil-normal-state-map (kbd "z M-=") 'lit-menu/body)
 
 (define-key evil-normal-state-map (kbd "M-a M-j M-o") 'lit-menu/body)
