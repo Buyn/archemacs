@@ -13,6 +13,12 @@
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
+*** C-s
+**** evil-insert-state-map
+(define-key evil-insert-state-map (kbd "C-s") '(lambda() (interactive)
+*** C-h
+**** evil-insert-state-map
+(define-key evil-insert-state-map (kbd "C-h") '(lambda() (interactive)
 *** return
 **** org-mode-map
 (define-key org-mode-map
@@ -5926,6 +5932,8 @@ CLOSED: [2025-02-25 Tue 01:20]
 * блок для экспериментальных настроек
 * Babel-блокам команд
 * TODO орг файла
+** add file to tagle evil-respect-input.el
+(load (expand-file-name "ELs/Evil/evil-respect-input.el" user-emacs-directory))
 ** сделать теги и под разделы
 *** обеснение
 возность поиска как в вим
