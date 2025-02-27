@@ -5,20 +5,35 @@
                 (find-file-other-frame (expand-file-name "ORG/start.org" user-emacs-directory))))
 (global-set-key (kbd "C-<f1> C-<f2>") (lambda () (interactive)
                 (find-file-other-frame (expand-file-name "init.org" user-emacs-directory))))
-*** <f2>
+*** f2
 (define-key evil-insert-state-map (kbd "<f2>") '(lambda() (interactive)
                 (save-buffer)
                 (evil-normal-state)))
-*** C-c
+*** c
+**** C-c
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
-*** C-s
-**** evil-insert-state-map
+*** s
+**** C-s
+***** evil-insert-state-map
 (define-key evil-insert-state-map (kbd "C-s") '(lambda() (interactive)
-*** C-h
-**** evil-insert-state-map
+*** h
+**** C-h
+***** evil-insert-state-map
 (define-key evil-insert-state-map (kbd "C-h") '(lambda() (interactive)
+*** f
+(define-key evil-normal-state-map (kbd "f") 'evil-avy-goto-char-in-line)
+*** g
+**** gTT
+    "gTT" 'elscreen-previous
+    "gTS" 'elscreen-toggle-display-tab
+    "gTL" 'elscreen-clone
+    "gTC" 'elscreen-kill
+**** gtt
+    "gt" nil
+    ;; "gtt" 'elscreen-next
+    "gtt" 'next-or-make-new-tab
 *** return
 **** org-mode-map
 (define-key org-mode-map
@@ -454,9 +469,9 @@ There are two things you can do about this warning:
 *** used in
 ;; (find-file "~/.archemacs/INI/init.el")
 *** src
-#+begin_src elisp
-;; * IVY CUSTOMIZATION
+**** IVY CUSTOMIZATION
 ;; --------------------------------------
+#+begin_src elisp
 (require 'use-package)
 (use-package ivy :ensure t
   ;; :init
@@ -465,9 +480,13 @@ There are two things you can do about this warning:
   (ivy-mode 1)
   (ido-mode nil)
   )
+#+end_src
+
 ;;  --------------------------------------
-;; * AVY CUSTOMIZATION
+**** AVY CUSTOMIZATION
 ;; --------------------------------------
+
+#+begin_src elisp
 (use-package avy :ensure t
   ;; :init
   ;; (elpy-enable)
@@ -495,9 +514,12 @@ There are two things you can do about this warning:
     (define-key evil-normal-state-map (kbd "Ff") 'evil-find-char-backward)
     (define-key evil-visual-state-map (kbd "Ff") 'evil-find-char-backward)
   )
+#+end_src
 ;; --------------------------------------
-;; * DIMINISH CUSTOMIZATION
+**** DIMINISH CUSTOMIZATION
 ;; --------------------------------------
+
+#+begin_src elisp
 (use-package diminish
   :ensure t
   :demand t
@@ -528,15 +550,19 @@ There are two things you can do about this warning:
   (diminish 'visual-line-mode)
   ;; (diminish '+3-mode)
   (diminish 'helm-mode))
+#+end_src
 ;; --------------------------------------
-;; * WHICH-KEY CUSTOMIZATION
+**** WHICH-KEY CUSTOMIZATION
 ;; --------------------------------------
+#+begin_src elisp
 (use-package which-key
   :ensure t
   :config
     (which-key-mode))
 ;; --------------------------------------
-
+#+end_src
+**** LOAD ELS
+#+begin_src elisp
 ;;  --------------------------------------
 ;; * POWERLINE CUSTOMIZATION
 ;; --------------------------------------
@@ -1122,6 +1148,7 @@ CLOSED: [2025-02-11 Tue 16:29]
 **** used in
 ;; (find-file "~/INI/evil-mod-cfg.el")
 **** src
+***** use-package evil-tabs
 #+begin_src elisp
 ;; * EVIL TABS CONFIGURATION 
 ;; ** install evil-tabs
@@ -1129,8 +1156,9 @@ CLOSED: [2025-02-11 Tue 16:29]
 ;; ** :config : 
   :config
   (global-evil-tabs-mode t)
-  (elscreen-toggle-display-tab)
-  ;; (setq elscreen-display-tab nil)
+  ;; (elscreen-toggle-display-tab)
+  ;; (setq elscreen-display-tab t)
+  (setq elscreen-display-tab nil)
 ;; ** evil-ex-define-cmd : 
   (evil-ex-define-cmd "tabc[lone]" 'elscreen-clone)
   (evil-ex-define-cmd "tabcl[ose]" 'elscreen-kill)
@@ -1138,39 +1166,27 @@ CLOSED: [2025-02-11 Tue 16:29]
   ;; :bind ("C-c c" hydra-clock/body)
   (evil-define-key 'normal evil-tabs-mode-map
     "gT" nil
-    "gTT" 'elscreen-previous
+    "gTH" 'elscreen-previous
+    "gTL" 'elscreen-next
+    "gTD" 'elscreen-toggle-display-tab
     "gTS" 'elscreen-toggle-display-tab
-    "gTL" 'elscreen-clone
-    "gTC" 'elscreen-kill
+    "gTT" 'elscreen-toggle-display-tab
+    "gTC" 'elscreen-clone
+    "gTK" 'elscreen-kill
     "gt" nil
-    ;; "gtt" 'elscreen-next
-    "gtt" 'next-or-make-new-tab
+    ;; "gtt" 'next-or-make-new-tab
+    "gtt" (lambda () (interactive) (switch-or-make-new-name-tab "t-tab"))
+    "gtk" (lambda () (interactive) (switch-or-make-new-name-tab "k-tab"))
+    "gtl" (lambda () (interactive) (switch-or-make-new-name-tab "l-tab"))
+    "gtj" (lambda () (interactive) (switch-or-make-new-name-tab "j-tab"))
     "gtg" 'elscreen-goto
     "T" 'evil-tabs-current-buffer-to-tab)
 ;; ** END of use-package evil-tabs
   )
-;; ** Docs
-;; --------------------------------------
-;; :tabnew
-;; :tabclone
-   ;; (evil-ex-define-cmd "tabe[dit]" 'evil-tabs-tabedit)  
-   ;; (evil-ex-define-cmd "tabclone" 'elscreen-clone)  
-   ;; (evil-ex-define-cmd "tabc[lose]" 'elscreen-kill)  
-   ;; (evil-ex-define-cmd "tabd[isplay]" 'elscreen-toggle-display-tab)  
-   ;; (evil-ex-define-cmd "tabg[oto]" 'elscreen-goto)  
-   ;; (evil-ex-define-cmd "tabo[nly]" 'elscreen-kill-others)  
-   ;; (evil-ex-define-cmd "tabnew" 'elscreen-create)  
-   ;; (evil-ex-define-cmd "tabn[ext]" 'elscreen-next)  
-   ;; (evil-ex-define-cmd "tabp[rev]" 'elscreen-previous)  
-   ;; (evil-ex-define-cmd "tabr[ename]" 'elscreen-screen-nickname)  
-   ;; (evil-ex-define-cmd "tabs[elect]" 'elscreen-select-and-goto)  
-   ;; (evil-ex-define-cmd "tabw[ith]" 'elscreen-find-and-goto-by-buffer)  
-   ;; (evil-ex-define-cmd "q[uit]" 'evil-tab-sensitive-quit)  
-
-;; --------------------------------------
-;; --------------------------------------
-;; * TAB FUNCTIONS
-;; ** make new indirect tab :
+#+end_src
+***** TAB FUNCTIONS
+****** make new indirect tab :
+#+begin_src elisp
 (defun make-new-indirect-tab (name)
   "Make new tab and indirect bufer with name"
   (interactive)
@@ -1179,9 +1195,10 @@ CLOSED: [2025-02-11 Tue 16:29]
   (elscreen-create)
   ;; (switch-to-buffer "evil-tabs-cfg.el<2>"))
   (switch-to-buffer name))
-
 ;; --------------------------------------
-;; ** gen-name-for-curennt-indirect-buffer : 
+#+end_src
+****** gen-name-for-curennt-indirect-buffer : 
+#+begin_src elisp
 (defun gen-name-for-curennt-indirect-buffer (ender)
   "genarate name for indirect buffer
     on curennt buffer name"
@@ -1189,9 +1206,11 @@ CLOSED: [2025-02-11 Tue 16:29]
   (concat (buffer-name) ender)
   ) 
 
+#+end_src
 ;; --------------------------------------
 ;; (gen-name-for-curennt-indirect-buffer "<2>")
-;; ** next-or-make-new-tab 
+****** next-or-make-new-tab 
+#+begin_src elisp
 (defun next-or-make-new-tab ()
   "Swircg on next tab or
     make new tab and open in it indirect buffer"
@@ -1207,9 +1226,35 @@ CLOSED: [2025-02-11 Tue 16:29]
             (elscreen-next))
       ((= num-of-scr 3)
             (switch-between-too-first-tabs)))))
+#+end_src
 
 ;; --------------------------------------
-;; ** switch-between-too-first-tabs 
+****** switch-or-make-new-name-tab 
+#+begin_src elisp 
+(defun switch-or-make-new-name-tab (tab-name)
+  "Swiching on j-tab or
+    make j-tab and open it or clon activ"
+  (interactive)
+  (let ((tab
+				 (seq-find (lambda (val) (string= tab-name (cdr val)))
+							(elscreen-get-screen-to-name-alist))))
+		(if tab
+				(if (= (car tab) (elscreen-get-current-screen))
+						(elscreen-goto 0)
+						(elscreen-goto (car tab)))
+				(progn
+					(elscreen-clone)
+					(elscreen-screen-nickname tab-name)
+					(message "clone tab")))))
+#+end_src
+
+#+RESULTS:
+: switch-or-make-new-name-tab
+
+
+;; --------------------------------------
+****** switch-between-too-first-tabs 
+#+begin_src elisp
 (defun switch-between-too-first-tabs ()
   "switch-between-too-first-tabs"
   (let ((scr-num (elscreen-get-current-screen)))
@@ -1217,9 +1262,11 @@ CLOSED: [2025-02-11 Tue 16:29]
       ((= scr-num 0) (elscreen-goto 1))
       ((= scr-num 1) (elscreen-goto 0))
       ((> scr-num 1) (elscreen-goto 1)))))
+#+end_src
 
 ;; --------------------------------------
-;; ** make-new-tab-for-fullscreen-windows 
+****** make-new-tab-for-fullscreen-windows 
+#+begin_src elisp
 (defun make-new-tab-for-fullscreen-windows ()
   "make-new-tab-for-fullscreen-windows"
   (interactive)
@@ -1241,6 +1288,96 @@ CLOSED: [2025-02-11 Tue 16:29]
       (let ((name (concat orbuf-name "<fs2>")))
         (clone-indirect-buffer name nil)
         (switch-to-buffer name))))
+#+end_src
+**** Docs
+***** help
+;; --------------------------------------
+;; :tabnew
+;; :tabclone
+   ;; (evil-ex-define-cmd "tabe[dit]" 'evil-tabs-tabedit)  
+   ;; (evil-ex-define-cmd "tabclone" 'elscreen-clone)  
+   ;; (evil-ex-define-cmd "tabc[lose]" 'elscreen-kill)  
+   ;; (evil-ex-define-cmd "tabd[isplay]" 'elscreen-toggle-display-tab)  
+   ;; (evil-ex-define-cmd "tabg[oto]" 'elscreen-goto)  
+   ;; (evil-ex-define-cmd "tabo[nly]" 'elscreen-kill-others)  
+   ;; (evil-ex-define-cmd "tabnew" 'elscreen-create)  
+   ;; (evil-ex-define-cmd "tabn[ext]" 'elscreen-next)  
+   ;; (evil-ex-define-cmd "tabp[rev]" 'elscreen-previous)  
+   ;; (evil-ex-define-cmd "tabr[ename]" 'elscreen-screen-nickname)  
+   ;; (evil-ex-define-cmd "tabs[elect]" 'elscreen-select-and-goto)  
+   ;; (evil-ex-define-cmd "tabw[ith]" 'elscreen-find-and-goto-by-buffer)  
+   ;; (evil-ex-define-cmd "q[uit]" 'evil-tab-sensitive-quit)  
+
+;; --------------------------------------
+***** exampls 
+#+begin_src elisp :tangle no
+(defun switch-or-make-new-j-tab ()
+  "Swircg on j-tab or
+    make j-tab and open it oclon activ"
+  (interactive)
+  (let ((num-of-scr (elscreen-get-number-of-screens)))
+		;; (elscreen-get-all-window-history-alist)
+		(car (elscreen-get-all-window-history-alist))
+		(elscreen-get-all-window-history-alist)
+		(elscreen-get-current-screen)
+		(elscreen-get-previous-screen)
+		;; (elscreen-get-screen-list)
+		;; (elscreen-get-screen-nickname)
+		;; (elscreen-*nickname)
+		(elscreen-set-screen-nickname (elscreen-get-current-screen) "j-tab")
+		(elscreen-screen-nickname "j-tab")
+		(elscreen-screen-nickname "5-tab")
+		;; (elscreen-set-screen-nickname 2 "j-tab")
+		;; (elscreen-set-screen-nickname 2 "j-tab")
+		;; (elscreen-set-screen-nickname 4 "k-tab")
+		;; (elscreen-get-screen-property 2)
+		(elscreen-get-screen-property (elscreen-get-current-screen))
+		(cdar (elscreen-get-screen-property (elscreen-get-current-screen)))
+		(elscreen-get-screen-to-name-alist)
+		(cdar (elscreen-get-screen-to-name-alist))
+		(cdar (list (1 . 2) (1 . 2)))
+		(member 1 (car (elscreen-get-screen-to-name-alist)))
+		(find "j-tab" (car (elscreen-get-screen-to-name-alist)))
+		(find 1 (car (elscreen-get-screen-to-name-alist)))
+		(member 2 '(2 . "j-tab"))
+		(member 2 '(2 . "j-tab"))
+
+		(string= (cdr (seq-find (lambda (val) (string= "j-tab" (cdr val)))
+							(elscreen-get-screen-to-name-alist))) "j-tab")
+
+					(elscreen-goto (car (seq-find (lambda (val) (string= "j-tab" (cdr val)))
+							(elscreen-get-screen-to-name-alist))))
+
+		(if (string= (cdr tab) tab-name)
+							(elscreen-swap)
+							(elscreen-goto (car tab)))
+		(seq-find (lambda (val) (string= "j-tab" (cdr val)))
+							(elscreen-get-screen-to-name-alist))
+		(seq-find (lambda (val) (string= "5-tab" (cdr val)))
+							(elscreen-get-screen-to-name-alist))
+		(seq-find (lambda (val) (string= "tab" (cdr val)))
+							(elscreen-get-screen-to-name-alist))
+		(seq-find (lambda (val) (eq 5 (car val)))
+							(elscreen-get-screen-to-name-alist))
+		(seq-find (lambda (val) (= 3 val))
+							'(1 2 3))
+		;; \\[elscreen-swap]  Swap current screen with previous one
+	
+		;; (elscreen-get-window-configuration)
+		;; (elscreen-create)
+		;; (elscreen-find-screen)
+		;; (elscreen-find-screens)
+		;; (elscreen-one-screen-p)
+    (cond
+      ((= num-of-scr 1)
+        ;; (make-new-indirect-tab (gen-name-for-curennt-indirect-buffer "<2>"))
+        (elscreen-clone)
+        (message "clone tab")
+        )
+      ((= num-of-scr 2)
+            (elscreen-next))
+      ((= num-of-scr 3)
+            (switch-between-too-first-tabs)))))
 #+end_src
 ** **Буфер и фрейм менеджмент**
 *** описание
@@ -5898,7 +6035,12 @@ irony-install-server
 
 #+end_src
 ** elisp example
+*** expand-file-name
 (load (expand-file-name "INI/interface/input-methods-cfg.el" user-emacs-directory))
+*** kbd
+(define-key org-mode-map (kbd "C-c <C-return>") 'org-table-insert-row)
+*** lambda define-key 
+(define-key evil-normal-state-map "gthf" (lambda () (interactive) (simple-run-command-in-new-frame 'describe-function)))
 ** CANCELED команд 2 фрейме INI/evil_frame_cfg.el
 CLOSED: [2025-02-25 Tue 01:20]
 :PROPERTIES:
