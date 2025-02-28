@@ -1185,6 +1185,35 @@ CLOSED: [2025-02-11 Tue 16:29]
   )
 #+end_src
 ***** TAB FUNCTIONS
+****** switch-or-make-new-name-tab 
+#+begin_src elisp 
+(defun switch-or-make-new-name-tab (tab-name)
+  "Swiching on j-tab or
+    make j-tab and open it or clon activ"
+  (interactive)
+  (let ((tab
+         (seq-find (lambda (val) (string= tab-name (cdr val)))
+              (elscreen-get-screen-to-name-alist))))
+    (if tab
+        (if (= (car tab) (elscreen-get-current-screen))
+            (elscreen-goto 0)
+            (elscreen-goto (car tab)))
+        (progn
+          (elscreen-clone)
+          (elscreen-screen-nickname tab-name)
+          (message "clone tab")))))
+#+end_src
+
+#+RESULTS:
+: switch-or-make-new-name-tab
+
+
+;; --------------------------------------
+***** CANCELED not used or exmeremental FUNCTIONS
+CLOSED: [2025-02-27 Чт 19:07]
+:PROPERTIES:
+:header-args: :tangle no
+:END:
 ****** make new indirect tab :
 #+begin_src elisp
 (defun make-new-indirect-tab (name)
@@ -1227,30 +1256,6 @@ CLOSED: [2025-02-11 Tue 16:29]
       ((= num-of-scr 3)
             (switch-between-too-first-tabs)))))
 #+end_src
-
-;; --------------------------------------
-****** switch-or-make-new-name-tab 
-#+begin_src elisp 
-(defun switch-or-make-new-name-tab (tab-name)
-  "Swiching on j-tab or
-    make j-tab and open it or clon activ"
-  (interactive)
-  (let ((tab
-				 (seq-find (lambda (val) (string= tab-name (cdr val)))
-							(elscreen-get-screen-to-name-alist))))
-		(if tab
-				(if (= (car tab) (elscreen-get-current-screen))
-						(elscreen-goto 0)
-						(elscreen-goto (car tab)))
-				(progn
-					(elscreen-clone)
-					(elscreen-screen-nickname tab-name)
-					(message "clone tab")))))
-#+end_src
-
-#+RESULTS:
-: switch-or-make-new-name-tab
-
 
 ;; --------------------------------------
 ****** switch-between-too-first-tabs 
@@ -1316,58 +1321,58 @@ CLOSED: [2025-02-11 Tue 16:29]
     make j-tab and open it oclon activ"
   (interactive)
   (let ((num-of-scr (elscreen-get-number-of-screens)))
-		;; (elscreen-get-all-window-history-alist)
-		(car (elscreen-get-all-window-history-alist))
-		(elscreen-get-all-window-history-alist)
-		(elscreen-get-current-screen)
-		(elscreen-get-previous-screen)
-		;; (elscreen-get-screen-list)
-		;; (elscreen-get-screen-nickname)
-		;; (elscreen-*nickname)
-		(elscreen-set-screen-nickname (elscreen-get-current-screen) "j-tab")
-		(elscreen-screen-nickname "j-tab")
-		(elscreen-screen-nickname "5-tab")
-		;; (elscreen-set-screen-nickname 2 "j-tab")
-		;; (elscreen-set-screen-nickname 2 "j-tab")
-		;; (elscreen-set-screen-nickname 4 "k-tab")
-		;; (elscreen-get-screen-property 2)
-		(elscreen-get-screen-property (elscreen-get-current-screen))
-		(cdar (elscreen-get-screen-property (elscreen-get-current-screen)))
-		(elscreen-get-screen-to-name-alist)
-		(cdar (elscreen-get-screen-to-name-alist))
-		(cdar (list (1 . 2) (1 . 2)))
-		(member 1 (car (elscreen-get-screen-to-name-alist)))
-		(find "j-tab" (car (elscreen-get-screen-to-name-alist)))
-		(find 1 (car (elscreen-get-screen-to-name-alist)))
-		(member 2 '(2 . "j-tab"))
-		(member 2 '(2 . "j-tab"))
+    ;; (elscreen-get-all-window-history-alist)
+    (car (elscreen-get-all-window-history-alist))
+    (elscreen-get-all-window-history-alist)
+    (elscreen-get-current-screen)
+    (elscreen-get-previous-screen)
+    ;; (elscreen-get-screen-list)
+    ;; (elscreen-get-screen-nickname)
+    ;; (elscreen-*nickname)
+    (elscreen-set-screen-nickname (elscreen-get-current-screen) "j-tab")
+    (elscreen-screen-nickname "j-tab")
+    (elscreen-screen-nickname "5-tab")
+    ;; (elscreen-set-screen-nickname 2 "j-tab")
+    ;; (elscreen-set-screen-nickname 2 "j-tab")
+    ;; (elscreen-set-screen-nickname 4 "k-tab")
+    ;; (elscreen-get-screen-property 2)
+    (elscreen-get-screen-property (elscreen-get-current-screen))
+    (cdar (elscreen-get-screen-property (elscreen-get-current-screen)))
+    (elscreen-get-screen-to-name-alist)
+    (cdar (elscreen-get-screen-to-name-alist))
+    (cdar (list (1 . 2) (1 . 2)))
+    (member 1 (car (elscreen-get-screen-to-name-alist)))
+    (find "j-tab" (car (elscreen-get-screen-to-name-alist)))
+    (find 1 (car (elscreen-get-screen-to-name-alist)))
+    (member 2 '(2 . "j-tab"))
+    (member 2 '(2 . "j-tab"))
 
-		(string= (cdr (seq-find (lambda (val) (string= "j-tab" (cdr val)))
-							(elscreen-get-screen-to-name-alist))) "j-tab")
+    (string= (cdr (seq-find (lambda (val) (string= "j-tab" (cdr val)))
+              (elscreen-get-screen-to-name-alist))) "j-tab")
 
-					(elscreen-goto (car (seq-find (lambda (val) (string= "j-tab" (cdr val)))
-							(elscreen-get-screen-to-name-alist))))
+          (elscreen-goto (car (seq-find (lambda (val) (string= "j-tab" (cdr val)))
+              (elscreen-get-screen-to-name-alist))))
 
-		(if (string= (cdr tab) tab-name)
-							(elscreen-swap)
-							(elscreen-goto (car tab)))
-		(seq-find (lambda (val) (string= "j-tab" (cdr val)))
-							(elscreen-get-screen-to-name-alist))
-		(seq-find (lambda (val) (string= "5-tab" (cdr val)))
-							(elscreen-get-screen-to-name-alist))
-		(seq-find (lambda (val) (string= "tab" (cdr val)))
-							(elscreen-get-screen-to-name-alist))
-		(seq-find (lambda (val) (eq 5 (car val)))
-							(elscreen-get-screen-to-name-alist))
-		(seq-find (lambda (val) (= 3 val))
-							'(1 2 3))
-		;; \\[elscreen-swap]  Swap current screen with previous one
-	
-		;; (elscreen-get-window-configuration)
-		;; (elscreen-create)
-		;; (elscreen-find-screen)
-		;; (elscreen-find-screens)
-		;; (elscreen-one-screen-p)
+    (if (string= (cdr tab) tab-name)
+              (elscreen-swap)
+              (elscreen-goto (car tab)))
+    (seq-find (lambda (val) (string= "j-tab" (cdr val)))
+              (elscreen-get-screen-to-name-alist))
+    (seq-find (lambda (val) (string= "5-tab" (cdr val)))
+              (elscreen-get-screen-to-name-alist))
+    (seq-find (lambda (val) (string= "tab" (cdr val)))
+              (elscreen-get-screen-to-name-alist))
+    (seq-find (lambda (val) (eq 5 (car val)))
+              (elscreen-get-screen-to-name-alist))
+    (seq-find (lambda (val) (= 3 val))
+              '(1 2 3))
+    ;; \\[elscreen-swap]  Swap current screen with previous one
+  
+    ;; (elscreen-get-window-configuration)
+    ;; (elscreen-create)
+    ;; (elscreen-find-screen)
+    ;; (elscreen-find-screens)
+    ;; (elscreen-one-screen-p)
     (cond
       ((= num-of-scr 1)
         ;; (make-new-indirect-tab (gen-name-for-curennt-indirect-buffer "<2>"))

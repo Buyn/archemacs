@@ -1,5 +1,3 @@
-;; * IVY CUSTOMIZATION
-;; --------------------------------------
 (require 'use-package)
 (use-package ivy :ensure t
   ;; :init
@@ -8,9 +6,7 @@
   (ivy-mode 1)
   (ido-mode nil)
   )
-;;  --------------------------------------
-;; * AVY CUSTOMIZATION
-;; --------------------------------------
+
 (use-package avy :ensure t
   ;; :init
   ;; (elpy-enable)
@@ -38,9 +34,7 @@
     (define-key evil-normal-state-map (kbd "Ff") 'evil-find-char-backward)
     (define-key evil-visual-state-map (kbd "Ff") 'evil-find-char-backward)
   )
-;; --------------------------------------
-;; * DIMINISH CUSTOMIZATION
-;; --------------------------------------
+
 (use-package diminish
   :ensure t
   :demand t
@@ -71,9 +65,7 @@
   (diminish 'visual-line-mode)
   ;; (diminish '+3-mode)
   (diminish 'helm-mode))
-;; --------------------------------------
-;; * WHICH-KEY CUSTOMIZATION
-;; --------------------------------------
+
 (use-package which-key
   :ensure t
   :config
