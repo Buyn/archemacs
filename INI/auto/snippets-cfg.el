@@ -10,13 +10,14 @@
 ;; *** use-package:
 (use-package yasnippet
   :defer t
-  ;; :ensure t
+  :ensure t
   ;; :disabled
   ;; :init
 ;; *** :config : 
   :config
-  (use-package yasnippet-snippets
-    :defer t)
+    (use-package yasnippet-snippets
+      :ensure t
+      :defer t)
 
   ;; (yas/initialize)
   (add-to-list 'ac-sources 'ac-source-yasnippet)

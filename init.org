@@ -1185,7 +1185,7 @@ CLOSED: [2025-02-11 Tue 16:29]
   )
 #+end_src
 ***** TAB FUNCTIONS
-****** switch-or-make-new-name-tab 
+****** switch-or-make-new-name-tab
 #+begin_src elisp 
 (defun switch-or-make-new-name-tab (tab-name)
   "Swiching on j-tab or
@@ -4791,13 +4791,14 @@ _?_ help            _c_urrent file
 ;; *** use-package:
 (use-package yasnippet
   :defer t
-  ;; :ensure t
+  :ensure t
   ;; :disabled
   ;; :init
 ;; *** :config : 
   :config
-  (use-package yasnippet-snippets
-    :defer t)
+    (use-package yasnippet-snippets
+      :ensure t
+      :defer t)
 
   ;; (yas/initialize)
   (add-to-list 'ac-sources 'ac-source-yasnippet)
@@ -4821,6 +4822,10 @@ _?_ help            _c_urrent file
 ;; (add-to-list 'ac-sources 'ac-source-yasnippet)
 ;; --------------------------------------
 #+end_src
+
+#+RESULTS:
+: t
+
 ** INI/AI/ai.el
 :PROPERTIES:
 :header-args: :tangle INI/AI/ai.el
@@ -6111,6 +6116,12 @@ CLOSED: [2025-02-25 Tue 01:20]
 *** меню ганжера из ренжера
 перейти в папку
 набор действий
+** hydra f1 menus
+on space
+all books
+start init debag
+
+(find-file "~/Dropbox/orgs_code/archlinux/arh_script.org")
 * start to use
 ** org-refile
 *** link
