@@ -175,6 +175,9 @@
   )
 
 (defhydra hydra-ai-menu (:color blue)
+  "
+  gptel-model: %`gptel-model
+  "
     ("c" (hydra-ai-chat-menu/body) "AI chat")
     ("m" (hydra-ai-model-menu/body) "AI model")
     ("r" (hydra-ai-role-menu/body) "AI roles")
@@ -183,6 +186,9 @@
     )
 
 (defhydra hydra-ai-model-menu (:color blue)
+  "
+  gptel-model: %`gptel-model
+  "
     ;; (find-file-other-frame "~/Dropbox/backup/models/gemeni1-5.el")
     ("g" (load "~/Dropbox/backup/models/gemeni1-5.el") "Gemeni1.5")
     ;; (find-file-other-frame "~/Dropbox/backup/models/claude.el")
@@ -894,10 +900,34 @@ _?_ help            _c_urrent file
   ("q" nil "quit")
   )
 
+(defhydra hydra-f1-grimuar-menu (:color blue)
+  ("c" (find-file-other-frame "~/Dropbox/Office/Research/Doc/Codex/BuYn_Codex.org") "Codex")
+  ("a" (find-file-other-frame "~/Desktop/orgs/capture/astronomicon.org") "Astronomicon")
+  ("E" (find-file-other-frame "~/Desktop/orgs/capture/emagus.org") "Emagus")
+  ("n" (find-file-other-frame "~/Dropbox/orgs/capture/Necronomicon.org") "Necronomicon")
+  ("t" (find-file-other-frame "~/Dropbox/orgs/capture/Necroteuch.org") "Necroteuch")
+  ("s" (find-file-other-frame "~/Dropbox/orgs/capture/Ansible.org") "Ansible")
+  ("m" (find-file-other-frame "~/Dropbox/orgs/capture/Manabook.org") "Manabook")
+  ("h" (find-file-other-frame "~/Dropbox/orgs/capture/holodeck.org") "Holodeck")
+  ("p" (find-file-other-frame "~/Dropbox/orgs/capture/Pensieve.org") "Pensieve")
+  ("q" nil)
+  )
+
+(defhydra hydra-f1-emagus-menu (:color blue)
+  ("D" (buyn-shell-start "wmctrl -s 4 ; emacs --debug-init") "run debug")
+  ("T" (find-file "~/Dropbox/orgs/Logs/Todos/log-todo-2024-04-28-W17.org") "log-todo")
+  ("E" (find-file-other-frame "~/Dropbox/orgs/Code/emacs_GPT_2023-07-20.org") "Emacs log")
+  ("d" (ranger "~/Dropbox/") "rager Dropbox")
+  ("t" (ranger "~/Desktop/") "rager Desktop")
+  ("w" (ranger "~/Downloads/") "rager Downloads")
+  ("v" (ranger "~/Dev/") "rager Dev")
+  ("q" nil)
+  )
+
 (global-set-key (kbd "M-<SPC>") 'spc-main-menu00/body)
 (define-key evil-normal-state-map (kbd "z M-=") 'lit-menu/body)
 
-(define-key evil-normal-state-map (kbd "M-a M-j M-o") 'lit-menu/body)
+(define-key evil-normal-state-map (kbd "M-a M-l M-o") 'lit-menu/body)
 
 (define-key evil-visual-state-map (kbd "M-a M-l M-w") 'ispell-region)
 (define-key evil-normal-state-map (kbd "M-a M-l M-w") 'ispell-word)

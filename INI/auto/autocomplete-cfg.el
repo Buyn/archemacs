@@ -19,7 +19,7 @@
   ;; :bind ("C-c c" hydra-clock/body)
 ;; ***  END use-package 
   )
-;; (require 'company)
+
 ;; (require 'company)
 ;; ** defun program-mode-hook-customize : 
 (defun program-mode-hook-customize (args)

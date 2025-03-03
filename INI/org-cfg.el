@@ -14,6 +14,8 @@
                 (find-file-other-frame (expand-file-name "ORG/start.org" user-emacs-directory))))
 (global-set-key (kbd "C-<f1> C-<f2>") (lambda () (interactive)
                 (find-file-other-frame (expand-file-name "init.org" user-emacs-directory))))
+(global-set-key (kbd "C-<f1> C-<SPC>") (lambda () (interactive)
+                (hydra-f1-emagus-menu/body)))
 
 (global-set-key (kbd "M-<f1>") nil)
 (global-set-key (kbd "M-<f1> M-<f1>") (lambda () (interactive)
@@ -26,6 +28,8 @@
 (global-set-key (kbd "S-<f1>") nil)
 (global-set-key (kbd "S-<f1> S-<f1>") (lambda () (interactive)
                 (find-file-other-frame "~/Dropbox/Office/Research/Doc/Grimoire/Grimoire.org")))
+(global-set-key (kbd "S-<f1> S-<SPC>") (lambda () (interactive)
+                (hydra-f1-grimuar-menu/body)))
 
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (global-set-key (kbd "C-c l") 'org-store-link)
