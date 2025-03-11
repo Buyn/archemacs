@@ -9,6 +9,8 @@
 (define-key evil-insert-state-map (kbd "<f2>") '(lambda() (interactive)
                 (save-buffer)
                 (evil-normal-state)))
+*** f8
+(global-set-key(kbd "<f8>") '(lambda() (interactive)
 *** c
 **** C-c
 (global-set-key (kbd "C-c l") 'org-store-link)
@@ -3058,8 +3060,15 @@ CLOSED: [2025-03-03 Пн 06:36]
                 (find-file-other-frame (expand-file-name "ORG/start.org" user-emacs-directory))))
 (global-set-key (kbd "C-<f1> C-<f2>") (lambda () (interactive)
                 (find-file-other-frame (expand-file-name "init.org" user-emacs-directory))))
+(global-set-key (kbd "C-<f1> C-o") (lambda () (interactive)
+                (find-file-other-frame (expand-file-name "init.org" user-emacs-directory))))
+(global-set-key (kbd "C-<f1> C-<f3>") (lambda () (interactive)
+                (find-file-other-frame "~/Dropbox/orgs_code/archlinux/arh_script.org")))
+(global-set-key (kbd "C-<f1> C-s") (lambda () (interactive)
+                (find-file-other-frame "~/Dropbox/orgs_code/archlinux/arh_script.org")))
 (global-set-key (kbd "C-<f1> C-<SPC>") (lambda () (interactive)
                 (hydra-f1-emagus-menu/body)))
+
 
 (global-set-key (kbd "M-<f1>") nil)
 (global-set-key (kbd "M-<f1> M-<f1>") (lambda () (interactive)
@@ -3249,6 +3258,10 @@ CLOSED: [2025-03-03 Пн 06:36]
 ;; (load (expand-file-name "INI/ORG/org-roam-cfg.el" user-emacs-directory))
 ;; --------------------------------------
 #+end_src
+
+#+RESULTS:
+: t
+
 ** INI/org_agend_cfg.el
 :PROPERTIES:
 :header-args: :tangle INI/org_agend_cfg.el
@@ -5078,7 +5091,8 @@ CLOSED: [2025-03-03 Пн 06:36]
 ;; *** save & recompile
 ;; **** global-set-key <f8> :
 ;;  --------------------------------------
-(global-set-key(kbd "<f8>") '(lambda() (interactive)
+(global-set-key (kbd "<f8>") nil)
+(global-set-key(kbd "<f8> <f8>") '(lambda() (interactive)
         ;; (save-buffer)
         (save-some-buffers 'no-confirm)
         (org-save-all-org-buffers)
@@ -5093,7 +5107,8 @@ CLOSED: [2025-03-03 Пн 06:36]
 ;;  --------------------------------------
 ;; **** global-set-key "M-<f8>" :
 ;;  --------------------------------------
-(global-set-key(kbd "M-<f8>") '(lambda() (interactive)
+(global-set-key (kbd "M-<f8>") nil)
+(global-set-key (kbd "M-<f8> M-<f8>") '(lambda() (interactive)
                 (save-buffer)
                 (evil-normal-state)
                 (compile
@@ -5102,14 +5117,12 @@ CLOSED: [2025-03-03 Пн 06:36]
                       "defult(" (buffer-name) "):")
                     (buffer-file-name)
                     nil
-                    (buffer-name)
-                    )
-                  )
-                ))
+                    (buffer-name)))))
 ;; --------------------------------------
 ;; **** global-set-key "M-<f8>" :
 ;;  --------------------------------------
-(define-key evil-visual-state-map (kbd "M-<f8>") '(lambda() (interactive)
+(define-key evil-visual-state-map (kbd "M-<f8>") nil)
+(define-key evil-visual-state-map (kbd "M-<f8> M-<f8>") '(lambda() (interactive)
                 (setq region-text (buffer-substring (region-beginning) (region-end)))
                 (save-buffer)
                 (evil-normal-state)
@@ -5120,13 +5133,9 @@ CLOSED: [2025-03-03 Пн 06:36]
                     (concat
                         (buffer-file-name)
                         " -p "
-                        region-text
-                        )
+                        region-text)
                     nil
-                    (buffer-name)
-                    )
-                  )
-                ))
+                    (buffer-name)))))
 ;; --------------------------------------
 ;; *** --------------------------------------
 ;; ** PROG-MODE-HOOK CUSTOMIZATION
@@ -5150,6 +5159,9 @@ CLOSED: [2025-03-03 Пн 06:36]
     ))
 ;; --------------------------------------
 #+end_src
+
+#+RESULTS:
+| (lambda nil (display-line-numbers-mode t) (flycheck-mode t) (highlight-indentation-mode t) (projectile-mode 1)) | (lambda nil (outshine-mode t)) | rainbow-delimiters-mode | (lambda nil (setq company-show-numbers t) (setq company-fuzzy-mode 1) (setq company-minimum-prefix-length 3) (setq company-idle-delay 0.1)) | company-mode | hl-line-mode |
 
 ** INI/dev/delimiters-cfg.el
 :PROPERTIES:
@@ -6159,6 +6171,19 @@ CLOSED: [2025-02-25 Tue 01:20]
 #+end_src
 * блок для экспериментальных настроек
 * Babel-блокам команд
+** auto-tangle-block : 
+#+NAME: auto-tangle-block
+#+begin_src emacs-lisp :results output silent :tangle no
+(setq org-src-preserve-indentation t)
+(untabify (point-min) (point-max))
+(save-buffer)
+(org-babel-tangle)
+(find-file-other-frame "~/INI/babel-cfg.el")
+;; (load "~/INI/hydra-cfg.el")
+;; (load "~/ELs/BuYn/reader.el")
+ #+end_src
+
+
 * TODO орг файла
 ** add file to tagle evil-respect-input.el
 (load (expand-file-name "ELs/Evil/evil-respect-input.el" user-emacs-directory))
