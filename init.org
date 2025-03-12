@@ -10,7 +10,7 @@
                 (save-buffer)
                 (evil-normal-state)))
 *** f8
-(global-set-key(kbd "<f8>") '(lambda() (interactive)
+(global-set-key (kbd "<f8>") nil)
 *** c
 **** C-c
 (global-set-key (kbd "C-c l") 'org-store-link)
@@ -2326,9 +2326,9 @@ CLOSED: [2025-02-21 Fri 21:34]
   ("I" (org-brain-headline-to-file)
     "addID2All")
   ("v" (org-brain-visualize "index")
-    "2index")
+    "vis2index.org")
   ("V" (org-brain-entry-at-pt)
-    "visualize-org")
+    "vis2curent.org")
   ("R" (org-brain-rename-file)
     "rename-file")
   ("U" (org-brain-update-id-location)
@@ -2345,6 +2345,9 @@ CLOSED: [2025-02-21 Fri 21:34]
   ;; --------------------------------------
   )
 #+end_src
+
+#+RESULTS:
+: hydra-brain-org-menu/body
 
 ****** emacs-menu
 #+begin_src elisp
@@ -5136,6 +5139,18 @@ CLOSED: [2025-03-03 Пн 06:36]
                         region-text)
                     nil
                     (buffer-name)))))
+
+(define-key evil-visual-state-map (kbd "M-<f8> M-<f7>") '(lambda() (interactive)
+                (setq region-text (buffer-substring (region-beginning) (region-end)))
+                (save-buffer)
+                (evil-normal-state)
+                (compile
+                 (read-string
+                    (concat
+                      "defult(" (buffer-name) "):")
+                    region-text
+                    nil
+                    (buffer-name)))))
 ;; --------------------------------------
 ;; *** --------------------------------------
 ;; ** PROG-MODE-HOOK CUSTOMIZATION
@@ -6098,6 +6113,45 @@ irony-install-server
 ;; ** the END) : 
   )
 #+end_src
+** INI/players.el
+:PROPERTIES:
+:header-args: :tangle no
+:END:
+# :header-args: :tangle INI/integrat/players.el
+
+*** описание
+
+*** used in
+;; (find-file "~/.archemacs/INI/init.el")
+*** src
+**** emms
+#+begin_src elisp
+(use-package emms
+	;; :disabled
+	:defer t
+	:ensure t
+	:config
+		(setq emms-player-list '(emms-player-mpv emms-player-vlc)
+					emms-info-functions '(emms-info-native))
+		(global-set-key (kbd "C-<XF86AudioPlay>") 'emms-pause)
+		(global-set-key (kbd "C-S-<XF86AudioPause>") 'emms)
+		(global-set-key (kbd "C-<XF86AudioPrev>") 'emms-previous)
+		(global-set-key (kbd "C-<XF86AudioNext>") 'emms-next)
+		(global-set-key (kbd "C-<XF86AudioStop>") '(lambda() (interactive)
+				(emms-player-seek 60)))
+		(global-set-key (kbd "C-S-<XF86Eject>") '(lambda() (interactive)
+				(emms-player-seek -60)))
+	)
+	#+end_src
+
+	#+RESULTS:
+	: t
+
+	
+(emms-all)
+
+(find-file-other-frame "~/Dropbox/Resources/Playlists/test.m3u")
+(emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/test.m3u")
 * **Мои Elisp скрипты**
 ** описание
    Персональные расширения и полезные функции.  
