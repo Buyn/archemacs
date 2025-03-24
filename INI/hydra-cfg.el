@@ -190,7 +190,7 @@
   gptel-model: %`gptel-model
   "
     ;; (find-file-other-frame "~/Dropbox/backup/models/gemeni1-5.el")
-    ("g" (load "~/Dropbox/backup/models/gemeni1-5.el") "Gemeni1.5")
+    ("g" (load "~/Dropbox/backup/models/gemeni1-5.el") "Gemeni")
     ;; (find-file-other-frame "~/Dropbox/backup/models/claude.el")
     ("c" (load "~/Dropbox/backup/models/claude.el") "Claude")
     ;; (find-file-other-frame "~/Dropbox/backup/models/openai.el")
@@ -320,9 +320,9 @@
   ("I" (org-brain-headline-to-file)
     "addID2All")
   ("v" (org-brain-visualize "index")
-    "2index")
+    "vis2index.org")
   ("V" (org-brain-entry-at-pt)
-    "visualize-org")
+    "vis2curent.org")
   ("R" (org-brain-rename-file)
     "rename-file")
   ("U" (org-brain-update-id-location)

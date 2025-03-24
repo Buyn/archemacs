@@ -129,7 +129,8 @@
 ;; *** save & recompile
 ;; **** global-set-key <f8> :
 ;;  --------------------------------------
-(global-set-key(kbd "<f8>") '(lambda() (interactive)
+(global-set-key (kbd "<f8>") nil)
+(global-set-key(kbd "<f8> <f8>") '(lambda() (interactive)
         ;; (save-buffer)
         (save-some-buffers 'no-confirm)
         (org-save-all-org-buffers)
@@ -144,7 +145,8 @@
 ;;  --------------------------------------
 ;; **** global-set-key "M-<f8>" :
 ;;  --------------------------------------
-(global-set-key(kbd "M-<f8>") '(lambda() (interactive)
+(global-set-key (kbd "M-<f8>") nil)
+(global-set-key (kbd "M-<f8> M-<f8>") '(lambda() (interactive)
                 (save-buffer)
                 (evil-normal-state)
                 (compile
@@ -153,14 +155,12 @@
                       "defult(" (buffer-name) "):")
                     (buffer-file-name)
                     nil
-                    (buffer-name)
-                    )
-                  )
-                ))
+                    (buffer-name)))))
 ;; --------------------------------------
 ;; **** global-set-key "M-<f8>" :
 ;;  --------------------------------------
-(define-key evil-visual-state-map (kbd "M-<f8>") '(lambda() (interactive)
+(define-key evil-visual-state-map (kbd "M-<f8>") nil)
+(define-key evil-visual-state-map (kbd "M-<f8> M-<f8>") '(lambda() (interactive)
                 (setq region-text (buffer-substring (region-beginning) (region-end)))
                 (save-buffer)
                 (evil-normal-state)
@@ -171,13 +171,21 @@
                     (concat
                         (buffer-file-name)
                         " -p "
-                        region-text
-                        )
+                        region-text)
                     nil
-                    (buffer-name)
-                    )
-                  )
-                ))
+                    (buffer-name)))))
+
+(define-key evil-visual-state-map (kbd "M-<f8> M-<f7>") '(lambda() (interactive)
+                (setq region-text (buffer-substring (region-beginning) (region-end)))
+                (save-buffer)
+                (evil-normal-state)
+                (compile
+                 (read-string
+                    (concat
+                      "defult(" (buffer-name) "):")
+                    region-text
+                    nil
+                    (buffer-name)))))
 ;; --------------------------------------
 ;; *** --------------------------------------
 ;; ** PROG-MODE-HOOK CUSTOMIZATION

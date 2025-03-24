@@ -14,8 +14,15 @@
                 (find-file-other-frame (expand-file-name "ORG/start.org" user-emacs-directory))))
 (global-set-key (kbd "C-<f1> C-<f2>") (lambda () (interactive)
                 (find-file-other-frame (expand-file-name "init.org" user-emacs-directory))))
+(global-set-key (kbd "C-<f1> C-o") (lambda () (interactive)
+                (find-file-other-frame (expand-file-name "init.org" user-emacs-directory))))
+(global-set-key (kbd "C-<f1> C-<f3>") (lambda () (interactive)
+                (find-file-other-frame "~/Dropbox/orgs_code/archlinux/arh_script.org")))
+(global-set-key (kbd "C-<f1> C-s") (lambda () (interactive)
+                (find-file-other-frame "~/Dropbox/orgs_code/archlinux/arh_script.org")))
 (global-set-key (kbd "C-<f1> C-<SPC>") (lambda () (interactive)
                 (hydra-f1-emagus-menu/body)))
+
 
 (global-set-key (kbd "M-<f1>") nil)
 (global-set-key (kbd "M-<f1> M-<f1>") (lambda () (interactive)

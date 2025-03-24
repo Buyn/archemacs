@@ -41,8 +41,12 @@
               (elscreen-get-screen-to-name-alist))))
     (if tab
         (if (= (car tab) (elscreen-get-current-screen))
-            (elscreen-goto 0)
-            (elscreen-goto (car tab)))
+            (progn
+              (elscreen-goto 0)
+              (message "tab 0"))
+            (progn
+              (elscreen-goto (car tab))
+              (message tab-name)))
         (progn
           (elscreen-clone)
           (elscreen-screen-nickname tab-name)

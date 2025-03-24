@@ -40,6 +40,23 @@
 **** org-mode-map
 (define-key org-mode-map
       (kbd "S-M-<return>") 'org-insert-subheading)
+** by mods
+*** emms
+(use-package emms
+"C-<XF86AudioPlay>" emms-pause
+"C-S-<XF86AudioPause>" emms
+
+    (global-set-key (kbd "C-<XF86AudioPrev>") 'emms-previous)
+    (global-set-key (kbd "C-<XF86AudioNext>") 'emms-next)
+
+    (global-set-key (kbd "C-<XF86AudioStop>") '(lambda()        (emms-player-seek 60)))
+
+    (global-set-key (kbd "C-S-<XF86Eject>") '(lambda()        (emms-player-seek -60)))
+*** hydra
+**** ai
+(defhydra hydra-ai-menu (:color blue)
+**** models
+(defhydra hydra-ai-model-menu (:color blue)
 ** mods
 global-set-key
 evil-normal-state-map
@@ -1198,8 +1215,12 @@ CLOSED: [2025-02-11 Tue 16:29]
               (elscreen-get-screen-to-name-alist))))
     (if tab
         (if (= (car tab) (elscreen-get-current-screen))
-            (elscreen-goto 0)
-            (elscreen-goto (car tab)))
+            (progn
+              (elscreen-goto 0)
+              (message "tab 0"))
+            (progn
+              (elscreen-goto (car tab))
+              (message tab-name)))
         (progn
           (elscreen-clone)
           (elscreen-screen-nickname tab-name)
@@ -2190,7 +2211,7 @@ CLOSED: [2025-02-21 Fri 21:34]
   gptel-model: %`gptel-model
   "
     ;; (find-file-other-frame "~/Dropbox/backup/models/gemeni1-5.el")
-    ("g" (load "~/Dropbox/backup/models/gemeni1-5.el") "Gemeni1.5")
+    ("g" (load "~/Dropbox/backup/models/gemeni1-5.el") "Gemeni")
     ;; (find-file-other-frame "~/Dropbox/backup/models/claude.el")
     ("c" (load "~/Dropbox/backup/models/claude.el") "Claude")
     ;; (find-file-other-frame "~/Dropbox/backup/models/openai.el")
@@ -6127,27 +6148,27 @@ irony-install-server
 **** emms
 #+begin_src elisp
 (use-package emms
-	;; :disabled
-	:defer t
-	:ensure t
-	:config
-		(setq emms-player-list '(emms-player-mpv emms-player-vlc)
-					emms-info-functions '(emms-info-native))
-		(global-set-key (kbd "C-<XF86AudioPlay>") 'emms-pause)
-		(global-set-key (kbd "C-S-<XF86AudioPause>") 'emms)
-		(global-set-key (kbd "C-<XF86AudioPrev>") 'emms-previous)
-		(global-set-key (kbd "C-<XF86AudioNext>") 'emms-next)
-		(global-set-key (kbd "C-<XF86AudioStop>") '(lambda() (interactive)
-				(emms-player-seek 60)))
-		(global-set-key (kbd "C-S-<XF86Eject>") '(lambda() (interactive)
-				(emms-player-seek -60)))
-	)
-	#+end_src
+  ;; :disabled
+  :defer t
+  :ensure t
+  :config
+    (setq emms-player-list '(emms-player-mpv emms-player-vlc)
+          emms-info-functions '(emms-info-native))
+    (global-set-key (kbd "C-<XF86AudioPlay>") 'emms-pause)
+    (global-set-key (kbd "C-S-<XF86AudioPause>") 'emms)
+    (global-set-key (kbd "C-<XF86AudioPrev>") 'emms-previous)
+    (global-set-key (kbd "C-<XF86AudioNext>") 'emms-next)
+    (global-set-key (kbd "C-<XF86AudioStop>") '(lambda() (interactive)
+        (emms-player-seek 60)))
+    (global-set-key (kbd "C-S-<XF86Eject>") '(lambda() (interactive)
+        (emms-player-seek -60)))
+  )
+  #+end_src
 
-	#+RESULTS:
-	: t
+  #+RESULTS:
+  : t
 
-	
+  
 (emms-all)
 
 (find-file-other-frame "~/Dropbox/Resources/Playlists/test.m3u")
@@ -6236,7 +6257,6 @@ CLOSED: [2025-02-25 Tue 01:20]
 ;; (load "~/INI/hydra-cfg.el")
 ;; (load "~/ELs/BuYn/reader.el")
  #+end_src
-
 
 * TODO орг файла
 ** add file to tagle evil-respect-input.el
