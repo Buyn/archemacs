@@ -125,9 +125,7 @@
 ;;  (evil-goto-first-line)
 ;;  )
 ;; (add-to-list 'compilation-finish-functions 'my-compilation-finish-function)
-;; ** DEVELOPMENT-KEY CUSTOMIZATION
-;; *** save & recompile
-;; **** global-set-key <f8> :
+
 ;;  --------------------------------------
 (global-set-key (kbd "<f8>") nil)
 (global-set-key(kbd "<f8> <f8>") '(lambda() (interactive)
@@ -143,7 +141,7 @@
 ;; (setq compilation-scroll-output nil)
 ;; (add-to-list 'compilation-finish-functions 'my-compilation-finish-function)
 ;;  --------------------------------------
-;; **** global-set-key "M-<f8>" :
+
 ;;  --------------------------------------
 (global-set-key (kbd "M-<f8>") nil)
 (global-set-key (kbd "M-<f8> M-<f8>") '(lambda() (interactive)
@@ -157,7 +155,7 @@
                     nil
                     (buffer-name)))))
 ;; --------------------------------------
-;; **** global-set-key "M-<f8>" :
+
 ;;  --------------------------------------
 (define-key evil-visual-state-map (kbd "M-<f8>") nil)
 (define-key evil-visual-state-map (kbd "M-<f8> M-<f8>") '(lambda() (interactive)
@@ -188,7 +186,7 @@
                     (buffer-name)))))
 ;; --------------------------------------
 ;; *** --------------------------------------
-;; ** PROG-MODE-HOOK CUSTOMIZATION
+
   (add-hook 'prog-mode-hook '(lambda ()
 ;; *** line-numbers-mode
     ;; (setq display-line-numbers-mode t)

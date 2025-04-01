@@ -4983,6 +4983,7 @@ CLOSED: [2025-03-03 Пн 06:36]
 *** used in
 ;; (find-file "~/.archemacs/INI/init.el")
 *** src
+**** projectile
 #+begin_src elisp
 ;; * DEVELOPMENT-MODs CUSTOMIZATION
 ;; --------------------------------------
@@ -5039,7 +5040,9 @@ CLOSED: [2025-03-03 Пн 06:36]
     ;; build/compile project (s-p c)
     ;; test project (s-p T)
 ))
-
+#+end_src
+**** load els
+#+begin_src elisp
 ;; --------------------------------------
 ;; ** DELIMITERS-MOD CUSTOMIZATION
 ;; (find-file "~/.archemacs/INI/delimiters-cfg.el")
@@ -5111,9 +5114,11 @@ CLOSED: [2025-03-03 Пн 06:36]
 ;;  (evil-goto-first-line)
 ;;  )
 ;; (add-to-list 'compilation-finish-functions 'my-compilation-finish-function)
-;; ** DEVELOPMENT-KEY CUSTOMIZATION
-;; *** save & recompile
-;; **** global-set-key <f8> :
+#+end_src
+**** DEVELOPMENT-KEY CUSTOMIZATION
+***** save & recompile
+****** global-set-key <f8> :
+#+begin_src elisp
 ;;  --------------------------------------
 (global-set-key (kbd "<f8>") nil)
 (global-set-key(kbd "<f8> <f8>") '(lambda() (interactive)
@@ -5129,7 +5134,9 @@ CLOSED: [2025-03-03 Пн 06:36]
 ;; (setq compilation-scroll-output nil)
 ;; (add-to-list 'compilation-finish-functions 'my-compilation-finish-function)
 ;;  --------------------------------------
-;; **** global-set-key "M-<f8>" :
+#+end_src
+****** global-set-key "M-<f8>" :
+#+begin_src elisp
 ;;  --------------------------------------
 (global-set-key (kbd "M-<f8>") nil)
 (global-set-key (kbd "M-<f8> M-<f8>") '(lambda() (interactive)
@@ -5143,7 +5150,9 @@ CLOSED: [2025-03-03 Пн 06:36]
                     nil
                     (buffer-name)))))
 ;; --------------------------------------
-;; **** global-set-key "M-<f8>" :
+#+end_src
+****** evil-visual "M-<f8>" :
+#+begin_src elisp
 ;;  --------------------------------------
 (define-key evil-visual-state-map (kbd "M-<f8>") nil)
 (define-key evil-visual-state-map (kbd "M-<f8> M-<f8>") '(lambda() (interactive)
@@ -5174,7 +5183,9 @@ CLOSED: [2025-03-03 Пн 06:36]
                     (buffer-name)))))
 ;; --------------------------------------
 ;; *** --------------------------------------
-;; ** PROG-MODE-HOOK CUSTOMIZATION
+#+end_src
+**** PROG-MODE-HOOK CUSTOMIZATION
+#+begin_src elisp
   (add-hook 'prog-mode-hook '(lambda ()
 ;; *** line-numbers-mode
     ;; (setq display-line-numbers-mode t)
