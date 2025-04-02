@@ -26,6 +26,7 @@
 (define-key evil-insert-state-map (kbd "C-h") '(lambda() (interactive)
 *** f
 (define-key evil-normal-state-map (kbd "f") 'evil-avy-goto-char-in-line)
+FL timer
 *** g
 **** gTT
     "gTT" 'elscreen-previous
@@ -53,10 +54,12 @@
 
     (global-set-key (kbd "C-S-<XF86Eject>") '(lambda()        (emms-player-seek -60)))
 *** hydra
-**** ai
+**** [[*menus for 00][menus for 00]]
+***** ai
 (defhydra hydra-ai-menu (:color blue)
-**** models
+***** models
 (defhydra hydra-ai-model-menu (:color blue)
+***** [[*dev-menu][dev-menu]]
 ** mods
 global-set-key
 evil-normal-state-map
@@ -5183,6 +5186,19 @@ CLOSED: [2025-03-03 Пн 06:36]
                     (buffer-name)))))
 ;; --------------------------------------
 ;; *** --------------------------------------
+#+end_src
+****** org-mode <f8>
+(define-key org-mode-map (kbd "M-h") 'windmove-left)
+#+begin_src elisp
+;;  --------------------------------------
+(define-key org-mode-map (kbd "<f8>") nil)
+(define-key org-mode-map (kbd "<f8> <f8>")
+      '(lambda() (interactive)
+        (save-excursion
+          (progn
+            (org-babel-goto-named-src-block "auto-tangle-block")
+            (org-babel-execute-src-block)))))
+;; --------------------------------------
 #+end_src
 **** PROG-MODE-HOOK CUSTOMIZATION
 #+begin_src elisp

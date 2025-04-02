@@ -187,6 +187,16 @@
 ;; --------------------------------------
 ;; *** --------------------------------------
 
+;;  --------------------------------------
+(define-key org-mode-map (kbd "<f8>") nil)
+(define-key org-mode-map (kbd "<f8> <f8>")
+      '(lambda() (interactive)
+        (save-excursion
+          (progn
+            (org-babel-goto-named-src-block "auto-tangle-block")
+            (org-babel-execute-src-block)))))
+;; --------------------------------------
+
   (add-hook 'prog-mode-hook '(lambda ()
 ;; *** line-numbers-mode
     ;; (setq display-line-numbers-mode t)
