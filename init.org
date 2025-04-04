@@ -10,20 +10,19 @@
                 (save-buffer)
                 (evil-normal-state)))
 *** f8
+**** [[*DEVELOPMENT-KEY CUSTOMIZATION][DEVELOPMENT-KEY CUSTOMIZATION]]
 (global-set-key (kbd "<f8>") nil)
 *** c
 **** C-c
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
-*** s
-**** C-s
-***** evil-insert-state-map
-(define-key evil-insert-state-map (kbd "C-s") '(lambda() (interactive)
-*** h
-**** C-h
-***** evil-insert-state-map
-(define-key evil-insert-state-map (kbd "C-h") '(lambda() (interactive)
+*** e
+(define-key evil-normal-state-map (kbd "M-e M-f M-f") 'xref-find-definitions)
+
+(define-key evil-normal-state-map (kbd "M-e M-l") 'eval-last-sexp)
+
+(define-key evil-normal-state-map (kbd "M-e M-s M-l") 'send-activ-line-to-eshell-buffer-and-execute)
 *** f
 (define-key evil-normal-state-map (kbd "f") 'evil-avy-goto-char-in-line)
 FL timer
@@ -37,6 +36,14 @@ FL timer
     "gt" nil
     ;; "gtt" 'elscreen-next
     "gtt" 'next-or-make-new-tab
+*** h
+**** C-h
+***** evil-insert-state-map
+(define-key evil-insert-state-map (kbd "C-h") '(lambda() (interactive)
+*** s
+**** C-s
+***** evil-insert-state-map
+(define-key evil-insert-state-map (kbd "C-s") '(lambda() (interactive)
 *** return
 **** org-mode-map
 (define-key org-mode-map
@@ -2349,8 +2356,10 @@ CLOSED: [2025-02-21 Fri 21:34]
     "addID2header")
   ("I" (org-brain-headline-to-file)
     "addID2All")
-  ("v" (org-brain-visualize "index")
+  ("b" (org-brain-visualize "index")
     "vis2index.org")
+  ;; ("v" (org-brain-visualize "index")
+  ;;   "vis2index.org")
   ("V" (org-brain-entry-at-pt)
     "vis2curent.org")
   ("R" (org-brain-rename-file)
@@ -5188,7 +5197,6 @@ CLOSED: [2025-03-03 Пн 06:36]
 ;; *** --------------------------------------
 #+end_src
 ****** org-mode <f8>
-(define-key org-mode-map (kbd "M-h") 'windmove-left)
 #+begin_src elisp
 ;;  --------------------------------------
 (define-key org-mode-map (kbd "<f8>") nil)
@@ -5200,6 +5208,10 @@ CLOSED: [2025-03-03 Пн 06:36]
             (org-babel-execute-src-block)))))
 ;; --------------------------------------
 #+end_src
+***** risoning
+
+(find-file-other-frame "~/Dropbox/Office/Dev/Pytho/reserch/prime/frigens01.org")
+
 **** PROG-MODE-HOOK CUSTOMIZATION
 #+begin_src elisp
   (add-hook 'prog-mode-hook '(lambda ()
