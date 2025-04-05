@@ -25,19 +25,18 @@ https://www.braveclojure.com/basic-emacs/
 
 ** progn:
 #+begin_src emacs-lisp :results output silent
-;; (load (expand-file-name "~/INI/hydra-cfg.el" user-emacs-directory))
+;; (load (expand-file-name "INI/hydra-cfg.el" user-emacs-directory))
+;; (load (expand-file-name "~/.archemacs/INI/hydra-cfg.el" user-emacs-directory))
+
 ;; (load "~/ELs/BuYn/reader.el")
 
 ;; (load "~/INI/babel-cfg.el")
 
 
-(define-key org-mode-map (kbd "M-e M-i") 'org-edit-special)
-(define-key org-src-mode-map (kbd "M-e M-i") 'org-edit-src-exit)
-(define-key evil-visual-state-map (kbd "M-e M-i M-i") 'indent-pp-sexp)
-
 (kill-buffer (current-buffer))
 (evil-quit)
  #+end_src
+
 #+begin_src emacs-lisp :tangle yes
 		(require 'org-roam)
 		(require 'dendroam)
