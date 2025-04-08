@@ -1110,6 +1110,7 @@ CLOSED: [2025-02-11 Tue 16:29]
                 (evil-normal-state)))
 (define-key evil-insert-state-map (kbd "C-s") '(lambda() (interactive)
                 (save-buffer)
+                (untabify (point-min) (point-max))
                 (evil-normal-state)))
 (define-key evil-replace-state-map(kbd "<f2>") '(lambda() (interactive)
                 (save-buffer)
@@ -2360,8 +2361,8 @@ CLOSED: [2025-02-21 Fri 21:34]
     "vis2index.org")
   ;; ("V" (org-brain-visualize (buffer-file-name))
   ;;   "vis2curent.org")
-  ;; ("v" (org-brain-visualize "index")
-  ;;   "vis2index.org")
+  ("v" (org-brain-visualize)
+    "visualize")
   ;; ("B" (org-brain-entry-at-pt)
   ;;   "vis2at-pt")
   ("R" (org-brain-rename-file)
@@ -2424,9 +2425,10 @@ CLOSED: [2025-02-21 Fri 21:34]
               (load (expand-file-name "keymac/mask_win_path.el" user-emacs-directory)))
           (mask_win_path)) "maskSlesh")
 ;; ****** f : 
-    ("f" hydra-emaks-fonts/body "fonts")
+  ("f" hydra-emaks-fonts/body "fonts")
+  ("t" (untabify (point-min) (point-max)) "untabify all")
 ;; ****** E : 
-    ("E" evil-mode "evil mode")
+  ("E" evil-mode "evil mode")
 ;; ****** R : 
   ("R" revert-buffer "revert buffer") 
 ;; ****** W : 
@@ -5208,6 +5210,26 @@ CLOSED: [2025-03-03 Пн 06:36]
           (progn
             (org-babel-goto-named-src-block "auto-tangle-block")
             (org-babel-execute-src-block)))))
+(define-key org-mode-map (kbd "<f8> <f7>")
+      '(lambda() (interactive)
+        (save-excursion
+          (progn
+            (setq org-src-preserve-indentation t)
+            (untabify (point-min) (point-max))
+            ;; (save-buffer)
+            (save-some-buffers 'no-confirm)
+            ;; (universal-argument)
+            ;; (universal-argument)
+            (org-babel-tangle)
+            ;; (save-buffer)
+            ;; (save-some-buffers 'no-confirm)
+            (org-save-all-org-buffers)
+            (evil-normal-state)
+            (let ((curent-buffer (buffer-name)))
+              (select-frame-by-name "*compilation*")
+              (recompile)
+              (select-frame-by-name curent-buffer))
+            (evil-close-fold)))))
 ;; --------------------------------------
 #+end_src
 ***** risoning

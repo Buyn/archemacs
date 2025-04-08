@@ -195,6 +195,26 @@
           (progn
             (org-babel-goto-named-src-block "auto-tangle-block")
             (org-babel-execute-src-block)))))
+(define-key org-mode-map (kbd "<f8> <f7>")
+      '(lambda() (interactive)
+        (save-excursion
+          (progn
+            (setq org-src-preserve-indentation t)
+            (untabify (point-min) (point-max))
+            ;; (save-buffer)
+            (save-some-buffers 'no-confirm)
+            ;; (universal-argument)
+            ;; (universal-argument)
+            (org-babel-tangle)
+            ;; (save-buffer)
+            ;; (save-some-buffers 'no-confirm)
+            (org-save-all-org-buffers)
+            (evil-normal-state)
+            (let ((curent-buffer (buffer-name)))
+              (select-frame-by-name "*compilation*")
+              (recompile)
+              (select-frame-by-name curent-buffer))
+            (evil-close-fold)))))
 ;; --------------------------------------
 
   (add-hook 'prog-mode-hook '(lambda ()

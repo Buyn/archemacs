@@ -323,8 +323,8 @@
     "vis2index.org")
   ;; ("V" (org-brain-visualize (buffer-file-name))
   ;;   "vis2curent.org")
-  ;; ("v" (org-brain-visualize "index")
-  ;;   "vis2index.org")
+  ("v" (org-brain-visualize)
+    "visualize")
   ;; ("B" (org-brain-entry-at-pt)
   ;;   "vis2at-pt")
   ("R" (org-brain-rename-file)
@@ -381,9 +381,10 @@
               (load (expand-file-name "keymac/mask_win_path.el" user-emacs-directory)))
           (mask_win_path)) "maskSlesh")
 ;; ****** f : 
-    ("f" hydra-emaks-fonts/body "fonts")
+  ("f" hydra-emaks-fonts/body "fonts")
+  ("t" (untabify (point-min) (point-max)) "untabify all")
 ;; ****** E : 
-    ("E" evil-mode "evil mode")
+  ("E" evil-mode "evil mode")
 ;; ****** R : 
   ("R" revert-buffer "revert buffer") 
 ;; ****** W : 

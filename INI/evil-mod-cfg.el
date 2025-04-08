@@ -342,6 +342,7 @@
                 (evil-normal-state)))
 (define-key evil-insert-state-map (kbd "C-s") '(lambda() (interactive)
                 (save-buffer)
+                (untabify (point-min) (point-max))
                 (evil-normal-state)))
 (define-key evil-replace-state-map(kbd "<f2>") '(lambda() (interactive)
                 (save-buffer)
