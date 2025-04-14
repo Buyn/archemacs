@@ -1760,13 +1760,13 @@ CLOSED: [2025-02-27 Чт 19:07]
 ;; (define-key evil-normal-state-map "Zj" '(lambda() (interactive)
 ;;          (bury-buffer)))
 ;; *** new Buffer
-(define-key evil-normal-state-map "Zn" '(lambda() (interactive)
-          (evil-buffer-new "*new*")))
-(define-key evil-normal-state-map "ZN" '(lambda() (interactive)
+(define-key evil-normal-state-map "ZNN" '(lambda() (interactive)
       ;; (make-frame-command)
       (switch-to-buffer-other-frame "*scratch*")
       ;; (evil-buffer-new 0 "*new*")))
       (evil-buffer-new "*new*")))
+(define-key evil-normal-state-map "ZNn" '(lambda() (interactive)
+          (evil-buffer-new "*new*")))
 ;; --------------------------------------
 ;; * FULLSCREEN-MOD CUSTOMIZATION;  {{{
 ;; (find-file-other-frame "~/.archemacs/INI/fullscreen-cfg.el")
@@ -5228,8 +5228,7 @@ CLOSED: [2025-03-03 Пн 06:36]
             (let ((curent-buffer (buffer-name)))
               (select-frame-by-name "*compilation*")
               (recompile)
-              (select-frame-by-name curent-buffer))
-            (evil-close-fold)))))
+              (select-frame-by-name curent-buffer))))))
 ;; --------------------------------------
 #+end_src
 ***** risoning

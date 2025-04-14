@@ -327,13 +327,13 @@
 ;; (define-key evil-normal-state-map "Zj" '(lambda() (interactive)
 ;;          (bury-buffer)))
 ;; *** new Buffer
-(define-key evil-normal-state-map "Zn" '(lambda() (interactive)
-          (evil-buffer-new "*new*")))
-(define-key evil-normal-state-map "ZN" '(lambda() (interactive)
+(define-key evil-normal-state-map "ZNN" '(lambda() (interactive)
       ;; (make-frame-command)
       (switch-to-buffer-other-frame "*scratch*")
       ;; (evil-buffer-new 0 "*new*")))
       (evil-buffer-new "*new*")))
+(define-key evil-normal-state-map "ZNn" '(lambda() (interactive)
+          (evil-buffer-new "*new*")))
 ;; --------------------------------------
 ;; * FULLSCREEN-MOD CUSTOMIZATION;  {{{
 ;; (find-file-other-frame "~/.archemacs/INI/fullscreen-cfg.el")

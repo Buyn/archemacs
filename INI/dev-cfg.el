@@ -213,8 +213,7 @@
             (let ((curent-buffer (buffer-name)))
               (select-frame-by-name "*compilation*")
               (recompile)
-              (select-frame-by-name curent-buffer))
-            (evil-close-fold)))))
+              (select-frame-by-name curent-buffer))))))
 ;; --------------------------------------
 
   (add-hook 'prog-mode-hook '(lambda ()
