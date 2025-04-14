@@ -1429,11 +1429,11 @@ CLOSED: [2025-02-27 Чт 19:07]
 
 **** used in
 ;; (find-file "~/.archemacs/INI/init.el")
-**** src
-#+begin_src elisp
-;; * WINDMOVE&FRAMEMOVE SETUP{{{
+**** src INI/frame-control.el
+***** WINDMOVE&FRAMEMOVE SETUP
 ;; --------------------------------------
-;; ** Seting up
+****** Seting up
+#+begin_src elisp
 (require 'cl) ;;used to Fix error if theres an error with above code
 ;; (load "~/.archemacs/ELs/framemove/framemove.el")
 (load (expand-file-name "ELs/framemove/framemove.el" user-emacs-directory))
@@ -1443,8 +1443,10 @@ CLOSED: [2025-02-27 Чт 19:07]
 ;; Common lisp stuff to fix windmove/framemove 
 ;; (when (fboundp 'windmove-default-keybindings)
 ;;   (windmove-default-keybindings))
+#+end_src
 ;; --------------------------------------
-;; ** Remap windmove keys to home keys
+****** Remap windmove keys to home keys
+#+begin_src elisp
 (global-set-key (kbd "M-h") nil)
 (global-set-key (kbd "M-h") 'windmove-left)
 (define-key org-mode-map (kbd "M-h") 'windmove-left)
@@ -1458,11 +1460,25 @@ CLOSED: [2025-02-27 Чт 19:07]
 (global-set-key (kbd "M-k") 'windmove-up)
 (global-set-key (kbd "M-l") nil)
 (global-set-key (kbd "M-l") 'windmove-right)
+#+end_src
 ;; --------------------------------------
 ;; --------------------------------------
-;; * FRAME SIZE&POSITION CONTROL
-;; ** FRAME POSITION LIST
-;; *** MONITOR 1 FRAME POSITION LIST
+***** FRAME SIZE&POSITION CONTROL
+****** FRAME POSITION LIST
+******* MONITOR 0 FRAME LEFT POSITION LIST
+#+begin_src emacs-lisp
+(setq buyn-monitr-0-position-7 '(0     337))
+(setq buyn-monitr-0-position-8 '(670   337))
+(setq buyn-monitr-0-position-9 '(660   337))
+(setq buyn-monitr-0-position-4 '(0     600))
+(setq buyn-monitr-0-position-5 '(670   600))
+(setq buyn-monitr-0-position-6 '(660   600))
+(setq buyn-monitr-0-position-1 '(0     910))
+(setq buyn-monitr-0-position-2 '(670   910))
+(setq buyn-monitr-0-position-3 '(660   910))
+#+end_src
+******* MONITOR 1 FRAME POSITION LIST
+#+begin_src elisp
 (setq buyn-monitr-1-position-7 '(0     0))
 (setq buyn-monitr-1-position-8 '(670   0))
 (setq buyn-monitr-1-position-9 '(1295  0))
@@ -1472,7 +1488,9 @@ CLOSED: [2025-02-27 Чт 19:07]
 (setq buyn-monitr-1-position-1 '(0     620))
 (setq buyn-monitr-1-position-2 '(670   620))
 (setq buyn-monitr-1-position-3 '(1295  620))
-;; *** MONITOR 2 FRAME POSITION LIST
+#+end_src
+******* MONITOR 2 FRAME POSITION LIST
+#+begin_src elisp
 (setq buyn-monitr-2-position-7 '(1920  0))
 (setq buyn-monitr-2-position-8 '(2115  0))
 (setq buyn-monitr-2-position-9 '(2310  0))
@@ -1482,8 +1500,10 @@ CLOSED: [2025-02-27 Чт 19:07]
 (setq buyn-monitr-2-position-1 '(1920  752))
 (setq buyn-monitr-2-position-2 '(2115  752))
 (setq buyn-monitr-2-position-3 '(2310  752))
-;; ** FRAME POSITION CONTROL KEYS
-;; *** MONITOR 0
+#+end_src
+****** FRAME POSITION CONTROL KEYS
+******* MONITOR 0
+#+begin_src elisp
 (global-set-key (kbd "M-S-<kp-home>") '(lambda() (interactive)
       (set-frame-position (selected-frame)
                           (car buyn-monitr-0-position-7)
@@ -1520,7 +1540,9 @@ CLOSED: [2025-02-27 Чт 19:07]
       (set-frame-position (selected-frame)
                           (car buyn-monitr-0-position-3)
                           (cadr buyn-monitr-0-position-3))))
-;; *** MONITOR 1
+#+end_src
+******* MONITOR 1
+#+begin_src elisp
 (global-set-key (kbd "M-<kp-7>") '(lambda() (interactive)
       (set-frame-position (selected-frame)
                           (car buyn-monitr-1-position-7)
@@ -1557,7 +1579,9 @@ CLOSED: [2025-02-27 Чт 19:07]
       (set-frame-position (selected-frame)
                           (car buyn-monitr-1-position-3)
                           (cadr buyn-monitr-1-position-3))))
-;; *** MONITOR 2
+#+end_src
+******* MONITOR 2
+#+begin_src elisp
 (global-set-key (kbd "C-M-<kp-7>") '(lambda() (interactive)
       (set-frame-position (selected-frame)
                           (car buyn-monitr-2-position-7)
@@ -1594,14 +1618,18 @@ CLOSED: [2025-02-27 Чт 19:07]
       (set-frame-position (selected-frame)
                           (car buyn-monitr-2-position-3)
                           (cadr buyn-monitr-2-position-3))))
-;; ** FRAME SIZE CONTROL KEYS
+#+end_src
+****** FRAME SIZE CONTROL KEYS
+#+begin_src elisp
 (global-set-key (kbd "M-<kp-subtract>") '(lambda() (interactive)
         (set-frame-size (selected-frame) 75 25)))
 (global-set-key (kbd "C-M-<kp-subtract>") '(lambda() (interactive)
         (set-frame-size (selected-frame) 75 35)))
+#+end_src
 ;; --------------------------------------
-;; * FRAMES&BUFFER OPEN\CLOSE\SWITCH   {{{
-;; ** Open new frames 
+***** FRAMES&BUFFER OPEN\CLOSE\SWITCH
+****** Open new frames
+#+begin_src elisp
 (global-set-key (kbd "M-g M-t M-t") '(lambda() (interactive)
       (switch-to-buffer-other-frame "*scratch*")))
 (global-set-key (kbd "M-g M-t M-T") 'make-frame-command)
@@ -1619,18 +1647,22 @@ CLOSED: [2025-02-27 Чт 19:07]
       (let (buffer-name-to-close (buffer-name))
       (evil-quit)
       (switch-to-buffer-other-frame buffer-name-to-close))))
+#+end_src
 ;; --------------------------------------
-;; ** Help in New Frame   ***  {{{
+****** Help in New Frame
 ;; (define-key evil-normal-state-map (kbd " M-g M-t M-j") 'other-frame)
 ;; (define-key evil-normal-state-map (kbd " M-g M-t M-k") 'previous-multiframe-window)
 ;; ;;(define-key evil-normal-state-map "gth" 'other-frame -2)
 ;;(define-key evil-normal-state-map "gtl" 'other-frame 2)
+#+begin_src elisp
 (global-set-key (kbd " M-g M-t M-h M-l") 'find-function-on-key-other-frame)
 (global-set-key (kbd " M-g M-t M-h M-k") 'find-function-on-key-other-frame)
 (global-set-key (kbd " M-g M-t M-h M-f") 'describe-function)
 (global-set-key (kbd " M-g M-t M-h M-a") 'xref-find-definitions-other-frame)
+#+end_src
 ;; --------------------------------------
-;; ** FRAMS CLOSE  {{{
+****** FRAMS CLOSE
+#+begin_src elisp
 (define-key evil-normal-state-map "ZD" '(lambda() (interactive)
           (kill-buffer (current-buffer))))
 (define-key evil-normal-state-map "ZX" '(lambda() (interactive)
@@ -1653,8 +1685,9 @@ CLOSED: [2025-02-27 Чт 19:07]
           (save-buffer)
           (kill-buffer (current-buffer))
           ))
-
-;; ** Split in new window {{{
+#+end_src
+****** Split in new window
+#+begin_src elisp
 (define-key evil-normal-state-map "ZHH" '(lambda() (interactive)
           (evil-window-vsplit)
           (ivy-switch-buffer)))
@@ -1683,11 +1716,15 @@ CLOSED: [2025-02-27 Чт 19:07]
             (windmove-down)
             (ivy-switch-buffer)))
 (define-key evil-normal-state-map (kbd "Z S-<SPC> S-<SPC>") 'delete-other-windows)
-
-;; ** Buffer control
+#+end_src
+****** Buffer control
+******* switch-buffer ZI
+#+begin_src elisp
 (define-key evil-normal-state-map "ZI" '(lambda() (interactive)
           (ivy-switch-buffer)))
-;; *** ranger Buffer control
+#+end_src
+******* ranger Buffer control
+#+begin_src elisp
 (define-key evil-normal-state-map "ZR" nil)
 (define-key evil-normal-state-map "ZRR" 'ranger)
 (define-key evil-visual-state-map "ZRR" '(lambda() (interactive)
@@ -1724,7 +1761,9 @@ CLOSED: [2025-02-27 Чт 19:07]
             '(lambda() (interactive)
               (switch-to-buffer-other-frame "*scratch*")
               (ranger "~/Documents/")))
-;; *** magit Buffer control
+#+end_src
+******* magit Buffer control
+#+begin_src elisp
 (define-key evil-normal-state-map "ZMm" '(lambda() (interactive)
                                            (if
                                                (boundp 'buyn-magit-buff-name)
@@ -1744,38 +1783,47 @@ CLOSED: [2025-02-27 Чт 19:07]
                                            (magit-status user-emacs-directory)))
 (define-key evil-normal-state-map "ZMDS" '(lambda() (interactive)
                                            (buyn-shell-start "emacs --debug-init")))
+#+end_src
 ;; (define-key evil-normal-state-map "Zh" '(lambda() (interactive)
 ;;          ;; (previous-buffer)))
 ;;          (evil-prev-buffer)))
 ;; (define-key evil-normal-state-map "Zl" '(lambda() (interactive)
 ;;          (evil-next-buffer)))
-;; *** find-file Buffer control
+******* find-file Buffer control
+#+begin_src elisp
 (define-key evil-normal-state-map "ZFF" 'find-file-other-frame)
 (define-key evil-visual-state-map "ZFF" '(lambda() (interactive)
           (find-file-other-frame (buffer-substring (region-beginning) (region-end)))))
 (define-key evil-normal-state-map "ZFI" '(lambda() (interactive)
           (find-file-other-frame (expand-file-name "INI/frame-control.el" user-emacs-directory))))
+#+end_src
 ;; (define-key evil-normal-state-map "Zk" '(lambda() (interactive)
 ;;          (unbury-buffer)))
 ;; (define-key evil-normal-state-map "Zj" '(lambda() (interactive)
 ;;          (bury-buffer)))
-;; *** new Buffer
-(define-key evil-normal-state-map "ZNN" '(lambda() (interactive)
+******* new Buffer
       ;; (make-frame-command)
-      (switch-to-buffer-other-frame "*scratch*")
       ;; (evil-buffer-new 0 "*new*")))
+#+begin_src elisp
+(define-key evil-normal-state-map "ZNN" '(lambda() (interactive)
+      (switch-to-buffer-other-frame "*scratch*")
       (evil-buffer-new "*new*")))
 (define-key evil-normal-state-map "ZNn" '(lambda() (interactive)
           (evil-buffer-new "*new*")))
+#+end_src
 ;; --------------------------------------
-;; * FULLSCREEN-MOD CUSTOMIZATION;  {{{
-;; (find-file-other-frame "~/.archemacs/INI/fullscreen-cfg.el")
+***** FULLSCREEN-MOD CUSTOMIZATION load
 ;; (load "~/.archemacs/INI/fullscreen-cfg.el")
+[[*INI/fullscreen-cfg.el][INI/fullscreen-cfg.el]]
+#+begin_src elisp
+;; (find-file-other-frame "~/.archemacs/INI/fullscreen-cfg.el")
 (load (expand-file-name "INI/fullscreen-cfg.el" user-emacs-directory))
+#+end_src
 ;; --------------------------------------
 ; }}}
 ;; --------------------------------------
-;; * FRAMES-FUN CUSTOMIZATION  
+***** FRAMES-FUN CUSTOMIZATION
+#+begin_src elisp
 (defun buyn-get-frame-by-name (fname)
   "If there is a frame named FNAME, return it, else nil."
   (require 'dash) ; For `-some'
@@ -1783,13 +1831,12 @@ CLOSED: [2025-02-27 Чт 19:07]
            (when (equal fname (frame-parameter frame 'name))
              frame))
          (frame-list)))
+#+end_src
 ;; --------------------------------------
 ; }}}
 ;; --------------------------------------
-#+end_src
-
-
-;; * NOT USED;  {{{
+***** CANCELED NOT USED;  {{{
+CLOSED: [2025-04-14 Mon 09:51]
 ;; (global-set-key (kbd "<kp-subtract>") 'xah-close-current-buffer)
 ;; (global-set-key (kbd "<kp-divide>") 'xah-previous-user-buffer)
 ;; (global-set-key (kbd "<kp-multiply>") 'xah-next-user-buffer)
@@ -1806,6 +1853,9 @@ CLOSED: [2025-02-27 Чт 19:07]
 ;; (find-file "~/.archemacs/INI/frame-control.el")
 **** used in
 ;; (find-file "~/.archemacs/INI/init.el")
+;; (find-file-other-frame "~/.archemacs/INI/fullscreen-cfg.el")
+"INI/fullscreen-cfg.el"
+[[*FULLSCREEN-MOD CUSTOMIZATION load][FULLSCREEN-MOD CUSTOMIZATION load]]
 **** src
 #+begin_src elisp
 ;; * FULLSCREEN-MOD CUSTOMIZATION
