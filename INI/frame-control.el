@@ -52,6 +52,41 @@
 (setq buyn-monitr-2-position-2 '(2115  752))
 (setq buyn-monitr-2-position-3 '(2310  752))
 
+(setq buyn-frame-position-list '(:left [
+                                          (:x 0   :y 910)
+                                          (:x 670 :y 910)
+                                          (:x 660 :y 910)
+                                          (:x 0   :y 600)
+                                          (:x 670 :y 600)
+                                          (:x 660 :y 600)
+                                          (:x 0   :y 337)
+                                          (:x 670 :y 337)
+                                          (:x 660 :y 337)
+                                            ]
+
+                                 :center [
+                                          (:x 0    :y 0)
+                                          (:x 670  :y 0)
+                                          (:x 1295 :y 0)
+                                          (:x 0    :y 360)
+                                          (:x 670  :y 360)
+                                          (:x 1295 :y 360)
+                                          (:x 0    :y 620)
+                                          (:x 670  :y 620)
+                                          (:x 1295 :y 620)
+                                            ]
+                                 :right [
+                                          (:x 1920 :y 0)
+                                          (:x 2115 :y 0)
+                                          (:x 2310 :y 0)
+                                          (:x 1920 :y 412)
+                                          (:x 2115 :y 412)
+                                          (:x 2310 :y 412)
+                                          (:x 1920 :y 752)
+                                          (:x 2115 :y 752)
+                                          (:x 2310 :y 752)
+                                            ]))
+
 (global-set-key (kbd "M-S-<kp-home>") '(lambda() (interactive)
       (set-frame-position (selected-frame)
                           (car buyn-monitr-0-position-7)
@@ -249,9 +284,11 @@
 (define-key evil-normal-state-map "ZR" nil)
 (define-key evil-normal-state-map "ZRR" 'ranger)
 (define-key evil-visual-state-map "ZRR" '(lambda() (interactive)
-          (switch-to-buffer-other-frame "*scratch*")
-          (message (buffer-substring (region-beginning) (region-end)))
-          (ranger (buffer-substring (region-beginning) (region-end)))))
+          (let
+            ((file-name (buffer-substring (region-beginning) (region-end))))
+            (switch-to-buffer-other-frame "*scratch*")
+            (ranger file-name))))
+
 (define-key evil-normal-state-map "ZRH"
             '(lambda() (interactive)
               (switch-to-buffer-other-frame "*scratch*")
@@ -325,3 +362,14 @@
            (when (equal fname (frame-parameter frame 'name))
              frame))
          (frame-list)))
+
+(defun move-frame-by-name (fname monitor position)
+  "Move an open frame to a new position, by the name of his title"
+  (let ((fobject (buyn-get-frame-by-name fname))
+        (pos (elt (plist-get buyn-frame-position-list monitor) (- position 1))))
+      (let ((x (plist-get pos :x))
+            (y (plist-get pos :y)))
+        (set-frame-size fobject 75 25)
+        ;; (format "%d %d" x y)
+        (set-frame-position fobject x y)
+        )))

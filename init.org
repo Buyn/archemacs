@@ -1507,39 +1507,39 @@ CLOSED: [2025-02-27 Чт 19:07]
 ****** FRAME POSITION PLIST
 #+begin_src emacs-lisp
 (setq buyn-frame-position-list '(:left [
-																				  (:x 0   :y 910)
-																				  (:x 670 :y 910)
-																				  (:x 660 :y 910)
-																				  (:x 0   :y 600)
-																				  (:x 670 :y 600)
-																				  (:x 660 :y 600)
-																				  (:x 0   :y 337)
-																				  (:x 670 :y 337)
-																				  (:x 660 :y 337)
-																						]
+                                          (:x 0   :y 910)
+                                          (:x 670 :y 910)
+                                          (:x 660 :y 910)
+                                          (:x 0   :y 600)
+                                          (:x 670 :y 600)
+                                          (:x 660 :y 600)
+                                          (:x 0   :y 337)
+                                          (:x 670 :y 337)
+                                          (:x 660 :y 337)
+                                            ]
 
-																 :center [
-																				  (:x 0    :y 0)
-																				  (:x 670  :y 0)
-																				  (:x 1295 :y 0)
-																				  (:x 0    :y 360)
-																				  (:x 670  :y 360)
-																				  (:x 1295 :y 360)
-																				  (:x 0    :y 620)
-																				  (:x 670  :y 620)
-																				  (:x 1295 :y 620)
-																						]
-																 :right [
-																				  (:x 1920 :y 0)
-																				  (:x 2115 :y 0)
-																				  (:x 2310 :y 0)
-																				  (:x 1920 :y 412)
-																				  (:x 2115 :y 412)
-																				  (:x 2310 :y 412)
-																				  (:x 1920 :y 752)
-																				  (:x 2115 :y 752)
-																				  (:x 2310 :y 752)
-																						]))
+                                 :center [
+                                          (:x 0    :y 0)
+                                          (:x 670  :y 0)
+                                          (:x 1295 :y 0)
+                                          (:x 0    :y 360)
+                                          (:x 670  :y 360)
+                                          (:x 1295 :y 360)
+                                          (:x 0    :y 620)
+                                          (:x 670  :y 620)
+                                          (:x 1295 :y 620)
+                                            ]
+                                 :right [
+                                          (:x 1920 :y 0)
+                                          (:x 2115 :y 0)
+                                          (:x 2310 :y 0)
+                                          (:x 1920 :y 412)
+                                          (:x 2115 :y 412)
+                                          (:x 2310 :y 412)
+                                          (:x 1920 :y 752)
+                                          (:x 2115 :y 752)
+                                          (:x 2310 :y 752)
+                                            ]))
 #+end_src
 
 #+RESULTS:
@@ -1772,10 +1772,10 @@ CLOSED: [2025-02-27 Чт 19:07]
 (define-key evil-normal-state-map "ZR" nil)
 (define-key evil-normal-state-map "ZRR" 'ranger)
 (define-key evil-visual-state-map "ZRR" '(lambda() (interactive)
-					(let
-						((file-name (buffer-substring (region-beginning) (region-end))))
-						(switch-to-buffer-other-frame "*scratch*")
-						(ranger file-name))))
+          (let
+            ((file-name (buffer-substring (region-beginning) (region-end))))
+            (switch-to-buffer-other-frame "*scratch*")
+            (ranger file-name))))
 
 (define-key evil-normal-state-map "ZRH"
             '(lambda() (interactive)
@@ -1885,15 +1885,15 @@ CLOSED: [2025-02-27 Чт 19:07]
 ****** buyn-move-frame-by-name
 #+begin_src emacs-lisp
 (defun move-frame-by-name (fname monitor position)
-	"Move an open frame to a new position, by the name of his title"
-	(let ((fobject (buyn-get-frame-by-name fname))
-				(pos (elt (plist-get buyn-frame-position-list monitor) (- position 1))))
-			(let ((x (plist-get pos :x))
-						(y (plist-get pos :y)))
-				(set-frame-size fobject 75 25)
-				;; (format "%d %d" x y)
-				(set-frame-position fobject x y)
-				)))
+  "Move an open frame to a new position, by the name of his title"
+  (let ((fobject (buyn-get-frame-by-name fname))
+        (pos (elt (plist-get buyn-frame-position-list monitor) (- position 1))))
+      (let ((x (plist-get pos :x))
+            (y (plist-get pos :y)))
+        (set-frame-size fobject 75 25)
+        ;; (format "%d %d" x y)
+        (set-frame-position fobject x y)
+        )))
   
 #+end_src
 
@@ -1903,11 +1903,11 @@ CLOSED: [2025-02-27 Чт 19:07]
 ****** buyn-find-file-in-frame-and-move
 #+begin_src emacs-lisp :tangle no
 (defun buyn-find-file-in-frame-and-move (filename monitor position)
-	"Move and open frame to a new position, for file name"
-	(find-file-other-frame filename)
-	(run-at-time "1 sec" nil '(lambda ()
-		(let ((fname (file-name-nondirectory filename)))
-				(move-frame-by-name fname monitor position)))))
+  "Move and open frame to a new position, for file name"
+  (find-file-other-frame filename)
+  (run-at-time "1 sec" nil '(lambda ()
+    (let ((fname (file-name-nondirectory filename)))
+        (move-frame-by-name fname monitor position)))))
 #+end_src
 
 #+RESULTS:
