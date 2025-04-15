@@ -8469,7 +8469,7 @@ Emacs may ask you if you want to load the patterns if it finds any. If you find 
  bindings are therefore not cleared by changing major modes.  Permanent
  locals are appropriate for data pertaining to where the file came from
  or how to save it, rather than with how to edit the contents.
-*** String 
+*** String
 **** Conversion
 ***** 4.6 Conversion of Characters and Strings
 ****** section describes : 
@@ -8859,7 +8859,157 @@ To replace only the first match (if any), make REGEXP match up to \'
 and replace a sub-expression, e.g.
   (replace-regexp-in-string "\\(foo\\).*\\'" "bar" " foo foo" nil nil 1)
     => " bar foo"
+**** path values
+***** Elisp: File Path Functions
+****** Get Current Dir
 
+default-directory
+ A [[http://xahlee.info/emacs/emacs/elisp_buffer_local_variable.html][Buffer Local Variable]]. Value is typically the dir path of the
+ current buffer. 
+
+ 💡 TIP: You should not modify this variable. 
+****** Get File Path Parts
+
+file-name-directory
+ return the dir part. 
+(file-name-directory "~/xyz.txt")
+;; "~/"
+file-name-nondirectory
+ return the file name part san dir. 
+(file-name-nondirectory "~/xyz.txt")
+;; "xyz.txt"
+file-name-extension
+ (file-name-extension FILENAME &optional PERIOD) 
+
+ return the file name extension. 
+
+(file-name-extension "~/cat.jpg")
+;; "jpg"
+file-name-sans-extension
+ remove the file name extension. 
+(file-name-sans-extension "~/cat.tar.gz")
+;; "~/cat.tar"
+
+,* file-name-sans-versions
+,* file-name-base
+,* file-name-split
+****** Relative Path, Full Path
+
+file-relative-name
+ (file-relative-name FILENAME &optional DIRECTORY) 
+
+ return relative path, with respect to default-directory or
+ DIRECTORY 
+
+(file-relative-name "~/b/cat.jpg" "~/")
+;; "b/cat.jpg"
+expand-file-name
+ (expand-file-name NAME &optional DEFAULT-DIRECTORY) 
+
+ return the full path, from relative path. 
+
+(expand-file-name "test.el")
+;; sample output
+;; "c:/Users/xah/.emacs.d/temp/test.el"
+file-truename
+ (file-truename FILENAME) 
+
+ Return the true name, by chasing symbolic links, also some
+ canonize the name. Result is full path. 
+
+ * Relative path is resolved to full path.
+ * Symbolic links are chased.
+ * On Microsoft Windows, it'll also lowercase the drive letter.
+ * Backslash is changed to slash.
+
+;; file-truename examples
+
+;; on windows, capital driver letter is lowercased
+(file-truename "C:/Users/a/b.txt")
+;; "c:/Users/a/b.txt"
+
+;; file existance is not changed
+
+;; on windows, backslash becomes slash
+(file-truename "C:\\Users\\a\\b.txt")
+;; "c:/Users/a/b.txt"
+
+;; relative path are expanded with respect to value of default-directory
+(file-truename "b.txt")
+;; "c:/Users/xah/.emacs.d/temp/c.txt"
+****** Join File Paths
+
+file-name-with-extension
+ (file-name-with-extension FILENAME EXTENSION) 
+
+ join a file name with extension. 
+
+(file-name-with-extension "ff" "jpg")
+;; "ff.jpg"
+
+(file-name-with-extension "ff" ".jpg")
+;; "ff.jpg"
+file-name-concat
+ (file-name-concat DIRECTORY &rest COMPONENTS) 
+
+ join file paths, and making sure there is one and only one slash
+ between parts. 
+
+(file-name-concat "~/a")
+;; "~/a"
+
+(file-name-concat "~/a" "b")
+;; "~/a/b"
+
+(file-name-concat "~/a/" "b")
+;; "~/a/b"
+
+;; the second arg should not start with slash
+(file-name-concat "~/a/" "/b")
+;; "~/a//b"
+****** Directory Path
+
+directory-name-p
+ return true if it ends in a slash. 
+(directory-name-p "test.el")
+file-name-as-directory
+ basically add a slash to the end, if none already. In emacs lisp,
+ dir path should end in a slash. 
+(file-name-as-directory "~/.emacs.d/temp")
+;; "~/.emacs.d/temp/"
+****** Misc
+
+,* file-name-absolute-p
+
+,* file-name-parent-directory
+
+substitute-in-file-name
+ Substitute environment variables, such as $HOME 
+****** Others
+
+,* Macro: file-name-quote
+,* Macro: file-name-unquote
+,* Macro: file-name-quoted-p
+****** Reference
+
+,* [[http://xahlee.info/emacs/emacs_manual/elisp/File-Names.html][File Names (ELISP Manual)]]
+,* [[http://xahlee.info/emacs/emacs_manual/elisp/Information-about-Files.html][Information about Files (ELISP Manual)]]
+
+Emacs Lisp, File, Buffer
+
+,* [[http://xahlee.info/emacs/emacs/elisp_buffer_file_functions.html][Elisp: Buffer Functions]]
+,* [[http://xahlee.info/emacs/emacs/elisp_read_file.html][Elisp: Read File]]
+,* [[http://xahlee.info/emacs/emacs/elisp_read_file_content.html][Elisp: Read File Content as String or Lines]]
+,* [[http://xahlee.info/emacs/emacs/elisp_write_file.html][Elisp: Write File]]
+,* [[http://xahlee.info/emacs/emacs/elisp_open_read_write_file.html][Elisp: Open File, Read, Possibly Write]]
+,* [[http://xahlee.info/emacs/emacs/elisp_file_name_dir_name.html][Elisp: File and Directory Functions]]
+,* [[http://xahlee.info/emacs/emacs/elisp_file_info.html][Elisp: Get File Info]]
+,* [[http://xahlee.info/emacs/emacs/elisp_file_path_f.html][Elisp: File Path Functions]]
+,* [[http://xahlee.info/emacs/emacs/elisp_traverse_dir.html][Elisp: Walk Directory, List Files]]
+,* [[http://xahlee.info/emacs/emacs/elisp_walk_dir_depth.html][Elisp: Walk Directory by Depth 💠]]
+,* [[http://xahlee.info/emacs/emacs/elisp_dired_marked_files.html][Elisp: Get Dired Marked Files]]
+
+,* [[http://xahlee.info/emacs/emacs_search.html][Search 🔍]]
 
 *** Lisp Symbol
 **** Xah Lee. : 

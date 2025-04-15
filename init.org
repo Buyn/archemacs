@@ -44,6 +44,9 @@ FL timer
 **** C-s
 ***** evil-insert-state-map
 (define-key evil-insert-state-map (kbd "C-s") '(lambda() (interactive)
+*** z
+(define-key evil-normal-state-map "ZO" 'switch-to-buffer-other-frame)
+(define-key evil-normal-state-map "ZI" '(lambda() (interactive)
 *** return
 **** org-mode-map
 (define-key org-mode-map
@@ -1501,6 +1504,47 @@ CLOSED: [2025-02-27 Чт 19:07]
 (setq buyn-monitr-2-position-2 '(2115  752))
 (setq buyn-monitr-2-position-3 '(2310  752))
 #+end_src
+****** FRAME POSITION PLIST
+#+begin_src emacs-lisp
+(setq buyn-frame-position-list '(:left [
+																				  (:x 0   :y 910)
+																				  (:x 670 :y 910)
+																				  (:x 660 :y 910)
+																				  (:x 0   :y 600)
+																				  (:x 670 :y 600)
+																				  (:x 660 :y 600)
+																				  (:x 0   :y 337)
+																				  (:x 670 :y 337)
+																				  (:x 660 :y 337)
+																						]
+
+																 :center [
+																				  (:x 0    :y 0)
+																				  (:x 670  :y 0)
+																				  (:x 1295 :y 0)
+																				  (:x 0    :y 360)
+																				  (:x 670  :y 360)
+																				  (:x 1295 :y 360)
+																				  (:x 0    :y 620)
+																				  (:x 670  :y 620)
+																				  (:x 1295 :y 620)
+																						]
+																 :right [
+																				  (:x 1920 :y 0)
+																				  (:x 2115 :y 0)
+																				  (:x 2310 :y 0)
+																				  (:x 1920 :y 412)
+																				  (:x 2115 :y 412)
+																				  (:x 2310 :y 412)
+																				  (:x 1920 :y 752)
+																				  (:x 2115 :y 752)
+																				  (:x 2310 :y 752)
+																						]))
+#+end_src
+
+#+RESULTS:
+| :left | [(:x 0 :y 910) (:x 670 :y 910) (:x 660 :y 910) (:x 0 :y 600) (:x 670 :y 600) (:x 660 :y 600) (:x 0 :y 337) (:x 670 :y 337) (:x 660 :y 337)] | :center | [(:x 0 :y 0) (:x 670 :y 0) (:x 1295 :y 0) (:x 0 :y 360) (:x 670 :y 360) (:x 1295 :y 360) (:x 0 :y 620) (:x 670 :y 620) (:x 1295 :y 620)] | :right | [(:x 1920 :y 0) (:x 2115 :y 0) (:x 2310 :y 0) (:x 1920 :y 412) (:x 2115 :y 412) (:x 2310 :y 412) (:x 1920 :y 752) (:x 2115 :y 752) (:x 2310 :y 752)] |
+
 ****** FRAME POSITION CONTROL KEYS
 ******* MONITOR 0
 #+begin_src elisp
@@ -1728,9 +1772,11 @@ CLOSED: [2025-02-27 Чт 19:07]
 (define-key evil-normal-state-map "ZR" nil)
 (define-key evil-normal-state-map "ZRR" 'ranger)
 (define-key evil-visual-state-map "ZRR" '(lambda() (interactive)
-          (switch-to-buffer-other-frame "*scratch*")
-          (message (buffer-substring (region-beginning) (region-end)))
-          (ranger (buffer-substring (region-beginning) (region-end)))))
+					(let
+						((file-name (buffer-substring (region-beginning) (region-end))))
+						(switch-to-buffer-other-frame "*scratch*")
+						(ranger file-name))))
+
 (define-key evil-normal-state-map "ZRH"
             '(lambda() (interactive)
               (switch-to-buffer-other-frame "*scratch*")
@@ -1823,6 +1869,7 @@ CLOSED: [2025-02-27 Чт 19:07]
 ; }}}
 ;; --------------------------------------
 ***** FRAMES-FUN CUSTOMIZATION
+****** buyn-get-frame-by-name
 #+begin_src elisp
 (defun buyn-get-frame-by-name (fname)
   "If there is a frame named FNAME, return it, else nil."
@@ -1835,6 +1882,37 @@ CLOSED: [2025-02-27 Чт 19:07]
 ;; --------------------------------------
 ; }}}
 ;; --------------------------------------
+****** buyn-move-frame-by-name
+#+begin_src emacs-lisp
+(defun move-frame-by-name (fname monitor position)
+	"Move an open frame to a new position, by the name of his title"
+	(let ((fobject (buyn-get-frame-by-name fname))
+				(pos (elt (plist-get buyn-frame-position-list monitor) (- position 1))))
+			(let ((x (plist-get pos :x))
+						(y (plist-get pos :y)))
+				(set-frame-size fobject 75 25)
+				;; (format "%d %d" x y)
+				(set-frame-position fobject x y)
+				)))
+  
+#+end_src
+
+#+RESULTS:
+: move-frame-by-name
+
+****** buyn-find-file-in-frame-and-move
+#+begin_src emacs-lisp :tangle no
+(defun buyn-find-file-in-frame-and-move (filename monitor position)
+	"Move and open frame to a new position, for file name"
+	(find-file-other-frame filename)
+	(run-at-time "1 sec" nil '(lambda ()
+		(let ((fname (file-name-nondirectory filename)))
+				(move-frame-by-name fname monitor position)))))
+#+end_src
+
+#+RESULTS:
+: buyn-find-file-in-frame-and-move
+
 ***** CANCELED NOT USED;  {{{
 CLOSED: [2025-04-14 Mon 09:51]
 ;; (global-set-key (kbd "<kp-subtract>") 'xah-close-current-buffer)
@@ -1856,7 +1934,7 @@ CLOSED: [2025-04-14 Mon 09:51]
 ;; (find-file-other-frame "~/.archemacs/INI/fullscreen-cfg.el")
 "INI/fullscreen-cfg.el"
 [[*FULLSCREEN-MOD CUSTOMIZATION load][FULLSCREEN-MOD CUSTOMIZATION load]]
-**** src
+**** src INI/fullscreen-cfg.el
 #+begin_src elisp
 ;; * FULLSCREEN-MOD CUSTOMIZATION
 ;; --------------------------------------
@@ -6296,6 +6374,9 @@ irony-install-server
   (find-file-other-frame "~/ELs/BuYn/ai-dungon.el")
   (find-file-other-frame "~/ELs/tts/tts-editor/tts-editor.el")
   (find-file-other-frame "~/ELs/BuYn/tts.el")
+** PC scripts
+(find-file-other-frame "~/.emacs.d/ArchSRV.el")
+(load "~/.emacs.d/ArchSRV.el")
 * **Архив и Deprecated конфиги**
 ** описание
     Всё, что уже не используется, но содержит полезные идеи.
