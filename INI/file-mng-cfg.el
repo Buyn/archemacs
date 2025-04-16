@@ -11,6 +11,7 @@
               ("g g" . ranger-goto-top)
               ("G G" . ranger-goto-bottom)
               ("Z F F" . find-file-other-frame)
+              ("C-S-F" . toggle-frame-maximized)
               ("Z D D" . mkdir)
               ("Z F I" . (lambda() (interactive)
                            (find-file-other-frame

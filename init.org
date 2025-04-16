@@ -70,6 +70,8 @@ FL timer
 ***** models
 (defhydra hydra-ai-model-menu (:color blue)
 ***** [[*dev-menu][dev-menu]]
+*** ranger
+(use-package ranger
 ** mods
 global-set-key
 evil-normal-state-map
@@ -4122,6 +4124,7 @@ CLOSED: [2025-03-03 Пн 06:36]
               ("g g" . ranger-goto-top)
               ("G G" . ranger-goto-bottom)
               ("Z F F" . find-file-other-frame)
+              ("C-S-F" . toggle-frame-maximized)
               ("Z D D" . mkdir)
               ("Z F I" . (lambda() (interactive)
                            (find-file-other-frame

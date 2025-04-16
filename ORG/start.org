@@ -31,25 +31,24 @@ https://www.braveclojure.com/basic-emacs/
                 (evil-normal-state)))
 (load (expand-file-name "INI/hydra-cfg.el" user-emacs-directory))
 
-(define-key org-mode-map (kbd "<f8> <f7>")
-      '(lambda() (interactive)
-        (save-excursion
-          (progn
-            (setq org-src-preserve-indentation t)
-            (untabify (point-min) (point-max))
-            ;; (save-buffer)
-            (save-some-buffers 'no-confirm)
-            ;; (universal-argument)
-            ;; (universal-argument)
-            (org-babel-tangle)
-            ;; (save-buffer)
-            ;; (save-some-buffers 'no-confirm)
-            (org-save-all-org-buffers)
-            (evil-normal-state)
-            (let ((curent-buffer (buffer-name)))
-              (select-frame-by-name "*compilation*")
-              (recompile)
-              (select-frame-by-name curent-buffer))))))
+(use-package ranger
+  :ensure t
+  :defer t
+  ;; :config
+  :bind (:map ranger-mode-map
+              ("r r" . ranger-refresh)
+              ("M-f" . avy-goto-word-1)
+              ("g g" . ranger-goto-top)
+              ("G G" . ranger-goto-bottom)
+              ("Z F F" . find-file-other-frame)
+              ("C-S-F" . toggle-frame-maximized)
+              ("Z D D" . mkdir)
+              ("Z F I" . (lambda() (interactive)
+                           (find-file-other-frame
+                            (expand-file-name
+                             "INI/file-mng-cfg.el"
+                             user-emacs-directory))))
+              ))
 ;; (load (expand-file-name "~/.archemacs/INI/hydra-cfg.el" user-emacs-directory))
 
 ;; (load "~/ELs/BuYn/reader.el")
