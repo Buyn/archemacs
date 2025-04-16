@@ -1467,7 +1467,9 @@ CLOSED: [2025-02-27 Чт 19:07]
 ;; --------------------------------------
 ;; --------------------------------------
 ***** FRAME SIZE&POSITION CONTROL
-****** FRAME POSITION LIST
+****** TODO FRAME POSITION LIST
+удалить по возможности
+и из писи файла оставив только словарь
 ******* MONITOR 0 FRAME LEFT POSITION LIST
 #+begin_src emacs-lisp
 (setq buyn-monitr-0-position-7 '(0     337))
@@ -1901,12 +1903,24 @@ CLOSED: [2025-02-27 Чт 19:07]
 : move-frame-by-name
 
 ****** buyn-find-file-in-frame-and-move
+#+begin_src emacs-lisp
+(defun buyn-find-file-in-frame-and-move (filename monitor position)
+  "Move and open frame to a new position, for file name"
+    (let ((fname (file-name-nondirectory filename)))
+      (find-file-other-frame filename)
+      (run-at-time "1 sec" nil (funcall (lambda ()
+        (move-frame-by-name fname monitor position))))))
+#+end_src
+
+#+RESULTS:
+: buyn-find-file-in-frame-and-move
+
 #+begin_src emacs-lisp :tangle no
 (defun buyn-find-file-in-frame-and-move (filename monitor position)
   "Move and open frame to a new position, for file name"
-  (find-file-other-frame filename)
-  (run-at-time "1 sec" nil '(lambda ()
     (let ((fname (file-name-nondirectory filename)))
+      (find-file-other-frame filename)
+      (run-at-time "1 sec" nil '(lambda ()
         (move-frame-by-name fname monitor position)))))
 #+end_src
 

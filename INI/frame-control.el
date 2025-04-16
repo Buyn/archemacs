@@ -373,3 +373,10 @@
         ;; (format "%d %d" x y)
         (set-frame-position fobject x y)
         )))
+
+(defun buyn-find-file-in-frame-and-move (filename monitor position)
+  "Move and open frame to a new position, for file name"
+    (let ((fname (file-name-nondirectory filename)))
+      (find-file-other-frame filename)
+      (run-at-time "1 sec" nil (funcall (lambda ()
+        (move-frame-by-name fname monitor position))))))

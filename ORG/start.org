@@ -11507,7 +11507,7 @@ Of course, if the optional parameter is only needed once you should just do this
     (command-body a (or b default)))
 
 
-*** return 
+*** return
 **** How do you return from a function at an arbitrary point?
 	How do you return early from a function before it's ended? 
  For example:
@@ -11604,16 +11604,16 @@ Of course, if the optional parameter is only needed once you should just do this
 
 			Open a new file, insert some text that contains file path.
 			Go to a line that's a file path, select it, then Alt+x x-add-prop. The region will be colored blue, and pressing Enter key on it will call x-open-me
-*** lambda : 
-(lambda (n) (* n 2))
-
-
-
+*** lambda:
+**** (lambda (n) (* n 2))
 (define-key evil-normal-state-map (kbd "M-c M-y") '(lambda() (interactive)
 					(setq x-select-enable-clipboard t)
 					;; (kill-ring-save (region-beginning) (region-end))
 					(kill-ring-save (line-beginning-position) (line-beginning-position 2))
 					(setq x-select-enable-clipboard nil)))
+**** funcall (lambda ()
+(run-at-time "1 sec" nil (funcall (lambda ()
+				(move-frame-by-name fname monitor position))))
 ** compile
 Emacs 24.3 or below
 
