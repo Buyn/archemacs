@@ -1962,11 +1962,11 @@ CLOSED: [2025-02-27 Чт 19:07]
 (defun move-frame-by-name (fname monitor position)
   "Move an open frame to a new position, by the name of his title"
   (let* ( (fobject (buyn-get-frame-by-name fname))
-					(pos (elt (plist-get buyn-frame-position-list monitor) (- position 1)))
-					(x (plist-get pos :x))
-					(y (plist-get pos :y)))
-						(set-frame-size fobject 75 25)
-						(set-frame-position fobject x y)))
+          (pos (elt (plist-get buyn-frame-position-list monitor) (- position 1)))
+          (x (plist-get pos :x))
+          (y (plist-get pos :y)))
+            (set-frame-size fobject 75 25)
+            (set-frame-position fobject x y)))
   
 #+end_src
 
@@ -2003,9 +2003,9 @@ CLOSED: [2025-02-27 Чт 19:07]
 (defun buyn-set-curent-frame-position (monitor position)
   "Move and open frame to a new position, for file name"
   (let* ( (fobject (selected-frame))
-					(pos (elt (plist-get buyn-frame-position-list monitor) (- position 1)))
-					(x (plist-get pos :x))
-					(y (plist-get pos :y)))
+          (pos (elt (plist-get buyn-frame-position-list monitor) (- position 1)))
+          (x (plist-get pos :x))
+          (y (plist-get pos :y)))
         (set-frame-size fobject 75 25)
         (set-frame-position fobject x y)))
 
