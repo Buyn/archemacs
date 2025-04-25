@@ -10971,7 +10971,7 @@ Use Per-Directory Local Variables in .dir-locals.el.
 		 (list v0 v))
 	 ;; => ([1 2 3 4] [2 3 4 5])
 	 [[https://emacs.stackexchange.com/a/45946][share]]
-** Comparison : 
+** Comparison:
 *** 4.5 Comparison of Characters and Strings
 **** Function: char-equal character1 character2
 
@@ -11150,8 +11150,8 @@ If no clause succeeds, cond returns nil.
 		 nil)))
  https://www.youtube.com/watch?v=m661lmrAYKY
 
-** Text 
-*** By Xah Lee : 
+** Text
+*** By Xah Lee:
 **** Elisp: Text Properties
  Elisp: Text Properties
  By Xah Lee. Date: 2017-06-17. Last updated: 2020-09-04.
@@ -11331,7 +11331,7 @@ SaltyEgg 626412
 ,* #\ESC is not in the standard, a more portable expression might be (format t "~c
  [31mRed~:*~c[32mGreen~:*~c[34mBlue~:*~c[mPlain~%" (code-char 27)) – [[https://stackoverflow.com/users/3008405/devon][devon]]
  Jul 12 at 15:20 
-*** face : 
+*** face:
 (insert (propertize "bar" 'face '(:foreground "red")))
 **** :background "gray30" : 
  (insert (propertize "bar" 'face '(:background "gray30")))
@@ -11652,6 +11652,8 @@ https://drive.google.com/file/d/10mKcsFB0pDeLRM15T6QlmG4Rn979rBDl/view?usp=shari
     Practical eLisp Брайана Уильямса — это хорошая книга для новичков, которые хотят научиться программировать на eLisp. Книга начинается с основ языка, а затем постепенно переходит к более сложным темам. Книга также содержит множество практических упражнений, которые помогут читателям закрепить полученные знания.
     eLisp in Action Дэвида Смита — это более продвинутая книга, которая подходит для тех, кто уже имеет некоторые знания о программировании. Книга охватывает широкий спектр тем, связанных с eLisp, включая функциональное программирование, обработку символов и объектно-ориентированное программирование.
     eLisp by Example Стивена МакКеона — это книга, в которой основное внимание уделяется практическому использованию eLisp. Книга содержит множество примеров кода, которые помогут читателям научиться решать реальные задачи с помощью eLisp.
+*** manual
+https://www.gnu.org/software/emacs/manual/html_node/eintr/index.html#Top
 *** web Cheat sheet 
 https://texttoolkit.com/cheatsheet/elisp-api/
 *** Cheat sheet 

@@ -1549,7 +1549,10 @@ CLOSED: [2025-02-27 Чт 19:07]
 #+RESULTS:
 | :left | [(:x 0 :y 910) (:x 670 :y 910) (:x 660 :y 910) (:x 0 :y 600) (:x 670 :y 600) (:x 660 :y 600) (:x 0 :y 337) (:x 670 :y 337) (:x 660 :y 337)] | :center | [(:x 0 :y 0) (:x 670 :y 0) (:x 1295 :y 0) (:x 0 :y 360) (:x 670 :y 360) (:x 1295 :y 360) (:x 0 :y 620) (:x 670 :y 620) (:x 1295 :y 620)] | :right | [(:x 1920 :y 0) (:x 2115 :y 0) (:x 2310 :y 0) (:x 1920 :y 412) (:x 2115 :y 412) (:x 2310 :y 412) (:x 1920 :y 752) (:x 2115 :y 752) (:x 2310 :y 752)] |
 
-****** FRAME POSITION CONTROL KEYS
+****** TODO del FRAME POSITION CONTROL KEYS
+# :PROPERTIES:
+# :header-args: :tangle no
+# :END:
 ******* MONITOR 0
 #+begin_src elisp
 (global-set-key (kbd "M-S-<kp-home>") '(lambda() (interactive)
@@ -1666,6 +1669,74 @@ CLOSED: [2025-02-27 Чт 19:07]
       (set-frame-position (selected-frame)
                           (car buyn-monitr-2-position-3)
                           (cadr buyn-monitr-2-position-3))))
+#+end_src
+****** FRAME POSITION CONTROL KEYS
+******* MONITOR 0
+#+begin_src elisp
+(global-set-key (kbd "M-S-<kp-home>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :left 7)))
+(global-set-key (kbd "M-S-<kp-up>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :left 8)))
+(global-set-key (kbd "M-S-<kp-prior>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :left 9)))
+(global-set-key (kbd "M-S-<kp-left>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :left 4)))
+(global-set-key (kbd "M-S-<kp-begin>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :left 5)))
+(global-set-key (kbd "M-S-<kp-right>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :left 6)))
+(global-set-key (kbd "M-S-<kp-end>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :left 1)))
+(global-set-key (kbd "M-S-<kp-down>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :left 2)))
+(global-set-key (kbd "M-S-<kp-next>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :left 3)))
+#+end_src
+******* MONITOR 1
+#+begin_src elisp
+(global-set-key (kbd "M-<kp-7>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :center 7)))
+(global-set-key (kbd "M-<kp-9>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :center 9)))
+(global-set-key (kbd "M-<kp-8>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :center 8)))
+(global-set-key (kbd "M-<kp-4>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :center 4)))
+(global-set-key (kbd "M-<kp-5>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :center 5)))
+(global-set-key (kbd "M-<kp-6>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :center 6)))
+(global-set-key (kbd "M-<kp-1>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :center 1)))
+(global-set-key (kbd "M-<kp-2>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :center 2)))
+(global-set-key (kbd "M-<kp-3>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :center 3)))
+#+end_src
+
+#+RESULTS:
+| lambda | nil | (interactive) | (buyn-set-curent-frame-position :center 3) |
+
+******* MONITOR 2
+#+begin_src elisp
+(global-set-key (kbd "C-M-<kp-7>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :right 7)))
+(global-set-key (kbd "C-M-<kp-9>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :right 9)))
+(global-set-key (kbd "C-M-<kp-8>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :right 8)))
+(global-set-key (kbd "C-M-<kp-4>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :right 4)))
+(global-set-key (kbd "C-M-<kp-5>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :right 5)))
+(global-set-key (kbd "C-M-<kp-6>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :right 6)))
+(global-set-key (kbd "C-M-<kp-1>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :right 1)))
+(global-set-key (kbd "C-M-<kp-2>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :right 2)))
+(global-set-key (kbd "C-M-<kp-3>") '(lambda() (interactive)
+      (buyn-set-curent-frame-position :right 3)))
 #+end_src
 ****** FRAME SIZE CONTROL KEYS
 #+begin_src elisp
@@ -1890,14 +1961,12 @@ CLOSED: [2025-02-27 Чт 19:07]
 #+begin_src emacs-lisp
 (defun move-frame-by-name (fname monitor position)
   "Move an open frame to a new position, by the name of his title"
-  (let ((fobject (buyn-get-frame-by-name fname))
-        (pos (elt (plist-get buyn-frame-position-list monitor) (- position 1))))
-      (let ((x (plist-get pos :x))
-            (y (plist-get pos :y)))
-        (set-frame-size fobject 75 25)
-        ;; (format "%d %d" x y)
-        (set-frame-position fobject x y)
-        )))
+  (let* ( (fobject (buyn-get-frame-by-name fname))
+					(pos (elt (plist-get buyn-frame-position-list monitor) (- position 1)))
+					(x (plist-get pos :x))
+					(y (plist-get pos :y)))
+						(set-frame-size fobject 75 25)
+						(set-frame-position fobject x y)))
   
 #+end_src
 
@@ -1928,6 +1997,22 @@ CLOSED: [2025-02-27 Чт 19:07]
 
 #+RESULTS:
 : buyn-find-file-in-frame-and-move
+
+****** buyn-set-curent-frame-position
+#+begin_src emacs-lisp
+(defun buyn-set-curent-frame-position (monitor position)
+  "Move and open frame to a new position, for file name"
+  (let* ( (fobject (selected-frame))
+					(pos (elt (plist-get buyn-frame-position-list monitor) (- position 1)))
+					(x (plist-get pos :x))
+					(y (plist-get pos :y)))
+        (set-frame-size fobject 75 25)
+        (set-frame-position fobject x y)))
+
+#+end_src
+
+#+RESULTS:
+: buyn-set-curent-frame-position
 
 ***** CANCELED NOT USED;  {{{
 CLOSED: [2025-04-14 Mon 09:51]
