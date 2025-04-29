@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: elsip code snipet region get text
+# key: get_text
+# --
+(region-text (buffer-substring (region-beginning) (region-end)))

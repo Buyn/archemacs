@@ -25,30 +25,8 @@ https://www.braveclojure.com/basic-emacs/
 
 ** progn:
 #+begin_src emacs-lisp :results output silent
-(define-key evil-insert-state-map (kbd "C-s") '(lambda() (interactive)
-                (save-buffer)
-								(untabify (point-min) (point-max))
-                (evil-normal-state)))
 (load (expand-file-name "INI/hydra-cfg.el" user-emacs-directory))
 
-(use-package ranger
-  :ensure t
-  :defer t
-  ;; :config
-  :bind (:map ranger-mode-map
-              ("r r" . ranger-refresh)
-              ("M-f" . avy-goto-word-1)
-              ("g g" . ranger-goto-top)
-              ("G G" . ranger-goto-bottom)
-              ("Z F F" . find-file-other-frame)
-              ("C-S-F" . toggle-frame-maximized)
-              ("Z D D" . mkdir)
-              ("Z F I" . (lambda() (interactive)
-                           (find-file-other-frame
-                            (expand-file-name
-                             "INI/file-mng-cfg.el"
-                             user-emacs-directory))))
-              ))
 ;; (load (expand-file-name "~/.archemacs/INI/hydra-cfg.el" user-emacs-directory))
 
 ;; (load "~/ELs/BuYn/reader.el")
