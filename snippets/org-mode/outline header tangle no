@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: outline header tangle no
+# key: org_header_tangle_no
+# --
+:PROPERTIES:
+:header-args: :tangle no
+:END:

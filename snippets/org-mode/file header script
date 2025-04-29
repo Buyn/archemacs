@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: file header script
+# key: org_header_script
+# --
+:PROPERTIES:
+:header-args: :dir ../Src/ :shebang #!/bin/bash  :tangle-mode (identity #o755) :tangle no
+:END:

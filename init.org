@@ -2490,6 +2490,13 @@ CLOSED: [2025-02-21 Fri 21:34]
 #+begin_src elisp
 (defhydra org-insert-menu (:color blue)
     ("t" (insert ":tangle no") "tangle no")
+    ("r" (insert ":results output silent") "result no")
+    ("h" (insert "#+HEADER: :tangle ../Src/Start.sh") "HEADER")
+    ("f" (insert "find-file-other-frame \" \"") "file frame")
+    ("F" (insert "find-file \" \"") "Find File")
+    ("s" (insert "buyn-shell-start \" \"") "shell")
+    ("k" (insert "buyn-shell-start \"konsole -e ' '\"") "konsole")
+
     ("q" nil)
   )
 #+end_src

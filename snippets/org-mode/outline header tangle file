@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: outline header tangle file
+# key: org_header_tangle_file
+# --
+:PROPERTIES:
+:header-args: :tangle $0
+:END:

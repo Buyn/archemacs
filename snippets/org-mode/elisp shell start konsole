@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: elisp shell start konsole
+# key: elisp_konsole
+# --
+
+#+begin_src elisp :results output silent
+(buyn-shell-start "konsole -e '$0'")
+#+end_src
