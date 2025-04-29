@@ -250,41 +250,11 @@
   )
 
 (defhydra org-menu (:color pink)
-;; ***** keys
-;; ****** one-line keys
-    ("r" org-archive-subtree "ARhiv TODO")
-    ("t" org-todo "Todo set")
     ("d" org-babel-demarcate-block "demarcate" :color blue)
-    ("g" org-agenda "aGenda" :color blue )
     ("s" org-toggle-inline-images "Show image")
     ("q" nil ) 
     ("o" org-roam-menu/body "Org-rOam" :color blue)
-;; ****** D : 
-    ("D" (progn
-            ;; (nil/body) 
-            (evil-open-fold)
-            (mac-done-copy)
-            ;; (org-menu/body)
-            ) "DoneMACRO" 
-              :color blue)
-;; ****** h : 
-    ("h" (org--deadline-or-schedule nil 'scheduled 
-               (curent-time-format-hh-mm 1 0))
-          "H+1h"
-          :color blue)
-;; ****** n : 
-    ("n" (org--deadline-or-schedule nil 'scheduled 
-               (curent-time-format-hh-mm 13 0))
-          "N+13h"
-          :color blue)
-;; ****** b Idirect buffer : 
-    ("b" (progn
-            (org-tree-to-indirect-buffer)
-            (define-key evil-normal-state-map (kbd "g SPC") 
-              `org-tree-to-indirect-buffer))
-          "BuffersInder"
-          :color blue)
-;; ***** END of def
+    ("i" org-insert-menu/body "insert" :color blue)
   )
 
 (defhydra org-roam-menu (:color blue)
@@ -310,6 +280,11 @@
     ("R" org-roam-node-random "random")
     ("B" (org-roam-db-sync 'FORCE) "dB-Build")
 ;; ***** END of def
+  )
+
+(defhydra org-insert-menu (:color blue)
+    ("t" (insert ":tangle no") "tangle no")
+    ("q" nil)
   )
 
 (defhydra hydra-brain-org-menu (:color blue)

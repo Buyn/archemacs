@@ -5617,16 +5617,16 @@ CLOSED: [2025-03-03 Пн 06:36]
 ;; **** visual add zf
   (define-key evil-visual-state-map "zf" '(lambda() (interactive)
       (let ((region-text (buffer-substring (region-beginning) (region-end))))
-				(evil-normal-state)
-				;; (evil-open-above 1)
-				(evil-previous-line)
-				(outshine-insert-heading)
-				;; (backward-char)
-				(save-excursion
-					;; (insert " ")
-					(insert region-text)
-					(unless (eq major-mode 'org-mode)
-						(insert ":"))))))
+        (evil-normal-state)
+        ;; (evil-open-above 1)
+        (evil-previous-line)
+        (outshine-insert-heading)
+        ;; (backward-char)
+        (save-excursion
+          ;; (insert " ")
+          (insert region-text)
+          (unless (eq major-mode 'org-mode)
+            (insert ":"))))))
 
 ;; *** outshine startup state
   (setq outshine-startup-folded-p 1)

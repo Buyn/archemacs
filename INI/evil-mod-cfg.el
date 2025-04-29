@@ -1,35 +1,15 @@
-;; * EVIL-MOD CUSTOMIZATION
-;; --------------------------------------
-;; ** use-package evil
-;; *** before evil load
 (global-visual-line-mode t)
 (setq evil-respect-visual-line-mode t)
 (setq evil-cross-lines t)
-;; *** use-package : 
 (use-package evil :ensure t
-;; *** :init : 
-    ;; :init
     :init (setq evil-want-C-i-jump nil)
-    ;;  (global-visual-line-mode t)
-    ;;  (setq evil-respect-visual-line-mode nil)
-  ;; :bind ("C-c c" hydra-clock/body)
-;; *** END of use-package evil
   )
 (require 'evil)
 (evil-mode t)
-;; --------------------------------------
-;; ** Setings
-;; (setq evil-mode-line-format nil
-;;       evil-insert-state-cursor '(bar "White")
-;;       evil-visual-state-cursor '(box "#F86155"))
+
     (setq evil-shift-width 2)
     (setq-default evil-shift-width 2)
-;; --------------------------------------
-;; (define-key key-translation-map (kbd "ch") (kbd "C-h"))
-;; (define-key evil-normal-state-map "c" nil)
-;; (define-key evil-motion-state-map "cu" 'universal-argument)
-;; -------------------------------------- }}}
-;; ** Clipboard  {{{
+
 (setq x-select-enable-clipboard nil)
 ;; (fset 'evil-visual-update-x-selection 'ignore)
 ;; (setq save-interprogram-paste-before-kill t)
@@ -139,12 +119,12 @@
 (define-key evil-insert-state-map (kbd "M-p ") '(lambda() (interactive)
         (yank)))
 ;; -------------------------------------- }}}
-;; ** Registers Clipboard
+
 (define-key evil-normal-state-map (kbd "M-y M-f") 'evil-use-register)
 (define-key evil-visual-state-map (kbd "M-y M-f") 'evil-use-register)
 (define-key evil-normal-state-map (kbd "M-p M-f") 'evil-use-register)
 (define-key evil-visual-state-map (kbd "M-p M-f") 'evil-use-register)
-;; ** Movements
+
 (define-key evil-normal-state-map "gh" 'evil-first-non-blank-of-visual-line)
 (define-key evil-normal-state-map "gl" 'evil-end-of-visual-line)
 (define-key evil-normal-state-map (kbd "gj") 'next-logical-line)
@@ -156,15 +136,10 @@
 (define-key evil-visual-state-map (kbd "G") nil)
 (define-key evil-normal-state-map (kbd "G G") 'evil-goto-line)
 (define-key evil-visual-state-map (kbd "G G") 'evil-goto-line)
-;; (define-key evil-normal-state-map  "gj" 'evil-next-visual-line)
-;; (define-key evil-normal-state-map  "gk" 'evil-previous-visual-line)
-;; --------------------------------------  }}}
 
-;; ** Visual
 (define-key evil-normal-state-map "V" 'evil-visual-line)
-;; --------------------------------------  
+;; --------------------------------------
 
-;; ** Grabing  {{{
 ;; *** move-line : 
 ;; **** save-column : 
 (defmacro save-column (&rest body)
@@ -249,7 +224,7 @@
 ;; **** FIXME: move selected
 ;; **** TODO: meta m+p copy line \ selection
 ;; -------------------------------------- }}}
-;; ** Devolopment  {{{
+
 (define-key evil-normal-state-map (kbd "M-e M-f M-f") 'xref-find-definitions)
 (define-key evil-normal-state-map (kbd "M-e M-f M-F") 'xref-find-definitions-other-frame)
 (define-key evil-normal-state-map (kbd "M-e M-f M-e") 'evil-goto-definition)
@@ -269,8 +244,7 @@
           (unless (eq (char-after(point)) ?\))
             (backward-char 1))
           (if (eq (char-after(point)) ?\))
-            (eval-last-sexp nil))
-          ))
+            (eval-last-sexp nil))))
 ;; -------------------------------------- }}}
 ;; *** literal programing: 
 (fset 'get-named-link
@@ -279,11 +253,11 @@
    (kmacro-lambda-form [?\C-c ?\C-l return ?\C-y return] 0 "%d"))
 (define-key evil-visual-state-map (kbd "M-e M-f M-l") 'get-named-link)
 (define-key evil-normal-state-map (kbd "M-e M-f M-l") 'insert-named-link)
-;; ** Regs Macross
+
 (define-key evil-normal-state-map (kbd "q") 'evil-execute-macro)
 (define-key evil-normal-state-map (kbd "Q") nil)
 (define-key evil-normal-state-map (kbd "QQ") 'evil-record-macro)
-;; ** find&replace  {{{
+
 ;; *** evil-visual <f7> :
 (define-key evil-visual-state-map (kbd "<f7>") '(lambda() (interactive)
   (let ((region-text (buffer-substring (region-beginning) (region-end))))
@@ -334,8 +308,7 @@
             (insert-char char-to-wrap)
             )
         )))
-;; -------------------------------------- }}}
-;; ** Insert State {{{
+
 ;; *** Insert State F2 save {{{
 (define-key evil-insert-state-map (kbd "<f2>") '(lambda() (interactive)
                 (save-buffer)
@@ -358,24 +331,22 @@
 ;; -------------------------------------- }}}
 ;; *** Insert State keys {{{
    (define-key evil-insert-state-map (kbd "C-h") '(lambda() (interactive)
-          (backward-delete-char-untabify 1))) 
-;; -------------------------------------- }}}
-;; ** toggle input method in evil normal state
+          (backward-delete-char-untabify 1)))
+
 (define-key evil-normal-state-map(kbd "C-\\") 'toggle-input-method)
-;; -------------------------------------- 
-;; ** TAB on c-i
+;; --------------------------------------
+
 ;; (define-key evil-insert-state-map (kbd "C-i") 'tab-to-tab-stop)
-;; ** Undo and Redo
+
 (evil-set-undo-system 'undo-redo)
 ;; -------------------------------------- 
-;; -------------------------------------- 
-;; * EVIL COMMANDS RESPECT INPUT METHOD
-;; ** load el
+;; --------------------------------------
+
 ;; (find-file "~/.archemacs/ELs/Evil/evil-respect-input.el")
 ;; (load "~/.archemacs/ELs/Evil/evil-respect-input.el")
 (load (expand-file-name "ELs/Evil/evil-respect-input.el" user-emacs-directory))
-;; --------------------------------------  
-;; ** Rebind commands that don't respect input method
+;; --------------------------------------
+
   (define-key evil-normal-state-map (kbd "r") 'khaoos-evil-replace)
   (define-key evil-motion-state-map (kbd "f") 'khaoos-evil-find-char)
   (define-key evil-motion-state-map (kbd "t") 'khaoos-evil-find-char-to)
@@ -383,7 +354,6 @@
   (define-key evil-motion-state-map (kbd "T") 'khaoos-evil-find-char-to-backward)
 ;; --------------------------------------
 
-;; * ONE CHAR ADD  
 ;; ** load el
 ;; (load "~/.archemacs/ELs/Evil/onecharadd.el")
 ;; (find-file "~/.archemacs/ELs/Evil/onecharadd.el")
@@ -392,9 +362,8 @@
 (define-key evil-normal-state-map (kbd "SPC") 'khaoos-insert-one-char)
 ;; (define-key evil-normal-state-map (kbd "RET") 'addone-char-after-normal-evil)
 (define-key evil-normal-state-map (kbd "RET") 'khaoos-append-one-char)
-;; --------------------------------------  
+;; --------------------------------------
 
-;; * EVIL TABS  
 ;; ** load el
 ;; (find-file-other-frame "~/.archemacs/INI/Evil/evil-tabs-cfg.el")
 ;; (load "~/.archemacs/INI/Evil/evil-tabs-cfg.el")
