@@ -47,6 +47,7 @@ FL timer
 *** z
 (define-key evil-normal-state-map "ZO" 'switch-to-buffer-other-frame)
 (define-key evil-normal-state-map "ZI" '(lambda() (interactive)
+  (define-key evil-visual-state-map "zf" '(lambda() (interactive)
 *** return
 **** org-mode-map
 (define-key org-mode-map
@@ -73,6 +74,7 @@ FL timer
 *** ranger
 (use-package ranger
 ** mods
+FRAME [[*src INI/frame-control.el][src INI/frame-control.el]]
 global-set-key
 evil-normal-state-map
 evil-visual-state-map
@@ -769,40 +771,41 @@ CLOSED: [2025-02-11 Tue 16:29]
   Всё, связанное с `evil-mode`, табами и улучшением навигации по буферам/фреймам.  
 **** used in
 ;; (find-file "~/.archemacs/INI/init.el")
-**** src
-#+begin_src elisp
-;; * EVIL-MOD CUSTOMIZATION
+**** EVIL-MOD CUSTOMIZATION
+***** use-package evil
 ;; --------------------------------------
-;; ** use-package evil
 ;; *** before evil load
+#+begin_src elisp
 (global-visual-line-mode t)
 (setq evil-respect-visual-line-mode t)
 (setq evil-cross-lines t)
-;; *** use-package : 
 (use-package evil :ensure t
-;; *** :init : 
-    ;; :init
     :init (setq evil-want-C-i-jump nil)
+  )
+(require 'evil)
+(evil-mode t)
+#+end_src
+;; *** use-package : 
     ;;  (global-visual-line-mode t)
     ;;  (setq evil-respect-visual-line-mode nil)
   ;; :bind ("C-c c" hydra-clock/body)
 ;; *** END of use-package evil
-  )
-(require 'evil)
-(evil-mode t)
+***** Setings
 ;; --------------------------------------
-;; ** Setings
 ;; (setq evil-mode-line-format nil
 ;;       evil-insert-state-cursor '(bar "White")
 ;;       evil-visual-state-cursor '(box "#F86155"))
+#+begin_src elisp
     (setq evil-shift-width 2)
     (setq-default evil-shift-width 2)
+#+end_src
 ;; --------------------------------------
 ;; (define-key key-translation-map (kbd "ch") (kbd "C-h"))
 ;; (define-key evil-normal-state-map "c" nil)
 ;; (define-key evil-motion-state-map "cu" 'universal-argument)
 ;; -------------------------------------- }}}
-;; ** Clipboard  {{{
+***** Clipboard
+#+begin_src elisp
 (setq x-select-enable-clipboard nil)
 ;; (fset 'evil-visual-update-x-selection 'ignore)
 ;; (setq save-interprogram-paste-before-kill t)
@@ -912,12 +915,16 @@ CLOSED: [2025-02-11 Tue 16:29]
 (define-key evil-insert-state-map (kbd "M-p ") '(lambda() (interactive)
         (yank)))
 ;; -------------------------------------- }}}
-;; ** Registers Clipboard
+#+end_src
+***** Registers Clipboard
+#+begin_src elisp
 (define-key evil-normal-state-map (kbd "M-y M-f") 'evil-use-register)
 (define-key evil-visual-state-map (kbd "M-y M-f") 'evil-use-register)
 (define-key evil-normal-state-map (kbd "M-p M-f") 'evil-use-register)
 (define-key evil-visual-state-map (kbd "M-p M-f") 'evil-use-register)
-;; ** Movements
+#+end_src
+***** Movements
+#+begin_src elisp
 (define-key evil-normal-state-map "gh" 'evil-first-non-blank-of-visual-line)
 (define-key evil-normal-state-map "gl" 'evil-end-of-visual-line)
 (define-key evil-normal-state-map (kbd "gj") 'next-logical-line)
@@ -929,15 +936,17 @@ CLOSED: [2025-02-11 Tue 16:29]
 (define-key evil-visual-state-map (kbd "G") nil)
 (define-key evil-normal-state-map (kbd "G G") 'evil-goto-line)
 (define-key evil-visual-state-map (kbd "G G") 'evil-goto-line)
+#+end_src
 ;; (define-key evil-normal-state-map  "gj" 'evil-next-visual-line)
 ;; (define-key evil-normal-state-map  "gk" 'evil-previous-visual-line)
 ;; --------------------------------------  }}}
-
-;; ** Visual
+***** Visual
+#+begin_src elisp
 (define-key evil-normal-state-map "V" 'evil-visual-line)
 ;; --------------------------------------  
-
-;; ** Grabing  {{{
+#+end_src
+***** Grabing
+#+begin_src elisp
 ;; *** move-line : 
 ;; **** save-column : 
 (defmacro save-column (&rest body)
@@ -1022,7 +1031,9 @@ CLOSED: [2025-02-11 Tue 16:29]
 ;; **** FIXME: move selected
 ;; **** TODO: meta m+p copy line \ selection
 ;; -------------------------------------- }}}
-;; ** Devolopment  {{{
+#+end_src
+***** Devolopment
+#+begin_src elisp
 (define-key evil-normal-state-map (kbd "M-e M-f M-f") 'xref-find-definitions)
 (define-key evil-normal-state-map (kbd "M-e M-f M-F") 'xref-find-definitions-other-frame)
 (define-key evil-normal-state-map (kbd "M-e M-f M-e") 'evil-goto-definition)
@@ -1042,8 +1053,7 @@ CLOSED: [2025-02-11 Tue 16:29]
           (unless (eq (char-after(point)) ?\))
             (backward-char 1))
           (if (eq (char-after(point)) ?\))
-            (eval-last-sexp nil))
-          ))
+            (eval-last-sexp nil))))
 ;; -------------------------------------- }}}
 ;; *** literal programing: 
 (fset 'get-named-link
@@ -1052,11 +1062,15 @@ CLOSED: [2025-02-11 Tue 16:29]
    (kmacro-lambda-form [?\C-c ?\C-l return ?\C-y return] 0 "%d"))
 (define-key evil-visual-state-map (kbd "M-e M-f M-l") 'get-named-link)
 (define-key evil-normal-state-map (kbd "M-e M-f M-l") 'insert-named-link)
-;; ** Regs Macross
+#+end_src
+***** Regs Macross
+#+begin_src elisp
 (define-key evil-normal-state-map (kbd "q") 'evil-execute-macro)
 (define-key evil-normal-state-map (kbd "Q") nil)
 (define-key evil-normal-state-map (kbd "QQ") 'evil-record-macro)
-;; ** find&replace  {{{
+#+end_src
+***** find&replace
+#+begin_src elisp
 ;; *** evil-visual <f7> :
 (define-key evil-visual-state-map (kbd "<f7>") '(lambda() (interactive)
   (let ((region-text (buffer-substring (region-beginning) (region-end))))
@@ -1107,8 +1121,10 @@ CLOSED: [2025-02-11 Tue 16:29]
             (insert-char char-to-wrap)
             )
         )))
+#+end_src
 ;; -------------------------------------- }}}
-;; ** Insert State {{{
+***** Insert State
+#+begin_src elisp
 ;; *** Insert State F2 save {{{
 (define-key evil-insert-state-map (kbd "<f2>") '(lambda() (interactive)
                 (save-buffer)
@@ -1132,31 +1148,43 @@ CLOSED: [2025-02-11 Tue 16:29]
 ;; *** Insert State keys {{{
    (define-key evil-insert-state-map (kbd "C-h") '(lambda() (interactive)
           (backward-delete-char-untabify 1))) 
+#+end_src
 ;; -------------------------------------- }}}
-;; ** toggle input method in evil normal state
+***** toggle input method in evil normal state
+#+begin_src elisp
 (define-key evil-normal-state-map(kbd "C-\\") 'toggle-input-method)
 ;; -------------------------------------- 
-;; ** TAB on c-i
+#+end_src
+***** CANCELED TAB on c-i
+CLOSED: [2025-04-29 Tue 18:46]
+#+begin_src elisp
 ;; (define-key evil-insert-state-map (kbd "C-i") 'tab-to-tab-stop)
-;; ** Undo and Redo
+#+end_src
+***** Undo and Redo
+#+begin_src elisp
 (evil-set-undo-system 'undo-redo)
 ;; -------------------------------------- 
 ;; -------------------------------------- 
-;; * EVIL COMMANDS RESPECT INPUT METHOD
-;; ** load el
+#+end_src
+**** EVIL COMMANDS RESPECT INPUT METHOD
+***** load evil-respect-input.el
+#+begin_src elisp
 ;; (find-file "~/.archemacs/ELs/Evil/evil-respect-input.el")
 ;; (load "~/.archemacs/ELs/Evil/evil-respect-input.el")
 (load (expand-file-name "ELs/Evil/evil-respect-input.el" user-emacs-directory))
 ;; --------------------------------------  
-;; ** Rebind commands that don't respect input method
+#+end_src
+***** Rebind commands that don't respect input method
+#+begin_src elisp
   (define-key evil-normal-state-map (kbd "r") 'khaoos-evil-replace)
   (define-key evil-motion-state-map (kbd "f") 'khaoos-evil-find-char)
   (define-key evil-motion-state-map (kbd "t") 'khaoos-evil-find-char-to)
   (define-key evil-motion-state-map (kbd "F") 'khaoos-evil-find-char-backward)
   (define-key evil-motion-state-map (kbd "T") 'khaoos-evil-find-char-to-backward)
 ;; --------------------------------------
-
-;; * ONE CHAR ADD  
+#+end_src
+**** ONE CHAR ADD  
+#+begin_src elisp
 ;; ** load el
 ;; (load "~/.archemacs/ELs/Evil/onecharadd.el")
 ;; (find-file "~/.archemacs/ELs/Evil/onecharadd.el")
@@ -1166,8 +1194,9 @@ CLOSED: [2025-02-11 Tue 16:29]
 ;; (define-key evil-normal-state-map (kbd "RET") 'addone-char-after-normal-evil)
 (define-key evil-normal-state-map (kbd "RET") 'khaoos-append-one-char)
 ;; --------------------------------------  
-
-;; * EVIL TABS  
+#+end_src
+**** EVIL TABS  
+#+begin_src elisp
 ;; ** load el
 ;; (find-file-other-frame "~/.archemacs/INI/Evil/evil-tabs-cfg.el")
 ;; (load "~/.archemacs/INI/Evil/evil-tabs-cfg.el")
@@ -1549,127 +1578,6 @@ CLOSED: [2025-02-27 Чт 19:07]
 #+RESULTS:
 | :left | [(:x 0 :y 910) (:x 670 :y 910) (:x 660 :y 910) (:x 0 :y 600) (:x 670 :y 600) (:x 660 :y 600) (:x 0 :y 337) (:x 670 :y 337) (:x 660 :y 337)] | :center | [(:x 0 :y 0) (:x 670 :y 0) (:x 1295 :y 0) (:x 0 :y 360) (:x 670 :y 360) (:x 1295 :y 360) (:x 0 :y 620) (:x 670 :y 620) (:x 1295 :y 620)] | :right | [(:x 1920 :y 0) (:x 2115 :y 0) (:x 2310 :y 0) (:x 1920 :y 412) (:x 2115 :y 412) (:x 2310 :y 412) (:x 1920 :y 752) (:x 2115 :y 752) (:x 2310 :y 752)] |
 
-****** TODO del FRAME POSITION CONTROL KEYS
-# :PROPERTIES:
-# :header-args: :tangle no
-# :END:
-******* MONITOR 0
-#+begin_src elisp
-(global-set-key (kbd "M-S-<kp-home>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-0-position-7)
-                          (cadr buyn-monitr-0-position-7))))
-(global-set-key (kbd "M-S-<kp-up>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-0-position-8)
-                          (cadr buyn-monitr-0-position-8))))
-(global-set-key (kbd "M-S-<kp-prior>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-0-position-9)
-                          (cadr buyn-monitr-0-position-9))))
-(global-set-key (kbd "M-S-<kp-left>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-0-position-4)
-                          (cadr buyn-monitr-0-position-4))))
-(global-set-key (kbd "M-S-<kp-begin>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-0-position-5)
-                          (cadr buyn-monitr-0-position-5))))
-(global-set-key (kbd "M-S-<kp-right>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-0-position-6)
-                          (cadr buyn-monitr-0-position-6))))
-(global-set-key (kbd "M-S-<kp-end>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-0-position-1)
-                          (cadr buyn-monitr-0-position-1))))
-(global-set-key (kbd "M-S-<kp-down>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-0-position-2)
-                          (cadr buyn-monitr-0-position-2))))
-(global-set-key (kbd "M-S-<kp-next>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-0-position-3)
-                          (cadr buyn-monitr-0-position-3))))
-#+end_src
-******* MONITOR 1
-#+begin_src elisp
-(global-set-key (kbd "M-<kp-7>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-1-position-7)
-                          (cadr buyn-monitr-1-position-7))))
-(global-set-key (kbd "M-<kp-9>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-1-position-9)
-                          (cadr buyn-monitr-1-position-9))))
-(global-set-key (kbd "M-<kp-8>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-1-position-8)
-                          (cadr buyn-monitr-1-position-8))))
-(global-set-key (kbd "M-<kp-4>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-1-position-4)
-                          (cadr buyn-monitr-1-position-4))))
-(global-set-key (kbd "M-<kp-5>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-1-position-5)
-                          (cadr buyn-monitr-1-position-5))))
-(global-set-key (kbd "M-<kp-6>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-1-position-6)
-                          (cadr buyn-monitr-1-position-6))))
-(global-set-key (kbd "M-<kp-1>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-1-position-1)
-                          (cadr buyn-monitr-1-position-1))))
-(global-set-key (kbd "M-<kp-2>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-1-position-2)
-                          (cadr buyn-monitr-1-position-2))))
-(global-set-key (kbd "M-<kp-3>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-1-position-3)
-                          (cadr buyn-monitr-1-position-3))))
-#+end_src
-******* MONITOR 2
-#+begin_src elisp
-(global-set-key (kbd "C-M-<kp-7>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-2-position-7)
-                          (cadr buyn-monitr-2-position-7))))
-(global-set-key (kbd "C-M-<kp-9>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-2-position-9)
-                          (cadr buyn-monitr-2-position-9))))
-(global-set-key (kbd "C-M-<kp-8>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-2-position-8)
-                          (cadr buyn-monitr-2-position-8))))
-(global-set-key (kbd "C-M-<kp-4>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-2-position-4)
-                          (cadr buyn-monitr-2-position-4))))
-(global-set-key (kbd "C-M-<kp-5>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-2-position-5)
-                          (cadr buyn-monitr-2-position-5))))
-(global-set-key (kbd "C-M-<kp-6>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-2-position-6)
-                          (cadr buyn-monitr-2-position-6))))
-(global-set-key (kbd "C-M-<kp-1>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-2-position-1)
-                          (cadr buyn-monitr-2-position-1))))
-(global-set-key (kbd "C-M-<kp-2>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-2-position-2)
-                          (cadr buyn-monitr-2-position-2))))
-(global-set-key (kbd "C-M-<kp-3>") '(lambda() (interactive)
-      (set-frame-position (selected-frame)
-                          (car buyn-monitr-2-position-3)
-                          (cadr buyn-monitr-2-position-3))))
-#+end_src
 ****** FRAME POSITION CONTROL KEYS
 ******* MONITOR 0
 #+begin_src elisp
@@ -2511,17 +2419,20 @@ CLOSED: [2025-02-21 Fri 21:34]
   )
 #+end_src
 ****** org-menu
-#+begin_src elisp
-(defhydra org-menu (:color pink)
+    ("t" org-todo "Todo set")
+    ("g" org-agenda "aGenda" :color blue )
+    ("r" org-archive-subtree "ARhiv TODO")
 ;; ***** keys
 ;; ****** one-line keys
-    ("r" org-archive-subtree "ARhiv TODO")
-    ("t" org-todo "Todo set")
+#+begin_src elisp
+(defhydra org-menu (:color pink)
     ("d" org-babel-demarcate-block "demarcate" :color blue)
-    ("g" org-agenda "aGenda" :color blue )
     ("s" org-toggle-inline-images "Show image")
     ("q" nil ) 
     ("o" org-roam-menu/body "Org-rOam" :color blue)
+    ("i" org-insert-menu/body "insert" :color blue)
+  )
+#+end_src
 ;; ****** D : 
     ("D" (progn
             ;; (nil/body) 
@@ -2548,8 +2459,6 @@ CLOSED: [2025-02-21 Fri 21:34]
           "BuffersInder"
           :color blue)
 ;; ***** END of def
-  )
-#+end_src
 ****** org-roam-menu
 #+begin_src elisp
 (defhydra org-roam-menu (:color blue)
@@ -2575,6 +2484,13 @@ CLOSED: [2025-02-21 Fri 21:34]
     ("R" org-roam-node-random "random")
     ("B" (org-roam-db-sync 'FORCE) "dB-Build")
 ;; ***** END of def
+  )
+#+end_src
+****** org-insert-menu
+#+begin_src elisp
+(defhydra org-insert-menu (:color blue)
+    ("t" (insert ":tangle no") "tangle no")
+    ("q" nil)
   )
 #+end_src
 ****** brain-org
@@ -5677,10 +5593,10 @@ CLOSED: [2025-03-03 Пн 06:36]
 
 *** used in
 ;; (find-file "~/INI/folding-cfg.el")
-*** src
-#+begin_src elisp
+*** src OUTSHINE-MOD CUSTOMIZATION 
 ;; * OUTSHINE-MOD CUSTOMIZATION 
 ;; --------------------------------------
+#+begin_src elisp
 ;; ** use-package outshine
 (use-package outshine :ensure t
   ;; uncoment to instal
@@ -5700,26 +5616,27 @@ CLOSED: [2025-03-03 Пн 06:36]
 
 ;; **** visual add zf
   (define-key evil-visual-state-map "zf" '(lambda() (interactive)
-      (setq region-text (buffer-substring (region-beginning) (region-end)))
-      (evil-normal-state)
-      ;; (evil-open-above 1)
-      (evil-previous-line)
-      (outshine-insert-heading)
-      ;; (backward-char)
-      (save-excursion
-        ;; (insert " ")
-        (insert region-text)
-        (unless (eq major-mode 'org-mode)
-          (insert ":")
-          )
-      )))
+      (let ((region-text (buffer-substring (region-beginning) (region-end))))
+				(evil-normal-state)
+				;; (evil-open-above 1)
+				(evil-previous-line)
+				(outshine-insert-heading)
+				;; (backward-char)
+				(save-excursion
+					;; (insert " ")
+					(insert region-text)
+					(unless (eq major-mode 'org-mode)
+						(insert ":"))))))
 
 ;; *** outshine startup state
   (setq outshine-startup-folded-p 1)
 ;; *** autoload
-  ;; (add-hook 'outline-minor-mode-hook 'outshine-hook-function)
   (add-hook 'outline-minor-mode-hook 'outshine-mode)
   (add-hook 'prog-mode-hook '(lambda () (outshine-mode t)))
+  )
+#+end_src
+  ;; (add-hook 'outline-minor-mode-hook 'outshine-hook-function)
+;; -------------------------------------- }}}
   ;; (add-hook 'prog-mode-hook '(lambda () (outline-minor-mode t)))
   ;; (add-hook 'prog-mode-hook '(lambda () (setq outline-minor-mode 1)))
   ;; (add-hook 'emacs-lisp-mode-hook 'outline-minor-mode)
@@ -5755,9 +5672,6 @@ CLOSED: [2025-03-03 Пн 06:36]
    ;; `(org-level-9 ((,class (:inherit outline-9 ))))
 
 ;; ** END of use-package outshine 
-  )
-;; -------------------------------------- }}}
-#+end_src
 ** CANCELED INI/dev/autohotkey-cfg.el
 CLOSED: [2025-02-24 Mon 23:15]
 :PROPERTIES:
