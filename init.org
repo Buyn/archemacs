@@ -918,13 +918,13 @@ CLOSED: [2025-02-11 Tue 16:29]
 #+end_src
 ***** Registers Clipboard
 #+begin_src elisp
-(DEFINE-key evil-normal-state-map (kbd "M-y M-f") 'evil-use-register)
+(define-key evil-normal-state-map (kbd "M-y M-f") 'evil-use-register)
 (define-key evil-normal-state-map (kbd "M-y M-s") 'evil-show-registers)
 (define-key evil-visual-state-map (kbd "M-y M-f")
-						'(lambda() (interactive)
-							(let ((text (buffer-substring (region-beginning) (region-end)))
-										(name (read-char "enter register name for test:")))
-								(evil-set-register name text))))
+            '(lambda() (interactive)
+              (let ((text (buffer-substring (region-beginning) (region-end)))
+                    (name (read-char "enter register name for test:")))
+                (evil-set-register name text))))
 
 (define-key evil-normal-state-map (kbd "M-p M-f") 'evil-paste-from-register)
 (define-key evil-visual-state-map (kbd "M-p M-f") 'evil-paste-from-register)
@@ -2150,7 +2150,7 @@ CLOSED: [2025-02-21 Fri 21:34]
 и загружать только после первого открытия меню
 **** used in
 ;; (find-file "~/.archemacs/INI/init.el")
-**** src
+**** src INI/hydra-cfg.el
 ***** use-package hydra
 ;; * HYDRA CUSTOMIZATION
 #+begin_src elisp
@@ -2499,10 +2499,10 @@ CLOSED: [2025-02-21 Fri 21:34]
     ("t" (insert ":tangle no") "tangle no")
     ("r" (insert ":results output silent") "result no")
     ("h" (insert "#+HEADER: :tangle ../Src/Start.sh") "HEADER")
-    ("f" (insert "find-file-other-frame \" \"") "file frame")
-    ("F" (insert "find-file \" \"") "Find File")
-    ("s" (insert "buyn-shell-start \" \"") "shell")
-    ("k" (insert "buyn-shell-start \"konsole -e ' '\"") "konsole")
+    ("f" (insert "(find-file-other-frame \" \")") "file frame")
+    ("F" (insert "(find-file \" \"") "Find File)")
+    ("s" (insert "(buyn-shell-start \" \")") "shell")
+    ("k" (insert "(buyn-shell-start \"konsole -e ' '\")") "konsole")
 
     ("q" nil)
   )

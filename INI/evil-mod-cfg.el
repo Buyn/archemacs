@@ -121,9 +121,16 @@
 ;; -------------------------------------- }}}
 
 (define-key evil-normal-state-map (kbd "M-y M-f") 'evil-use-register)
-(define-key evil-visual-state-map (kbd "M-y M-f") 'evil-use-register)
-(define-key evil-normal-state-map (kbd "M-p M-f") 'evil-use-register)
-(define-key evil-visual-state-map (kbd "M-p M-f") 'evil-use-register)
+(define-key evil-normal-state-map (kbd "M-y M-s") 'evil-show-registers)
+(define-key evil-visual-state-map (kbd "M-y M-f")
+            '(lambda() (interactive)
+              (let ((text (buffer-substring (region-beginning) (region-end)))
+                    (name (read-char "enter register name for test:")))
+                (evil-set-register name text))))
+
+(define-key evil-normal-state-map (kbd "M-p M-f") 'evil-paste-from-register)
+(define-key evil-visual-state-map (kbd "M-p M-f") 'evil-paste-from-register)
+(define-key evil-normal-state-map (kbd "M-p M-s") 'evil-show-registers)
 
 (define-key evil-normal-state-map "gh" 'evil-first-non-blank-of-visual-line)
 (define-key evil-normal-state-map "gl" 'evil-end-of-visual-line)
