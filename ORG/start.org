@@ -1356,6 +1356,7 @@ initial-scratch-message
 ;; (find-file-other-frame "~/Dropbox/backup/models/openai.el")
 ;; (find-file-other-frame "~/Dropbox/backup/models/mixtral.el")
 ;; (find-file-other-frame "~/Dropbox/backup/models/llama70v.el")
+https://console.groq.com/docs/models
 ** Brain
 #+begin_src emacs-lisp :results code silent output 
 ;; (package-refresh-contents)
@@ -3300,7 +3301,7 @@ $ echo $(cadr myvar)
 bar
 
 If you set eshell-buffer-shorthand to t you can use the shorthand #'*scratch* instead, but it means you will not be able to redirect straight to elisp symbols. I recommend you use C-c M-b and #<buffer-name-here> instead.
-*** calc 
+*** calc
 **** Starting and Stopping
 start/stop either: C-x * *
 start/stop standard Calc C-x * c
@@ -3309,6 +3310,9 @@ stop standard Calc q
 Calc tutorial C-x * t
 run Calc in other window C-x * o
 quick calculation in minibuffer C-x * q
+**** switch Calc window
+‘C-x * c’ to switch into the Calc window
+(you can type ‘C-x * c’ again or ‘C-x * o’ to switch back to window)
 **** ref
 ***** Arithmetic
 add, subtract, multiply, divide +, -, *, /

@@ -5112,7 +5112,10 @@ CLOSED: [2025-03-03 Пн 06:36]
 :header-args: :tangle INI/AI/ai.el
 :END:
 *** описание
-
+**** gpt
+**** gptel
+https://github.com/karthink/gptel
+(eww-of https://github.com/karthink/gptel)
 *** used in
 ;; (find-file "~/.archemacs/INI/init.el")
 *** src
@@ -5147,6 +5150,98 @@ CLOSED: [2025-03-03 Пн 06:36]
 
 (custom-set-variables '(gptel-model "gpt-4o-mini"))
 #+end_src
+*** docs
+**** gptel
+***** models
+(setq gptel-model 'gemini-2.0-flash-exp)
+(setq gptel-model 'gemini-2.5-flash-preview-05-20)
+(setq gptel-model 'gemini-2.5-flash-preview-04-17)
+***** info
+
+(setq gptel-model 'gemini-2.5-flash-preview-05-20)
+(setq gptel-model 'gemini-2.5-flash-preview-04-17)
+
+gemini-2.5-flash-exp-native-audio-thinking-dialog  
+  (setq gptel-model 'gemini-2.5-flash-exp-native-audio-thinking-dialog)
+gemini-2.0-flash-exp  
+  (setq gptel-model 'gemini-2.0-flash-exp)
+
+(setq gptel-model 'gemini-2.5-flash-preview-04-17)
+  Gemini 2.0 Flash Experimental  10  250,000  1,000    
+(setq gptel-model 'gemini-2.0-flash-lite)
+  Gemini 2.0 Flash-Lite  30  1,000,000  1,500    
+gemini-2.0-flash
+  Gemini 2.0 Flash  15  1,000,000  1,500    
+
+(setq gptel-model 'gemini-1.5-flash-latest)
+
+(setq gptel-include-reasoning "*reason-gpt*")
+(setq gptel-log-level 'info)
+(setq gptel-log-level nil)
+(setq gptel-log-level 'debug)
+***** gptel-include-reasoning
+gptel-include-reasoning is a variable defined in ‘gptel.el’.
+
+Its value is t
+
+How to handle LLM reasoning or "thinking" text blocks.
+
+Some LLMs include in their response a "thinking" section.  This
+text improves the quality of the LLM’s final output, but may not
+be interesting to you by itself.
+
+Supported options are the symbols
+
+    t       - Include with the response, the default
+    nil     - Do not include
+    ignore  - Include with the response but ignore on subsequent
+              conversation turns
+
+It can also be a string naming a buffer, in which case the
+reasoning text will be inserted at the end of that buffer.
+
+  You can customize this variable.
+
+[back]
+***** log-level 'info
+Evaluate (setq gptel-log-level 'info)
+Send a request.
+When you get the error, check the *gptel-log* buffer. Paste the log contents here.
+***** gemini-2.5-flash-preview-04-17
+i get the same, error, it looks like the Gemini Model
+
+gemini-2.5-pro-exp-03-25
+
+which was for free until now is not free any more.
+
+@alienbogart look at
+https://ai.google.dev/gemini-api/docs/rate-limits#free-tier
+
+Gemini 2.5 Flash Preview 04-17
+
+seems to be the only gemini 2.5 model which is still available in the free tier.
+you can enable it by typing
+
+(setq gptel-model 'gemini-2.5-flash-preview-04-17)
+for the other model it seems you have to enable billing and add credit card information.
+
+@karthink we should update the documentation.
+in the gptel menu choser
+there is still the line:
+Gemini:gemini-2.0-pro-exp-02-05 $ 0.00 in,  $  0.00 out
+
+in the table https://ai.google.dev/gemini-api/docs/pricing
+
+for the pro preview model the following info is listed
+
+Free Tier Not available
+
+Paid Tier, per 1M tokens in USD
+$1.25, prompts <= 200k tokens
+$2.50, prompts > 200k tokens
+***** curl gemeni
+gemini-2.5-flash-preview-04-17
+[[file:~/Dropbox/orgs/capture/emagus.org::*key][key]]
 * **Программирование и языковые конфигурации**
 ** описание
    Отдельные категории для Python, Clojure, JavaScript, Lua и т.д. + автодополнения и проверки синтаксиса.  
@@ -6480,7 +6575,12 @@ CLOSED: [2025-02-25 Tue 01:20]
 ;; (load "~/INI/hydra-cfg.el")
 ;; (load "~/ELs/BuYn/reader.el")
  #+end_src
+** package-upgrade
+(setq package-check-signature nil) ;; временно, если будут ошибки
+(package-refresh-contents)
+(package-upgrade-all)
 
+from ELPA by either using ‘M-x package-upgrade’ or
 * TODO орг файла
 ** add file to tagle evil-respect-input.el
 (load (expand-file-name "ELs/Evil/evil-respect-input.el" user-emacs-directory))
