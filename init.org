@@ -2516,7 +2516,10 @@ CLOSED: [2025-02-21 Fri 21:34]
   ;;   "addID2header")
   ;; ("I" (org-brain-headline-to-file)
   ;;   "addID2All")
-  ("b" (org-brain-visualize "index")
+  ("b" (progn
+				(setq-default tab-width 8)
+				(org-brain-visualize "index")
+	      (setq-default tab-width 2))
     "vis2index.org")
   ;; ("V" (org-brain-visualize (buffer-file-name))
   ;;   "vis2curent.org")
@@ -3370,7 +3373,7 @@ CLOSED: [2025-03-03 Пн 06:36]
 ;; User Option: org-confirm-elisp-link-function
 ;;     Function that prompts the user before executing an Emacs Lisp link. 
 (setq org-confirm-elisp-link-function nil)
-(setq org-log-done t)
+;; (setq org-log-done t)
 ;; ** ORG binding : 
 ;; *** ORG heders : 
 ;; (define-key org-mode-map

@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: inventory-new-item
+# key: inventory_
+# --
+:PROPERTIES:
+:ID:       `(org-id-new)`
+:LOCATION: `(string-join (org-get-outline-path) "/")`
+:YEAR:     ${1:`(format-time-string "%Y")`}
+:CREATED:  `(format-time-string "[%Y-%m-%d %a %H:%M]")`
+:END:
+Описание: $2
+
+$0

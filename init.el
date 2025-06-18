@@ -8,15 +8,7 @@
  '(ediff-split-window-function 'split-window-horizontally)
  '(ediff-window-setup-function 'ediff-setup-windows-plain)
  '(gptel-model "gpt-4o-mini")
- '(package-selected-packages
-	 '(avy better-defaults burly clj-refactor company-fuzzy company-jedi
-				 diminish elpy emms evil-tabs expand-region flycheck gptel
-				 graphviz-dot-mode hledger-mode jedi lsp-ivy lsp-ui lua-mode
-				 magit material-theme miracle ob-translate org org-brain
-				 outshine parinfer-rust-mode plantuml-mode powerline
-				 projectile quelpa-use-package rainbow-delimiters ranger
-				 reverse-im skewer-mode spacemacs-theme which-key
-				 yasnippet-snippets zenburn-theme)))
+ '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
