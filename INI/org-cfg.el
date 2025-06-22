@@ -125,7 +125,7 @@
 ;; User Option: org-confirm-elisp-link-function
 ;;     Function that prompts the user before executing an Emacs Lisp link. 
 (setq org-confirm-elisp-link-function nil)
-(setq org-log-done t)
+;; (setq org-log-done t)
 ;; ** ORG binding : 
 ;; *** ORG heders : 
 ;; (define-key org-mode-map

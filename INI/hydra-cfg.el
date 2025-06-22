@@ -301,7 +301,10 @@
   ;;   "addID2header")
   ;; ("I" (org-brain-headline-to-file)
   ;;   "addID2All")
-  ("b" (org-brain-visualize "index")
+  ("b" (progn
+                                (setq-default tab-width 8)
+                                (org-brain-visualize "index")
+              (setq-default tab-width 2))
     "vis2index.org")
   ;; ("V" (org-brain-visualize (buffer-file-name))
   ;;   "vis2curent.org")
