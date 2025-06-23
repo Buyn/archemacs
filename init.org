@@ -177,6 +177,8 @@ org-src-mode-map
 
 (load (expand-file-name "INI/AI/ai.el" user-emacs-directory))
 
+(load (expand-file-name "INI/other/calc.el" user-emacs-directory))
+
 (load (expand-file-name "ELs/BuYn/shell.el" user-emacs-directory))
 
 ;; (load "~/Dropbox/backup/file.el")
@@ -6325,7 +6327,7 @@ irony-install-server
 #+end_src
 ** INI/www-cfg.el
 :PROPERTIES:
-:header-args: :tangle INI/www-cfg.el
+:header-args: :tangle INI/www-cfg.el 
 :END:
 *** описание
 
@@ -6452,7 +6454,7 @@ irony-install-server
 ;; ** the END) : 
   )
 #+end_src
-** INI/players.el
+** CANCELED INI/players.el
 :PROPERTIES:
 :header-args: :tangle no
 :END:
@@ -6463,7 +6465,7 @@ irony-install-server
 *** used in
 ;; (find-file "~/.archemacs/INI/init.el")
 *** src
-**** emms
+**** CANCELED emms
 #+begin_src elisp
 (use-package emms
   ;; :disabled
@@ -6491,6 +6493,42 @@ irony-install-server
 
 (find-file-other-frame "~/Dropbox/Resources/Playlists/test.m3u")
 (emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/test.m3u")
+** CANCELED INI/other/calc.el
+:PROPERTIES:
+:header-args: :tangle INI/other/calc.el :mkdirp yes
+:END:
+*** описание
+
+*** CANCELED used in
+;; (find-file "~/.archemacs/INI/init.el")
+*** src
+**** use-package calc
+#+begin_src elisp
+(use-package calc
+  ;; :disabled
+  :defer t
+  :ensure t
+  ;; :config
+  :bind (:map  calc-mode-map
+              ("M-k" . windmove-up)
+              ;; ("M-K" . '(calc-copy-as-kill N))
+              ("M-K" . calc-copy-as-kill )
+              )
+  )
+  #+end_src
+
+  #+RESULTS:
+  : calc-copy-as-kill
+
+  
+(emms-all)
+
+(find-file-other-frame "~/Dropbox/Resources/Playlists/test.m3u")
+(emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/test.m3u")
+*** docs
+
+The major mode is Calculator mode defined in calc.el:
+
 * **Мои Elisp скрипты**
 ** описание
    Персональные расширения и полезные функции.  
