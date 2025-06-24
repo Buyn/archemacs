@@ -831,6 +831,15 @@ CLOSED: [2025-02-11 Tue 16:29]
           (setq x-select-enable-clipboard t)
           (kill-ring-save (region-beginning) (region-end))
           (setq x-select-enable-clipboard nil)))
+;; *** M-y M-c : yank to calc
+(define-key evil-visual-state-map (kbd "M-y M-c") '(lambda() (interactive)
+          (let ((text (buffer-substring (region-beginning) (region-end))))
+            (kill-ring-save (region-beginning) (region-end))
+            (calc)
+            ;; (calc-copy-to-buffer text)
+            ;; (calc-kill-region (region-beginning) (region-end))
+            (calc-yank 0))))
+
 ;; *** M-c M-Y : 
 (define-key evil-normal-state-map (kbd "M-c M-Y") '(lambda() (interactive)
           (setq x-select-enable-clipboard t)
@@ -2233,7 +2242,9 @@ CLOSED: [2025-02-21 Fri 21:34]
 ;; ***** keys
     ("q" nil)
     ("SPC" spc-main-menu98/body)
-    ("c" calc)
+    ("c" (progn
+      (define-key calc-mode-map (kbd "M-k") 'windmove-up)
+      (calc)))
     ("o" hydra-outline/body) 
     ("d" hydra-ediff/body) 
     ("t" hydra-transpose/body) 
@@ -2244,6 +2255,10 @@ CLOSED: [2025-02-21 Fri 21:34]
 ;; ***** END of def
   )
 #+end_src
+
+#+RESULTS:
+: spc-main-menu01/body
+
 ****** spc-main-menu98
 #+begin_src elisp
 (defhydra spc-main-menu98 (:color blue)
@@ -6493,38 +6508,33 @@ irony-install-server
 
 (find-file-other-frame "~/Dropbox/Resources/Playlists/test.m3u")
 (emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/test.m3u")
-** CANCELED INI/other/calc.el
+** INI/other/calc.el
 :PROPERTIES:
 :header-args: :tangle INI/other/calc.el :mkdirp yes
 :END:
 *** описание
 
-*** CANCELED used in
+*** used in
 ;; (find-file "~/.archemacs/INI/init.el")
 *** src
 **** use-package calc
 #+begin_src elisp
 (use-package calc
   ;; :disabled
-  :defer t
-  :ensure t
+  ;; :defer t
+  ;; :ensure t
   ;; :config
+  ;;   (define-key calc-mode-map (kbd "M-k") 'windmove-up)
   :bind (:map  calc-mode-map
               ("M-k" . windmove-up)
               ;; ("M-K" . '(calc-copy-as-kill N))
-              ("M-K" . calc-copy-as-kill )
-              )
+              ("M-K" . calc-copy-as-kill ))
   )
   #+end_src
 
   #+RESULTS:
   : calc-copy-as-kill
 
-  
-(emms-all)
-
-(find-file-other-frame "~/Dropbox/Resources/Playlists/test.m3u")
-(emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/test.m3u")
 *** docs
 
 The major mode is Calculator mode defined in calc.el:
@@ -6563,6 +6573,8 @@ The major mode is Calculator mode defined in calc.el:
 (load (expand-file-name "INI/interface/input-methods-cfg.el" user-emacs-directory))
 *** kbd
 (define-key org-mode-map (kbd "C-c <C-return>") 'org-table-insert-row)
+(define-key calc-mode-map (kbd "M-k") 'windmove-up)
+
 *** lambda define-key 
 (define-key evil-normal-state-map "gthf" (lambda () (interactive) (simple-run-command-in-new-frame 'describe-function)))
 ** CANCELED команд 2 фрейме INI/evil_frame_cfg.el
@@ -6605,7 +6617,7 @@ CLOSED: [2025-02-25 Tue 01:20]
 #+end_src
 * блок для экспериментальных настроек
 * Babel-блокам команд
-** auto-tangle-block : 
+** auto-tangle-block:
 #+NAME: auto-tangle-block
 #+begin_src emacs-lisp :results output silent :tangle no
 (setq org-src-preserve-indentation t)

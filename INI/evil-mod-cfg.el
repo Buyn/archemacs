@@ -33,6 +33,15 @@
           (setq x-select-enable-clipboard t)
           (kill-ring-save (region-beginning) (region-end))
           (setq x-select-enable-clipboard nil)))
+;; *** M-y M-c : yank to calc
+(define-key evil-visual-state-map (kbd "M-y M-c") '(lambda() (interactive)
+          (let ((text (buffer-substring (region-beginning) (region-end))))
+            (kill-ring-save (region-beginning) (region-end))
+            (calc)
+            ;; (calc-copy-to-buffer text)
+            ;; (calc-kill-region (region-beginning) (region-end))
+            (calc-yank 0))))
+
 ;; *** M-c M-Y : 
 (define-key evil-normal-state-map (kbd "M-c M-Y") '(lambda() (interactive)
           (setq x-select-enable-clipboard t)

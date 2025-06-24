@@ -70,7 +70,9 @@
 ;; ***** keys
     ("q" nil)
     ("SPC" spc-main-menu98/body)
-    ("c" calc)
+    ("c" (progn
+      (define-key calc-mode-map (kbd "M-k") 'windmove-up)
+      (calc)))
     ("o" hydra-outline/body) 
     ("d" hydra-ediff/body) 
     ("t" hydra-transpose/body) 
