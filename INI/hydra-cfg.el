@@ -447,7 +447,9 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
 ;; ****** "m" : 
     ("m" (progn
           (eww-copy-page-url)
-          (buyn-shell-start (concat "mpv " (current-kill 0)))))
+                                        (message (current-kill 0))
+          ;; (buyn-shell-start (concat "mpv " (current-kill 0)))
+                                        ))
 
 ;; ****** "f" : 
     ("f" (progn
@@ -734,6 +736,8 @@ _d_: subtree
   "
   ;; Elpy in venv: %`venv-current-name
   ("e" (emms) "emms")
+  ("m" (buyn-shell-start (concat "haruna " (buffer-substring (region-beginning) (region-end)))) "2haruna")
+  ("M" (buyn-shell-start (concat "mpv " (buffer-substring (region-beginning) (region-end)))) "2mpv")
   ("t" (progn
          (find-file-other-frame "~/Dropbox/Resources/Playlists/test.m3u")
          (emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/test.m3u"))

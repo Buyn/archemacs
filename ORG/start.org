@@ -25,8 +25,23 @@ https://www.braveclojure.com/basic-emacs/
 
 ** progn:
 #+begin_src emacs-lisp :results output silent
+(use-package telega
+  :ensure t
+  :defer t
+	:config
+    (setq telega-server-libs-prefix "/usr")
+	)
+
 (setq org-log-done nil)
 (load (expand-file-name "INI/hydra-cfg.el" user-emacs-directory))
+;; *** M-y M-c : yank to calc
+(define-key evil-visual-state-map (kbd "M-y M-c") '(lambda() (interactive)
+          (let ((text (buffer-substring (region-beginning) (region-end))))
+            (kill-ring-save (region-beginning) (region-end))
+            (calc)
+            ;; (calc-copy-to-buffer text)
+            ;; (calc-kill-region (region-beginning) (region-end))
+            (calc-yank 0))))
 
 ;; (load (expand-file-name "~/.archemacs/INI/hydra-cfg.el" user-emacs-directory))
 

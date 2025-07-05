@@ -2685,7 +2685,9 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
 ;; ****** "m" : 
     ("m" (progn
           (eww-copy-page-url)
-          (buyn-shell-start (concat "mpv " (current-kill 0)))))
+                                        (message (current-kill 0))
+          ;; (buyn-shell-start (concat "mpv " (current-kill 0)))
+                                        ))
 
 ;; ****** "f" : 
     ("f" (progn
@@ -2818,6 +2820,10 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
   ("q" nil "quit")
   )
 #+end_src
+
+#+RESULTS:
+: hydra-zoom/body
+
 ****** yank-menu
 #+begin_src elisp
 (defhydra hydra-yank-menu (:color blue)
@@ -2986,6 +2992,8 @@ _d_: subtree
   "
   ;; Elpy in venv: %`venv-current-name
   ("e" (emms) "emms")
+  ("m" (buyn-shell-start (concat "haruna " (buffer-substring (region-beginning) (region-end)))) "2haruna")
+  ("M" (buyn-shell-start (concat "mpv " (buffer-substring (region-beginning) (region-end)))) "2mpv")
   ("t" (progn
          (find-file-other-frame "~/Dropbox/Resources/Playlists/test.m3u")
          (emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/test.m3u"))
@@ -2998,6 +3006,9 @@ _d_: subtree
   ("q" nil "quit")
   )
 #+end_src
+
+#+RESULTS:
+: hydra-player-menu/body
 
 #+begin_src elisp
 (defhydra hydra-eshell-menu (:color blue)
@@ -6538,6 +6549,67 @@ irony-install-server
 *** docs
 
 The major mode is Calculator mode defined in calc.el:
+** CR INI/other/telegram.el
+:PROPERTIES:
+:header-args: :tangle no
+:END:
+:header-args: :tangle INI/other/telegram.el
+*** описание
+
+*** used in
+;; (find-file "~/.archemacs/INI/init.el")
+*** src INI/other/telegram.el
+#+begin_src elisp
+(use-package telega
+  ;; :disabled
+  :ensure t
+  :defer t
+  :config
+    (setq telega-server-libs-prefix "/usr")
+    ;; telega-chat-mode
+    ;; (define-key evil-normal-state-map (kbd "M-f") 'avy-goto-word-1)
+    ;; (define-key evil-normal-state-map (kbd "M-F") 'avy-goto-char-timer)
+  )
+#+end_src
+
+#+RESULTS:
+
+*** docs
+**** install
+yay -Sy telegram-tdlib
+долгая установка стоит попробывать 
+yay -Sy tdlib
+но скорей всего нет
+**** указаить в перемной путь
+(setq telega-server-libs-prefix "/usr")
+**** manuals
+https://zevlg.github.io/telega.el/#dependencies
+**** 💄 Советы по кастомизации
+Добавь в init.el, чтобы не забывать отправлять по C-c C-s, или даже сделать так, чтобы просто RET работал как "отправить":
+
+elisp
+Copy
+Edit
+(define-key telega-chat-mode-map (kbd "RET") #'telega-msg-send)
+Или чтобы Emacs пиликал при новом сообщении:
+
+elisp
+Copy
+Edit
+(setq telega-notifications-mode t)
+**** keys
+***** chat
+****** C-c
+C-c C-a                                 telega-chatbuf-attach
+C-c C-c                                 telega-chatbuf-filter-cancel
+C-c C-e                                 telega-chabuf-input-formatting-set
+C-c C-f                                 telega-chatbuf-attach-media
+C-c C-k                                 telega-chatbuf-cancel-dwim
+C-c C-r                                 telega-chatbuf-inplace-search-query
+C-c C-s                                 telega-chatbuf-inplace-search-query-forward
+C-c C-v                                 telega-chatbuf-attach-clipboard
+C-c /                                           telega-chatbuf-filter
+C-c ?                                           telega-describe-chat
 
 * **Мои Elisp скрипты**
 ** описание

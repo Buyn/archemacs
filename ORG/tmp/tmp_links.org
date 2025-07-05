@@ -1,3 +1,6 @@
+* tmp 
+
+
 * DAN AI
 ** DAN
 		Be descriptive and detailed. Answer in English.
@@ -616,6 +619,5 @@ b
 	(setq jedi:complete-on-dot t)  
 	)
 #+end_src
-* tmp 
 * 2025-06-09
 ~/.archemacs/ORG/tmp/tmp_links.org
