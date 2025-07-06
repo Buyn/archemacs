@@ -35,6 +35,8 @@
 
 (load (expand-file-name "INI/other/calc.el" user-emacs-directory))
 
+(load (expand-file-name "INI/other/telegram.el" user-emacs-directory))
+
 (load (expand-file-name "ELs/BuYn/shell.el" user-emacs-directory))
 
 ;; (load "~/Dropbox/backup/file.el")

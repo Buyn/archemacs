@@ -179,6 +179,8 @@ org-src-mode-map
 
 (load (expand-file-name "INI/other/calc.el" user-emacs-directory))
 
+(load (expand-file-name "INI/other/telegram.el" user-emacs-directory))
+
 (load (expand-file-name "ELs/BuYn/shell.el" user-emacs-directory))
 
 ;; (load "~/Dropbox/backup/file.el")
@@ -6574,7 +6576,7 @@ The major mode is Calculator mode defined in calc.el:
 ;; (define-key evil-normal-state-map (kbd "M-F") 'avy-goto-char-timer)
 #+end_src
 
-**** end use-package telega
+**** end use-package telega ) (
 #+begin_src elisp
 
 )
