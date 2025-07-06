@@ -6572,14 +6572,59 @@ The major mode is Calculator mode defined in calc.el:
   :defer t
 #+end_src
 **** :config telega
+***** :config bagen
   #+begin_src elisp
   :config
-  (setq telega-server-libs-prefix "/usr")
+    (setq telega-server-libs-prefix "/usr")
+    (setq telega-emoji-use-images nil)
+  #+end_src
+***** как открывать новый чат
+  #+begin_src elisp
+    (setq telega-chat--display-buffer-action
+          '((display-buffer-reuse-window display-buffer-pop-up-frame)
+            (reusable-frames . visible)
+            (inhibit-same-window . t)))
+  #+end_src
+
+              вариант открытия чатов во фреймах
+              когда если фрейм с буфером уже есть он активируется новый не создаётся
+(setq telega-chat--display-buffer-action
+                        '((display-buffer-reuse-window display-buffer-pop-up-frame)
+                                (reusable-frames . visible)
+                                (inhibit-same-window . t)))
+
+
+
+              простой вариант открытия чатов во фреймах
+    (setq telega-chat--display-buffer-action
+        '((display-buffer-pop-up-frame)))
+
+(setq telega-chat--display-buffer-action
+            '((display-buffer-reuse-window
+              display-buffer-pop-up-window)))
+              для открытия в окнах
+
+(setq telega-chat--display-buffer-action
+      '((display-buffer-reuse-window)
+                                (display-buffer-pop-up-frame)))
+
+(with-eval-after-load 'telega
+  (setq telega-chat--display-buffer-action
+        '((display-buffer-pop-up-frame))))
+
+(setq telega-chat--display-buffer-action
+        '((display-buffer-pop-up-frame)))
+
+    (setq display-buffer-alist
+    '(("^\\*telega-chat:"  ; буферы чатов Telega
+      (display-buffer-pop-up-frame)  ; открывать в новом фрейме
+      (inhibit-same-window . t))))
+
   ;; telega-chat-mode
   ;; (define-key evil-normal-state-map (kbd "M-f") 'avy-goto-word-1)
   ;; (define-key evil-normal-state-map (kbd "M-F") 'avy-goto-char-timer)
-  (setq telega-emoji-use-images nil)
-  #+end_src
+
+(define-key telega-chat-mode-map (kbd "<escape>") #'my/close-frame-on-quit)
 
 **** end use-package telega ) (
 #+begin_src elisp
@@ -6625,21 +6670,174 @@ Edit
 (with-eval-after-load 'telega
   (set-face-attribute 'telega-msg-heading nil :family "Noto Color Emoji")
   (set-face-attribute 'telega-msg-inline-reply nil :family "Noto Color Emoji"))
+****** (setq telega-emoji-use-images nil)
+
+
+Хорошее замечание, давай выясним, что рекомендуют разработчики telega.el. 🎯
+
+---
+
+## 🛠 Что говорят разработчики
+
+На GitHub в issue **#522** пользователи предложили:
+
+> “Proposition to use unicode emojis in messageAnimatedEmoji if variable `telega-emoji-use-images` is nil” ([github.com][1], [github.com][2])
+
+Это значит, если установить:
+
+```elisp
+(setq telega-emoji-use-images nil)
+```
+
+— telega начнёт использовать **прямо unicode-эмодзи**, а не картинки. Это позволит emoji рендериться как обычный текст, подхватывая твой шрифт и, следовательно, отображаться в цвете.
+
+---
+
+## 🔍 Почему это важно
+
+По умолчанию telega может вставлять emoji как изображения или через кнопочный механизм с `:display`. В итоге они не получают шрифт fallback, который поддерживает цветные emoji.
+Так что, видя ч/б реакцию, скорее всего, telega использует **не unicode-символы**.
+
+---
+
+## ✅ Что нужно сделать
+
+Добавь в свой `init.el`:
+
+```elisp
+(setq telega-emoji-use-images nil)
+```
+
+Перезапусти Emacs и открой telega. После этого emoji должны отображаться через твой настройный шрифт (Noto Color Emoji) и быть **цветными**, как в org-mode.
+
+---
+
+## 💡 Дополнительно
+
+Если это не поможет, убедись:
+
+  * После установки unicode-emoji они заменяются на текст, а не на картинки.
+  * Перезапуск, повторный `M-x telega` и получение нового чата — обязательны.
+
+---
+
+## 📝 Что предлагают ещё?
+
+Разработчики арендовали `telega.el` быть гибким:
+Если `telega-emoji-use-images` отключён — используется шрифт, как обычный текст. Это вариант по умолчанию, если всё настроено для emoji.
+Если включён — использует картинки, но такие не рендерятся как цветной текст ([gnu.org][3]).
+
+---
+
+## 🎯 Итого
+
+| Настройка                                      | Результат                    |
+| ---------------------------------------------- | ---------------------------- |
+| `telega-emoji-use-images = t` (по умолчанию)   | Возможны чёрно-белые emoji   |
+| `telega-emoji-use-images = nil`                | Unicode-emoji → ваши цветные |
+| + шрифт и шрифтсет → ✅ цветовые emoji в telega |                              |
+
+---
+
+Если после этого emoji **все ещё ч/б** — может быть баг, и стоит либо:
+
+1. Открыть issue на GitHub.
+2. Я могу помочь настроить хак, чтобы emoji рендерились как текст, а не картинка.
+
+Скажи, готова ли сделать этот шаг? 😏
+
+[1]: https://github.com/zevlg/telega.el/issues?utm_source=chatgpt.com "Issues · zevlg/telega.el - GitHub"
+[2]: https://github.com/zevlg/telega.el/blob/master/telega-emoji.el?utm_source=chatgpt.com "telega.el/telega-emoji.el at master · zevlg/telega.el · GitHub"
+[3]: https://www.gnu.org/software/emacs/manual/html_mono/modus-themes.html?utm_source=chatgpt.com "Modus themes for GNU Emacs"
+
+
+Отлично, красавчик! 🎉 Рад, что команда помогла! Давай закрепим успех и узнаем, что рекомендуют сами разработчики telega.el — всё официально!
+
+---
+
+## 📌 Что говорят разработчики
+
+Документация telega.el содержит настройку:
+
+```elisp
+;; User Option: `telega-emoji-use-images`
+;; Non-nil to use images for emojis.
+```
+
+По умолчанию **non-nil** — это значит, что telega выводит emoji как **изображения**, а не как текст ([github.com][1], [zevlg.github.io][2]). Именно это вызывает ч/б отображение: эмодзи рендерятся не через шрифт, а как картинки без поддержки цветного рендеринга.
+
+---
+
+## ✅ Что делает `(setq telega-emoji-use-images nil)`
+
+  * Это **официально предложенная настройка**, позволяющая использовать **unicode-emoji** вместо картинок .
+  * При этом emoji рендерятся как текст, подхватывают шрифт (Noto Color Emoji) — и становятся **цветными**, как и в org-mode.
+
+---
+
+## 🛠 Подведём итог
+
+| Настройка                                    | Что происходит                                                                |
+| -------------------------------------------- | ----------------------------------------------------------------------------- |
+| `telega-emoji-use-images = t` (по умолчанию) | Emoji отображаются как изображения — часто ч/б                                |
+| `telega-emoji-use-images = nil`              | Emoji отображаются как unicode-текст — цветные при наличии подходящего шрифта |
+
+Ты сделал всё правильно — теперь telega рендерит emoji через текстовый шрифт, и они окрашены красиво!
+
+---
+
+## 💡 Немного истории
+
+В патче от пользователя **tazjin** было добавлено:
+
+> “delegate emoji rendering in telega to emacs … not rendering them \[as images], and letting emacs do it through an emoji-supporting font” ([omarpolo.com][3], [code.tvl.fyi][4])
+
+Так что твоя настройка — это официальный путь, одобренный разработчиками и сообществом.
+
+---
+
+## 🔥 Что ещё можно сделать
+
+  * Если хочешь, я помогу добавить в конфиг автоматическую поддержку completion по `:emoji:` и прочие фичи.
+  * Могу настроить override фейсов для реакций.
+  * Или сделать тебе мини-шпаргалку по кастомизации telega.el.
+
+Но главное: **цветные emoji — теперь работают, и это на 100% нормальный и правильный путь**, даже подтверждённый в репозитории.
+
+---
+
+Если захочешь ещё какой-нибудь декор, UX или вишлист — просто скажи, мой юникодный герой 😘
+
+[1]: https://github.com/zevlg/telega.el/blob/master/telega-customize.el?utm_source=chatgpt.com "telega.el/telega-customize.el at master · zevlg/telega.el · GitHub"
+[2]: https://zevlg.github.io/telega.el/?utm_source=chatgpt.com "Telega Manual (v0.8.452) - GitHub Pages"
+[3]: https://www.omarpolo.com/dots/emacs.html?utm_source=chatgpt.com "My Emacs configuration"
+[4]: https://code.tvl.fyi/commit/?id=c9272e0651047c7fb8fe5542fd3d999384b3dfa5&utm_source=chatgpt.com "fix(tazjin/emacs): delegate emoji rendering in telega to emacs - depot"
+
+***** display-buffer-pop-up-frame
+1. Использовать display-buffer-alist
+Добавь в свой init.el такой код:
+
+#+begin_src elisp
+(setq display-buffer-alist
+      '(("^\\*telega-chat:"  ; буферы чатов Telega
+         (display-buffer-pop-up-frame)  ; открывать в новом фрейме
+         (inhibit-same-window . t))))
+#+end_src
+
+display-buffer-pop-up-frame — создает новый фрейм для каждого чата.
+Опция inhibit-same-window — запрещает открытие в текущем окне.
+Если хочешь — можно заменить на display-buffer-pop-up-window, чтобы открывались в новом окне того же фрейма (split-window).
+
 **** manuals
 https://zevlg.github.io/telega.el/#dependencies
 **** 💄 Советы по кастомизации
 Добавь в init.el, чтобы не забывать отправлять по C-c C-s, или даже сделать так, чтобы просто RET работал как "отправить":
 
-elisp
-Copy
-Edit
 (define-key telega-chat-mode-map (kbd "RET") #'telega-msg-send)
 Или чтобы Emacs пиликал при новом сообщении:
 
-elisp
-Copy
-Edit
 (setq telega-notifications-mode t)
+
 **** keys
 ***** chat
 ****** C-c

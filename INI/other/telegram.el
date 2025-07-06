@@ -4,10 +4,17 @@
   :defer t
 
   :config
-  (setq telega-server-libs-prefix "/usr")
-  ;; telega-chat-mode
-  ;; (define-key evil-normal-state-map (kbd "M-f") 'avy-goto-word-1)
-  ;; (define-key evil-normal-state-map (kbd "M-F") 'avy-goto-char-timer)
-  (setq telega-emoji-use-images nil)
+    (setq telega-server-libs-prefix "/usr")
+    (setq telega-emoji-use-images nil)
+
+    (setq telega-chat--display-buffer-action
+          '((display-buffer-reuse-window display-buffer-pop-up-frame)
+            (reusable-frames . visible)
+            (inhibit-same-window . t)))
 
 )
+
+(setq display-buffer-alist
+      '(("^\\*telega-chat:"  ; буферы чатов Telega
+         (display-buffer-pop-up-frame)  ; открывать в новом фрейме
+         (inhibit-same-window . t))))
