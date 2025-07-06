@@ -6549,27 +6549,35 @@ irony-install-server
 *** docs
 
 The major mode is Calculator mode defined in calc.el:
-** CR INI/other/telegram.el
+** INI/other/telegram.el
 :PROPERTIES:
-:header-args: :tangle no
-:END:
 :header-args: :tangle INI/other/telegram.el
+:END:
 *** описание
 
 *** used in
 ;; (find-file "~/.archemacs/INI/init.el")
 *** src INI/other/telegram.el
+**** start use-package telega
 #+begin_src elisp
 (use-package telega
   ;; :disabled
   :ensure t
   :defer t
-  :config
-    (setq telega-server-libs-prefix "/usr")
-    ;; telega-chat-mode
-    ;; (define-key evil-normal-state-map (kbd "M-f") 'avy-goto-word-1)
-    ;; (define-key evil-normal-state-map (kbd "M-F") 'avy-goto-char-timer)
-  )
+#+end_src
+**** :config telega
+#+begin_src elisp
+:config
+(setq telega-server-libs-prefix "/usr")
+;; telega-chat-mode
+;; (define-key evil-normal-state-map (kbd "M-f") 'avy-goto-word-1)
+;; (define-key evil-normal-state-map (kbd "M-F") 'avy-goto-char-timer)
+#+end_src
+
+**** end use-package telega
+#+begin_src elisp
+
+)
 #+end_src
 
 #+RESULTS:
