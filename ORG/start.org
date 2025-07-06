@@ -30,6 +30,12 @@ https://www.braveclojure.com/basic-emacs/
   :defer t
 	:config
     (setq telega-server-libs-prefix "/usr")
+    (with-eval-after-load 'telega
+      ;; Применяем WIDE шрифт-эмодзи к символам (например, реакциям)
+      (set-fontset-font t 'symbol (font-spec :family "Noto Color Emoji") nil 'prepend)
+      ;; Можно также для unicode, если надо
+      (set-fontset-font t 'unicode (font-spec :family "Noto Color Emoji") nil 'prepend)) 
+
 	)
 
 (setq org-log-done nil)

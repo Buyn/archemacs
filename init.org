@@ -314,6 +314,10 @@ There are two things you can do about this warning:
 (set-language-environment "UTF-8")
 (add-to-list 'default-frame-alist
              '(font . "Ubuntu Mono"))
+
+;; Включаем emoji!
+(when (member "Noto Color Emoji" (font-family-list))
+  (set-fontset-font t 'emoji "Noto Color Emoji" nil 'prepend))
 ;; ------------------------------------------------------
 ;; ** tab-width : 
 ;; ------------------------------------------------------
@@ -6568,13 +6572,14 @@ The major mode is Calculator mode defined in calc.el:
   :defer t
 #+end_src
 **** :config telega
-#+begin_src elisp
-:config
-(setq telega-server-libs-prefix "/usr")
-;; telega-chat-mode
-;; (define-key evil-normal-state-map (kbd "M-f") 'avy-goto-word-1)
-;; (define-key evil-normal-state-map (kbd "M-F") 'avy-goto-char-timer)
-#+end_src
+  #+begin_src elisp
+  :config
+  (setq telega-server-libs-prefix "/usr")
+  ;; telega-chat-mode
+  ;; (define-key evil-normal-state-map (kbd "M-f") 'avy-goto-word-1)
+  ;; (define-key evil-normal-state-map (kbd "M-F") 'avy-goto-char-timer)
+  (setq telega-emoji-use-images nil)
+  #+end_src
 
 **** end use-package telega ) (
 #+begin_src elisp
@@ -6590,8 +6595,36 @@ yay -Sy telegram-tdlib
 долгая установка стоит попробывать 
 yay -Sy tdlib
 но скорей всего нет
-**** указаить в перемной путь
+**** fixes
+***** указаить в перемной путь
 (setq telega-server-libs-prefix "/usr")
+***** emoji
+****** istall
+sudo pacman -S noto-fonts-emoji
+yay -Sy noto-fonts-emoji
+****** set-fontset-font
+если ты используешь set-fontset-font, а ты, конечно, хакер, и должен):
+
+elisp
+Copy
+Edit
+(when (member "Noto Color Emoji" (font-family-list))
+  (set-fontset-font t 'emoji "Noto Color Emoji" nil 'prepend))
+или, чтобы быть ещё аккуратнее:
+
+elisp
+Copy
+Edit
+(set-fontset-font t 'unicode "Noto Color Emoji" nil 'prepend)
+****** Принудительно включить emoji-шрифт для telega-фейсов (опционально)
+Если хочется прям гарантии, можно override конкретные фейсы, например:
+
+elisp
+Copy
+Edit
+(with-eval-after-load 'telega
+  (set-face-attribute 'telega-msg-heading nil :family "Noto Color Emoji")
+  (set-face-attribute 'telega-msg-inline-reply nil :family "Noto Color Emoji"))
 **** manuals
 https://zevlg.github.io/telega.el/#dependencies
 **** 💄 Советы по кастомизации

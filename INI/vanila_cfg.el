@@ -26,6 +26,10 @@
 (set-language-environment "UTF-8")
 (add-to-list 'default-frame-alist
              '(font . "Ubuntu Mono"))
+
+;; Включаем emoji!
+(when (member "Noto Color Emoji" (font-family-list))
+  (set-fontset-font t 'emoji "Noto Color Emoji" nil 'prepend))
 ;; ------------------------------------------------------
 ;; ** tab-width : 
 ;; ------------------------------------------------------
