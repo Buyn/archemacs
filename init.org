@@ -6647,6 +6647,7 @@ The major mode is Calculator mode defined in calc.el:
         (telega)) "telega")
   ("s" telega-switch-buffer "tg buffer swch")
   ("c" telega-chats-menu/body "chats")
+  ("k" telega-kanals-menu/body "chats")
   ("S" telega-buffer-file-send "send file")
     ;; Prepare FILE to be sent as document or photo to CHAT. If C-u is specified, then always send as a file. Otherwise FILE type is automatically detected. If called interactively, then file associated with current buffer is used as FILE. If current buffer is dired, then send all marked files.
   ("u" telega-switch-unread-chat "2unread")
@@ -6657,24 +6658,65 @@ The major mode is Calculator mode defined in calc.el:
   ("q" nil "quit"))
 #+end_src
 ***** "c" chat menu 
+
 #+begin_src elisp
 (defhydra telega-chats-menu (:color blue)
   ("S" telega-saved-messages "my saved")
   ("c" telega-chat-with "chat with")
-  ("s"(telega-chat-with (telega-chat-get -1001709303239)) "Sofi")
-  ("m"(telega-chat-with (telega-chat-get -1001709303239)) "memgumin")
-  ("M"(telega-chat-with (telega-chat-get -1001709303239)) "Mama")
-  ("v"(telega-chat-with (telega-chat-get -1001709303239)) "Vadim")
-  ("f"(telega-chat-with (telega-chat-get -1001709303239)) "soFist")
-  ("z"(telega-chat-with (telega-chat-get -1001709303239)) "zmei")
-  ("n"(telega-chat-with (telega-chat-get -1001709303239)) "novators")
-  ("t"(telega-chat-with (telega-chat-get -1001709303239)) "tut uni")
-  ("p"(telega-chat-with (telega-chat-get -1001709303239)) "polden")
-  ("o"(telega-chat-with (telega-chat-get -1001709303239)) "oxana")
+  ("w"(telega-chat-with (telega-chat-get 333446310)) "Witch_stitch")
+  ("M"(telega-chat-with (telega-chat-get 385863809)) "Mama")
+  ("v"(telega-chat-with (telega-chat-get 330057169)) "Vadim")
+  ("v"(telega-chat-with (telega-chat-get 377971359)) "Gladun")
+  ("s"(telega-chat-with (telega-chat-get 312609632)) "Sofist")
+  ("z"(telega-chat-with (telega-chat-get 7966334078)) "zmei")
+  ("t"(telega-chat-with (telega-chat-get 449609352)) "tut uni")
+
+  ("m"(telega-chat-with (telega-chat-get -1002463244025)) "memgumin")
+  ("n"(telega-chat-with (telega-chat-get -1001232115728)) "novators")
+  ("P"(telega-chat-with (telega-chat-get -1001274893255)) "polden")
+  ("o"(telega-chat-with (telega-chat-get -1001709303239)) "Godess")
 
 
   ("q" nil "quit"))
 #+end_src
+***** "k" kanals menu 
+#+begin_src elisp
+(defhydra telega-kanals-menu (:color blue)
+  ("P"(telega-chat-with (telega-chat-get -1001709303239)) "Procsima")
+  ("k"(telega-chat-with (telega-chat-get -1001084173001)) "Kac")
+  ("n"(telega-chat-with (telega-chat-get -1001231519967)) "Nevsorov")
+  ("b"(telega-chat-with (telega-chat-get -1001231519967)) "Be or")
+  ("c"(telega-chat-with (telega-chat-get -1002001086400)) "Creators")
+  ("s"(telega-chat-with (telega-chat-get -1001709303239)) "Shulman")
+  ("g"(telega-chat-with (telega-chat-get -1001188997171)) "Glupov")
+  ("t"(telega-chat-with (telega-chat-get -1001403554585)) "tabakerk")
+  ("V"(telega-chat-with (telega-chat-get -1001662388432)) "Vanek")
+  ("p"(telega-chat-with (telega-chat-get -1001098515055)) "Portikov")
+  ("v"(telega-chat-with (telega-chat-get -1001727795284)) "Volya")
+  ("e"(telega-chat-with (telega-chat-get -1001188837703)) "epic")
+  ("g"(telega-chat-with (telega-chat-get -1001251600941)) "gameOver")
+
+
+  ("q" nil "quit"))
+#+end_src
+***** sticers menu
+#+begin_src elisp
+(defhydra telega-sticers-menu (:color blue)
+  ("k"(telega-chat-with (telega-chat-get -1001709303239)) "Kac")
+  ("n"(telega-chat-with (telega-chat-get -1001709303239)) "Nevsorov")
+  ("c"(telega-chat-with (telega-chat-get -1001709303239)) "Creators")
+  ("s"(telega-chat-with (telega-chat-get -1001709303239)) "Shulman")
+  ("g"(telega-chat-with (telega-chat-get -1001709303239)) "Glupov")
+  ("v"(telega-chat-with (telega-chat-get -1001709303239)) "Vasik")
+  ("p"(telega-chat-with (telega-chat-get -1001709303239)) "Portikov")
+  ("V"(telega-chat-with (telega-chat-get -1001709303239)) "Volya")
+  ("e"(telega-chat-with (telega-chat-get -1001709303239)) "epic")
+  ("g"(telega-chat-with (telega-chat-get -1001709303239)) "gameOver")
+
+
+  ("q" nil "quit"))
+#+end_src
+***** emoji menu
 ***** "o" chat menu 
 ***** Bots
 ***** other o

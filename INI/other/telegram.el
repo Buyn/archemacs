@@ -19,13 +19,30 @@
         (switch-to-buffer-other-frame "*scratch*")
         (telega)) "telega")
   ("s" telega-switch-buffer "tg buffer swch")
-  ("c" telega-chat-with "chat with")
+  ("c" telega-chats-menu/body "chats")
   ("S" telega-buffer-file-send "send file")
     ;; Prepare FILE to be sent as document or photo to CHAT. If C-u is specified, then always send as a file. Otherwise FILE type is automatically detected. If called interactively, then file associated with current buffer is used as FILE. If current buffer is dired, then send all marked files.
   ("u" telega-switch-unread-chat "2unread")
   ("o" telega-browse-url "open url")
     ;; Open the URL. If URL can be opened directly inside telega, then do it. Invite links and link to users can be directly opened in telega. If IN-WEB-BROWSER is non-nil then force opening in web browser.
   ("i" telega-switch-important-chat "2important")
+
+  ("q" nil "quit"))
+
+(defhydra telega-chats-menu (:color blue)
+  ("S" telega-saved-messages "my saved")
+  ("c" telega-chat-with "chat with")
+  ("s"(telega-chat-with (telega-chat-get -1001709303239)) "Sofi")
+  ("m"(telega-chat-with (telega-chat-get -1001709303239)) "memgumin")
+  ("M"(telega-chat-with (telega-chat-get -1001709303239)) "Mama")
+  ("v"(telega-chat-with (telega-chat-get -1001709303239)) "Vadim")
+  ("f"(telega-chat-with (telega-chat-get -1001709303239)) "soFist")
+  ("z"(telega-chat-with (telega-chat-get -1001709303239)) "zmei")
+  ("n"(telega-chat-with (telega-chat-get -1001709303239)) "novators")
+  ("t"(telega-chat-with (telega-chat-get -1001709303239)) "tut uni")
+  ("p"(telega-chat-with (telega-chat-get -1001709303239)) "polden")
+  ("o"(telega-chat-with (telega-chat-get -1001709303239)) "oxana")
+
 
   ("q" nil "quit"))
 
