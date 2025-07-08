@@ -66,6 +66,7 @@ FL timer
     (global-set-key (kbd "C-S-<XF86Eject>") '(lambda()        (emms-player-seek -60)))
 *** hydra
 **** [[*menus for 00][menus for 00]]
+[[*spc-main-menu00][spc-main-menu00]]
 ***** ai
 (defhydra hydra-ai-menu (:color blue)
 ***** models
@@ -2183,8 +2184,8 @@ CLOSED: [2025-02-21 Fri 21:34]
     ^Main^                00                ^Menus^          
     ^─────^───────────────────────────────────^─────^────────────
     _a_I      _d_ev menu    _o_rg-mode   _b_Org-Brain                       
-    _w_ww             _y_nke-menu  _r_eader
-    _c_ommands      _e_macs-menu   ya_s_nippet      
+    _w_ww     _t_elega      _y_nke-menu  _r_eader
+    _c_ommands   _e_macs-menu   ya_s_nippet      
     _p_rev-menu   _q_uit   _SPC_ next  _n_ext-menu    
     "
 ;; ***** keys
@@ -2192,6 +2193,7 @@ CLOSED: [2025-02-21 Fri 21:34]
     ("o" org-menu/body)
     ("d" hydra-dev-menu/body)
     ("w" www-menu/body)
+    ("t" telega-menu/body)
     ("e" hydra-emacs-menu/body)
     ("c" hydra-commands-menu/body)
     ("a" hydra-ai-menu/body)
@@ -6572,7 +6574,7 @@ The major mode is Calculator mode defined in calc.el:
   :defer t
 #+end_src
 **** :config telega
-***** :config bagen
+***** :config began
   #+begin_src elisp
   :config
     (setq telega-server-libs-prefix "/usr")
@@ -6585,6 +6587,9 @@ The major mode is Calculator mode defined in calc.el:
             (reusable-frames . visible)
             (inhibit-same-window . t)))
   #+end_src
+
+
+(setq pop-up-frames t)
 
               вариант открытия чатов во фреймах
               когда если фрейм с буфером уже есть он активируется новый не создаётся
@@ -6628,12 +6633,32 @@ The major mode is Calculator mode defined in calc.el:
 
 **** end use-package telega ) (
 #+begin_src elisp
-
 )
 #+end_src
 
 #+RESULTS:
 
+**** hydra telega menu
+***** "t" telega-menu/body
+#+begin_src elisp
+(defhydra telega-menu (:color blue)
+  ("t" (progn
+		    (switch-to-buffer-other-frame "*scratch*")
+				(telega)) "telega")
+  ("s" (telega-switch-buffer) "tg buffer swch")
+  ("c" (telega-chat-with) "chat")
+  ("S" (telega-buffer-file-send) "send file")
+    ;; Prepare FILE to be sent as document or photo to CHAT. If C-u is specified, then always send as a file. Otherwise FILE type is automatically detected. If called interactively, then file associated with current buffer is used as FILE. If current buffer is dired, then send all marked files.
+  ("u" (telega-switch-unread-chat) "swch2unread")
+  ("o" (telega-browse-url) "open url")
+    ;; Open the URL. If URL can be opened directly inside telega, then do it. Invite links and link to users can be directly opened in telega. If IN-WEB-BROWSER is non-nil then force opening in web browser.
+  ("i" telega-switch-important-chat "2imp-chat")
+
+  ("q" nil "quit"))
+#+end_src
+***** other o
+****** (telega-saved-messages)
+s (telega-saved-messages)
 *** docs
 **** install
 yay -Sy telegram-tdlib
