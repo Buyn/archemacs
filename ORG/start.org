@@ -27,34 +27,8 @@ https://www.braveclojure.com/basic-emacs/
 #+begin_src emacs-lisp :results output silent
 (load (expand-file-name "INI/other/telegram.el" user-emacs-directory))
 
-(setq org-log-done nil)
+;; (setq org-log-done nil)
 (load (expand-file-name "INI/hydra-cfg.el" user-emacs-directory))
-;; *** M-y M-c : yank to calc
-(define-key evil-visual-state-map (kbd "M-y M-c") '(lambda() (interactive)
-          (let ((text (buffer-substring (region-beginning) (region-end))))
-            (kill-ring-save (region-beginning) (region-end))
-            (calc)
-            ;; (calc-copy-to-buffer text)
-            ;; (calc-kill-region (region-beginning) (region-end))
-            (calc-yank 0))))
-
-;; (load (expand-file-name "~/.archemacs/INI/hydra-cfg.el" user-emacs-directory))
-
-;; (load "~/ELs/BuYn/reader.el")
-
-;; (load "~/INI/babel-cfg.el")
-
-(define-key evil-normal-state-map (kbd "M-y M-f") 'evil-use-register)
-(define-key evil-normal-state-map (kbd "M-y M-s") 'evil-show-registers)
-(define-key evil-visual-state-map (kbd "M-y M-f")
-						'(lambda() (interactive)
-							(let ((text (buffer-substring (region-beginning) (region-end)))
-										(name (read-char "enter register name for test:")))
-								(evil-set-register name text))))
-
-(define-key evil-normal-state-map (kbd "M-p M-f") 'evil-paste-from-register)
-(define-key evil-visual-state-map (kbd "M-p M-f") 'evil-paste-from-register)
-(define-key evil-normal-state-map (kbd "M-p M-s") 'evil-show-registers)
 
 (kill-buffer (current-buffer))
 (evil-quit)

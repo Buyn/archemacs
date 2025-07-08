@@ -7,8 +7,8 @@
     ^Main^                00                ^Menus^          
     ^─────^───────────────────────────────────^─────^────────────
     _a_I      _d_ev menu    _o_rg-mode   _b_Org-Brain                       
-    _w_ww             _y_nke-menu  _r_eader
-    _c_ommands      _e_macs-menu   ya_s_nippet      
+    _w_ww     _t_elega      _y_nke-menu  _r_eader
+    _c_ommands   _e_macs-menu   ya_s_nippet      
     _p_rev-menu   _q_uit   _SPC_ next  _n_ext-menu    
     "
 ;; ***** keys
@@ -16,6 +16,7 @@
     ("o" org-menu/body)
     ("d" hydra-dev-menu/body)
     ("w" www-menu/body)
+    ("t" telega-menu/body)
     ("e" hydra-emacs-menu/body)
     ("c" hydra-commands-menu/body)
     ("a" hydra-ai-menu/body)
