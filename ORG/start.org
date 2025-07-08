@@ -28,7 +28,7 @@ https://www.braveclojure.com/basic-emacs/
 (load (expand-file-name "INI/other/telegram.el" user-emacs-directory))
 
 ;; (setq org-log-done nil)
-(load (expand-file-name "INI/hydra-cfg.el" user-emacs-directory))
+(load (expand-file-name "INI/hydra-cfg.el" user-emacs-directory)) 
 
 (kill-buffer (current-buffer))
 (evil-quit)
