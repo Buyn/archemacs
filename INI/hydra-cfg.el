@@ -13,7 +13,7 @@
     "
 ;; ***** keys
     ("q" nil)
-    ("o" org-menu/body)
+
     ("d" hydra-dev-menu/body)
     ("w" www-menu/body)
     ("t" telega-menu/body)

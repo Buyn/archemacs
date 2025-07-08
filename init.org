@@ -2190,7 +2190,7 @@ CLOSED: [2025-02-21 Fri 21:34]
     "
 ;; ***** keys
     ("q" nil)
-    ("o" org-menu/body)
+
     ("d" hydra-dev-menu/body)
     ("w" www-menu/body)
     ("t" telega-menu/body)
@@ -6647,7 +6647,7 @@ The major mode is Calculator mode defined in calc.el:
         (telega)) "telega")
   ("s" telega-switch-buffer "tg buffer swch")
   ("c" telega-chats-menu/body "chats")
-  ("k" telega-kanals-menu/body "chats")
+  ("k" telega-kanals-menu/body "chanels")
   ("S" telega-buffer-file-send "send file")
     ;; Prepare FILE to be sent as document or photo to CHAT. If C-u is specified, then always send as a file. Otherwise FILE type is automatically detected. If called interactively, then file associated with current buffer is used as FILE. If current buffer is dired, then send all marked files.
   ("u" telega-switch-unread-chat "2unread")
@@ -6657,8 +6657,11 @@ The major mode is Calculator mode defined in calc.el:
 
   ("q" nil "quit"))
 #+end_src
-***** "c" chat menu 
 
+#+RESULTS:
+: telega-menu/body
+
+***** "c" chat menu 
 #+begin_src elisp
 (defhydra telega-chats-menu (:color blue)
   ("S" telega-saved-messages "my saved")
@@ -6676,13 +6679,15 @@ The major mode is Calculator mode defined in calc.el:
   ("P"(telega-chat-with (telega-chat-get -1001274893255)) "polden")
   ("o"(telega-chat-with (telega-chat-get -1001709303239)) "Godess")
 
-
   ("q" nil "quit"))
 #+end_src
+
+#+RESULTS:
+: telega-chats-menu/body
+
 ***** "k" kanals menu 
 #+begin_src elisp
 (defhydra telega-kanals-menu (:color blue)
-  ("P"(telega-chat-with (telega-chat-get -1001709303239)) "Procsima")
   ("k"(telega-chat-with (telega-chat-get -1001084173001)) "Kac")
   ("n"(telega-chat-with (telega-chat-get -1001231519967)) "Nevsorov")
   ("b"(telega-chat-with (telega-chat-get -1001231519967)) "Be or")
@@ -6699,6 +6704,10 @@ The major mode is Calculator mode defined in calc.el:
 
   ("q" nil "quit"))
 #+end_src
+
+#+RESULTS:
+: telega-kanals-menu/body
+
 ***** sticers menu
 #+begin_src elisp
 (defhydra telega-sticers-menu (:color blue)
@@ -6716,6 +6725,10 @@ The major mode is Calculator mode defined in calc.el:
 
   ("q" nil "quit"))
 #+end_src
+
+#+RESULTS:
+: telega-sticers-menu/body
+
 ***** emoji menu
 ***** "o" chat menu 
 ***** Bots
