@@ -6562,6 +6562,7 @@ The major mode is Calculator mode defined in calc.el:
 :header-args: :tangle INI/other/telegram.el
 :END:
 *** описание
+(find-file "~/.archemacs/INI/other/telegram.el")
 
 *** used in
 ;; (find-file "~/.archemacs/INI/init.el")
@@ -6662,7 +6663,7 @@ The major mode is Calculator mode defined in calc.el:
 #+RESULTS:
 : telega-menu/body
 
-***** "c" chat menu 
+***** "c" chat menu
 #+begin_src elisp
 (defhydra telega-chats-menu (:color blue)
   ("S" telega-saved-messages "my saved")
@@ -6686,7 +6687,7 @@ The major mode is Calculator mode defined in calc.el:
 #+RESULTS:
 : telega-chats-menu/body
 
-***** "k" kanals menu 
+***** "k" kanals menu
 #+begin_src elisp
 (defhydra telega-kanals-menu (:color blue)
   ("k"(telega-chat-with (telega-chat-get -1001084173001)) "Kac")
@@ -6698,6 +6699,7 @@ The major mode is Calculator mode defined in calc.el:
   ("t"(telega-chat-with (telega-chat-get -1001403554585)) "tabakerk")
   ("V"(telega-chat-with (telega-chat-get -1001662388432)) "Vanek")
   ("p"(telega-chat-with (telega-chat-get -1001098515055)) "Portikov")
+  ("P"(telega-chat-with (telega-chat-get -1001348775964)) "Proxima")
   ("v"(telega-chat-with (telega-chat-get -1001727795284)) "Volya")
   ("e"(telega-chat-with (telega-chat-get -1001188837703)) "epic")
   ("g"(telega-chat-with (telega-chat-get -1001251600941)) "gameOver")
@@ -6709,7 +6711,7 @@ The major mode is Calculator mode defined in calc.el:
 #+RESULTS:
 : telega-kanals-menu/body
 
-***** sticers menu
+***** "s" sticers menu
 #+begin_src elisp
 (defhydra telega-sticers-menu (:color blue)
   ("s" telega-sticker-choose-favorite-or-recent "recent")
@@ -6742,6 +6744,9 @@ The major mode is Calculator mode defined in calc.el:
 открыть сылку настроийки телеграма
 ***** каналы
 *** docs
+:PROPERTIES:
+:header-args: :tangle no
+:END:
 **** install
 yay -Sy telegram-tdlib
 долгая установка стоит попробывать 
@@ -7017,22 +7022,22 @@ i (telega-switch-important-chat)
 
 
     (setq display-buffer-alist
-	  '(("^\\*telega-chat:"  ; буферы чатов Telega
-	    (display-buffer-pop-up-frame)  ; открывать в новом фрейме
-	    (inhibit-same-window . t))))
+          '(("^\\*telega-chat:"  ; буферы чатов Telega
+            (display-buffer-pop-up-frame)  ; открывать в новом фрейме
+            (inhibit-same-window . t))))
 
 
 это  не работает:
     (setq display-buffer-alist
-	  '(("^\\*telega-chat:"  ; буферы чатов Telega
-	      (display-buffer-pop-up-frame)  ; открывать в новом фрейме
-	      (inhibit-same-window . t))))
+          '(("^\\*telega-chat:"  ; буферы чатов Telega
+              (display-buffer-pop-up-frame)  ; открывать в новом фрейме
+              (inhibit-same-window . t))))
 
 display-buffer-alist is a variable defined in ‘window.el’.
 
 Its value is
 (("^\\*telega-chat:" (display-buffer-pop-up-frame)
-	(inhibit-same-window . t)))
+        (inhibit-same-window . t)))
 Original value was nil
 
 Alist of user-defined conditional actions for ‘display-buffer’.
@@ -7860,16 +7865,16 @@ You can apply markup to the input when sending message. This is controlled by nu
     Default value: (nil "markdown2" "org")
 
 Markup syntax table:
-  	markdown2 	org 	markdown1
-bold text 	**bold text** 	*bold text* 	*bold text*
-italic text 	__italic text__ 	/italic text/ 	_italic text_
-underline text 	UNSUPPORTED 	_underline text_ 	UNSUPPORTED
-strike through 	~~strike through~~ 	+strike through+ 	UNSUPPORTED
-  	¦¦spoiler¦¦ 	¦¦spoiler¦¦ 	UNSUPPORTED
-inlined code 	`inlined code` 	~inlined code~ 	`inlined code`
-pre text 	```pre text``` 	=pre text= 	UNSUPPORTED
-text 	[text](http://www.url) 	[[http://www.url][text]] 	[text](http://www.url)
-name 	[name](tg://user?id=<USER-ID>) 	[[tg://user?id=<USER-ID>][name]] 	[name](tg://user?id=<USER-ID>)
+        markdown2       org     markdown1
+bold text       **bold text**   *bold text*     *bold text*
+italic text     __italic text__         /italic text/   _italic text_
+underline text  UNSUPPORTED     _underline text_        UNSUPPORTED
+strike through  ~~strike through~~      +strike through+        UNSUPPORTED
+        ¦¦spoiler¦¦     ¦¦spoiler¦¦     UNSUPPORTED
+inlined code    `inlined code`  ~inlined code~  `inlined code`
+pre text        ```pre text```  =pre text=      UNSUPPORTED
+text    [text](http://www.url)  [[http://www.url][text]]        [text](http://www.url)
+name    [name](tg://user?id=<USER-ID>)  [[tg://user?id=<USER-ID>][name]]        [name](tg://user?id=<USER-ID>)
 
 There is also "markdown1" syntax to insert multiline code blocks of specified languge:
 

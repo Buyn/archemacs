@@ -18,7 +18,8 @@
   ("t" (progn
         (switch-to-buffer-other-frame "*scratch*")
         (telega)) "telega")
-  ("s" telega-switch-buffer "tg buffer swch")
+  ("b" telega-switch-buffer "tg buffer swch")
+  ("s" telega-sticers-menu/body "sticers")
   ("c" telega-chats-menu/body "chats")
   ("k" telega-kanals-menu/body "chanels")
   ("S" telega-buffer-file-send "send file")
@@ -58,6 +59,7 @@
   ("t"(telega-chat-with (telega-chat-get -1001403554585)) "tabakerk")
   ("V"(telega-chat-with (telega-chat-get -1001662388432)) "Vanek")
   ("p"(telega-chat-with (telega-chat-get -1001098515055)) "Portikov")
+  ("P"(telega-chat-with (telega-chat-get -1001348775964)) "Proxima")
   ("v"(telega-chat-with (telega-chat-get -1001727795284)) "Volya")
   ("e"(telega-chat-with (telega-chat-get -1001188837703)) "epic")
   ("g"(telega-chat-with (telega-chat-get -1001251600941)) "gameOver")
@@ -66,9 +68,9 @@
   ("q" nil "quit"))
 
 (defhydra telega-sticers-menu (:color blue)
-  ("k"(telega-chat-with (telega-chat-get -1001709303239)) "Kac")
-  ("n"(telega-chat-with (telega-chat-get -1001709303239)) "Nevsorov")
-  ("c"(telega-chat-with (telega-chat-get -1001709303239)) "Creators")
+  ("s" telega-sticker-choose-favorite-or-recent "recent")
+  ("S" telega-stickerset-choose "stickerset")
+  ("n" (insert "⟬Sticker XXX Id: 6553⟭")  "Nochy")
   ("s"(telega-chat-with (telega-chat-get -1001709303239)) "Shulman")
   ("g"(telega-chat-with (telega-chat-get -1001709303239)) "Glupov")
   ("v"(telega-chat-with (telega-chat-get -1001709303239)) "Vasik")
@@ -79,8 +81,3 @@
 
 
   ("q" nil "quit"))
-
-(setq display-buffer-alist
-      '(("^\\*telega-chat:"  ; буферы чатов Telega
-         (display-buffer-pop-up-frame)  ; открывать в новом фрейме
-         (inhibit-same-window . t))))

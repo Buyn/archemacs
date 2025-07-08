@@ -25,7 +25,7 @@ https://www.braveclojure.com/basic-emacs/
 
 ** progn:
 #+begin_src emacs-lisp :results output silent
-(load (expand-file-name "INI/other/telegram.el" user-emacs-directory))
+(load (expand-file-name "INI/other/telegram.el" user-emacs-directory)) 
 
 ;; (setq org-log-done nil)
 (load (expand-file-name "INI/hydra-cfg.el" user-emacs-directory)) 
