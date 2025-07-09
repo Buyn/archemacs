@@ -1969,9 +1969,15 @@ CLOSED: [2025-04-14 Mon 09:51]
 "INI/fullscreen-cfg.el"
 [[*FULLSCREEN-MOD CUSTOMIZATION load][FULLSCREEN-MOD CUSTOMIZATION load]]
 **** src INI/fullscreen-cfg.el
+***** star comment
 #+begin_src elisp
 ;; * FULLSCREEN-MOD CUSTOMIZATION
 ;; --------------------------------------
+#+end_src
+
+***** CANCELED old version
+#+begin_src elisp :tangle no 
+
 ;; (setq-local fullscreen-mode-activ nil)
 (defvar-local fullscreen-mode-activ nil
   "indictate is fullscreen mode is activ or not
@@ -1982,7 +1988,7 @@ CLOSED: [2025-04-14 Mon 09:51]
   "Toggles full-screen mode for Emacs window on Win32."
   (interactive)
   (toggle-frame-fullscreen)
-)
+	)
 ;; --------------------------------------
 ;; ** toggle-fonte-lage-size : 
 (defun toggle-fonte-lage-size ()
@@ -1993,9 +1999,9 @@ CLOSED: [2025-04-14 Mon 09:51]
       (progn
         (text-scale-set 0)
         (put 'toggle-font-lage-size 'state nil))
-      (progn
-        (text-scale-set +3)
-        (put 'toggle-font-lage-size 'state t))))
+    (progn
+      (text-scale-set +3)
+      (put 'toggle-font-lage-size 'state t))))
 ;; --------------------------------------
 ;; ** toggle-bars : 
 (defun toggle-bars ()
@@ -2037,15 +2043,15 @@ CLOSED: [2025-04-14 Mon 09:51]
   ;; (minimap-mode)
   ;; (minimap-create)
   (if fullscreen-mode-activ
-    ;; (minimap-create-window)
-    (minimap-mode)
+			;; (minimap-create-window)
+			(minimap-mode)
     (minimap-kill))
   ;; (minimap-recenter)
   ;; (minimap-mode)
   ;; (minimap-update nil)
   ;; (minimap-update)
   ;; (minimap-active-current-buffer-p)
-    )
+  )
 ;; ** toggle-fullscreen-agenda : 
 (defun toggle-fullscreen-agenda ()
   "Full screen for agenda mode
@@ -2059,26 +2065,115 @@ CLOSED: [2025-04-14 Mon 09:51]
   ;; (toggle-frame-fullscreen)
   (toggle-frame-maximized)
   (if fullscreen-mode-activ
-        (text-scale-set 0)
-        (text-scale-set +3))
+      (text-scale-set 0)
+    (text-scale-set +3))
   (setq-local fullscreen-mode-activ (not fullscreen-mode-activ)))
-  
-;; ** set-key : 
+#+end_src
+
+***** toggle-fullscreen-smart
+#+begin_src elisp
+(defun toggle-fullscreen-smart ()
+  "Toggle fullscreen and font size based on current state.
+Логика:
+- Если шрифт большой и окно не полноэкранное → включить fullscreen.
+- Если шрифт стандартный и окно fullscreen → выключить fullscreen.
+- Если шрифт стандартный и окно не fullscreen → включить fullscreen и увеличить шрифт.
+- Если шрифт большой и окно fullscreen → уменьшить шрифт и выйти из fullscreen."
+  (interactive)
+  (let* ((fullscreen (frame-parameter nil 'fullscreen))
+         (is-fullscreen (memq fullscreen '(maximized fullboth fullheight)))
+         (font-scale (or text-scale-mode-amount 0))
+         (is-large-font (> font-scale 0)))
+
+    (cond
+     ;; Шрифт большой, окно не fullscreen → включить fullscreen
+     ((and is-large-font (not is-fullscreen))
+      (toggle-frame-maximized))
+
+     ;; Шрифт обычный, окно fullscreen → выключить fullscreen
+     ((and (not is-large-font) is-fullscreen)
+      (toggle-frame-maximized))
+
+     ;; Шрифт обычный, окно не fullscreen → включить fullscreen и увеличить шрифт
+     ((and (not is-large-font) (not is-fullscreen))
+      (toggle-frame-maximized)
+      (text-scale-set +3))
+
+     ;; Шрифт большой, окно fullscreen → уменьшить шрифт и выйти из fullscreen
+     ((and is-large-font is-fullscreen)
+      (text-scale-set 0)
+      (toggle-frame-maximized)))))
+#+end_src
+***** set-key : 
 ;; --------------------------------------
 ;; Use F11 to switch between windowed and full-screen modes
 ;;(global-set-key (kbd "C-M-f") 'toggle-full-screen-and-bars)
 ;;(define-key evil-normal-state-map [(control shift f)] 'toggle-full-screen-and-bars)
 ;; (global-set-key [(control shift f)]  'toggle-full-screen-and-bars)
 (global-set-key [(control shift f)]  'toggle-fullscreen-agenda)
+#+begin_src elisp
+(global-set-key [(control shift f)]  'toggle-fullscreen-smart)
+#+end_src
+
 ;; --------------------------------------
 ;; ** --------------------------------------
-#+end_src
 
 ;; * MINIMAP-MODE CUSTOMIZATION 
 ;; --------------------------------------
 ;; (find-file-other-frame "~/.archemacs/INI/frames/minimap-cfg.el")
 ;; (load "~/.archemacs/INI/frames/minimap-cfg.el")
 ;; --------------------------------------
+**** AI
+***** 
+есть такой код для первода Имакса в полный экран.
+Хочу сменить логику. 
+Нужно вначале проверять размер шрифта, потом состояние окна.
+- если Шрифт большой а окно мальенкое. сдаль окно полноэкраным.
+- если Шрифт мальнки а окно полный экран. Выйти из полного экрана. 
+- если Шрифт мальнки и окно мальенкое. сдаль окно полноэкраным и шрифт большим
+- если окно полноэкраное и шрифт большой. сдаль Шрифт мальнки и окно мальенкое.
+***** 
+
+(defun toggle-fullscreen-smart ()
+  "Toggle fullscreen and font size based on current state:
+- If font is large and window not fullscreen → make fullscreen.
+- If font is small and window is fullscreen → exit fullscreen.
+- If font is small and window is not fullscreen → make fullscreen and large font.
+- If fullscreen and font is large → make font small and windowed."
+  (interactive)
+  (let ((fullscreen (frame-parameter nil 'fullscreen))
+        (large-font (>= (or (get 'toggle-font-lage-size 'state) 0) 1)))
+    (cond
+     ;; large font + not fullscreen → make fullscreen
+     ((and large-font (not (eq fullscreen 'maximized)))
+      (toggle-frame-maximized))
+
+     ;; small font + fullscreen → exit fullscreen
+     ((and (not large-font) (eq fullscreen 'maximized))
+      (toggle-frame-maximized))
+
+     ;; small font + not fullscreen → fullscreen + large font
+     ((and (not large-font) (not (eq fullscreen 'maximized)))
+      (toggle-frame-maximized)
+      (text-scale-set +3)
+      (put 'toggle-font-lage-size 'state t))
+
+     ;; fullscreen + large font → font small + windowed
+     ((and large-font (eq fullscreen 'maximized))
+      (text-scale-set 0)
+      (put 'toggle-font-lage-size 'state nil)
+      (toggle-frame-maximized)))))
+И можно повесить это на горячую клавишу, например:
+
+elisp
+Copy
+Edit
+(global-set-key (kbd "<f12>") 'toggle-fullscreen-smart)
+*****
+как я понял ты предлогаешь,определять состояние шрията, делать через переменую
+toggle-font-lage-size
+Было бы лучше проверять шрфт напрямую. если он не стандартный делать стандартным и убедится что окно не максимальное.
+
 *** CANCELED INI/frames/minimap-cfg.el
 CLOSED: [2025-02-21 Fri 21:34]
 :PROPERTIES:
@@ -6677,7 +6772,7 @@ The major mode is Calculator mode defined in calc.el:
   ("w"(telega-chat-with (telega-chat-get 333446310)) "Witch_stitch")
   ("M"(telega-chat-with (telega-chat-get 385863809)) "Mama")
   ("v"(telega-chat-with (telega-chat-get 330057169)) "Vadim")
-  ("v"(telega-chat-with (telega-chat-get 377971359)) "Gladun")
+  ("G"(telega-chat-with (telega-chat-get 377971359)) "Gladun")
   ("s"(telega-chat-with (telega-chat-get 312609632)) "Sofist")
   ("z"(telega-chat-with (telega-chat-get 7966334078)) "zmei")
   ("t"(telega-chat-with (telega-chat-get 449609352)) "tut uni")
