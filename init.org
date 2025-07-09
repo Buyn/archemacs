@@ -2392,6 +2392,8 @@ CLOSED: [2025-02-21 Fri 21:34]
   "
     ;; (find-file-other-frame "~/Dropbox/backup/models/gemeni1-5.el")
     ("g" (load "~/Dropbox/backup/models/gemeni1-5.el") "Gemeni")
+    ;; (find-file-other-frame "~/Dropbox/backup/models/fast-gemeni.el")
+    ("f" (load "~/Dropbox/backup/models/fast-gemeni.el") "FastGemeni")
     ;; (find-file-other-frame "~/Dropbox/backup/models/claude.el")
     ("c" (load "~/Dropbox/backup/models/claude.el") "Claude")
     ;; (find-file-other-frame "~/Dropbox/backup/models/openai.el")
@@ -2450,6 +2452,10 @@ CLOSED: [2025-02-21 Fri 21:34]
     ("q" nil) 
   )
 #+end_src
+
+#+RESULTS:
+: hydra-ai-chat-menu/body
+
 ****** org-menu
     ("t" org-todo "Todo set")
     ("g" org-agenda "aGenda" :color blue )
@@ -6679,7 +6685,7 @@ The major mode is Calculator mode defined in calc.el:
   ("m"(telega-chat-with (telega-chat-get -1002463244025)) "memgumin")
   ("n"(telega-chat-with (telega-chat-get -1001232115728)) "novators")
   ("P"(telega-chat-with (telega-chat-get -1001274893255)) "polden")
-  ("o"(telega-chat-with (telega-chat-get -1001709303239)) "Godess")
+  ("g"(telega-chat-with (telega-chat-get -1001709303239)) "Godess")
 
   ("q" nil "quit"))
 #+end_src
@@ -6717,13 +6723,7 @@ The major mode is Calculator mode defined in calc.el:
   ("s" telega-sticker-choose-favorite-or-recent "recent")
   ("S" telega-stickerset-choose "stickerset")
   ("n" (insert "⟬Sticker XXX Id: 6553⟭")  "Nochy")
-  ("s"(telega-chat-with (telega-chat-get -1001709303239)) "Shulman")
-  ("g"(telega-chat-with (telega-chat-get -1001709303239)) "Glupov")
-  ("v"(telega-chat-with (telega-chat-get -1001709303239)) "Vasik")
-  ("p"(telega-chat-with (telega-chat-get -1001709303239)) "Portikov")
-  ("V"(telega-chat-with (telega-chat-get -1001709303239)) "Volya")
-  ("e"(telega-chat-with (telega-chat-get -1001709303239)) "epic")
-  ("g"(telega-chat-with (telega-chat-get -1001709303239)) "gameOver")
+  ("l" (insert "⟬Sticker XXX Id: 6595⟭")  "Laghf knite")
 
 
   ("q" nil "quit"))

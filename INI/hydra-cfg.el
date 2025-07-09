@@ -194,6 +194,8 @@
   "
     ;; (find-file-other-frame "~/Dropbox/backup/models/gemeni1-5.el")
     ("g" (load "~/Dropbox/backup/models/gemeni1-5.el") "Gemeni")
+    ;; (find-file-other-frame "~/Dropbox/backup/models/fast-gemeni.el")
+    ("f" (load "~/Dropbox/backup/models/fast-gemeni.el") "FastGemeni")
     ;; (find-file-other-frame "~/Dropbox/backup/models/claude.el")
     ("c" (load "~/Dropbox/backup/models/claude.el") "Claude")
     ;; (find-file-other-frame "~/Dropbox/backup/models/openai.el")

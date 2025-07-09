@@ -45,7 +45,7 @@
   ("m"(telega-chat-with (telega-chat-get -1002463244025)) "memgumin")
   ("n"(telega-chat-with (telega-chat-get -1001232115728)) "novators")
   ("P"(telega-chat-with (telega-chat-get -1001274893255)) "polden")
-  ("o"(telega-chat-with (telega-chat-get -1001709303239)) "Godess")
+  ("g"(telega-chat-with (telega-chat-get -1001709303239)) "Godess")
 
   ("q" nil "quit"))
 
@@ -71,13 +71,7 @@
   ("s" telega-sticker-choose-favorite-or-recent "recent")
   ("S" telega-stickerset-choose "stickerset")
   ("n" (insert "⟬Sticker XXX Id: 6553⟭")  "Nochy")
-  ("s"(telega-chat-with (telega-chat-get -1001709303239)) "Shulman")
-  ("g"(telega-chat-with (telega-chat-get -1001709303239)) "Glupov")
-  ("v"(telega-chat-with (telega-chat-get -1001709303239)) "Vasik")
-  ("p"(telega-chat-with (telega-chat-get -1001709303239)) "Portikov")
-  ("V"(telega-chat-with (telega-chat-get -1001709303239)) "Volya")
-  ("e"(telega-chat-with (telega-chat-get -1001709303239)) "epic")
-  ("g"(telega-chat-with (telega-chat-get -1001709303239)) "gameOver")
+  ("l" (insert "⟬Sticker XXX Id: 6595⟭")  "Laghf knite")
 
 
   ("q" nil "quit"))
