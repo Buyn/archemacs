@@ -37,7 +37,7 @@
   ("w"(telega-chat-with (telega-chat-get 333446310)) "Witch_stitch")
   ("M"(telega-chat-with (telega-chat-get 385863809)) "Mama")
   ("v"(telega-chat-with (telega-chat-get 330057169)) "Vadim")
-  ("v"(telega-chat-with (telega-chat-get 377971359)) "Gladun")
+  ("G"(telega-chat-with (telega-chat-get 377971359)) "Gladun")
   ("s"(telega-chat-with (telega-chat-get 312609632)) "Sofist")
   ("z"(telega-chat-with (telega-chat-get 7966334078)) "zmei")
   ("t"(telega-chat-with (telega-chat-get 449609352)) "tut uni")

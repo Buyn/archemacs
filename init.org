@@ -1988,7 +1988,7 @@ CLOSED: [2025-04-14 Mon 09:51]
   "Toggles full-screen mode for Emacs window on Win32."
   (interactive)
   (toggle-frame-fullscreen)
-	)
+  )
 ;; --------------------------------------
 ;; ** toggle-fonte-lage-size : 
 (defun toggle-fonte-lage-size ()
@@ -2043,8 +2043,8 @@ CLOSED: [2025-04-14 Mon 09:51]
   ;; (minimap-mode)
   ;; (minimap-create)
   (if fullscreen-mode-activ
-			;; (minimap-create-window)
-			(minimap-mode)
+      ;; (minimap-create-window)
+      (minimap-mode)
     (minimap-kill))
   ;; (minimap-recenter)
   ;; (minimap-mode)
@@ -2072,6 +2072,36 @@ CLOSED: [2025-04-14 Mon 09:51]
 
 ***** toggle-fullscreen-smart
 #+begin_src elisp
+(defun toggle-fullscreen-smart ()
+  "Toggle fullscreen and font size based on current state."
+  (interactive)
+  (let* ((fullscreen (frame-parameter nil 'fullscreen))
+         (is-fullscreen (memq fullscreen '(maximized fullboth fullheight)))
+         (font-scale (if (boundp 'text-scale-mode-amount)
+                         text-scale-mode-amount
+                       0))
+         (is-large-font (> font-scale 0)))
+
+    (cond
+     ;; Шрифт большой, окно не fullscreen → включить fullscreen
+     ((and is-large-font (not is-fullscreen))
+      (toggle-frame-maximized))
+
+     ;; Шрифт обычный, окно fullscreen → выключить fullscreen
+     ((and (not is-large-font) is-fullscreen)
+      (toggle-frame-maximized))
+
+     ;; Шрифт обычный, окно не fullscreen → включить fullscreen и увеличить шрифт
+     ((and (not is-large-font) (not is-fullscreen))
+      (toggle-frame-maximized)
+      (text-scale-set +3))
+
+     ;; Шрифт большой, окно fullscreen → уменьшить шрифт и выйти из fullscreen
+     ((and is-large-font is-fullscreen)
+      (text-scale-set 0)
+      (toggle-frame-maximized)))))
+      #+end_src
+#+begin_src elisp :tangle no 
 (defun toggle-fullscreen-smart ()
   "Toggle fullscreen and font size based on current state.
 Логика:
@@ -2123,57 +2153,6 @@ CLOSED: [2025-04-14 Mon 09:51]
 ;; (find-file-other-frame "~/.archemacs/INI/frames/minimap-cfg.el")
 ;; (load "~/.archemacs/INI/frames/minimap-cfg.el")
 ;; --------------------------------------
-**** AI
-***** 
-есть такой код для первода Имакса в полный экран.
-Хочу сменить логику. 
-Нужно вначале проверять размер шрифта, потом состояние окна.
-- если Шрифт большой а окно мальенкое. сдаль окно полноэкраным.
-- если Шрифт мальнки а окно полный экран. Выйти из полного экрана. 
-- если Шрифт мальнки и окно мальенкое. сдаль окно полноэкраным и шрифт большим
-- если окно полноэкраное и шрифт большой. сдаль Шрифт мальнки и окно мальенкое.
-***** 
-
-(defun toggle-fullscreen-smart ()
-  "Toggle fullscreen and font size based on current state:
-- If font is large and window not fullscreen → make fullscreen.
-- If font is small and window is fullscreen → exit fullscreen.
-- If font is small and window is not fullscreen → make fullscreen and large font.
-- If fullscreen and font is large → make font small and windowed."
-  (interactive)
-  (let ((fullscreen (frame-parameter nil 'fullscreen))
-        (large-font (>= (or (get 'toggle-font-lage-size 'state) 0) 1)))
-    (cond
-     ;; large font + not fullscreen → make fullscreen
-     ((and large-font (not (eq fullscreen 'maximized)))
-      (toggle-frame-maximized))
-
-     ;; small font + fullscreen → exit fullscreen
-     ((and (not large-font) (eq fullscreen 'maximized))
-      (toggle-frame-maximized))
-
-     ;; small font + not fullscreen → fullscreen + large font
-     ((and (not large-font) (not (eq fullscreen 'maximized)))
-      (toggle-frame-maximized)
-      (text-scale-set +3)
-      (put 'toggle-font-lage-size 'state t))
-
-     ;; fullscreen + large font → font small + windowed
-     ((and large-font (eq fullscreen 'maximized))
-      (text-scale-set 0)
-      (put 'toggle-font-lage-size 'state nil)
-      (toggle-frame-maximized)))))
-И можно повесить это на горячую клавишу, например:
-
-elisp
-Copy
-Edit
-(global-set-key (kbd "<f12>") 'toggle-fullscreen-smart)
-*****
-как я понял ты предлогаешь,определять состояние шрията, делать через переменую
-toggle-font-lage-size
-Было бы лучше проверять шрфт напрямую. если он не стандартный делать стандартным и убедится что окно не максимальное.
-
 *** CANCELED INI/frames/minimap-cfg.el
 CLOSED: [2025-02-21 Fri 21:34]
 :PROPERTIES:
