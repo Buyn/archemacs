@@ -3861,6 +3861,10 @@ CLOSED: [2025-03-03 Пн 06:36]
 #+begin_src elisp
 :config
 #+end_src
+****** setq-default
+#+begin_src emacs-lisp
+(setq-default tab-width 8)
+#+end_src
 ****** bind-key:
 ;; 5 org-brain-prefix-map can be bound to a key to make org-brain commands more
 ;;  accessable if you edit entries from org-mode. See Editing from org-mode under
@@ -3887,8 +3891,7 @@ CLOSED: [2025-03-03 Пн 06:36]
                  (switch-to-buffer-other-frame buffer-name-to-close)))) 
 #+end_src
 ;; *org-brain*
-
-******  org-id:
+****** org-id:
 ;; 4 org-brain use org-id in order to speed things up. Because of this, the variable
 ;;  org-id-track-globally should be t (which it already is by default). You may want to
 ;;  modify org-id-locations-file too. If you add entries to org-brain directly from
@@ -3902,7 +3905,7 @@ CLOSED: [2025-03-03 Пн 06:36]
 
 ;; (add-hook 'before-save-hook #'org-brain-ensure-ids-in-buffer)
 
-******  org-capture-templates:
+****** org-capture-templates:
 ;; 6 You might want to add information at the end of an entry, without visiting the file. A
 ;;  way to do this is to use a capture template, such as the one presented above.
 #+begin_src elisp
@@ -3910,7 +3913,7 @@ CLOSED: [2025-03-03 Пн 06:36]
         "* %i%?" :empty-lines 1)
       org-capture-templates)
 #+end_src
-******  org-brain-visualize:
+****** org-brain-visualize:
 ;; 7 If you have a lot of entries, it might take some time to gather information about all
 ;;  entries when using org-brain-visualize. You could change the value of
 ;;  org-brain-visualize-default-choices (which is =’all= by default) to only include files,

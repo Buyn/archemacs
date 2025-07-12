@@ -49,8 +49,6 @@
   ("T"(telega-chat-with (telega-chat-get -4974512492)) "TechoSpirit")
 
 
-
-
   ("q" nil "quit"))
 
 (defhydra telega-kanals-menu (:color blue)
