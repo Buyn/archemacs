@@ -24,21 +24,29 @@
 ;;  Usage below.
   (bind-key "C-c b" 'org-brain-prefix-map org-mode-map)
   (define-key org-brain-visualize-mode-map (kbd "M-f") 'avy-goto-word-1)
+
   (define-key org-brain-visualize-mode-map (kbd "S-C-<return>")
     '(lambda() (interactive)
+      (setq-default tab-width 8)
       (push-button)
       (org-brain-goto-current) 
       (let (buffer-name-to-close (buffer-name))
-      (evil-quit)
-      (switch-to-buffer-other-frame buffer-name-to-close))))
+        (evil-quit)
+        (switch-to-buffer-other-frame buffer-name-to-close))
+      (setq-default tab-width 2)))
+
   (define-key org-brain-visualize-mode-map (kbd "C-<return>")
     '(lambda() (interactive)
+        ;; (setq-default tab-width 8)
         (push-button)
-        (org-brain-goto-current) 
-        (let (buffer-name-to-close (buffer-name))
-        (evil-quit)
-        (org-brain-visualize-back)
-        (switch-to-buffer-other-frame buffer-name-to-close))))
+        ;; (org-brain-goto-current) 
+        ;; (let (buffer-name-to-close (buffer-name))
+        ;;   (evil-quit)
+        ;;   (org-brain-visualize-back)
+        ;;   (switch-to-buffer-other-frame buffer-name-to-close))
+        ;; (setq-default tab-width 2)
+        )) 
+
 ;; *org-brain*
 
 ;; **** org-id : 
