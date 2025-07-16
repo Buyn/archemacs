@@ -4692,11 +4692,15 @@ CLOSED: [2025-03-03 Пн 06:36]
 (require 'read-aloud)
 #+begin_src elisp
 (use-package read-aloud
+  :ensure t
   :defer t
-  ;; :load-path "ELs/text-to-speech/read-aloud/"
-  :load-path (expand-file-name "ELs/text-to-speech/read-aloud" user-emacs-directory)
+  :load-path "ELs/text-to-speech/read-aloud/"
   )
 #+end_src
+  :init
+    (add-to-list 'load-path (expand-file-name "ELs/text-to-speech/read-aloud" user-emacs-directory))
+  ;; :load-path "ELs/text-to-speech/read-aloud/"
+  ;; :load-path '(expand-file-name "ELs/text-to-speech/read-aloud" user-emacs-directory)
 
 #+RESULTS:
 

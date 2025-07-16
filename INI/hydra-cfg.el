@@ -46,7 +46,7 @@
 ;; **** s : 
   ("s" (setq pixel-wait (+ pixel-wait 0.1)) "slower":color pink)
 ;; **** t : 
-  ("t" red-aloud-this "aloudThis")
+  ("t" read-aloud-this "aloudThis")
 ;; **** B : 
   ("B" read-aloud-buf "aloudBuffer")
 ;; **** s : 

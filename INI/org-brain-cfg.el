@@ -9,8 +9,6 @@
 
 :config
 
-(setq-default tab-width 8)
-
 (bind-key "C-c b" 'org-brain-prefix-map org-mode-map)
 (define-key org-brain-visualize-mode-map (kbd "M-f") 'avy-goto-word-1)
 

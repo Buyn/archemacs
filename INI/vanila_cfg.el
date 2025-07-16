@@ -33,8 +33,10 @@
 ;; ------------------------------------------------------
 ;; ** tab-width : 
 ;; ------------------------------------------------------
-(setq-default tab-width 2)
-(setq tab-width 2)
+;; (setq-default tab-width 2)
+(setq-default tab-width 8) 
+(setq-default indent-tabs-mode nil) 
+;; (setq tab-width 8) 
 ;; ------------------------------------------------------
 ;; ** line-numbers-mode : 
 ;; ------------------------------------------------------
