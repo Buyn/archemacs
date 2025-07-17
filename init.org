@@ -4679,7 +4679,7 @@ CLOSED: [2025-03-03 Пн 06:36]
 *** used in
 ;; (find-file "~/INI/lit-cfg.el")
 ;; (find-file-other-frame "~/INI/lit-cfg.el") 
-*** src
+*** src read-aloud
 **** new
 ;; * READ-ALOUD-MOD CUSTOMIZATION 
 ;; *** load
@@ -4695,6 +4695,14 @@ CLOSED: [2025-03-03 Пн 06:36]
   :ensure t
   :defer t
   :load-path "ELs/text-to-speech/read-aloud/"
+  :config
+    (lax-plist-put read-aloud-engines "spd.ru.irina"
+      '(cmd "spd-say"
+        args ("-t" "FEMALE1" "-l" "ru" "-e"))) 
+
+    (lax-plist-put read-aloud-engines "spd.en.hfc_female"
+      '(cmd "spd-say"
+        args ("-t" "FEMALE1" "-l" "en" "-e"))) 
   )
 #+end_src
   :init
@@ -4878,6 +4886,18 @@ CLOSED: [2025-03-03 Пн 06:36]
 ;; top reading at any time you either run any of the commands above again, or do M-x read-aloud-stop.
 ;; M-x read-aloud-change-engine -- select another engine (for this Emacs session). It also shows which one is the current.
 #+end_src
+*** docs
+**** piper
+
+       -u, --unneeded
+           Removes targets that are not required by any other packages. This is mostly
+           useful when removing a group without using the -c option, to avoid breaking any
+           dependencies.
+
+/usr/share/piper-voices/ru/ru_RU/irina/medium
+https://huggingface.co/rhasspy/piper-voices/blob/main/ru/ru_RU/irina/medium/ru_RU-irina-medium.onnx
+ru / ru_RU / irina / medium / ru_RU-irina-medium.onnx
+
 ** INI/lit-cfg/reader-cfg.el
 :PROPERTIES:
 :header-args: :tangle INI/lit-cfg/reader-cfg.el
@@ -6937,6 +6957,7 @@ The major mode is Calculator mode defined in calc.el:
 :header-args: :tangle no
 :END:
 **** install
+
 yay -Sy telegram-tdlib
 долгая установка стоит попробывать 
 yay -Sy tdlib
