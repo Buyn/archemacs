@@ -2422,89 +2422,6 @@ CLOSED: [2025-02-21 Fri 21:34]
 ;; **** END )
   )
 #+end_src
-****** ai-menu
-#+begin_src elisp
-(defhydra hydra-ai-menu (:color blue)
-  "
-  gptel-model: %`gptel-model
-  "
-    ("c" (hydra-ai-chat-menu/body) "AI chat")
-    ("m" (hydra-ai-model-menu/body) "AI model")
-    ("r" (hydra-ai-role-menu/body) "AI roles")
-    ("d" (hydra-ai-docs-menu/body) "AI docs")
-    ("q" nil) 
-    )
-
-(defhydra hydra-ai-model-menu (:color blue)
-  "
-  gptel-model: %`gptel-model
-  "
-    ;; (find-file-other-frame "~/Dropbox/backup/models/gemeni1-5.el")
-    ("g" (load "~/Dropbox/backup/models/gemeni1-5.el") "Gemeni")
-    ;; (find-file-other-frame "~/Dropbox/backup/models/fast-gemeni.el")
-    ("f" (load "~/Dropbox/backup/models/fast-gemeni.el") "FastGemeni")
-    ;; (find-file-other-frame "~/Dropbox/backup/models/claude.el")
-    ("c" (load "~/Dropbox/backup/models/claude.el") "Claude")
-    ;; (find-file-other-frame "~/Dropbox/backup/models/openai.el")
-    ("o" (load "~/Dropbox/backup/models/openai.el") "gpt-4o-mini")
-    ;; (find-file-other-frame "~/Dropbox/backup/models/mixtral.el")
-    ("m" (load "~/Dropbox/backup/models/mixtral.el") "mixtral")
-    ;; (find-file-other-frame "~/Dropbox/backup/models/llama70v.el")
-    ("l" (load "~/Dropbox/backup/models/llama70v.el") "llama70v")
-    ("q" nil) 
-    )
-
-(defhydra hydra-ai-docs-menu (:color blue)
-    ("c" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/open-al-chat.org") "open-al-chat")
-    ("m" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/multiagent-ai.org") "multiagent-ai")
-    ("a" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/al-Audio-gen.org") "al-Audio-gen")
-    ("s" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/Stable_Diffusion.org") "Stable_Diffusion")
-    ("S" (find-file-other-frame "~/Dropbox/Office/Games/Game-logs/AI/2024-06-07-SD-story.org") "SD-log")
-    ("d" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/worlds.org") "aiworlds")
-    ("C" (find-file-other-frame "~/Dropbox/Office/Research/Doc/Codex/BuYn_Codex.org") "BuYn_Codex")
-    ("q" nil) 
-    )
-
-(defhydra hydra-ai-role-menu (:color blue)
-    ("e" (load "~/Dropbox/Office/Games/aidungeon/els/acid-elisp.el") "elisp Acid")
-    ("p" (load "~/Dropbox/Office/Games/aidungeon/els/acid-python.el") "Py Acid")
-    ("s" (load "~/Dropbox/Office/Games/aidungeon/els/ai-synod.el")
-            "Synode AI")
-    ("l" (load "~/Dropbox/Office/Games/aidungeon/els/leeloo-chat.el") "LeeLoo")
-    ("t" (load "~/Dropbox/Office/Games/aidungeon/els/ted-dan.el") "Ted DAN")
-    ("h" (load "~/Dropbox/Office/Games/aidungeon/els/ted-dan.el") "Ted holodeck")
-    ("S" org-roam-menu/body "Sasha")
-    ("g" (load "~/Dropbox/Office/Games/aidungeon/els/glados-daen.el") "GLaDOS")
-    ("d" (load "~/Dropbox/Office/Games/aidungeon/els/catherine-tramell-daen.el") "DAEN Tramell")
-    ("o" (load "~/Dropbox/Office/Games/aidungeon/els/rpm-4options.el") "RPM 4option")
-    ("m" (load "~/Dropbox/Office/Games/aidungeon/els/rpm-malu.el") "RPM MALU")
-    ("q" nil) 
-    )
-
-(defhydra hydra-ai-chat-menu (:color blue)
-    ("a" (progn
-            (load "~/Dropbox/Office/Games/aidungeon/els/acid-chat.el")
-            (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/chars-chat/2024-05-17-Acid_Burn.org")
-            ) "Acid Burn")
-    ("L" (progn
-            (load "~/Dropbox/Office/Games/aidungeon/els/leeloo-chat.el")
-            (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/chars-chat/2024-09-18-Leeloo.org")
-            ) "LeeLoo")
-    ("l" (progn
-            (load "~/Dropbox/Office/Games/aidungeon/els/ai-synod.el")
-            (find-file-other-frame "~/Dropbox/Office/Games/Game-logs/Tomb-of-Tyrants/2023-09-09-AI-story.org")
-            ) "LogFile")
-    ("t" (progn
-            (load "~/Dropbox/Office/Games/aidungeon/els/tpol-chat.el")
-            (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/chars-chat/2024-05-18-T-Pol.org"))
-        "T'pol")
-    ("q" nil) 
-  )
-#+end_src
-
-#+RESULTS:
-: hydra-ai-chat-menu/body
-
 ****** org-menu
     ("t" org-todo "Todo set")
     ("g" org-agenda "aGenda" :color blue )
@@ -4681,15 +4598,6 @@ CLOSED: [2025-03-03 Пн 06:36]
 ;; (find-file-other-frame "~/INI/lit-cfg.el") 
 *** src read-aloud
 **** new
-;; * READ-ALOUD-MOD CUSTOMIZATION 
-;; *** load
-;; (find-file-other-frame "~/INI/lit-cfg/read-aloud-cfg.el") 
-;; (load "~/ELs/text-to-speech/read-aloud/read-aloud.el")
-;; *** use-package read-aloud : 
-;; (add-to-list 'load-path "~/ELs/text-to-speech/read-aloud")
-
-(add-to-list 'load-path (expand-file-name "ELs/text-to-speech/read-aloud" user-emacs-directory))
-(require 'read-aloud)
 #+begin_src elisp
 (use-package read-aloud
   :ensure t
@@ -4703,96 +4611,185 @@ CLOSED: [2025-03-03 Пн 06:36]
     (lax-plist-put read-aloud-engines "spd.en.hfc_female"
       '(cmd "spd-say"
         args ("-t" "FEMALE1" "-l" "en" "-e"))) 
+
+    (lax-plist-put read-aloud-engines "spd.en.amy"
+      '(cmd "spd-say"
+        args ("-t" "amy" "-l" "en" "-e"))) 
   )
 #+end_src
-  :init
-    (add-to-list 'load-path (expand-file-name "ELs/text-to-speech/read-aloud" user-emacs-directory))
-  ;; :load-path "ELs/text-to-speech/read-aloud/"
-  ;; :load-path '(expand-file-name "ELs/text-to-speech/read-aloud" user-emacs-directory)
+*** docs
+**** piper
+***** unsort
 
-#+RESULTS:
+(find-file-other-frame "/sudo::/etc/speech-dispatcher/modules/piper-generic.conf")
+/sudo::/путь/к/файлу
 
-  ;; :ensure t
-;; *** :config : 
-  :config
-;; **** plist read-aloud-engines : 
-;; ***** ru : 
-;; ****** elena : 
-(lax-plist-put read-aloud-engines "bal.ru.elena"
-  '(cmd "~/AddApps/balcon/balcon.exe"
-    args ( "-n" "Elena" "-i" "-enc" "utf8")))
-;; ****** Alyona22k : 
-(lax-plist-put read-aloud-engines "bal.ru.Alyona22k"
-  '(cmd "~/AddApps/balcon/balcon.exe"
-    args ( "-n" "Alyona22k" "-i" "-enc" "utf8")))
-;; ****** anna : 
-(lax-plist-put read-aloud-engines "bal.ru.anna"
-  '(cmd "~/AddApps/balcon/balcon.exe"
-    args ( "-n" "RHVoice Anna" "-i" "-enc" "utf8")))
-;; ****** Irina : 
-(lax-plist-put read-aloud-engines "bal.ru.Irina"
-  '(cmd "~/AddApps/balcon/balcon.exe"
-    args ( "-n" "Irina" "-i" "-enc" "utf8")))
-;; ****** Katerina : 
-(lax-plist-put read-aloud-engines "bal.ru.Katerina"
-  '(cmd "~/AddApps/balcon/balcon.exe"
-    args ( "-n" "Katerina" "-i" "-enc" "utf8")))
-;; ****** Tatyana : 
-(lax-plist-put read-aloud-engines "bal.ru.Tatyana"
-  '(cmd "~/AddApps/balcon/balcon.exe"
-    args ( "-n" "Tatyana" "-i" "-enc" "utf8")))
-;; ****** Milena : 
-(lax-plist-put read-aloud-engines "bal.ru.Milena"
-  '(cmd "~/AddApps/balcon/balcon.exe"
-    args ( "-n" "Milena" "-i" "-enc" "utf8")))
-;; ***** ua : 
-;; ******  Natalia : 
-(lax-plist-put read-aloud-engines "bal.ua.Natalia"
-  '(cmd "~/AddApps/balcon/balcon.exe"
-    args ( "-n" "Natalia" "-i" "-enc" "utf8")))
-;; ***** en : 
-;; ****** Slt : 
-(lax-plist-put read-aloud-engines "bal.en.Slt"
-  '(cmd "~/AddApps/balcon/balcon.exe"
-    args ( "-n" "Slt" "-i" "-enc" "utf8")))
-;; ****** Bdl : 
-(lax-plist-put read-aloud-engines "bal.en.Bdl"
-  '(cmd "~/AddApps/balcon/balcon.exe"
-    args ( "-n" "Bdl" "-i" "-enc" "utf8")))
-;; ****** Clb : 
-(lax-plist-put read-aloud-engines "bal.en.Clb"
-  '(cmd "~/AddApps/balcon/balcon.exe"
-    args ( "-n" "Clb" "-i" "-enc" "utf8")))
+/home/buyn/.config/speech-dispatcher/modules/piper-generic.conf
+(find-file-other-frame "~/.config/speech-dispatcher/modules/piper-generic.conf")
 
-;; ****** Heather
-  (lax-plist-put read-aloud-engines "bal.en.Heather"
-    '(cmd "~/AddApps/balcon/balcon.exe"
-      args ( "-n" "Heather" "-i" "-enc" "utf8")))
-;; ****** Lucy
-(lax-plist-put read-aloud-engines "bal.en.Lucy"
-  '(cmd "~/AddApps/balcon/balcon.exe"
-      args ( "-n" "Lucy" "-i" "-enc" "utf8")))
-;; ****** Jane22k
-(lax-plist-put read-aloud-engines "bal.en.Jane"
-  '(cmd "~/AddApps/balcon/balcon.exe"
-      args ( "-n" "Jane" "-i" "-enc" "utf8")))
-;; ****** jampal.en : 
-  (lax-plist-put read-aloud-engines "jampal.en"
-    '(cmd "cscript"
-          args ("D:\\Development\\lisp\\Home\\AddApps\\Jampal\\ptts.vbs" "-r" "1")))
-;; **** setq read-aloud-engine : 
-;; (setq read-aloud-engine "jampal.en"))
-;; (setq read-aloud-engine "balcon.ru")
-;; (setq read-aloud-engine "bal.en.Slt")
-  (setq read-aloud-engine "bal.en.Lucy")
-;; *** ===========END========= ) : 
-  )
-;; ** Docs
-;; *** Usage 
+/usr/share/piper-voices/ru/ru_RU/irina/medium
+https://huggingface.co/rhasspy/piper-voices/blob/main/ru/ru_RU/irina/medium/ru_RU-irina-medium.onnx
+ru / ru_RU / irina / medium / ru_RU-irina-medium.onnx
+***** voces
+
+/usr/share/piper-voices/ru/ru_RU/ruslan/medium/ru_RU-ruslan-medium.onnx
+/usr/share/piper-voices/ru/ru_RU/dmitri/medium/ru_RU-dmitri-medium.onnx
+/usr/share/piper-voices/ru/ru_RU/denis/medium/ru_RU-denis-medium.onnx
+/usr/share/piper-voices/ru/ru_RU/irina/medium
+/usr/share/piper-voices/ru/ru_RU/irina/medium/ru_RU-irina-medium.onnx
+
+
+
+/usr/share/piper-voices/en/en_US/amy/medium/en_US-amy-medium.onnx
+***** exampls
+piper-tts --model ~/temp/pipe/irina/ru_RU-irina-medium.onnx \
+          --config ~/temp/pipe/irina/ru_RU-irina-medium.onnx.json \
+          --output_file /tmp/test.raw \
+          --sentence_silence 0.2 \
+          --phoneme_silence 0.02 \
+          --length_scale 1.0 \
+          --noise_scale 0.667 \
+          --noise_w 0.8 \
+          --speaker_id 0 \
+          --text "Привет, БуЯн! Как ты, мой властелин?"
+
+echo "Привет" | piper-tts \
+  --model ~/temp/pipe/irina/ru_RU-irina-medium.onnx \
+  --config ~/temp/pipe/irina/ru_RU-irina-medium.onnx.json \
+  --output-raw | aplay -r 22050 -f S16_LE -t raw -
+
+echo "Привет, БуЯн. Я Ирина. Всё работает!" | piper-tts \
+  --model ~/temp/pipe/irina/ru_RU-irina-medium.onnx \
+  --output-raw | aplay -r 22050 -f S16_LE -t raw -
+
+
+echo "Привет, БуЯн. Я Ирина. Всё работает!" | piper-tts \
+  --model ~/temp/pipe/irina/ru_RU-irina-medium.onnx \
+  --config /home/buyn/temp/pipe/irina/ru_RU-irina-medium.onnx.json \
+  --output-raw | aplay -r 22050 -f S16_LE -t raw -
+
+
+echo "Start Привет, БуЯн. Я Ирина. Всё работает! Stop" | piper-tts \
+  --model /usr/share/piper-voices/ru/ru_RU/irina/medium/ru_RU-irina-medium.onnx \
+  --config /usr/share/piper-voices/ru/ru_RU/irina/medium/ru_RU-irina-medium.json \
+  --output-raw | aplay -r 22050 -f S16_LE -t raw -
+
+echo "Start Привет, БуЯн. Я Ирина. Всё работает! Stop" | piper-tts \
+  --model /usr/share/piper-voices/ru/ru_RU/ruslan/medium/ru_RU-irina-medium.onnx \
+  --config /usr/share/piper-voices/ru/ru_RU/ruslan/medium/ru_RU-irina-medium.json \
+  --output-raw | aplay -r 22050 -f S16_LE -t raw -
+
+
+***** install
+
+https://gustawdaniel.com/notes/hot-to-setup-tts-on-arch-linux/
+https://github.com/rhasspy/piper
+
+yay -Sy speech-dispatcher
+
+$ systemctl start --user speech-dispatcher.socket
+нефакт что надо
+
+yay -Sy piper-tts-bin
+
+
+попробывать внанчале без там 1г язфковых моделй английских
+а он вроде должен сам догружать языки
+piper-voices-en-us
+
+yay -Sy piper-voices-ru-ru
+
+spd-conf
+
+spd-say "Arch Linux is the best"
+
+echo "Cześć, to jest test języka polskiego." | piper-tts --model /usr/share/piper-voices/pl/pl_PL/darkman/medium/pl_PL-darkman-medium.onnx --output_file welcome.wav
+
+spd-say -L
+
+display 2 languages but
+
+spd-say -l pl "Powściągliwość"
+**** spd
+***** raw
+yay -S speech-dispatcher
+
+sudo systemctl start --user speech-dispatcher
+sudo systemctl restart --user speech-dispatcher
+
+
+# Если запускается глобально:
+sudo systemctl restart speech-dispatcherd.service
+
+# Если работает в режиме пользователя:
+systemctl --user restart speech-dispatcher
+
+
+(find-file-other-frame "/sudo::/etc/speech-dispatcher/modules/piper-generic.conf")
+/sudo::/путь/к/файлу
+
+***** error with ru
+****** new
+(find-file-other-frame "/sudo::/usr/bin/piper-dispatcher")
+
+#!/usr/bin/env bash
+
+# https://aur.archlinux.org/packages/piper-tts-bin#comment-939482
+
+VOICES_PATH="/usr/share/piper-voices"
+
+if [[ ${VOICE: -3} = low ]]; then
+  RATE=16000
+else
+  RATE=22050
+fi
+
+if [[ -z "$DATA" ]]; then
+  DATA="$(cat -)"
+fi
+
+printf %s "$DATA" | piper-tts --model "$VOICES_PATH/$VOICE.onnx" --output-raw | aplay -r "$RATE" -f S16_LE -t raw -
+
+wait
+****** origin
+
+(find-file-other-frame "/usr/bin/piper-dispatcher")
+#!/usr/bin/env bash
+
+# https://aur.archlinux.org/packages/piper-tts-bin#comment-939482
+
+VOICES_PATH="/usr/share/piper-voices"
+
+if [[ ${VOICE: -3} = low ]]; then
+ RATE=16000
+else
+ RATE=22050
+fi
+
+printf %s "$DATA" | piper-tts --model "$VOICES_PATH/$VOICE.onnx" --output-raw | aplay -r "$RATE" -f S16_LE -t raw -
+
+wait
+****** 
+(find-file-other-frame "~/.config/speech-dispatcher/speechd.conf")
+
+echo "Привет, БуЯн!" | env VOICE="ru/ru_RU/irina/medium/ru_RU-irina-medium" /usr/bin/piper-dispatcher
+
+Что-то непонимаю почему так руский нормально произносится 
+env DATA="Привет, БуЯн!" VOICE="ru/ru_RU/irina/medium/ru_RU-irina-medium" /usr/bin/piper-dispatcher
+
+а так 
+spd-say -l ru_RU "Привет, БуЯн!"
+и та
+spd-say -l ru "Привет, БуЯн!"
+нет?
+
+
+**** Usage 
 ;; M-x read-aloud-this -- pronounce either the selection or a word under the pointer.
 ;; M-x read-aloud-buf -- read the buffer starting from the current cursor position, highlighting the text as it moves down the buffer. Useful only for plain text files.
 ;; top reading at any time you either run any of the commands above again, or do M-x read-aloud-stop.
 ;; M-x read-aloud-change-engine -- select another engine (for this Emacs session). It also shows which one is the current.
+*** arhiv code
 **** CANCELED old
 #+begin_src elisp :tangle no
 ;; * READ-ALOUD-MOD CUSTOMIZATION 
@@ -4886,18 +4883,6 @@ CLOSED: [2025-03-03 Пн 06:36]
 ;; top reading at any time you either run any of the commands above again, or do M-x read-aloud-stop.
 ;; M-x read-aloud-change-engine -- select another engine (for this Emacs session). It also shows which one is the current.
 #+end_src
-*** docs
-**** piper
-
-       -u, --unneeded
-           Removes targets that are not required by any other packages. This is mostly
-           useful when removing a group without using the -c option, to avoid breaking any
-           dependencies.
-
-/usr/share/piper-voices/ru/ru_RU/irina/medium
-https://huggingface.co/rhasspy/piper-voices/blob/main/ru/ru_RU/irina/medium/ru_RU-irina-medium.onnx
-ru / ru_RU / irina / medium / ru_RU-irina-medium.onnx
-
 ** INI/lit-cfg/reader-cfg.el
 :PROPERTIES:
 :header-args: :tangle INI/lit-cfg/reader-cfg.el
@@ -5371,43 +5356,201 @@ https://github.com/karthink/gptel
 *** used in
 ;; (find-file "~/.archemacs/INI/init.el")
 *** src
+**** use-package gpt
 #+begin_src elisp
 (use-package gpt
   :disabled
   :ensure t
   :config
-    ;; (setq gpt-openai-key "sk-*")
-    ;; (setq gpt-openai-engine "gpt-3.5-turbo")
-    (setq gpt-openai-engine "gpt-4o-mini")
-    ;; (setq gpt-openai-engine "gpt-4o")
-    ;; (setq gpt-openai-engine "gpt-4o-mini-2024-07-18")
-    (define-key evil-normal-state-map (kbd "M-a M-j M-o") 'gpt-dwim)
+  ;; (setq gpt-openai-key "sk-*")
+  ;; (setq gpt-openai-engine "gpt-3.5-turbo")
+  (setq gpt-openai-engine "gpt-4o-mini")
+  ;; (setq gpt-openai-engine "gpt-4o")
+  ;; (setq gpt-openai-engine "gpt-4o-mini-2024-07-18")
+  (define-key evil-normal-state-map (kbd "M-a M-j M-o") 'gpt-dwim)
   )
+#+end_src
+**** use-package gptel
+#+begin_src elisp
 
 (use-package gptel
   ;; :disabled
   :ensure t
   :config
-    ;; (custom-set-variables '(gptel-model "gpt-3.5-turbo-16k"))
-    ;; (custom-set-variables '(gptel-model "gpt-4o"))
-    ;; (custom-set-variables '(gptel-model "gpt-4o-mini-2024-07-18"))
-    ;; (setq gptel-model "gpt-4o-mini-2024-07-18")
-    (define-key evil-normal-state-map (kbd "M-a M-j M-S-h") 'gptel-system-prompt)
-    (define-key evil-normal-state-map (kbd "M-a M-j M-j") 'gptel-send)
-    (define-key evil-normal-state-map (kbd "M-a M-j M-h") 'gptel-mode)
-    ;; (setq gpt-openai-key "sk-*")
-    (setq gptel-default-mode 'org-mode)
-    (custom-set-variables '(gptel-model "gpt-4o-mini"))
-)
+  ;; (custom-set-variables '(gptel-model "gpt-3.5-turbo-16k"))
+  ;; (custom-set-variables '(gptel-model "gpt-4o"))
+  ;; (custom-set-variables '(gptel-model "gpt-4o-mini-2024-07-18"))
+  ;; (setq gptel-model "gpt-4o-mini-2024-07-18")
+  (define-key evil-normal-state-map (kbd "M-a M-j M-S-h") 'gptel-system-prompt)
+  (define-key evil-normal-state-map (kbd "M-a M-j M-j") 'gptel-send)
+  (define-key evil-normal-state-map (kbd "M-a M-j M-h") 'gptel-mode)
+  ;; (setq gpt-openai-key "sk-*")
+  (setq gptel-default-mode 'org-mode)
+  (custom-set-variables '(gptel-model "gpt-4o-mini"))
+  )
 
 (custom-set-variables '(gptel-model "gpt-4o-mini"))
 #+end_src
+**** ai hydra menus
+***** ai-menu
+#+begin_src elisp
+(defhydra hydra-ai-menu (:color blue)
+  "
+  gptel-model: %`gptel-model
+  "
+  ("a" (hydra-ai-commands-menu/body) "AI commands")
+  ("c" (hydra-ai-chat-menu/body) "AI chat")
+  ("m" (hydra-ai-model-menu/body) "AI model")
+  ("r" (hydra-ai-role-menu/body) "AI roles")
+  ("d" (hydra-ai-docs-menu/body) "AI docs")
+  ("q" nil) 
+  )
+#+end_src
+
+#+RESULTS:
+: hydra-ai-menu/body
+
+***** hydra-commands-menu
+#+begin_src elisp
+
+(defhydra hydra-commands-menu (:color blue)
+  ("p" (gptel-org-set-properties) "add orgprops")
+  ("f" (gptel-add-file) "add file")
+  ("a" (gptel-add) "add buffer/region")
+  ;; gptel-add  Add/remove a region or buffer to gptel’s context. In Dired, add/remove marked files.  
+  ("r" (gptel-rewrite) "add buffer/region")
+  ;; gptel-rewrite  Rewrite, refactor or change the selected region. Can diff/ediff changes before merging/applying.  
+
+  ("q" nil) 
+  )
+#+end_src
+
+#+RESULTS:
+: hydra-commands-menu/body
+
+***** hydra-ai-model-menu
+#+begin_src elisp
+(defhydra hydra-ai-model-menu (:color blue)
+  "
+  gptel-model: %`gptel-model
+  "
+  ;; (find-file-other-frame "~/Dropbox/backup/models/gemeni1-5.el")
+  ("g" (load "~/Dropbox/backup/models/gemeni1-5.el") "Gemeni")
+  ;; (find-file-other-frame "~/Dropbox/backup/models/fast-gemeni.el")
+  ("f" (load "~/Dropbox/backup/models/fast-gemeni.el") "FastGemeni")
+  ;; (find-file-other-frame "~/Dropbox/backup/models/claude.el")
+  ("c" (load "~/Dropbox/backup/models/claude.el") "Claude")
+  ;; (find-file-other-frame "~/Dropbox/backup/models/openai.el")
+  ("o" (load "~/Dropbox/backup/models/openai.el") "gpt-4o-mini")
+  ;; (find-file-other-frame "~/Dropbox/backup/models/mixtral.el")
+  ("m" (load "~/Dropbox/backup/models/mixtral.el") "mixtral")
+  ;; (find-file-other-frame "~/Dropbox/backup/models/llama70v.el")
+  ("l" (load "~/Dropbox/backup/models/llama70v.el") "llama70v")
+  ("q" nil) 
+  )
+#+end_src
+***** hydra-ai-docs-menu
+#+begin_src elisp
+(defhydra hydra-ai-docs-menu (:color blue)
+  ("c" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/open-al-chat.org") "open-al-chat")
+  ("m" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/multiagent-ai.org") "multiagent-ai")
+  ("a" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/al-Audio-gen.org") "al-Audio-gen")
+  ("s" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/Stable_Diffusion.org") "Stable_Diffusion")
+  ("S" (find-file-other-frame "~/Dropbox/Office/Games/Game-logs/AI/2024-06-07-SD-story.org") "SD-log")
+  ("d" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/worlds.org") "aiworlds")
+  ("C" (find-file-other-frame "~/Dropbox/Office/Research/Doc/Codex/BuYn_Codex.org") "BuYn_Codex")
+  ("q" nil) 
+  )
+#+end_src
+***** hydra-ai-role-menu
+#+begin_src elisp
+(defhydra hydra-ai-role-menu (:color blue)
+  ("e" (load "~/Dropbox/Office/Games/aidungeon/els/acid-elisp.el") "elisp Acid")
+  ("p" (load "~/Dropbox/Office/Games/aidungeon/els/acid-python.el") "Py Acid")
+  ("s" (load "~/Dropbox/Office/Games/aidungeon/els/ai-synod.el")
+   "Synode AI")
+  ("l" (load "~/Dropbox/Office/Games/aidungeon/els/leeloo-chat.el") "LeeLoo")
+  ("t" (load "~/Dropbox/Office/Games/aidungeon/els/ted-dan.el") "Ted DAN")
+  ("h" (load "~/Dropbox/Office/Games/aidungeon/els/ted-dan.el") "Ted holodeck")
+  ("S" org-roam-menu/body "Sasha")
+  ("g" (load "~/Dropbox/Office/Games/aidungeon/els/glados-daen.el") "GLaDOS")
+  ("d" (load "~/Dropbox/Office/Games/aidungeon/els/catherine-tramell-daen.el") "DAEN Tramell")
+  ("o" (load "~/Dropbox/Office/Games/aidungeon/els/rpm-4options.el") "RPM 4option")
+  ("m" (load "~/Dropbox/Office/Games/aidungeon/els/rpm-malu.el") "RPM MALU")
+  ("q" nil) 
+  )
+#+end_src
+***** hydra-ai-chat-menu
+#+begin_src elisp
+(defhydra hydra-ai-chat-menu (:color blue)
+  ("a" (progn
+         (load "~/Dropbox/Office/Games/aidungeon/els/acid-chat.el")
+         (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/chars-chat/2024-05-17-Acid_Burn.org")
+         ) "Acid Burn")
+  ("L" (progn
+         (load "~/Dropbox/Office/Games/aidungeon/els/leeloo-chat.el")
+         (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/chars-chat/2024-09-18-Leeloo.org")
+         ) "LeeLoo")
+  ("l" (progn
+         (load "~/Dropbox/Office/Games/aidungeon/els/ai-synod.el")
+         (find-file-other-frame "~/Dropbox/Office/Games/Game-logs/Tomb-of-Tyrants/2023-09-09-AI-story.org")
+         ) "LogFile")
+  ("t" (progn
+         (load "~/Dropbox/Office/Games/aidungeon/els/tpol-chat.el")
+         (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/chars-chat/2024-05-18-T-Pol.org"))
+   "T'pol")
+  ("q" nil) 
+  )
+#+end_src
+
+#+RESULTS:
+: hydra-ai-chat-menu/body
+
 *** docs
 **** gptel
+***** links
+https://github.com/karthink/gptel
+
 ***** models
+****** setq
 (setq gptel-model 'gemini-2.0-flash-exp)
 (setq gptel-model 'gemini-2.5-flash-preview-05-20)
 (setq gptel-model 'gemini-2.5-flash-preview-04-17)
+****** link
+******* gemeni
+https://ai.google.dev/gemini-api/docs/rate-limits#free-tier
+Standard API rate limits
+The following table lists the rate limits for all standard Gemini API calls.
+
+Free Tier
+Tier 1
+Tier 2
+Tier 3
+Model	RPM	TPM	RPD
+Text-out models
+Gemini 2.5 Pro	5	250,000	100
+Gemini 2.5 Flash	10	250,000	250
+Gemini 2.5 Flash-Lite Preview 06-17	15	250,000	1,000
+Gemini 2.0 Flash	15	1,000,000	200
+Gemini 2.0 Flash-Lite	30	1,000,000	200
+Live API
+Gemini 2.5 Flash Live	3 sessions	1,000,000	
+Gemini 2.5 Flash Preview Native Audio Dialog	1 session	25,000	5
+Gemini 2.5 Flash Experimental Native Audio Thinking Dialog	1 session	10,000	5
+Gemini 2.0 Flash Live	3 sessions	1,000,000	
+Multi-modal generation models
+Gemini 2.5 Flash Preview TTS	3	10,000	15
+Gemini 2.5 Pro Preview TTS			
+Gemini 2.0 Flash Preview Image Generation	10	200,000	100
+Imagen 3			
+Veo 2			
+Other models
+Gemma 3 & 3n	30	15,000	14,400
+Gemini Embedding	100	30,000	1,000
+Deprecated models
+Gemini 1.5 Flash (Deprecated)	15	250,000	50
+Gemini 1.5 Flash-8B (Deprecated)	15	250,000	50
+Gemini 1.5 Pro (Deprecated)
 ***** info
 
 (setq gptel-model 'gemini-2.5-flash-preview-05-20)
@@ -5494,6 +5637,20 @@ $2.50, prompts > 200k tokens
 ***** curl gemeni
 gemini-2.5-flash-preview-04-17
 [[file:~/Dropbox/orgs/capture/emagus.org::*key][key]]
+***** commands
+****** To send queries  Description  
+ gptel-send  Send all text up to (point), or the selection if region is active. Works anywhere in Emacs.  
+ gptel  Create a new dedicated chat buffer. Not required to use gptel.  
+ gptel-rewrite  Rewrite, refactor or change the selected region. Can diff/ediff changes before merging/applying.  
+****** To tweak behavior    
+ C-u gptel-send  Transient menu for preferences, input/output redirection etc.  
+ gptel-menu  (Same)  
+****** To add context    
+ gptel-add  Add/remove a region or buffer to gptel’s context. In Dired, add/remove marked files.  
+ gptel-add-file  Add a file (text or supported media type) to gptel’s context. Also available from the transient menu.  
+****** Org mode bonuses    
+ gptel-org-set-topic  Limit conversation context to an Org heading. (For branching conversations see below.)  
+ gptel-org-set-properties  Write gptel configuration as Org properties, for per-heading chat configuration.  
 * **Программирование и языковые конфигурации**
 ** описание
    Отдельные категории для Python, Clojure, JavaScript, Lua и т.д. + автодополнения и проверки синтаксиса.  
