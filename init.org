@@ -2965,6 +2965,9 @@ _d_: subtree
   )
 #+end_src
 
+#+RESULTS:
+: hydra-commands-menu/body
+
 #+begin_src elisp
 (defhydra hydra-player-menu (:color blue)
   "
@@ -5372,25 +5375,27 @@ https://github.com/karthink/gptel
 #+end_src
 **** use-package gptel
 #+begin_src elisp
-
 (use-package gptel
   ;; :disabled
   :ensure t
   :config
-  ;; (custom-set-variables '(gptel-model "gpt-3.5-turbo-16k"))
-  ;; (custom-set-variables '(gptel-model "gpt-4o"))
-  ;; (custom-set-variables '(gptel-model "gpt-4o-mini-2024-07-18"))
-  ;; (setq gptel-model "gpt-4o-mini-2024-07-18")
   (define-key evil-normal-state-map (kbd "M-a M-j M-S-h") 'gptel-system-prompt)
   (define-key evil-normal-state-map (kbd "M-a M-j M-j") 'gptel-send)
   (define-key evil-normal-state-map (kbd "M-a M-j M-h") 'gptel-mode)
   ;; (setq gpt-openai-key "sk-*")
   (setq gptel-default-mode 'org-mode)
-  (custom-set-variables '(gptel-model "gpt-4o-mini"))
+  (custom-set-variables '(gptel-model 'gemini-2.0-flash-exp))
   )
 
-(custom-set-variables '(gptel-model "gpt-4o-mini"))
+(custom-set-variables '(gptel-model 'gemini-2.0-flash-exp))
 #+end_src
+
+(custom-set-variables '(gptel-model "gpt-4o-mini"))
+  ;; (custom-set-variables '(gptel-model "gpt-3.5-turbo-16k"))
+  ;; (custom-set-variables '(gptel-model "gpt-4o"))
+  ;; (custom-set-variables '(gptel-model "gpt-4o-mini-2024-07-18"))
+  ;; (setq gptel-model "gpt-4o-mini-2024-07-18")
+
 **** ai hydra menus
 ***** ai-menu
 #+begin_src elisp
@@ -5413,7 +5418,7 @@ https://github.com/karthink/gptel
 ***** hydra-commands-menu
 #+begin_src elisp
 
-(defhydra hydra-commands-menu (:color blue)
+(defhydra hydra-ai-commands-menu (:color blue)
   ("p" (gptel-org-set-properties) "add orgprops")
   ("f" (gptel-add-file) "add file")
   ("a" (gptel-add) "add buffer/region")
@@ -5426,7 +5431,7 @@ https://github.com/karthink/gptel
 #+end_src
 
 #+RESULTS:
-: hydra-commands-menu/body
+: hydra-ai-commands-menu/body
 
 ***** hydra-ai-model-menu
 #+begin_src elisp
@@ -5526,30 +5531,30 @@ Free Tier
 Tier 1
 Tier 2
 Tier 3
-Model	RPM	TPM	RPD
+Model   RPM     TPM     RPD
 Text-out models
-Gemini 2.5 Pro	5	250,000	100
-Gemini 2.5 Flash	10	250,000	250
-Gemini 2.5 Flash-Lite Preview 06-17	15	250,000	1,000
-Gemini 2.0 Flash	15	1,000,000	200
-Gemini 2.0 Flash-Lite	30	1,000,000	200
+Gemini 2.5 Pro  5       250,000 100
+Gemini 2.5 Flash        10      250,000 250
+Gemini 2.5 Flash-Lite Preview 06-17     15      250,000 1,000
+Gemini 2.0 Flash        15      1,000,000       200
+Gemini 2.0 Flash-Lite   30      1,000,000       200
 Live API
-Gemini 2.5 Flash Live	3 sessions	1,000,000	
-Gemini 2.5 Flash Preview Native Audio Dialog	1 session	25,000	5
-Gemini 2.5 Flash Experimental Native Audio Thinking Dialog	1 session	10,000	5
-Gemini 2.0 Flash Live	3 sessions	1,000,000	
+Gemini 2.5 Flash Live   3 sessions      1,000,000       
+Gemini 2.5 Flash Preview Native Audio Dialog    1 session       25,000  5
+Gemini 2.5 Flash Experimental Native Audio Thinking Dialog      1 session       10,000  5
+Gemini 2.0 Flash Live   3 sessions      1,000,000       
 Multi-modal generation models
-Gemini 2.5 Flash Preview TTS	3	10,000	15
-Gemini 2.5 Pro Preview TTS			
-Gemini 2.0 Flash Preview Image Generation	10	200,000	100
-Imagen 3			
-Veo 2			
+Gemini 2.5 Flash Preview TTS    3       10,000  15
+Gemini 2.5 Pro Preview TTS                      
+Gemini 2.0 Flash Preview Image Generation       10      200,000 100
+Imagen 3                        
+Veo 2                   
 Other models
-Gemma 3 & 3n	30	15,000	14,400
-Gemini Embedding	100	30,000	1,000
+Gemma 3 & 3n    30      15,000  14,400
+Gemini Embedding        100     30,000  1,000
 Deprecated models
-Gemini 1.5 Flash (Deprecated)	15	250,000	50
-Gemini 1.5 Flash-8B (Deprecated)	15	250,000	50
+Gemini 1.5 Flash (Deprecated)   15      250,000 50
+Gemini 1.5 Flash-8B (Deprecated)        15      250,000 50
 Gemini 1.5 Pro (Deprecated)
 ***** info
 
@@ -8816,7 +8821,7 @@ CLOSED: [2025-02-25 Tue 01:20]
 (untabify (point-min) (point-max))
 (save-buffer)
 (org-babel-tangle)
-(find-file-other-frame "~/INI/babel-cfg.el")
+;; (find-file-other-frame "~/INI/babel-cfg.el")
 ;; (load "~/INI/hydra-cfg.el")
 ;; (load "~/ELs/BuYn/reader.el")
  #+end_src

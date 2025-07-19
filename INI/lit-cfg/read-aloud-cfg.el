@@ -10,4 +10,8 @@
     (lax-plist-put read-aloud-engines "spd.en.hfc_female"
       '(cmd "spd-say"
         args ("-t" "FEMALE1" "-l" "en" "-e"))) 
+
+    (lax-plist-put read-aloud-engines "spd.en.amy"
+      '(cmd "spd-say"
+        args ("-t" "amy" "-l" "en" "-e"))) 
   )
