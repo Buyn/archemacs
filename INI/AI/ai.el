@@ -1,32 +1,16 @@
-(use-package gpt
-  :disabled
-  :ensure t
-  :config
-  ;; (setq gpt-openai-key "sk-*")
-  ;; (setq gpt-openai-engine "gpt-3.5-turbo")
-  (setq gpt-openai-engine "gpt-4o-mini")
-  ;; (setq gpt-openai-engine "gpt-4o")
-  ;; (setq gpt-openai-engine "gpt-4o-mini-2024-07-18")
-  (define-key evil-normal-state-map (kbd "M-a M-j M-o") 'gpt-dwim)
-  )
-
 (use-package gptel
   ;; :disabled
   :ensure t
   :config
-  ;; (custom-set-variables '(gptel-model "gpt-3.5-turbo-16k"))
-  ;; (custom-set-variables '(gptel-model "gpt-4o"))
-  ;; (custom-set-variables '(gptel-model "gpt-4o-mini-2024-07-18"))
-  ;; (setq gptel-model "gpt-4o-mini-2024-07-18")
   (define-key evil-normal-state-map (kbd "M-a M-j M-S-h") 'gptel-system-prompt)
   (define-key evil-normal-state-map (kbd "M-a M-j M-j") 'gptel-send)
   (define-key evil-normal-state-map (kbd "M-a M-j M-h") 'gptel-mode)
   ;; (setq gpt-openai-key "sk-*")
   (setq gptel-default-mode 'org-mode)
-  (custom-set-variables '(gptel-model "gpt-4o-mini"))
+  (custom-set-variables '(gptel-model 'gemini-2.0-flash-exp))
   )
 
-(custom-set-variables '(gptel-model "gpt-4o-mini"))
+(custom-set-variables '(gptel-model 'gemini-2.0-flash-exp))
 
 (defhydra hydra-ai-menu (:color blue)
   "
@@ -41,12 +25,14 @@
   )
 
 (defhydra hydra-ai-commands-menu (:color blue)
-  ("p" (gptel-org-set-properties) "add orgprops")
-  ("f" (gptel-add-file) "add file")
-  ("a" (gptel-add) "add buffer/region")
+  ("o" gptel-org-set-properties "add orgprops")
+  ("f" gptel-add-file "add file")
+  ("a" gptel-add "add buffer/region")
   ;; gptel-add  Add/remove a region or buffer to gptel’s context. In Dired, add/remove marked files.  
-  ("r" (gptel-rewrite) "add buffer/region")
+  ("r" gptel-rewrite "add buffer/region")
   ;; gptel-rewrite  Rewrite, refactor or change the selected region. Can diff/ediff changes before merging/applying.  
+  ("c" gptel-context-visit "context-visit")
+  ("P" gptel-system-prompt "system-prompt")
 
   ("q" nil) 
   )

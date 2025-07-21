@@ -5359,8 +5359,8 @@ https://github.com/karthink/gptel
 *** used in
 ;; (find-file "~/.archemacs/INI/init.el")
 *** src
-**** use-package gpt
-#+begin_src elisp
+**** CANCELED use-package gpt
+#+begin_src elisp :tangle no
 (use-package gpt
   :disabled
   :ensure t
@@ -5419,12 +5419,14 @@ https://github.com/karthink/gptel
 #+begin_src elisp
 
 (defhydra hydra-ai-commands-menu (:color blue)
-  ("p" (gptel-org-set-properties) "add orgprops")
-  ("f" (gptel-add-file) "add file")
-  ("a" (gptel-add) "add buffer/region")
+  ("o" gptel-org-set-properties "add orgprops")
+  ("f" gptel-add-file "add file")
+  ("a" gptel-add "add buffer/region")
   ;; gptel-add  Add/remove a region or buffer to gptel’s context. In Dired, add/remove marked files.  
-  ("r" (gptel-rewrite) "add buffer/region")
+  ("r" gptel-rewrite "add buffer/region")
   ;; gptel-rewrite  Rewrite, refactor or change the selected region. Can diff/ediff changes before merging/applying.  
+  ("c" gptel-context-visit "context-visit")
+  ("P" gptel-system-prompt "system-prompt")
 
   ("q" nil) 
   )
