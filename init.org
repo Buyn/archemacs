@@ -2950,6 +2950,7 @@ _d_: subtree
 #+end_src
 
 ****** commands-menu
+******* hydra-commands-menu
 #+begin_src elisp
 (defhydra hydra-commands-menu (:color blue)
   "
@@ -2967,7 +2968,7 @@ _d_: subtree
 
 #+RESULTS:
 : hydra-commands-menu/body
-
+******* hydra-player-menu
 #+begin_src elisp
 (defhydra hydra-player-menu (:color blue)
   "
@@ -2977,11 +2978,12 @@ _d_: subtree
   ("e" (emms) "emms")
   ("m" (buyn-shell-start (concat "haruna " (buffer-substring (region-beginning) (region-end)))) "2haruna")
   ("M" (buyn-shell-start (concat "mpv " (buffer-substring (region-beginning) (region-end)))) "2mpv")
-  ("t" (progn
+  ("T" (progn
          (find-file-other-frame "~/Dropbox/Resources/Playlists/test.m3u")
          (emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/test.m3u"))
    "test.m3u")
-  ("w" (progn
+  ("w" (buyn-shell-start (concat "add2watchm3u " (buffer-substring (region-beginning) (region-end)))) "send2watch.m3u")
+  ("W" (progn
           (find-file-other-frame "~/Dropbox/Resources/Playlists/Tech/watch.m3u")
           (emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/Tech/watch.m3u"))
    "test.m3u")
@@ -2992,7 +2994,7 @@ _d_: subtree
 
 #+RESULTS:
 : hydra-player-menu/body
-
+******* hydra-eshell-menu
 #+begin_src elisp
 (defhydra hydra-eshell-menu (:color blue)
   "
@@ -3036,7 +3038,7 @@ _d_: subtree
   ("q" nil "quit")
   )
 #+end_src
-
+******* hydra-applancher-menu
 #+begin_src elisp
 (defhydra hydra-applancher-menu (:color blue)
   "
