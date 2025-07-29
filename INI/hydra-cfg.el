@@ -664,11 +664,12 @@ _d_: subtree
   ("e" (emms) "emms")
   ("m" (buyn-shell-start (concat "haruna " (buffer-substring (region-beginning) (region-end)))) "2haruna")
   ("M" (buyn-shell-start (concat "mpv " (buffer-substring (region-beginning) (region-end)))) "2mpv")
-  ("t" (progn
+  ("T" (progn
          (find-file-other-frame "~/Dropbox/Resources/Playlists/test.m3u")
          (emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/test.m3u"))
    "test.m3u")
-  ("w" (progn
+  ("w" (buyn-shell-start (concat "add2watchm3u " (buffer-substring (region-beginning) (region-end)))) "send2watch.m3u")
+  ("W" (progn
           (find-file-other-frame "~/Dropbox/Resources/Playlists/Tech/watch.m3u")
           (emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/Tech/watch.m3u"))
    "test.m3u")
