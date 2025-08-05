@@ -174,6 +174,7 @@
 
 (define-key evil-normal-state-map "ZD" '(lambda() (interactive)
           (kill-buffer (current-buffer))))
+(define-key evil-normal-state-map "Zrr" 'revert-buffer)
 (define-key evil-normal-state-map "ZX" '(lambda() (interactive)
           (kill-buffer (current-buffer))
           (evil-quit)))

@@ -17,7 +17,7 @@
 
 ;; **** visual add zf
   (define-key evil-visual-state-map "zf" '(lambda() (interactive)
-      (let ((region-text (buffer-substring (region-beginning) (region-end))))
+                                            (let ((region-text (buffer-substring (region-beginning) (region-end))))
         (evil-normal-state)
         ;; (evil-open-above 1)
         (evil-previous-line)
