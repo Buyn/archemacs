@@ -1719,6 +1719,7 @@ CLOSED: [2025-02-27 Чт 19:07]
 #+begin_src elisp
 (define-key evil-normal-state-map "ZD" '(lambda() (interactive)
           (kill-buffer (current-buffer))))
+(define-key evil-normal-state-map "Zrr" 'revert-buffer)
 (define-key evil-normal-state-map "ZX" '(lambda() (interactive)
           (kill-buffer (current-buffer))
           (evil-quit)))
@@ -6143,7 +6144,7 @@ gemini-2.5-flash-preview-04-17
 
 ;; **** visual add zf
   (define-key evil-visual-state-map "zf" '(lambda() (interactive)
-      (let ((region-text (buffer-substring (region-beginning) (region-end))))
+                                            (let ((region-text (buffer-substring (region-beginning) (region-end))))
         (evil-normal-state)
         ;; (evil-open-above 1)
         (evil-previous-line)
