@@ -25,7 +25,9 @@ https://www.braveclojure.com/basic-emacs/
 
 ** progn:
 #+begin_src emacs-lisp :results output silent
-(load (expand-file-name "INI/other/telegram.el" user-emacs-directory)) 
+;; (load (expand-file-name "INI/other/telegram.el" user-emacs-directory)) 
+
+(define-key evil-normal-state-map (kbd "M-a M-l M-n") 'evil-next-flyspell-error)
 
 ;; (setq org-log-done nil)
 (load (expand-file-name "INI/hydra-cfg.el" user-emacs-directory)) 

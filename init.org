@@ -3226,6 +3226,8 @@ _?_ help            _c_urrent file
 
 (define-key evil-visual-state-map (kbd "M-a M-l M-w") 'ispell-region)
 (define-key evil-normal-state-map (kbd "M-a M-l M-w") 'ispell-word)
+(define-key evil-normal-state-map (kbd "M-a M-l M-n") 'evil-next-flyspell-error)
+
 #+end_src
 
 * TODO **Org Mode и интеграции**
