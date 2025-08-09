@@ -3225,12 +3225,13 @@ _?_ help            _c_urrent file
 (define-key evil-normal-state-map (kbd "M-a M-f M-o") 'lit-menu/body)
 
 (define-key evil-normal-state-map (kbd "M-a M-f M-w") 'ispell-word)
-(define-key evil-normal-state-map (kbd "M-a M-f M-n") 'evil-prev-flyspell-error)
-(define-key evil-normal-state-map (kbd "M-a M-f M-p") 'evil-next-flyspell-error)
+(define-key evil-normal-state-map (kbd "M-a M-f M-n") 'evil-next-flyspell-error)
+(define-key evil-normal-state-map (kbd "M-a M-f M-p") 'evil-prev-flyspell-error)
 (define-key evil-normal-state-map (kbd "M-a M-f <SPC>") 'lit-menu/body)
 (define-key evil-normal-state-map (kbd "M-a M-f M-r") 'ispell-region)
 
 #+end_src
+
 
 * TODO **Org Mode и интеграции**
 ** описание
