@@ -3264,10 +3264,9 @@ CLOSED: [2025-03-03 Пн 06:36]
 **** список туду активировать репор баг фиксет
 поскольку тогда можно рубрицировать поиски по ошибкам
 *** src
-#+begin_src elisp
-;; * ORG-MODE CUSTOMIZATION
+**** ORG-MODE CUSTOMIZATION
 ;; --------------------------------------
-;; ** ---------------     ORG setup
+***** ORG setup
 ;; (setq org-todo-keywords
 ;;       '((sequence "TODO(t)" "|" "DONE(d)")
 ;;         ;; (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")
@@ -3275,35 +3274,36 @@ CLOSED: [2025-03-03 Пн 06:36]
 ;; (setq org-agenda-custom-commands
 ;;       '(("n" occur-tree "NEXT")))
 ;; --------------------------------------
+#+begin_src elisp
 (require 'org)
 (global-set-key (kbd "C-<f1>") nil)
 (global-set-key (kbd "C-<f1> C-<f1>") (lambda () (interactive)
-                (find-file-other-frame (expand-file-name "ORG/start.org" user-emacs-directory))))
+                                        (find-file-other-frame (expand-file-name "ORG/start.org" user-emacs-directory))))
 (global-set-key (kbd "C-<f1> C-<f2>") (lambda () (interactive)
-                (find-file-other-frame (expand-file-name "init.org" user-emacs-directory))))
+                                        (find-file-other-frame (expand-file-name "init.org" user-emacs-directory))))
 (global-set-key (kbd "C-<f1> C-o") (lambda () (interactive)
-                (find-file-other-frame (expand-file-name "init.org" user-emacs-directory))))
+                                     (find-file-other-frame (expand-file-name "init.org" user-emacs-directory))))
 (global-set-key (kbd "C-<f1> C-<f3>") (lambda () (interactive)
-                (find-file-other-frame "~/Dropbox/orgs_code/archlinux/arh_script.org")))
+                                        (find-file-other-frame "~/Dropbox/orgs_code/archlinux/arh_script.org")))
 (global-set-key (kbd "C-<f1> C-s") (lambda () (interactive)
-                (find-file-other-frame "~/Dropbox/orgs_code/archlinux/arh_script.org")))
+                                     (find-file-other-frame "~/Dropbox/orgs_code/archlinux/arh_script.org")))
 (global-set-key (kbd "C-<f1> C-<SPC>") (lambda () (interactive)
-                (hydra-f1-emagus-menu/body)))
+                                         (hydra-f1-emagus-menu/body)))
 
 
 (global-set-key (kbd "M-<f1>") nil)
 (global-set-key (kbd "M-<f1> M-<f1>") (lambda () (interactive)
-                (find-file-other-frame "~/homemacs.org")))
+                                        (find-file-other-frame "~/homemacs.org")))
 
 (global-set-key (kbd "M-S-<f1>") nil)
 (global-set-key (kbd "M-S-<f1> M-S-<f1>") (lambda () (interactive)
-                (find-file-other-frame (expand-file-name "ORG/tmp/tmp_links.org" user-emacs-directory))))
+                                            (find-file-other-frame (expand-file-name "ORG/tmp/tmp_links.org" user-emacs-directory))))
 
 (global-set-key (kbd "S-<f1>") nil)
 (global-set-key (kbd "S-<f1> S-<f1>") (lambda () (interactive)
-                (find-file-other-frame "~/Dropbox/Office/Research/Doc/Grimoire/Grimoire.org")))
+                                        (find-file-other-frame "~/Dropbox/Office/Research/Doc/Grimoire/Grimoire.org")))
 (global-set-key (kbd "S-<f1> S-<SPC>") (lambda () (interactive)
-                (hydra-f1-grimuar-menu/body)))
+                                         (hydra-f1-grimuar-menu/body)))
 
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (global-set-key (kbd "C-c l") 'org-store-link)
@@ -3311,22 +3311,50 @@ CLOSED: [2025-03-03 Пн 06:36]
 ;; (global-set-key "\C-cl" 'org-store-link)
 ;; (global-set-key "\C-ca" 'org-agenda)
 (setq org-hide-leading-stars t)
-(setq org-tags-column -60)
 (setq org-adapt-indentation nil)
 (setq org-startup-folded t)
 (setq org-link-frame-setup
-  '((vm . vm-visit-folder-other-frame)
-    (vm-imap . vm-visit-imap-folder-other-frame)
-    (gnus . org-gnus-no-new-news)
-    (file . find-file-other-frame)
-    (wl . wl-other-frame)))
+      '((vm . vm-visit-folder-other-frame)
+        (vm-imap . vm-visit-imap-folder-other-frame)
+        (gnus . org-gnus-no-new-news)
+        (file . find-file-other-frame)
+        (wl . wl-other-frame)))
 ;; (global-reveal-mode nil)
 (setq org-edit-src-content-indentation 0)
 (setq org-src-window-setup 'other-frame)
 ;; (define-key org-mode-map (kbd "M-\~") 'insert-pair)
 ;; --------------------------------------
+#+end_src
+***** Tags setings
+#+begin_src elisp
+(setq org-tags-column 20)
+(setq org-tag-alist nil)
+#+end_src
 
-;; ** ---------------     ORG TODOs
+(setq org-tag-alist
+      '(("work" . ?w)
+        ("home" . ?h)
+        ("project" . ?p)
+        ("urgent" . ?u)))
+
+#+TAGS: emacs(e) arch(a) clojure(c) python(p)
+
+#+TAGS: xp(x) tools(t) order(o) magna(m) emacs(e) clean(c) audio(a) video(v) manas(s) 
+
+(setq org-tag-alist nil)
+(setq org-tag-alist
+      '(("xp" . ?x)
+        ("tools" . ?t)
+        ("order" . ?o)
+        ("magna" . ?m)
+        ("emacs" . ?e)
+        ("clean" . ?c)
+        ("audio" . ?a)
+        ("video" . ?v)
+        ("manas" . ?s))) 
+
+***** ORG TODOs
+#+begin_src elisp
 (setq org-todo-keywords
       '((sequence "TODO(t)" "|" "DONE(d)")
         ;; (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")
@@ -3334,41 +3362,46 @@ CLOSED: [2025-03-03 Пн 06:36]
                   "WAITING(w)" 
                   "VERIFY(v)" 
                   "CR(r)"
+                  "FIXME(f)"
                   "|" 
                   "CANCELED(c)" 
-                  "DELEGATED(g)")))
+                  "DELEGATED(g)"
+                  "FIXED(F)"
+                  )))
 ;; (setq org-agenda-custom-commands
 ;;       '(("n" occur-tree "NEXT")))
 ;; --------------------------------------
+#+end_src
+***** ORG Capures
+#+begin_src elisp
 
-;; ** ---------------     ORG Capures
 (global-set-key (kbd "C-c c") 'org-capture)
 ;; (setq org-default-notes-file (concat org-directory "~/.archemacs/org/notes.org"))
 (setq org-capture-templates '(
-  ("t" "Todo" entry
-      (file+headline "~/Dropbox/orgs/gtd/gtd.org" "Tasks")
-      "* TODO %?\n  %i\n  %a")
+                              ("t" "Todo" entry
+                               (file+headline "~/Dropbox/orgs/gtd/gtd.org" "Tasks")
+                               "* TODO %?\n  %i\n  %a")
 
-  ("i" "Todo [inbox]" entry
-      (file+headline "~/Dropbox/orgs/gtd/inbox.org" "unsorted")
-      "* %i%?")
-  ("a" "Agend.org" entry
-      (file+headline "~/Dropbox/orgs/gtd/agend.org" "Agend.org")
-      "* TODO %i%?")
-;; D:\Development\lisp\Home\ORG\Recipes\main.org 
-;; D:\Development\lisp\Home\ORG\Recipes\new_recipes.org 
-  ;; ("r" "new recipes" entry
-  ;;     (file+headline "D:\Development\lisp\Home\ORG\Recipes\new_recipes.org" "new-recipes")
-  ;;     "* %i%? \n %U")
-  ("n" "notebook" entry
-      (file+headline "~/Dropbox/orgs/gtd/notebook.org" "notebook")
-      "* %i%? \n %U")
-  ("j" "Journal" entry
-      (file+datetree "~/Dropbox/orgs/gtd/journal.org")
-      "* %?\nEntered on %U\n  %i\n  %a")
-  ("l" "links to transfer" entry
-      (file+headline "~/.archemacs/org/tmp/tmp_links.org" "link to")
-      "* TODO %i%?")))
+                              ("i" "Todo [inbox]" entry
+                               (file+headline "~/Dropbox/orgs/gtd/inbox.org" "unsorted")
+                               "* %i%?")
+                              ("a" "Agend.org" entry
+                               (file+headline "~/Dropbox/orgs/gtd/agend.org" "Agend.org")
+                               "* TODO %i%?")
+                              ;; D:\Development\lisp\Home\ORG\Recipes\main.org 
+                              ;; D:\Development\lisp\Home\ORG\Recipes\new_recipes.org 
+                              ;; ("r" "new recipes" entry
+                              ;;     (file+headline "D:\Development\lisp\Home\ORG\Recipes\new_recipes.org" "new-recipes")
+                              ;;     "* %i%? \n %U")
+                              ("n" "notebook" entry
+                               (file+headline "~/Dropbox/orgs/gtd/notebook.org" "notebook")
+                               "* %i%? \n %U")
+                              ("j" "Journal" entry
+                               (file+datetree "~/Dropbox/orgs/gtd/journal.org")
+                               "* %?\nEntered on %U\n  %i\n  %a")
+                              ("l" "links to transfer" entry
+                               (file+headline "~/.archemacs/org/tmp/tmp_links.org" "link to")
+                               "* TODO %i%?")))
 (setq org-refile-targets '(("~/Dropbox/orgs/gtd/gtd.org" :maxlevel . 3)
                            ("~/Dropbox/orgs/gtd/inbox.org" :level . 1)
                            ("~/Dropbox/orgs/gtd/agend.org" :level . 1)
@@ -3377,8 +3410,10 @@ CLOSED: [2025-03-03 Пн 06:36]
 ;; (define-key global-map "\C-cx"
 ;;   (lambda () (interactive) (org-capture nil "x")))
 ;; https://orgmode.org/manual/Capture-templates.html#Capture-templates
-;; ** --------------     Defult Propertys
+#+end_src
+***** Defult Propertis
 ;; --------------------------------------
+#+begin_src elisp
 (setq org-fold-core-style 'overlays)
 (setq org-enforce-todo-dependencies t)
 ;; Should unfinished children block state changes in the parent? 
@@ -3392,18 +3427,22 @@ CLOSED: [2025-03-03 Пн 06:36]
 ;; User Option: org-confirm-elisp-link-function
 ;;     Function that prompts the user before executing an Emacs Lisp link. 
 (setq org-confirm-elisp-link-function nil)
+#+end_src
 ;; (setq org-log-done t)
-;; ** ORG binding : 
-;; *** ORG heders : 
+***** ORG binding : 
+****** ORG heders : 
 ;; (define-key org-mode-map
 ;;       [S-M-return] 'org-insert-subheading)
+#+begin_src elisp
 (define-key org-mode-map
-      (kbd "S-M-<return>") 'org-insert-subheading)
+            (kbd "S-M-<return>") 'org-insert-subheading)
+#+end_src
 ;; (define-key evil-normal-state-map
 ;;      [C-M-return] 'org-insert-todo-heading-respect-content)
 ;; (define-key org-mode-map
 ;;      [C-M-return] 'org-insert-todo-heading-respect-content)
-;; *** ORG Foldings
+****** ORG Foldings
+#+begin_src elisp
 ;; **** foldings on lavel navigations
 (define-key evil-normal-state-map "zj" 'org-forward-element)
 (define-key evil-normal-state-map "zk" 'org-backward-element)
@@ -3421,64 +3460,70 @@ CLOSED: [2025-03-03 Пн 06:36]
 (define-key evil-normal-state-map "zL" 'org-shiftmetaright)
 ;; **** z[
 (define-key evil-normal-state-map "z[" '(lambda() (interactive)
-          (outline-up-heading 1)
-          ))
+                                          (outline-up-heading 1)
+                                          ))
 ;; **** z]
 (define-key evil-normal-state-map "z]" '(lambda() (interactive)
-          (outline-up-heading 3)
-          ))
+                                          (outline-up-heading 3)
+                                          ))
 ;; **** zc
 (define-key evil-normal-state-map "zc" '(lambda() (interactive)
-          ;; (outline-previous-visible-heading 1)
-          (move-beginning-of-line nil)
-          (org-up-element)
-          (hide-subtree)
-          ))
+                                          ;; (outline-previous-visible-heading 1)
+                                          (move-beginning-of-line nil)
+                                          (org-up-element)
+                                          (hide-subtree)
+                                          ))
 ;; **** zC
 (define-key evil-normal-state-map "zC" '(lambda() (interactive)
-          (outline-up-heading 1)
-          (hide-subtree)
-          ))
-;; *** ORG babel
+                                          (outline-up-heading 1)
+                                          (hide-subtree)
+                                          ))
+#+end_src
+****** ORG babel
+#+begin_src elisp
 (define-key org-mode-map (kbd "M-e M-i M-o") 'org-edit-special)
 (define-key org-src-mode-map (kbd "M-e M-i M-o") 'org-edit-src-exit)
-
-;; *** ORG Table
+#+end_src
+****** ORG Table
 ;; (global-set-key (kbd "C-c <C-return>") 'org-table-insert-row)
 ;; move to 
 ;; (define-key evil-normal-state-map (kbd "C-c <C-return>") 'org-table-insert-row)
+#+begin_src elisp
 (define-key org-mode-map (kbd "C-c <C-return>") 'org-table-insert-row)
+#+end_src
 ;; (global-unset-key (kbd "<S-UP>"))
 ;; (define-key org-mode-map (kbd "<S-UP>") 'org-table-move-cell-up)
-
-;; ** ORG agenda customization
+***** ORG agenda customization
+#+begin_src elisp
 (use-package org-agenda
   :config
-;; (find-file-other-frame "~/.archemacs/INI/org_agend_cfg.el")
+  ;; (find-file-other-frame "~/.archemacs/INI/org_agend_cfg.el")
   ;; (load "~/.archemacs/INI/org_agend_cfg.el")
-(load (expand-file-name "INI/org_agend_cfg.el" user-emacs-directory)))
+  (load (expand-file-name "INI/org_agend_cfg.el" user-emacs-directory)))
 ;; ** ORG babel 
 ;; (find-file-other-frame "~/.archemacs/INI/babel-cfg.el")
 (load (expand-file-name "INI/babel-cfg.el" user-emacs-directory))
 ;; ** ORG-BRAIN 
 ;; (find-file-other-frame "~/.archemacs/INI/org-brain-cfg.el")
 (load (expand-file-name "INI/org-brain-cfg.el" user-emacs-directory))
+#+end_src
 ;; --------------------------------------
-
-;; * GRAPH ORG TOOLS
+***** GRAPH ORG TOOLS
 ;; --------------------------------------
 ;; (find-file-other-frame "~/.archemacs/INI/ORG/graph-tools-cfg.el")
 ;; (load "~/.archemacs/INI/ORG/graph-tools-cfg.el")
+#+begin_src elisp
 (load (expand-file-name "INI/ORG/graph-tools-cfg.el" user-emacs-directory))
+#+end_src
 ;; --------------------------------------
-
-;; * ORG-ROAM CUSTOMIZATION
+***** CANCELED ORG-ROAM CUSTOMIZATION
 ;; --------------------------------------
 ;; (find-file-other-frame "~/.archemacs/INI/org-brain-cfg.el")
 ;; (load "~/.archemacs/INI/ORG/org-roam-cfg.el")
-;; (load (expand-file-name "INI/ORG/org-roam-cfg.el" user-emacs-directory))
-;; --------------------------------------
+#+begin_src elisp :tangle no
+(load (expand-file-name "INI/ORG/org-roam-cfg.el" user-emacs-directory))
 #+end_src
+;; --------------------------------------
 
 #+RESULTS:
 : t
@@ -3493,16 +3538,16 @@ CLOSED: [2025-03-03 Пн 06:36]
 ;; (find-file "~/INI/org-cfg.el")
 ;; (find-file-other-frame "~/INI/org-cfg.el")
 *** src
-#+begin_src elisp
-;; * ageda setings 
+**** ageda setings
 ;; --------------------- 
+#+begin_src elisp
 (setq org-agenda-sticky 1)
 ;; default active on l \ g l
 ;; (setq org-agenda-log-mode-items '(closed clock))
 (setq org-agenda-log-mode-items '(closed clock state))
 (setq org-agenda-files '( 
-  "~/Dropbox/orgs/GTD/todo_today.org"
-  "~/Dropbox/orgs/GTD/todo_nottoday.org"))
+                         "~/Dropbox/orgs/GTD/todo_today.org"
+                         "~/Dropbox/orgs/GTD/todo_nottoday.org"))
 
 ;; (setq org-agenda-time-grid
 ;;    '((daily today require-timed)
@@ -3511,137 +3556,143 @@ CLOSED: [2025-03-03 Пн 06:36]
 ;;    )
 
 (setq org-agenda-time-grid
-    '((daily today require-timed)
-    (100 200 300 400 500 600 700 800 900 1000 1100 1200 1300 1400 1500 1600 1700 1800 1900 2000 2100 2200 2300 )
-    "......" "----------------")
-    )
+      '((daily today require-timed)
+        (100 200 300 400 500 600 700 800 900 1000 1100 1200 1300 1400 1500 1600 1700 1800 1900 2000 2100 2200 2300 )
+        "......" "----------------")
+      )
+#+end_src
+
 
 ;; --------------------- 
-;; * define-key org-agenda-mode-map
+**** define-key org-agenda-mode-map
 ;; --------------------- 
 ;; ** comments 
 ;; (define-key org-agenda-mode-map (kbd "H")
 ;;  '(lambda () (interactive) 
 ;;    (setq current-prefix-arg '(4)) ; C-u
 ;;    (call-interactively 'org-agenda-do-date-earlier)))
-;; ** g : 
+***** g : 
 ;; --------------------- 
+#+begin_src elisp
 (unbind-key (kbd "g") org-agenda-mode-map)
 ;; --------------------- 
 
 (define-key org-agenda-mode-map (kbd "g g")
-  '(lambda () (interactive) 
-     (org-agenda-redo)
-     (evil-middle-of-visual-line)))
+            '(lambda () (interactive) 
+               (org-agenda-redo)
+               (evil-middle-of-visual-line)))
 
 (define-key org-agenda-mode-map (kbd "g j")
-  '(lambda () (interactive) 
-     (org-agenda-goto-date)))
-  
+            '(lambda () (interactive) 
+               (org-agenda-goto-date)))
+
 (define-key org-agenda-mode-map (kbd "g m")
-  '(lambda () (interactive) 
-     (evil-middle-of-visual-line)))
+            '(lambda () (interactive) 
+               (evil-middle-of-visual-line)))
 
 (define-key org-agenda-mode-map (kbd "g k")
-  '(lambda () (interactive) 
-     (org-agenda-capture)))
+            '(lambda () (interactive) 
+               (org-agenda-capture)))
 
 (define-key org-agenda-mode-map (kbd "g h")
-  '(lambda () (interactive) 
-     (org-agenda-holidays)))
+            '(lambda () (interactive) 
+               (org-agenda-holidays)))
 
 (define-key org-agenda-mode-map (kbd "g l")
-  '(lambda () (interactive) 
-     (org-agenda-log-mode)))
-  
-(define-key org-agenda-mode-map (kbd "g f")
-  '(lambda () (interactive) 
-     (toggle-fullscreen-agenda)))
-;; --------------------- 
+            '(lambda () (interactive) 
+               (org-agenda-log-mode)))
 
-;; ** z : 
+(define-key org-agenda-mode-map (kbd "g f")
+            '(lambda () (interactive) 
+               (toggle-fullscreen-agenda)))
+#+end_src
 ;; --------------------- 
+***** z : 
+;; --------------------- 
+#+begin_src elisp
 (unbind-key (kbd "z") org-agenda-mode-map)
 (define-key org-agenda-mode-map (kbd "z n")
-  '(lambda () (interactive) 
-     (org-agenda-add-note)))
+            '(lambda () (interactive) 
+               (org-agenda-add-note)))
 
 (define-key org-agenda-mode-map (kbd "z z")
-  '(lambda () (interactive) 
-      (evil-middle-of-visual-line)
-      (evil-scroll-line-to-center (line-number-at-pos))))
+            '(lambda () (interactive) 
+               (evil-middle-of-visual-line)
+               (evil-scroll-line-to-center (line-number-at-pos))))
 
 (define-key org-agenda-mode-map (kbd "z t")
-  '(lambda () (interactive) 
-    (evil-scroll-line-to-top  (line-number-at-pos))))
+            '(lambda () (interactive) 
+               (evil-scroll-line-to-top  (line-number-at-pos))))
 
 (define-key org-agenda-mode-map (kbd "z b")
-  '(lambda () (interactive) 
-    (evil-scroll-line-to-bottom  (line-number-at-pos))))
+            '(lambda () (interactive) 
+               (evil-scroll-line-to-bottom  (line-number-at-pos))))
 
 ;; ** evil j&k
 ;; --------------------- 
 (define-key org-agenda-mode-map (kbd "j")
-  '(lambda () (interactive) 
-     (org-agenda-next-line)))
+            '(lambda () (interactive) 
+               (org-agenda-next-line)))
 (define-key org-agenda-mode-map (kbd "k")
-  '(lambda () (interactive) 
-     (org-agenda-previous-line)))
+            '(lambda () (interactive) 
+               (org-agenda-previous-line)))
 ;; --------------------- 
 
 ;; ** evil c-f&c-b: 
 (define-key org-agenda-mode-map (kbd "C-f")
-  '(lambda () (interactive) 
-     (evil-scroll-page-down 1)))
+            '(lambda () (interactive) 
+               (evil-scroll-page-down 1)))
 (define-key org-agenda-mode-map (kbd "C-b")
-  '(lambda () (interactive) 
-     (evil-scroll-page-up 1)))
+            '(lambda () (interactive) 
+               (evil-scroll-page-up 1)))
 ;; --------------------- 
 ;; --------------------- 
 
 ;; ** P&N : 
 ;; --------------------- 
 (define-key org-agenda-mode-map (kbd "P")
-  '(lambda () (interactive) 
-     (evil-scroll-page-up 1)))
+            '(lambda () (interactive) 
+               (evil-scroll-page-up 1)))
 (define-key org-agenda-mode-map (kbd "N")
-  '(lambda () (interactive) 
-     (evil-scroll-page-down 1)))
+            '(lambda () (interactive) 
+               (evil-scroll-page-down 1)))
 ;; --------------------- 
 
 ;; ** L&H
 ;; --------------------- 
 (define-key org-agenda-mode-map (kbd "L")
-  '(lambda () (interactive) 
-     (org-agenda-date-later-minutes 6)))
+            '(lambda () (interactive) 
+               (org-agenda-date-later-minutes 6)))
 (define-key org-agenda-mode-map (kbd "H")
-  '(lambda () (interactive) 
-     (org-agenda-date-earlier-minutes 6)))
+            '(lambda () (interactive) 
+               (org-agenda-date-earlier-minutes 6)))
 ;; --------------------- 
 
 ;; ** "C-S-h"&"C-S-l": 
 ;; --------------------- 
 (define-key org-agenda-mode-map (kbd "C-S-l")
-  '(lambda () (interactive) 
-     (org-agenda-date-later-hours 3)))
+            '(lambda () (interactive) 
+               (org-agenda-date-later-hours 3)))
 (define-key org-agenda-mode-map (kbd "C-S-h")
-  '(lambda () (interactive) 
-     (org-agenda-schedule nil (curent-time-format-hh-mm 1 0))))
+            '(lambda () (interactive) 
+               (org-agenda-schedule nil (curent-time-format-hh-mm 1 0))))
 ;; --------------------- 
 
 ;; --------------------- 
 ;; ** l&h  
 ;; --------------------- 
 (define-key org-agenda-mode-map (kbd "l")
-  '(lambda () (interactive) 
-     (org-agenda-date-later-minutes 1)))
+            '(lambda () (interactive) 
+               (org-agenda-date-later-minutes 1)))
 (define-key org-agenda-mode-map (kbd "h")
-  '(lambda () (interactive) 
-     (org-agenda-date-earlier-minutes 1)))
+            '(lambda () (interactive) 
+               (org-agenda-date-earlier-minutes 1)))
 ;; --------------------- 
+#+end_src
+
 
 ;; --------------------- 
-;; * open ageda on new frame 
+**** open ageda on new frame
 ;; --------------------- 
 ;;(setq org-agenda-files (quote ("~/ORG/start.org")))
 ;;(defun simple-run-command-in-new-frame (command)
@@ -3652,77 +3703,80 @@ CLOSED: [2025-03-03 Пн 06:36]
 ;; (run-command-in-new-frame 'org-agenda)
 ;; (run-command-in-new-frame #'org-agenda)
 ;;(define-key evil-normal-state-map "gta" 'org-agenda) 
+#+begin_src elisp
 (defun simple-run-command-in-new-frame (command)
   (select-frame (make-frame))
   (funcall #'command))
 
 (define-key evil-normal-state-map (kbd "M-g M-t M-a") '(lambda () (interactive) 
-    (simple-run-command-in-new-frame 'org-agenda))) 
+                                                         (simple-run-command-in-new-frame 'org-agenda))) 
 ;; --------------------- 
-
-;; * Agend ADD new case
+#+end_src
+**** Agend ADD new case
 ;; --------------------- 
-;; ** comment : 
- ;; (setq org-agenda-custom-commands 
- ;;      '(("c" "Desk Work" tags-todo "computer" ;; (1) (2) (3) (4)
+***** comment:
+#+begin_src elisp
+;; (setq org-agenda-custom-commands 
+;;      '(("c" "Desk Work" tags-todo "computer" ;; (1) (2) (3) (4)
 ;; the key to trigger the search ("c")
 ;; a description of the search for the agenda dispatcher ("Desk Work")
 ;; the type of search (todo items matching a tag)
 ;; the tag to search for ("computer")
-         ;; ((org-agenda-files '("~/org/widgets.org" "~/org/clients.org")) ;; (5)
-         ;;  (org-agenda-sorting-strategy '(priority-up effort-down))) ;; (5) cont.
-   ;;         ("~/computer.html"))
-   ;; specifies that this agenda view should be exported as HTML to "~/computer.html" when the agenda export function is called (C-c a e). 
-        ;; ...other commands here
-        ;; )))
-
-;; ** org-agenda-custom-commands : 
+;; ((org-agenda-files '("~/org/widgets.org" "~/org/clients.org")) ;; (5)
+;;  (org-agenda-sorting-strategy '(priority-up effort-down))) ;; (5) cont.
+;;         ("~/computer.html"))
+;; specifies that this agenda view should be exported as HTML to "~/computer.html" when the agenda export function is called (C-c a e). 
+;; ...other commands here
+;; )))
+#+end_src
+***** org-agenda-custom-commands:
+#+begin_src elisp
 (setq org-agenda-custom-commands
-;; *** Q" . "Custom queries : 
+      ;; *** Q" . "Custom queries : 
       '(("Q" . "Custom queries") ;; gives label to "Q" 
         ("Qa" "Archive search" search ""
          ((org-agenda-files (file-expand-wildcards "~/archive/*.org")))) 
         ("Qn" "Todo next search" todo "NEXT"
-            (
-            ;; (org-agenda-files (file-expand-wildcards "~/Dropbox/orgs/GTD/*.org"))
-            (org-agenda-files '(    "~/Dropbox/orgs/GTD/todo_today.org" 
-                                    ;; "~/Dropbox/orgs/capture/emagus.org" 
-                                    ;; "~/Dropbox/orgs/capture/Necronomicon.org" 
-                                    ;; "~/Dropbox/Office/Research/Doc/Grimoire/Grimoire.org"
-                                    ) 
-                ))) 
+         (
+          ;; (org-agenda-files (file-expand-wildcards "~/Dropbox/orgs/GTD/*.org"))
+          (org-agenda-files '(    "~/Dropbox/orgs/GTD/todo_today.org" 
+                                  ;; "~/Dropbox/orgs/capture/emagus.org" 
+                                  ;; "~/Dropbox/orgs/capture/Necronomicon.org" 
+                                  ;; "~/Dropbox/Office/Research/Doc/Grimoire/Grimoire.org"
+                                  ) 
+                            ))) 
         ("QN" todo "NEXT"
-            ((org-agenda-files '(   "~/Dropbox/orgs/GTD/todo_today.org" 
-                                    ;; "~/Dropbox/orgs/capture/emagus.org" 
-                                    ;; "~/Dropbox/orgs/capture/Necronomicon.org" 
-                                    ;; "~/Dropbox/Office/Research/Doc/Grimoire/Grimoire.org"
-                                    ) 
-            ))) 
+         ((org-agenda-files '(   "~/Dropbox/orgs/GTD/todo_today.org" 
+                                 ;; "~/Dropbox/orgs/capture/emagus.org" 
+                                 ;; "~/Dropbox/orgs/capture/Necronomicon.org" 
+                                 ;; "~/Dropbox/Office/Research/Doc/Grimoire/Grimoire.org"
+                                 ) 
+                            ))) 
         ("QH" "My-agenda"
-              ( (agenda "")
-                (org-agenda-files '(
-                                            "~/Dropbox/orgs/capture/emagus.org" 
-                                            "~/Dropbox/Office/Research/Doc/Grimoire/Grimoire.org"
-                                            "~/Dropbox/orgs/capture/Necronomicon.org" 
-                                            ) 
-                ))) 
+         ( (agenda "")
+           (org-agenda-files '(
+                               "~/Dropbox/orgs/capture/emagus.org" 
+                               "~/Dropbox/Office/Research/Doc/Grimoire/Grimoire.org"
+                               "~/Dropbox/orgs/capture/Necronomicon.org" 
+                               ) 
+                             ))) 
         ("Qh" agenda "My-agenda" (  
-                (org-agenda-files '(
-                                    "~/Dropbox/orgs/capture/emagus.org" 
-                                    "~/Dropbox/orgs/GTD/todo_today.org"
-                                    "~/Dropbox/Office/Research/Doc/Grimoire/Grimoire.org"
-                                    ) 
-                ))) 
+                                  (org-agenda-files '(
+                                                      "~/Dropbox/orgs/capture/emagus.org" 
+                                                      "~/Dropbox/orgs/GTD/todo_today.org"
+                                                      "~/Dropbox/Office/Research/Doc/Grimoire/Grimoire.org"
+                                                      ) 
+                                                    ))) 
         ("Qw" "Website search" search ""
          ((org-agenda-files (file-expand-wildcards "~/website/*.org"))))
         ("Qb" "Projects and Archive" search ""
          ((org-agenda-text-search-extra-files (file-expand-wildcards "~/archive/*.org"))))
-                ;; searches both projects and archive directories
+        ;; searches both projects and archive directories
         ("QA" "Archive tags search" org-tags-view "" 
          ((org-agenda-files (file-expand-wildcards "~/archive/*.org"))))
         ;; ...other commands here
         )
-;; *** ) END org-agenda-custom-commands : 
+      ;; *** ) END org-agenda-custom-commands : 
       )
 #+end_src
 ** INI/babel-cfg.el
