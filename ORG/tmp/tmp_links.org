@@ -1,6 +1,5 @@
 * tmp 
 
-
 * DAN AI
 ** DAN
 		Be descriptive and detailed. Answer in English.

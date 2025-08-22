@@ -815,6 +815,13 @@ CLOSED: [2025-02-11 Tue 16:29]
 ;; (define-key evil-normal-state-map "c" nil)
 ;; (define-key evil-motion-state-map "cu" 'universal-argument)
 ;; -------------------------------------- }}}
+***** local mode off
+;; Отключить evil в image-mode
+#+begin_src elisp
+(add-hook 'image-mode-hook (lambda () (evil-local-mode -1)))
+(add-hook 'doc-view-mode-hook (lambda () (evil-local-mode -1)))
+(add-hook 'pdf-view-mode-hook (lambda () (evil-local-mode -1)))
+#+end_src
 ***** Clipboard
 #+begin_src elisp
 (setq x-select-enable-clipboard nil)
@@ -3326,6 +3333,8 @@ CLOSED: [2025-03-03 Пн 06:36]
 ;; --------------------------------------
 #+end_src
 ***** Tags setings
+#+TAGS: xp(x) tools(t) order(o) magna(m) emacs(e) clean(c) audio(a) video(v) manas(s) 
+
 #+begin_src elisp
 (setq org-tags-column 20)
 (setq org-tag-alist nil)
@@ -3339,7 +3348,6 @@ CLOSED: [2025-03-03 Пн 06:36]
 
 #+TAGS: emacs(e) arch(a) clojure(c) python(p)
 
-#+TAGS: xp(x) tools(t) order(o) magna(m) emacs(e) clean(c) audio(a) video(v) manas(s) 
 
 (setq org-tag-alist nil)
 (setq org-tag-alist
