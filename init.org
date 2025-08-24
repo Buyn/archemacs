@@ -286,11 +286,11 @@ There are two things you can do about this warning:
 ;; (find-file "~/INI/init.el")
 [[*els load list][els load list]]
 *** src
-#+begin_src elisp
-;; * VANILA CUSTOMIZATION
+**** VANILA CUSTOMIZATION
+***** startup :
 ;; --------------------------------------
-;; ** startup : 
 ;; Disables the startup message (this is the screen with all the tutorial information)
+#+begin_src elisp
 (setq inhibit-startup-message t) ;; hide the startup message
 (tool-bar-mode -1)
 (menu-bar-mode -1)
@@ -302,16 +302,20 @@ There are two things you can do about this warning:
 ;; ------------------------------------------------------
 (defalias 'yes-or-no-p 'y-or-n-p)
 ;; ------------------------------------------------------
-;; ** load-theme : 
+#+end_src
+***** load-theme :
 ;; ------------------------------------------------------
+#+begin_src elisp
 (load-theme 'material t) ;; load material theme
+#+end_src
 ;;(global-linum-mode t) ;; enable line numbers globally
 ;;(set-frame-font "Trebuchet MS")
 ;;(set-frame-font "Ubuntu Mono")
 ;;(set-default-font "Ubuntu Mono")
 ;; ------------------------------------------------------
-;; ** font : 
+***** font :
 ;; ------------------------------------------------------
+#+begin_src elisp
 (set-language-environment "UTF-8")
 (add-to-list 'default-frame-alist
              '(font . "Ubuntu Mono"))
@@ -320,14 +324,17 @@ There are two things you can do about this warning:
 (when (member "Noto Color Emoji" (font-family-list))
   (set-fontset-font t 'emoji "Noto Color Emoji" nil 'prepend))
 ;; ------------------------------------------------------
-;; ** tab-width : 
+#+end_src
+***** tab-width : 
 ;; ------------------------------------------------------
 ;; (setq-default tab-width 2)
+#+begin_src elisp
 (setq-default tab-width 8) 
 (setq-default indent-tabs-mode nil) 
+#+end_src
 ;; (setq tab-width 8) 
 ;; ------------------------------------------------------
-;; ** line-numbers-mode : 
+***** line-numbers-mode : 
 ;; ------------------------------------------------------
 ;;Unfortunately, Emacs's help message is pretty bad in this case. The menu button is bound to an anonymous function, and the help system is basically displaying the byte-compiled version of that function. I got the Emacs source, searched for the unique looking string "Relative line numbers enabled", and found the function in lisp/menu-bar.el:
 ;;
@@ -340,14 +347,17 @@ There are two things you can do about this warning:
 ;; The canonical way to set this is adding display-line-numbers-mode to a mode hook,
 ;; (add-hook 'foo-mode-hook #'display-line-numbers-mode)
 ;; or enabling global-display-line-numbers-mode if you want them everywhere,
+#+begin_src elisp
 (global-display-line-numbers-mode 0)
+#+end_src
 ;; and to set display-line-numbers-type to the desired style:
 ;; (setq display-line-numbers-type 'relative)
 ;;Relative line numbers enabled
 ;; ------------------------------------------------------
-;; ** Warp line : 
+***** Warp line :
 ;; ------------------------------------------------------
 ;; Warp line on visula line end
+#+begin_src elisp
 (global-visual-line-mode t)
 
 ;; This can also be turned on using the menu bar, via
@@ -358,16 +368,19 @@ There are two things you can do about this warning:
 (setq truncate-lines nil)
 (setq line-move-visual t)
 (setq word-wrap t)
+#+end_src
 ;; (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 ;; ------------------------------------------------------
-;; ** paren : 
+***** paren :
 ;; ------------------------------------------------------
-;; *** paren-mode : 
+****** paren-mode :
 ;; ------------------------------------------------------
+#+begin_src elisp
 (show-paren-mode 1)
 ;; for working with pair-able characters
 ;; lightweight package electric, which provided by Emacs out of the box.
 (electric-pair-mode 1)
+#+end_src
 ;; It supports, by default, ACSI pairs {}, [], () and Unicode ‘’, “”,
 ;; Let's add the org-emphasises markers.
 ;; (setq electric-pair-pairs
@@ -377,30 +390,39 @@ There are two things you can do about this warning:
 ;;         (?/ . ?/)
 ;;        ))
 ;; ------------------------------------------------------
-;; *** Wrapping selecting text in enclosing characters
+****** Wrapping selecting text in enclosing characters
 ;; ------------------------------------------------------
 ;; For parens you can do M-(. For brackets/braces/quotes you could do:
+#+begin_src elisp
 (global-set-key (kbd "M-[") 'insert-pair)
 (global-set-key (kbd "M-{") 'insert-pair)
 (global-set-key (kbd "M-<") 'insert-pair)
 (global-set-key (kbd "M-\"") 'insert-pair)
+#+end_src
+
 ;; Also handy for deleting matching whatevers is
+#+begin_src elisp
 (global-set-key (kbd "M-)") 'delete-pair)
 (global-set-key (kbd "M-}") 'delete-pair)
 (global-set-key (kbd "M-]") 'delete-pair)
 (global-set-key (kbd "M->") 'delete-pair)
+#+end_src
 ;; ------------------------------------------------------
-;; ** change input method
+***** change input method
 ;; ------------------------------------------------------
+#+begin_src elisp
 (set-input-method "russian-computer")
 (global-set-key (kbd "C-^") 'toggle-input-method)
+#+end_src
 ;; ------------------------------------------------------
-;; ** Backups
+***** Backups
+
 ;; ------------------------------------------------------
 ;; By default, Emacs saves backup files – those ending in ~ – in the current directory, thereby cluttering it up.
 ;; Let's place them in ~/.emacs.d/backups, in case we need to look for a backup; moreover, let's keep old versions since there's disk space to go around
 ;;–what am I going to do with 500gigs when nearly all my ‘software’ is textfiles interpreted within Emacs 
 ;; New location for backups.
+#+begin_src elisp
 (setq backup-directory-alist '(("." . "~/.archemacs/backups")))
 ;; Never silently delete old backups.
 ;; (setq delete-old-versions -1)
@@ -408,34 +430,53 @@ There are two things you can do about this warning:
 ;; (setq version-control t)
 (setq auto-save-default nil)
 (setq make-backup-files t)
+#+end_src
 ;; Even version controlled files get to be backed up.
 ;; (setq vc-make-backup-files t)
 ;; ------------------------------------------------------
-;; ** Visual
+***** Visual
+****** hl-line-mode
 ;; ------------------------------------------------------
+#+begin_src elisp
 (when window-system (add-hook 'prog-mode-hook 'hl-line-mode))
 (scroll-bar-mode -1)
+#+end_src
 ;; ------------------------------------------------------
-;; ** Frame
+****** highlighting of selected text
+  And the best colored highlighting of selected text needs to be both
+  bright, but not obscure the white text in the foreground (see
+  =list-colors-display=). Favorites so far are =purple4= and =DarkOrange3=:
+
+  #+BEGIN_SRC elisp
+    (set-face-background 'region "blue3")
+  #+END_SRC
+
+  Most of the display settings actually come from the [[file:emacs-mac.org][Mac initialization file]].
+***** Frame
 ;; ------------------------------------------------------
 ;; (set-frame-size (selected-frame) 75 25)
+#+begin_src elisp
 (add-to-list 'default-frame-alist '(height . 25))
 (add-to-list 'default-frame-alist '(width . 75))
+#+end_src
 ;; ------------------------------------------------------
-;; ** show Emoji
+***** show Emoji
 ;; ------------------------------------------------------
+#+begin_src elisp
 (when (member "Twitter Color Emoji" (font-family-list))
   (set-fontset-font
-    t 'symbol (font-spec :family "Twitter Color Emoji") nil 'prepend))
+   t 'symbol (font-spec :family "Twitter Color Emoji") nil 'prepend))
+#+end_src
 ;; ------------------------------------------------------
-;; ** Menu bar & key
+***** Menu bar & key
 ;; ------------------------------------------------------
-;; *** coments : 
+****** coments : 
 ;; (menu-bar-mode -1)
 ;; (menu-bar-mode 1)
 ;; (menu-bar-open)
 ;; ------------------------------------------------------
-;; *** defun buyn-menu-bar-open : 
+****** defun buyn-menu-bar-open : 
+#+begin_src elisp
 (defun buyn-menu-bar-open ()
   "Show Menu bar on all frames
     and open menu 
@@ -445,38 +486,29 @@ There are two things you can do about this warning:
   (menu-bar-open)
   (global-set-key (kbd "<f10>") 'buyn-menu-bar-close)
   )
+#+end_src
 ;; ------------------------------------------------------
 ;; ------------------------------------------------------
-;; *** defun buyn-menu-bar-close : 
+****** defun buyn-menu-bar-close : 
+#+begin_src elisp
 (defun buyn-menu-bar-close()
   "Hide Menu bar on all frames
     and set f10 to (buyn-menu-bar-open)"
   (interactive)
   (menu-bar-mode -1)
   ;; (menu-bar-open)
-  (global-set-key (kbd "<f10>") 'buyn-menu-bar-open)
+  (global-set-key (kbd "<f10> <f10>") 'buyn-menu-bar-open)
   )
+#+end_src
 ;; ------------------------------------------------------
-;; *** set-key f10 : 
+****** set-key f10 : 
 ;; ------------------------------------------------------
-  (global-set-key (kbd "<f10>") 'buyn-menu-bar-open)
+#+begin_src elisp
+(global-set-key (kbd "<f10> <f10>") 'buyn-menu-bar-open)
 ;; ------------------------------------------------------
-;; *EDIFF CUSTOMIZATION
-;; --------------------------------------
-
-(custom-set-variables
- '(ediff-window-setup-function 'ediff-setup-windows-plain)
- ;; Finally got around to customizing the vertical split to be the default one (last line in the config):
- ;; '(ediff-diff-options "-w")
- '(ediff-split-window-function 'split-window-horizontally))
-;; ------------------------------------------------------
-;; * “Interactively Do Things” (a.k.a. ido)
-;; ------------------------------------------------------
-(require 'ido)
-(ido-mode t)
-;; ------------------------------------------------------
-
-;; * initial-scratch-message : 
+#+end_src
+***** initial-scratch-message : 
+#+begin_src elisp
 (setq initial-scratch-message ";; * This buffer for Lisp evaluation.
 ;; This buffer is for text that is not saved, and for Lisp evaluation.
 ;; To create a file, visit it with \\[find-file] and enter text in its buffer.
@@ -500,10 +532,25 @@ There are two things you can do about this warning:
 ;; * Whenever I open Emacs, I feel inspired. 
 ;; Like a craftsman entering his workshop, I feel a realm of possibility open before me. I feel the comfort of an environment that has evolved over time to fit me perfectly—an assortment of packages and key bindings that help me bring ideas to life day after day.
 ")
-;; * --------------------------------------
-
 #+end_src
-
+;; * --------------------------------------
+**** EDIFF CUSTOMIZATION
+;; --------------------------------------
+#+begin_src elisp
+(custom-set-variables
+ '(ediff-window-setup-function 'ediff-setup-windows-plain)
+ ;; Finally got around to customizing the vertical split to be the default one (last line in the config):
+ ;; '(ediff-diff-options "-w")
+ '(ediff-split-window-function 'split-window-horizontally))
+#+end_src
+;; ------------------------------------------------------
+**** “Interactively Do Things” (a.k.a. ido)
+;; ------------------------------------------------------
+#+begin_src elisp
+(require 'ido)
+(ido-mode t)
+#+end_src
+;; ------------------------------------------------------
 * **UI и интерфейсные улучшения**
 ** описание
    Темы, powerline, minimap и кастомные элементы интерфейса.
