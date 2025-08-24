@@ -504,6 +504,7 @@ There are two things you can do about this warning:
 ****** set-key f10 : 
 ;; ------------------------------------------------------
 #+begin_src elisp
+(global-set-key (kbd "<f10>") nil)
 (global-set-key (kbd "<f10> <f10>") 'buyn-menu-bar-open)
 ;; ------------------------------------------------------
 #+end_src

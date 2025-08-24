@@ -10,6 +10,10 @@
     (setq evil-shift-width 2)
     (setq-default evil-shift-width 2)
 
+(add-hook 'image-mode-hook (lambda () (evil-local-mode -1)))
+(add-hook 'doc-view-mode-hook (lambda () (evil-local-mode -1)))
+(add-hook 'pdf-view-mode-hook (lambda () (evil-local-mode -1)))
+
 (setq x-select-enable-clipboard nil)
 ;; (fset 'evil-visual-update-x-selection 'ignore)
 ;; (setq save-interprogram-paste-before-kill t)
