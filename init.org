@@ -3287,7 +3287,6 @@ _?_ help            _c_urrent file
 
 #+end_src
 
-
 * TODO **Org Mode и интеграции**
 ** описание
    Все конфиги для `org-mode`, включая `babel`, `org-roam`, `org-brain` и графические инструменты.  
@@ -7075,9 +7074,16 @@ The major mode is Calculator mode defined in calc.el:
   :config
     (setq telega-server-libs-prefix "/usr")
     (setq telega-emoji-use-images nil)
+    (evil-mode 1)
   #+end_src
 ***** как открывать новый чат
   #+begin_src elisp
+      (setq telega-chat--display-buffer-action
+            '((display-buffer-reuse-window display-buffer-pop-up-frame)))
+  #+end_src
+              (reusable-frames . visible)
+              (inhibit-same-window . t)
+  #+begin_src elisp:tangle no 
     (setq telega-chat--display-buffer-action
           '((display-buffer-reuse-window display-buffer-pop-up-frame)
             (reusable-frames . visible)
