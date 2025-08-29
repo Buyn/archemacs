@@ -6,6 +6,10 @@
   :config
     (setq telega-server-libs-prefix "/usr")
     (setq telega-emoji-use-images nil)
+    (evil-mode 1)
+
+      (setq telega-chat--display-buffer-action
+            '((display-buffer-reuse-window display-buffer-pop-up-frame)))
 
     (setq telega-chat--display-buffer-action
           '((display-buffer-reuse-window display-buffer-pop-up-frame)
