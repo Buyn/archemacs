@@ -3191,9 +3191,10 @@ _?_ help            _c_urrent file
 #+end_src
 
 ****** lit-menu
+;; ***** keys
+;; ***** hint
 #+begin_src elisp
 (defhydra lit-menu (:color pink)
-;; ***** hint
     "
                 ^OrphoGrammus  Menus^ z M-=         
     ────────────^───────────────────^───────────────────
@@ -3203,7 +3204,6 @@ _?_ help            _c_urrent file
      _a_ll buffer    _r_egion cheak
      _R_u-RU    _D_ictonar chenge    _E_n-US
     "
-;; ***** keys
     ("[" evil-prev-flyspell-error :color pink)
     ("]" evil-next-flyspell-error :color pink)
     ("n" flyspell-auto-correct-word :color pink)
@@ -3211,21 +3211,24 @@ _?_ help            _c_urrent file
     ("f" flyspell-mode :color pink)
     ("c" flyspell-prog-mode)
     ("a" flyspell-buffer)
-    ;; ("R" ispell-change-dictionary "ru_RU")
     ("R" (progn
             (ispell-change-dictionary "ru_RU")
-            (flyspell-mode t)))
+            (flyspell-mode t)) :color blue)
     ("D" ispell-change-dictionary)
     ("E" (progn
             (ispell-change-dictionary "en_US")
-            (flyspell-mode t)))
-    ;; ispell-change-dictionary "en_US")
+            (flyspell-mode t)) :color blue)
     ("r" ispell-region)
     ("w" ispell-word :color pink)
   ("q" nil) 
-;; ***** END of def
   )
 #+end_src
+    ;; ispell-change-dictionary "en_US")
+    ;; ("R" ispell-change-dictionary "ru_RU")
+;; ***** END of def
+
+#+RESULTS:
+: lit-menu/body
 
 ****** help-menu
 #+begin_src elisp

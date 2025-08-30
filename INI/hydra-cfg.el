@@ -180,9 +180,10 @@
 (defhydra org-menu (:color pink)
     ("d" org-babel-demarcate-block "demarcate" :color blue)
     ("s" org-toggle-inline-images "Show image")
-    ("q" nil ) 
-    ("o" org-roam-menu/body "Org-rOam" :color blue)
-    ("i" org-insert-menu/body "insert" :color blue)
+    ("q" nil "quit") 
+    ("o" org-roam-menu/body "Org-rOam-menu" :color blue)
+    ("i" org-insert-menu/body "insert-menu" :color blue)
+    ("m" org-macro-menu/body "macros-menu" :color blue)
   )
 
 (defhydra org-roam-menu (:color blue)
@@ -219,6 +220,17 @@
     ("s" (insert "(buyn-shell-start \" \")") "shell")
     ("k" (insert "(buyn-shell-start \"konsole -e ' '\")") "konsole")
 
+    ("q" nil)
+  )
+
+(defhydra org-macro-menu (:color blue)
+    ("l" (progn
+          (call-interactively 'org-store-link)  
+          (defalias 'insert-pop-macro
+            (kmacro "A C-c C-l C-j C-j C-j <return> <escape>"))
+          (define-key evil-normal-state-map (kbd "<f5>") 'org-store-link)
+          (define-key evil-normal-state-map (kbd "<f6>") 'insert-pop-macro) 
+            ) "link macros f5f6 ")
     ("q" nil)
   )
 
@@ -782,7 +794,6 @@ _?_ help            _c_urrent file
   )
 
 (defhydra lit-menu (:color pink)
-;; ***** hint
     "
                 ^OrphoGrammus  Menus^ z M-=         
     ────────────^───────────────────^───────────────────
@@ -792,7 +803,6 @@ _?_ help            _c_urrent file
      _a_ll buffer    _r_egion cheak
      _R_u-RU    _D_ictonar chenge    _E_n-US
     "
-;; ***** keys
     ("[" evil-prev-flyspell-error :color pink)
     ("]" evil-next-flyspell-error :color pink)
     ("n" flyspell-auto-correct-word :color pink)
@@ -800,19 +810,16 @@ _?_ help            _c_urrent file
     ("f" flyspell-mode :color pink)
     ("c" flyspell-prog-mode)
     ("a" flyspell-buffer)
-    ;; ("R" ispell-change-dictionary "ru_RU")
     ("R" (progn
             (ispell-change-dictionary "ru_RU")
-            (flyspell-mode t)))
+            (flyspell-mode t)) :color blue)
     ("D" ispell-change-dictionary)
     ("E" (progn
             (ispell-change-dictionary "en_US")
-            (flyspell-mode t)))
-    ;; ispell-change-dictionary "en_US")
+            (flyspell-mode t)) :color blue)
     ("r" ispell-region)
     ("w" ispell-word :color pink)
   ("q" nil) 
-;; ***** END of def
   )
 
 (defhydra hydra-help-menu (:color blue)

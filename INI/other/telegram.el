@@ -16,6 +16,11 @@
             (reusable-frames . visible)
             (inhibit-same-window . t)))
 
+    (add-hook 'telega-chat-mode-hook
+              (lambda ()
+                (evil-local-mode 1)
+                (evil-normalize-keymaps)))
+
 )
 
 (defhydra telega-menu (:color blue)
