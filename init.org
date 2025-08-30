@@ -1115,7 +1115,7 @@ CLOSED: [2025-02-11 Tue 16:29]
 ;; -------------------------------------- }}}
 #+end_src
 ***** Devolopment
-#+begin_src elisp
+#+begin_src elisp :results output silent
 (define-key evil-normal-state-map (kbd "M-e M-f M-f") 'xref-find-definitions)
 (define-key evil-normal-state-map (kbd "M-e M-f M-F") 'xref-find-definitions-other-frame)
 (define-key evil-normal-state-map (kbd "M-e M-f M-e") 'evil-goto-definition)
@@ -2488,11 +2488,16 @@ CLOSED: [2025-02-21 Fri 21:34]
 (defhydra org-menu (:color pink)
     ("d" org-babel-demarcate-block "demarcate" :color blue)
     ("s" org-toggle-inline-images "Show image")
-    ("q" nil ) 
-    ("o" org-roam-menu/body "Org-rOam" :color blue)
-    ("i" org-insert-menu/body "insert" :color blue)
+    ("q" nil "quit") 
+    ("o" org-roam-menu/body "Org-rOam-menu" :color blue)
+    ("i" org-insert-menu/body "insert-menu" :color blue)
+    ("m" org-macro-menu/body "macros-menu" :color blue)
   )
 #+end_src
+
+#+RESULTS:
+: org-menu/body
+
 ;; ****** D : 
     ("D" (progn
             ;; (nil/body) 
@@ -2560,6 +2565,25 @@ CLOSED: [2025-02-21 Fri 21:34]
     ("q" nil)
   )
 #+end_src
+****** org-macro-menu
+#+begin_src elisp :results output silent
+(defhydra org-macro-menu (:color blue)
+    ("l" (progn
+          (call-interactively 'org-store-link)  
+          (defalias 'insert-pop-macro
+            (kmacro "A C-c C-l C-j C-j C-j <return> <escape>"))
+          (define-key evil-normal-state-map (kbd "<f5>") 'org-store-link)
+          (define-key evil-normal-state-map (kbd "<f6>") 'insert-pop-macro) 
+            ) "link macros f5f6 ")
+    ("q" nil)
+  )
+#+end_src
+
+        ;; (fset 'get-link-macro
+        ;;   (kmacro-lambda-form [?\C-c ?l] 0 "%d"))
+        ;; (fset 'pop-one-link-macro
+        ;;   (kmacro-lambda-form [?\C-c ?\C-l return return] 0 "%d"))
+
 ****** brain-org
 #+begin_src elisp
 (defhydra hydra-brain-org-menu (:color blue)
@@ -7132,6 +7156,13 @@ The major mode is Calculator mode defined in calc.el:
   ;; (define-key evil-normal-state-map (kbd "M-F") 'avy-goto-char-timer)
 
 (define-key telega-chat-mode-map (kbd "<escape>") #'my/close-frame-on-quit)
+***** setingup telega-chat-mode-hook
+#+begin_src elisp
+    (add-hook 'telega-chat-mode-hook
+              (lambda ()
+                (evil-local-mode 1)
+                (evil-normalize-keymaps)))
+#+end_src
 
 **** end use-package telega ) (
 #+begin_src elisp
