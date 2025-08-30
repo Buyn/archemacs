@@ -2574,11 +2574,28 @@ CLOSED: [2025-02-21 Fri 21:34]
             (kmacro "A C-c C-l C-j C-j C-j <return> <escape>"))
           (define-key evil-normal-state-map (kbd "<f5>") 'org-store-link)
           (define-key evil-normal-state-map (kbd "<f6>") 'insert-pop-macro) 
-            ) "link macros f5f6 ")
+            ) "link macros f5f6")
+    ("c" (progn
+            (org-todo "") 
+            (evil-next-visual-line) 
+          ) "todo clear")
     ("q" nil)
   )
 #+end_src
+    ("c" (progn
+          ;; (defalias 'clear-todo-macro
+          ;;   (kmacro "C-c C-t <space> j")) 
+          (fset 'clear-todo-macro
+            (kmacro-lambda-form [?\C-c ?\C-t <SPC> j] 0 "%d"))  
+          (clear-todo-macro)  
+          ;; (execute-kbd-macro "?\C-c ?\C-t ?<space> j") 
+          ;; (call-interactively 'clear-todo-macro) 
+          (org-todo "")
+            ) "todo clear")
 
+(read-kbd-macro START &optional END)
+
+(call-interactively 'read-kbd-macro)
         ;; (fset 'get-link-macro
         ;;   (kmacro-lambda-form [?\C-c ?l] 0 "%d"))
         ;; (fset 'pop-one-link-macro

@@ -230,7 +230,11 @@
             (kmacro "A C-c C-l C-j C-j C-j <return> <escape>"))
           (define-key evil-normal-state-map (kbd "<f5>") 'org-store-link)
           (define-key evil-normal-state-map (kbd "<f6>") 'insert-pop-macro) 
-            ) "link macros f5f6 ")
+            ) "link macros f5f6")
+    ("c" (progn
+            (org-todo "") 
+            (evil-next-visual-line) 
+          ) "todo clear")
     ("q" nil)
   )
 
