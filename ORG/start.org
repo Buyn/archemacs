@@ -4878,6 +4878,7 @@ To switch EWW
 $ cd /ssh:initech|su:root@localhost:/
 **** sudo
 C-x C-f /ssh:you@remotehost|sudo:remotehost:/path/to/file RET
+(find-file-other-frame "/sudo::/etc/speech-dispatcher/modules/piper-generic.conf")
 **** find-file
 (find-file-other-frame "/ssh:buyn@192.168.0.109:~/.config/openbox/environment")
 C-x C-f /[method/user@remotehost]/filename

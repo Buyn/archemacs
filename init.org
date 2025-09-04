@@ -2552,7 +2552,7 @@ CLOSED: [2025-02-21 Fri 21:34]
   )
 #+end_src
 ****** org-insert-menu
-#+begin_src elisp
+#+begin_src elisp :results output silent
 (defhydra org-insert-menu (:color blue)
     ("t" (insert ":tangle no") "tangle no")
     ("r" (insert ":results output silent") "result no")
@@ -2560,11 +2560,15 @@ CLOSED: [2025-02-21 Fri 21:34]
     ("f" (insert "(find-file-other-frame \" \")") "file frame")
     ("F" (insert "(find-file \" \"") "Find File)")
     ("s" (insert "(buyn-shell-start \" \")") "shell")
+    ("S" (insert "(find-file-other-frame \"/sudo:: \")") "Sudo")
+
     ("k" (insert "(buyn-shell-start \"konsole -e ' '\")") "konsole")
 
     ("q" nil)
   )
 #+end_src
+
+
 ****** org-macro-menu
 #+begin_src elisp :results output silent
 (defhydra org-macro-menu (:color blue)
@@ -3080,17 +3084,18 @@ _d_: subtree
          (emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/test.m3u"))
    "test.m3u")
   ("w" (buyn-shell-start (concat "add2watchm3u " (buffer-substring (region-beginning) (region-end)))) "send2watch.m3u")
+
+(find-file "~/Dropbox/Resources/Playlists/Tech/watch.m3u")
   ("W" (progn
           (find-file-other-frame "~/Dropbox/Resources/Playlists/Tech/watch.m3u")
           (emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/Tech/watch.m3u"))
-   "test.m3u")
+   "watch.m3u")
   ("s" (emms-streams) "streams")
   ("q" nil "quit")
   )
 #+end_src
 
 #+RESULTS:
-: hydra-player-menu/body
 ******* hydra-eshell-menu
 #+begin_src elisp
 (defhydra hydra-eshell-menu (:color blue)
@@ -6906,57 +6911,68 @@ irony-install-server
 *** used in
 ;; (find-file "~/.archemacs/INI/init.el")
 *** src
+**** EWW-MODE CUSTOMIZATION 
+;; --------------------------------------
+***** open-link-in-new-frame
+;; --------------------------------------
 #+begin_src elisp
-;; * EWW-MODE CUSTOMIZATION 
-;; --------------------------------------
-;; ** open-link-in-new-frame
-;; --------------------------------------
 (defun open-link-in-new-frame ()
   "open-link-in-new-frame"
   (interactive)
-      (let (buffer-name-to-close (buffer-name))
-        (evil-window-split)
-        ;; (global-visual-line-mode)
-        (eww-open-in-new-buffer)
-        ;; (eww (shr-url-at-point nil))
-        (evil-quit)
-        (switch-to-buffer-other-frame buffer-name-to-close)))
+  (let (buffer-name-to-close (buffer-name))
+    (evil-window-split)
+    ;; (global-visual-line-mode)
+    (eww-open-in-new-buffer)
+    ;; (eww (shr-url-at-point nil))
+    (evil-quit)
+    (switch-to-buffer-other-frame buffer-name-to-close)))
+#+end_src
+
 ;; --------------------------------------
-;; ** eww-of
+***** eww-of
 ;; --------------------------------------
+#+begin_src elisp
 (defun eww-of (link)
   "open-eww-in-new-frame from link"
   (interactive)
-      (let (buffer-name-to-close (buffer-name))
-        (evil-window-split)
-        ;; (global-visual-line-mode)
-        (eww link)
-        ;; (eww (shr-url-at-point nil))
-        (evil-quit)
-        (switch-to-buffer-other-frame buffer-name-to-close)))
+  (let (buffer-name-to-close (buffer-name))
+    (evil-window-split)
+    ;; (global-visual-line-mode)
+    (eww link)
+    ;; (eww (shr-url-at-point nil))
+    (evil-quit)
+    (switch-to-buffer-other-frame buffer-name-to-close)))
+#+end_src
 ;; --------------------------------------
-;; ** org-open-link-in-new-frame
+***** org-open-link-in-new-frame
 ;; --------------------------------------
+#+begin_src elisp
 (defun org-open-link-in-new-frame ()
   " open org link in new frae end not folow
     org-open-link-in-new-frame"
   (interactive)
-      (let (buffer-name-to-close (buffer-name))
-        (evil-window-split)
-        (org-open-at-point)
-        ;; (eww (shr-url-at-point nil))
-        (evil-quit)
-        (switch-to-buffer-other-frame buffer-name-to-close)))
+  (let (buffer-name-to-close (buffer-name))
+    (evil-window-split)
+    (org-open-at-point)
+    ;; (eww (shr-url-at-point nil))
+    (evil-quit)
+    (switch-to-buffer-other-frame buffer-name-to-close)))
+#+end_src
+
+
 ;; --------------------------------------
-;; ** use-package
+***** use-package eww
+****** use-package
+#+begin_src elisp
 (use-package eww
   :defer t
   ;; :disabled
-  :config
-    ;; (setq pixel-wait 0.1)
-    ;; (pixel-scroll-mode 1)
-    ;; (setq scroll-preserve-screen-position 1)
-    ;; (setq pixel-wait 0.10000000000000014)
+#+end_src
+****** CANCELED :config
+;; (setq pixel-wait 0.1)
+;; (pixel-scroll-mode 1)
+;; (setq scroll-preserve-screen-position 1)
+;; (setq pixel-wait 0.10000000000000014)
 ;; ** external-browser : 
 ;; default value
 ;; (setq shr-external-browser 'browse-url-default-browser)
@@ -6965,8 +6981,11 @@ irony-install-server
 ;; (setq browse-url-generic-program (executable-find "firefox"))
 ;; ** url-browser : 
 ;; (setq browse-url-browser-function
- ;; (setq browse-url-browser-function 'browse-url-generic
- ;;       browse-url-generic-program "qutebrowser")
+;; (setq browse-url-browser-function 'browse-url-generic
+;;       browse-url-generic-program "qutebrowser")
+#+begin_src elisp :tangle no
+:config
+#+end_src
 (setq browse-url-handlers
       '((".*google.*maps.*" . browse-url-generic)
         ;; Github goes to firefox, but not gist
@@ -6991,28 +7010,30 @@ irony-install-server
         ("amazon.com" . browse-url-generic)
         ("slideshare.net" . browse-url-generic)
         ("." . eww-browse-url)))
-
 ;; *** reader-browser : 
-;; ** define-key : 
+****** define-key : 
 ;; --------------------------------------
-  :bind (:map  eww-mode-map
-              ("C-<return>" . open-link-in-new-frame)
-              ("o o" . eww)
-              ("O O" . eww-browse-with-external-browser)
-              ;; (\j . evil-scroll-line-down)
-              ;; (\k . evil-scroll-line-up)
-              ;; ("SPC" . buyn-reader-go)
-              ;; ("SPC" . evil-scroll-down)
-              ("SPC" . Info-scroll-up)
-              ("Z F I" . (lambda() (interactive)
-                            ((find-file-other-frame (expand-file-name "INI/www-cfg.el" user-emacs-directory)))))
-              ;; ("S-SPC" . evil-scroll-up)
-              ("S-SPC" . Info-scroll-down)
-              ("<f8>" . read-aloud-buf)
-              ("<f9>" . read-aloud-stop))
+#+begin_src elisp
+:bind (:map  eww-mode-map
+             ("C-<return>" . open-link-in-new-frame)
+             ("o o" . eww)
+             ("O O" . eww-browse-with-external-browser)
+             ;; (\j . evil-scroll-line-down)
+             ;; (\k . evil-scroll-line-up)
+             ;; ("SPC" . buyn-reader-go)
+             ;; ("SPC" . evil-scroll-down)
+             ("SPC" . Info-scroll-up)
+             ("Z F I" . (lambda() (interactive)
+                          ((find-file-other-frame (expand-file-name "INI/www-cfg.el" user-emacs-directory)))))
+             ;; ("S-SPC" . evil-scroll-up)
+             ("S-SPC" . Info-scroll-down)
+             ("<f8>" . read-aloud-buf)
+             ("<f9>" . read-aloud-stop))
+#+end_src
+
 
 ;; --------------------------------------
-;; ** hooks : 
+****** CANCELED hooks : 
 ;; --------------------------------------
 ;; *** buyn-eww-hook : 
 ;; --------------------------------------
@@ -7023,9 +7044,95 @@ irony-install-server
 ;; (add-hook 'eww-mode-hook #'toggle-word-wrap)
 ;; (add-hook 'eww-mode-hook #'buyn-reader-start)
 ;; --------------------------------------
-;; ** the END) : 
-  )
+****** the END) : 
+#+begin_src elisp
+)
 #+end_src
+**** browsers configs
+****** CANCELED :config
+#+begin_src elisp :tangle no
+(setq browse-url-handlers
+      '((".*google.*maps.*" . browse-url-chromium)
+        ("groups.google.com" . browse-url-chromium)
+        ("docs.google.com" . browse-url-chromium)
+        ;; Github goes to firefox, but not gist
+        ("http.*\/\/github.com" . browse-url-firefox)
+        ;; ("melpa.org" . browse-url-generic)
+        ;; ("build.*\.elastic.co" . browse-url-generic)
+        ;; (".*-ci\.elastic.co" . browse-url-generic)
+        ;; ("gradle-enterprise.elastic.co" . browse-url-generic)
+        ;; ("internal-ci\.elastic\.co" . browse-url-generic)
+        ("zendesk\.com" . browse-url-firefox)
+        ;; ("salesforce\.com" . browse-url-generic)
+        ("stackoverflow\.com" . browse-url-firefox)
+        ;; ("apache\.org\/jira" . browse-url-generic)
+        ;; ("thepoachedegg\.net" . browse-url-generic)
+        ("zoom.us" . browse-url-chromium)
+        ("t.co" . browse-url-firefox)
+        ("twitter.com" . browse-url-firefox)
+        ("\/\/a.co" . browse-url-firefox)
+        ("youtube.com" . browse-url-generic)
+        ;; ("amazon.com" . browse-url-generic)
+        ("slideshare.net" . browse-url-firefox)
+        ("." . eww-browse-url)))
+
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "xdg-open") 
+
+#+end_src
+****** comments
+;; (setq pixel-wait 0.1)
+;; (pixel-scroll-mode 1)
+;; (setq scroll-preserve-screen-position 1)
+;; (setq pixel-wait 0.10000000000000014)
+;; ** external-browser : 
+;; default value
+;; (setq shr-external-browser 'browse-url-default-browser)
+;; to set for special browse
+;; (setq shr-external-browser 'browse-url-generic)
+;; (setq browse-url-generic-program (executable-find "firefox"))
+;; ** url-browser : 
+;; (setq browse-url-browser-function
+;; (setq browse-url-browser-function 'browse-url-generic
+;;       browse-url-generic-program "qutebrowser")
+****** docs
+
+      browse-url-firefox
+      browse-url-chromium
+(setq shr-external-browser 'browse-url-generic)
+(setq browse-url-generic-program (executable-find "firefox"))
+
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program (or (getenv "BROWSER") "firefox")) 
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "firefox")
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "chromium")
+;; (setq browse-url-browser-function 'browse-url-generic
+;;       browse-url-generic-program "qutebrowser")
+;; *** reader-browser : 
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "firefox")
+или если хочешь использовать chromium:
+
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "chromium")
+
+Можно ещё и разные схемы направить в разные браузеры:
+(setq browse-url-browser-function
+      '(("github\\.com" . browse-url-firefox)
+        ("." . browse-url-chromium)))
+
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program (or (getenv "BROWSER") "firefox"))
+
+      
+(defun browse-url-mpv (url &optional _)
+  "Open URL in mpv media player."
+  (start-process "browse-url-mpv" nil "mpv" url))
+
+(setq browse-url-browser-function 'browse-url-mpv)
+
 ** CANCELED INI/players.el
 :PROPERTIES:
 :header-args: :tangle no
