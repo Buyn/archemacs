@@ -218,6 +218,8 @@
     ("f" (insert "(find-file-other-frame \" \")") "file frame")
     ("F" (insert "(find-file \" \"") "Find File)")
     ("s" (insert "(buyn-shell-start \" \")") "shell")
+    ("S" (insert "(find-file-other-frame \"/sudo:: \")") "Sudo")
+
     ("k" (insert "(buyn-shell-start \"konsole -e ' '\")") "konsole")
 
     ("q" nil)
@@ -685,10 +687,12 @@ _d_: subtree
          (emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/test.m3u"))
    "test.m3u")
   ("w" (buyn-shell-start (concat "add2watchm3u " (buffer-substring (region-beginning) (region-end)))) "send2watch.m3u")
+
+(find-file "~/Dropbox/Resources/Playlists/Tech/watch.m3u")
   ("W" (progn
           (find-file-other-frame "~/Dropbox/Resources/Playlists/Tech/watch.m3u")
           (emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/Tech/watch.m3u"))
-   "test.m3u")
+   "watch.m3u")
   ("s" (emms-streams) "streams")
   ("q" nil "quit")
   )

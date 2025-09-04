@@ -74,6 +74,10 @@ FL timer
 ***** [[*dev-menu][dev-menu]]
 *** ranger
 (use-package ranger
+*** [[*browsers configs][browsers configs]]
+[[*EWW-MODE CUSTOMIZATION][EWW-MODE CUSTOMIZATION]]
+
+
 ** mods
 FRAME [[*src INI/frame-control.el][src INI/frame-control.el]]
 global-set-key
@@ -871,126 +875,195 @@ CLOSED: [2025-02-11 Tue 16:29]
 (add-hook 'pdf-view-mode-hook (lambda () (evil-local-mode -1)))
 #+end_src
 ***** Clipboard
+****** setup
 #+begin_src elisp
 (setq x-select-enable-clipboard nil)
 ;; (fset 'evil-visual-update-x-selection 'ignore)
 ;; (setq save-interprogram-paste-before-kill t)
+#+end_src
+****** M-c
+#+begin_src elisp
 ;; *** M-c M-y : 
 (define-key evil-normal-state-map (kbd "M-c M-y") '(lambda() (interactive)
-          (setq x-select-enable-clipboard t)
-          ;; (kill-ring-save (region-beginning) (region-end))
-          (kill-ring-save (line-beginning-position) (line-beginning-position 2))
-          (setq x-select-enable-clipboard nil)))
+                                                     (setq x-select-enable-clipboard t)
+                                                     ;; (kill-ring-save (region-beginning) (region-end))
+                                                     (kill-ring-save (line-beginning-position) (line-beginning-position 2))
+                                                     (setq x-select-enable-clipboard nil)))
 (define-key evil-visual-state-map (kbd "M-c M-y") '(lambda() (interactive)
-          (setq x-select-enable-clipboard t)
-          (kill-ring-save (region-beginning) (region-end))
-          (setq x-select-enable-clipboard nil)))
-;; *** M-y M-y : 
-(define-key evil-normal-state-map (kbd "M-y M-y") '(lambda() (interactive)
-          (setq x-select-enable-clipboard t)
-          ;; (kill-ring-save (region-beginning) (region-end))
-          (kill-ring-save (line-beginning-position) (line-beginning-position 2))
-          (setq x-select-enable-clipboard nil)))
-(define-key evil-visual-state-map (kbd "M-y M-y") '(lambda() (interactive)
-          (setq x-select-enable-clipboard t)
-          (kill-ring-save (region-beginning) (region-end))
-          (setq x-select-enable-clipboard nil)))
-;; *** M-y M-c : yank to calc
-(define-key evil-visual-state-map (kbd "M-y M-c") '(lambda() (interactive)
-          (let ((text (buffer-substring (region-beginning) (region-end))))
-            (kill-ring-save (region-beginning) (region-end))
-            (calc)
-            ;; (calc-copy-to-buffer text)
-            ;; (calc-kill-region (region-beginning) (region-end))
-            (calc-yank 0))))
-
+                                                     (setq x-select-enable-clipboard t)
+                                                     (kill-ring-save (region-beginning) (region-end))
+                                                     (setq x-select-enable-clipboard nil)))
 ;; *** M-c M-Y : 
 (define-key evil-normal-state-map (kbd "M-c M-Y") '(lambda() (interactive)
-          (setq x-select-enable-clipboard t)
-          (kill-ring-save (line-beginning-position) (line-beginning-position 2))
-          (setq x-select-enable-clipboard nil)))
+                                                     (setq x-select-enable-clipboard t)
+                                                     (kill-ring-save (line-beginning-position) (line-beginning-position 2))
+                                                     (setq x-select-enable-clipboard nil)))
 ;; *** M-c M-a : 
 (define-key evil-normal-state-map (kbd "M-c M-a") '(lambda() (interactive)
-          (setq start (point))
-          (mark-whole-buffer)
-          (setq x-select-enable-clipboard t)
-          (kill-ring-save (region-beginning) (region-end))
-          (setq x-select-enable-clipboard nil)
-          (message "Buffer in Clipbord")
-          (goto-char start)
-          ))
+                                                     (setq start (point))
+                                                     (mark-whole-buffer)
+                                                     (setq x-select-enable-clipboard t)
+                                                     (kill-ring-save (region-beginning) (region-end))
+                                                     (setq x-select-enable-clipboard nil)
+                                                     (message "Buffer in Clipbord")
+                                                     (goto-char start)
+                                                     ))
 ;; *** M-c M-x : 
 (define-key evil-normal-state-map (kbd "M-c M-x") '(lambda() (interactive)
-          (message "no shift is prest")
-          (setq x-select-enable-clipboard t)
-          (setq tmp-region-beginning (region-beginning))
-          ;; (message "set region")
-          (setq tmp-region-end (region-end))
-          (kill-ring-save (region-beginning) (region-end))
-          (kill-region tmp-region-beginning tmp-region-end)
-          (setq tmp-region-beginning nil)
-          ;; (message "set region")
-          (setq tmp-region-end nil)
-          (setq x-select-enable-clipboard nil)
-          ))
+                                                     (message "no shift is prest")
+                                                     (setq x-select-enable-clipboard t)
+                                                     (setq tmp-region-beginning (region-beginning))
+                                                     ;; (message "set region")
+                                                     (setq tmp-region-end (region-end))
+                                                     (kill-ring-save (region-beginning) (region-end))
+                                                     (kill-region tmp-region-beginning tmp-region-end)
+                                                     (setq tmp-region-beginning nil)
+                                                     ;; (message "set region")
+                                                     (setq tmp-region-end nil)
+                                                     (setq x-select-enable-clipboard nil)
+                                                     ))
 ;; *** M-c M-X : 
 (define-key evil-normal-state-map (kbd "M-c M-X") '(lambda() (interactive)
-          (message "shift is prest")
-          (setq x-select-enable-clipboard t)
-          (evil-delete-whole-line nil  nil)
-          (setq x-select-enable-clipboard nil)
-          ))
+                                                     (message "shift is prest")
+                                                     (setq x-select-enable-clipboard t)
+                                                     (evil-delete-whole-line nil  nil)
+                                                     (setq x-select-enable-clipboard nil)
+                                                     ))
 ;; *** M-c M-p: 
 (define-key evil-normal-state-map (kbd "M-c M-p") '(lambda() (interactive)
-                (setq x-select-enable-clipboard 1)
-                (yank)
-                (setq x-select-enable-clipboard nil)))
+                                                     (setq x-select-enable-clipboard 1)
+                                                     (yank)
+                                                     (setq x-select-enable-clipboard nil)))
 (define-key evil-visual-state-map (kbd "M-c M-p") '(lambda() (interactive)
-    (setq x-select-enable-clipboard 1)
-    (let ((last-clip (current-kill 0 "DO-NOT-MOVE")))
-      (kill-region (region-beginning) (region-end))
-      (insert last-clip)
-      )
-    (setq x-select-enable-clipboard nil)
-    ))
-;; *** M-p M-p: 
-(define-key evil-normal-state-map (kbd "M-p M-p") '(lambda() (interactive)
-                (setq x-select-enable-clipboard 1)
-                (yank)
-                (setq x-select-enable-clipboard nil)))
-(define-key evil-visual-state-map (kbd "M-p M-p") '(lambda() (interactive)
-    (setq x-select-enable-clipboard 1)
-    (let ((last-clip (current-kill 0 "DO-NOT-MOVE")))
-      (kill-region (region-beginning) (region-end))
-      (insert last-clip)
-      )
-    (setq x-select-enable-clipboard nil)
-    ))
+                                                     (setq x-select-enable-clipboard 1)
+                                                     (let ((last-clip (current-kill 0 "DO-NOT-MOVE")))
+                                                       (kill-region (region-beginning) (region-end))
+                                                       (insert last-clip)
+                                                       )
+                                                     (setq x-select-enable-clipboard nil)
+                                                     ))
 ;; *** M-c M-o : 
 (define-key evil-normal-state-map (kbd "M-c M-o") '(lambda() (interactive)
-        (setq x-select-enable-clipboard 1)
-        (evil-insert-newline-below)
-        (yank)
-        (setq x-select-enable-clipboard nil)))
-;; *** M-p M-o : 
-(define-key evil-normal-state-map (kbd "M-p M-o") '(lambda() (interactive)
-        (setq x-select-enable-clipboard 1)
-        (evil-insert-newline-below)
-        (yank)
-        (setq x-select-enable-clipboard nil)))
+                                                     (setq x-select-enable-clipboard 1)
+                                                     (evil-insert-newline-below)
+                                                     (yank)
+                                                     (setq x-select-enable-clipboard nil)))
 ;; *** M-c M-t : 
 (define-key evil-normal-state-map (kbd "M-c M-t") '(lambda () (interactive)
-          (setq x-select-enable-clipboard
-                (not x-select-enable-clipboard))
-          (if x-select-enable-clipboard
-            (message "x-select-enable-clipboard is on")
-            (message "x-select-enable-clipboard = off"))))
+                                                     (setq x-select-enable-clipboard
+                                                           (not x-select-enable-clipboard))
+                                                     (if x-select-enable-clipboard
+                                                         (message "x-select-enable-clipboard is on")
+                                                       (message "x-select-enable-clipboard = off"))))
+#+end_src
+****** M-y
+#+begin_src elisp
+;; *** M-y M-y : 
+(define-key evil-normal-state-map (kbd "M-y M-y") '(lambda() (interactive)
+                                                     (setq x-select-enable-clipboard t)
+                                                     ;; (kill-ring-save (region-beginning) (region-end))
+                                                     (kill-ring-save (line-beginning-position) (line-beginning-position 2))
+                                                     (setq x-select-enable-clipboard nil)))
+(define-key evil-visual-state-map (kbd "M-y M-y") '(lambda() (interactive)
+                                                     (setq x-select-enable-clipboard t)
+                                                     (kill-ring-save (region-beginning) (region-end))
+                                                     (setq x-select-enable-clipboard nil)))
+;; *** M-y M-c : yank to calc
+(define-key evil-visual-state-map (kbd "M-y M-c") '(lambda() (interactive)
+                                                     (let ((text (buffer-substring (region-beginning) (region-end))))
+                                                       (kill-ring-save (region-beginning) (region-end))
+                                                       (calc)
+                                                       ;; (calc-copy-to-buffer text)
+                                                       ;; (calc-kill-region (region-beginning) (region-end))
+                                                       (calc-yank 0))))
+#+end_src
+****** M-p
+******* M-p M-p: 
+#+begin_src elisp
+(define-key evil-normal-state-map (kbd "M-p M-p") '(lambda() (interactive)
+                                                     (setq x-select-enable-clipboard 1)
+                                                     (yank)
+                                                     (setq x-select-enable-clipboard nil)))
+(define-key evil-visual-state-map (kbd "M-p M-p") '(lambda() (interactive)
+                                                     (setq x-select-enable-clipboard 1)
+                                                     (let ((last-clip (current-kill 0 "DO-NOT-MOVE")))
+                                                       (kill-region (region-beginning) (region-end))
+                                                       (insert last-clip)
+                                                       )
+                                                     (setq x-select-enable-clipboard nil)
+                                                     ))
+#+end_src
+******* M-p M-o : 
+#+begin_src elisp
+(define-key evil-normal-state-map (kbd "M-p M-o") '(lambda() (interactive)
+                                                     (setq x-select-enable-clipboard 1)
+                                                     (evil-insert-newline-below)
+                                                     (yank)
+                                                     (setq x-select-enable-clipboard nil)))
+#+end_src
+******* kde clipbord history
+******** functions
+#+begin_src elisp :results output silent
+
+(defun buyn/kde-klipper-history-list ()
+  "Получить всю историю Klipper"
+  (split-string
+   (shell-command-to-string
+    "qdbus org.kde.klipper /klipper org.kde.klipper.klipper.getClipboardHistoryMenu")
+   "\n" t))
+
+(defun buyn/clipbord-insert-history ()
+  "Получить всю историю clipborda неучитывая реализацию и вставить её в текущую позицию курсора.
+    Создаём одну строку с разделителем, либо вставляем каждую на новую строку
+    здесь строки разделяются двумя новыми строками для читаемости "
+  (interactive)
+  (let* ((entries (kde-klipper-history-list)))
+    (when entries
+      (insert (mapconcat #'identity entries "\n")))))
+
+
+(defun buyn/kde-klipper-get-item (index)
+  "Получить элемент истории Klipper по индексу INDEX."
+  (string-trim
+   (shell-command-to-string
+    (format "qdbus org.kde.klipper /klipper org.kde.klipper.klipper.getClipboardHistoryItem %d" index))))
+
+(defvar buyn/kde-klipper-current-index 0
+  "Текущий индекс в истории Klipper, который используется функциями buyn/.")
+
+(defun buyn/clipboard-insert-item (index)
+  "Запросить индекс и вставить соответствующий элемент из истории Klipper.
+Также обновляет глобальную переменную `buyn/kde-klipper-current-index`."
+  (interactive "nВведите индекс элемента истории: ")
+  (let ((entry (buyn/kde-klipper-get-item index)))
+    (when (and entry (not (string-empty-p entry)))
+      (setq buyn/kde-klipper-current-index index)
+      (insert entry))))
+
+(defun buyn/clipboard-insert-next-item ()
+  "Вставить следующий элемент из истории Klipper, увеличив индекс."
+  (interactive)
+  (setq buyn/kde-klipper-current-index (1+ buyn/kde-klipper-current-index))
+  (let ((entry (buyn/kde-klipper-get-item buyn/kde-klipper-current-index)))
+    (when (and entry (not (string-empty-p entry)))
+      (insert entry))))
+
+#+end_src
+******** binds: 
+#+begin_src elisp :results output silent 
+(define-key evil-normal-state-map (kbd "M-p M-a") 'buyn/clipbord-insert-history)
+(define-key evil-normal-state-map (kbd "M-p M-i") 'buyn/clipboard-insert-item)
+(define-key evil-normal-state-map (kbd "M-p M-n") 'buyn/clipboard-insert-next-item)
+#+end_src
+
+****** evil-insert-state-map
 ;; -------------------------------------- }}}
 ;; *** M-p : 
+#+begin_src elisp
 (define-key evil-insert-state-map (kbd "M-p ") '(lambda() (interactive)
-        (yank)))
-;; -------------------------------------- }}}
+                                                  (yank)))
 #+end_src
+;; -------------------------------------- }}}
 ***** Registers Clipboard
 #+begin_src elisp
 (define-key evil-normal-state-map (kbd "M-y M-f") 'evil-use-register)
@@ -7049,8 +7122,8 @@ irony-install-server
 )
 #+end_src
 **** browsers configs
-****** CANCELED :config
-#+begin_src elisp :tangle no
+****** url-handlers
+#+begin_src elisp 
 (setq browse-url-handlers
       '((".*google.*maps.*" . browse-url-chromium)
         ("groups.google.com" . browse-url-chromium)
@@ -7096,7 +7169,6 @@ irony-install-server
 ;; (setq browse-url-browser-function 'browse-url-generic
 ;;       browse-url-generic-program "qutebrowser")
 ****** docs
-
       browse-url-firefox
       browse-url-chromium
 (setq shr-external-browser 'browse-url-generic)
