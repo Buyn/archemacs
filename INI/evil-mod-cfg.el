@@ -165,13 +165,11 @@
       (insert entry))))
 
 (defun buyn/clipboard-insert-next-item ()
-  "Вставить следующий элемент из истории Klipper, увеличив индекс."
+  "Вставить следующий элемент из истории Klipper и увеличить индекс."
   (interactive)
+  (buyn/clipboard-insert-item buyn/kde-klipper-current-index)
   (setq buyn/kde-klipper-current-index (1+ buyn/kde-klipper-current-index))
-  (let ((entry (buyn/kde-klipper-get-item buyn/kde-klipper-current-index)))
-    (when (and entry (not (string-empty-p entry)))
-      (insert entry)
-      (newline))))
+  (newline))
 
 (define-key evil-normal-state-map (kbd "M-p M-a") 'buyn/clipbord-insert-history)
 (define-key evil-normal-state-map (kbd "M-p M-i") 'buyn/clipboard-insert-item)
