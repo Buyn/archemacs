@@ -1046,7 +1046,8 @@ CLOSED: [2025-02-11 Tue 16:29]
   (setq buyn/kde-klipper-current-index (1+ buyn/kde-klipper-current-index))
   (let ((entry (buyn/kde-klipper-get-item buyn/kde-klipper-current-index)))
     (when (and entry (not (string-empty-p entry)))
-      (insert entry))))
+      (insert entry)
+      (newline))))
 
 #+end_src
 ******** binds: 

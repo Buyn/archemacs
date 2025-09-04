@@ -27,7 +27,55 @@ https://www.braveclojure.com/basic-emacs/
 #+begin_src emacs-lisp :results output silent
 ;; (load (expand-file-name "INI/other/telegram.el" user-emacs-directory)) 
 
-(define-key evil-normal-state-map (kbd "M-a M-l M-n") 'evil-next-flyspell-error)
+
+(defun buyn/kde-klipper-history-list ()
+  "Получить всю историю Klipper"
+  (split-string
+   (shell-command-to-string
+    "qdbus org.kde.klipper /klipper org.kde.klipper.klipper.getClipboardHistoryMenu")
+   "\n" t))
+
+(defun buyn/clipbord-insert-history ()
+  "Получить всю историю clipborda неучитывая реализацию и вставить её в текущую позицию курсора.
+    Создаём одну строку с разделителем, либо вставляем каждую на новую строку
+    здесь строки разделяются двумя новыми строками для читаемости "
+  (interactive)
+  (let* ((entries (kde-klipper-history-list)))
+    (when entries
+      (insert (mapconcat #'identity entries "\n")))))
+
+
+(defun buyn/kde-klipper-get-item (index)
+  "Получить элемент истории Klipper по индексу INDEX."
+  (string-trim
+   (shell-command-to-string
+    (format "qdbus org.kde.klipper /klipper org.kde.klipper.klipper.getClipboardHistoryItem %d" index))))
+
+(defvar buyn/kde-klipper-current-index 0
+  "Текущий индекс в истории Klipper, который используется функциями buyn/.")
+
+(defun buyn/clipboard-insert-item (index)
+  "Запросить индекс и вставить соответствующий элемент из истории Klipper.
+Также обновляет глобальную переменную `buyn/kde-klipper-current-index`."
+  (interactive "nВведите индекс элемента истории: ")
+  (let ((entry (buyn/kde-klipper-get-item index)))
+    (when (and entry (not (string-empty-p entry)))
+      (setq buyn/kde-klipper-current-index index)
+      (insert entry))))
+
+(defun buyn/clipboard-insert-next-item ()
+  "Вставить следующий элемент из истории Klipper, увеличив индекс."
+  (interactive)
+  (setq buyn/kde-klipper-current-index (1+ buyn/kde-klipper-current-index))
+  (let ((entry (buyn/kde-klipper-get-item buyn/kde-klipper-current-index)))
+    (when (and entry (not (string-empty-p entry)))
+      (insert entry)
+      (newline))))
+
+(define-key evil-normal-state-map (kbd "M-p M-a") 'buyn/clipbord-insert-history)
+(define-key evil-normal-state-map (kbd "M-p M-i") 'buyn/clipboard-insert-item)
+(define-key evil-normal-state-map (kbd "M-p M-n") 'buyn/clipboard-insert-next-item)
+
 
 ;; (setq org-log-done nil)
 (load (expand-file-name "INI/hydra-cfg.el" user-emacs-directory)) 
