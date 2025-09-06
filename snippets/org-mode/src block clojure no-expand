@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: src block clojure no-expand
+# key: clojure_noex
+# --
+
+#+begin_src clojure :no-expand t
+$0
+#+end_src
