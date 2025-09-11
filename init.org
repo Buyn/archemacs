@@ -7321,6 +7321,22 @@ The major mode is Calculator mode defined in calc.el:
     (ispell-change-dictionary "ru_RU")
     (flyspell-mode t)
   #+end_src
+***** bind keys
+****** normal
+;; Определяем бинды только для telega-chat-mode в normal режиме
+(with-eval-after-load 'telega
+#+begin_src elisp
+(evil-define-key 'normal telega-chat-mode-map
+  (kbd "t r") 'telega-sticker-choose-favorite-or-recent
+  (kbd "t s") 'telega-stickerset-choose
+
+  (kbd "C-c C-c") 'telega-chatbuf-send
+#+end_src
+****** insert
+#+begin_src elisp
+(evil-define-key 'insert telega-chat-mode-map
+  (kbd "C-c C-c") 'telega-chatbuf-send)
+#+end_src
 ***** как открывать новый чат
   #+begin_src elisp
       (setq telega-chat--display-buffer-action
