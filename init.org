@@ -7299,6 +7299,8 @@ The major mode is Calculator mode defined in calc.el:
 :header-args: :tangle INI/other/telegram.el
 :END:
 *** описание
+*** file
+(find-file-other-frame "~/.archemacs/INI/other/telegram.el")
 (find-file "~/.archemacs/INI/other/telegram.el")
 
 *** used in
@@ -7330,7 +7332,7 @@ The major mode is Calculator mode defined in calc.el:
   (kbd "t r") 'telega-sticker-choose-favorite-or-recent
   (kbd "t s") 'telega-stickerset-choose
 
-  (kbd "C-c C-c") 'telega-chatbuf-send
+  (kbd "C-c C-c") 'telega-chatbuf-send)
 #+end_src
 ****** insert
 #+begin_src elisp

@@ -10,6 +10,15 @@
     (ispell-change-dictionary "ru_RU")
     (flyspell-mode t)
 
+(evil-define-key 'normal telega-chat-mode-map
+  (kbd "t r") 'telega-sticker-choose-favorite-or-recent
+  (kbd "t s") 'telega-stickerset-choose
+
+  (kbd "C-c C-c") 'telega-chatbuf-send)
+
+(evil-define-key 'insert telega-chat-mode-map
+  (kbd "C-c C-c") 'telega-chatbuf-send)
+
       (setq telega-chat--display-buffer-action
             '((display-buffer-reuse-window display-buffer-pop-up-frame)))
 
