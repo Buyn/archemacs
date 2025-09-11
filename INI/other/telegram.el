@@ -7,14 +7,11 @@
     (setq telega-server-libs-prefix "/usr")
     (setq telega-emoji-use-images nil)
     (evil-mode 1)
+    (ispell-change-dictionary "ru_RU")
+    (flyspell-mode t)
 
       (setq telega-chat--display-buffer-action
             '((display-buffer-reuse-window display-buffer-pop-up-frame)))
-
-    (setq telega-chat--display-buffer-action
-          '((display-buffer-reuse-window display-buffer-pop-up-frame)
-            (reusable-frames . visible)
-            (inhibit-same-window . t)))
 
     (add-hook 'telega-chat-mode-hook
               (lambda ()

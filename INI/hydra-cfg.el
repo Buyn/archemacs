@@ -687,8 +687,6 @@ _d_: subtree
          (emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/test.m3u"))
    "test.m3u")
   ("w" (buyn-shell-start (concat "add2watchm3u " (buffer-substring (region-beginning) (region-end)))) "send2watch.m3u")
-
-(find-file "~/Dropbox/Resources/Playlists/Tech/watch.m3u")
   ("W" (progn
           (find-file-other-frame "~/Dropbox/Resources/Playlists/Tech/watch.m3u")
           (emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/Tech/watch.m3u"))
@@ -703,11 +701,11 @@ _d_: subtree
   "
   ;; Elpy in venv: %`venv-current-name
   ("e" (let (buffer-name-to-close (buffer-name))
-        (evil-window-split)
-        (eshell)
-        (evil-quit)
-        (switch-to-buffer-other-frame buffer-name-to-close))
-      "Open eshell")
+         (evil-window-split)
+         (eshell)
+         (evil-quit)
+         (switch-to-buffer-other-frame buffer-name-to-close))
+   "Open eshell")
   ("q" nil "quit")
   )
 
@@ -715,27 +713,26 @@ _d_: subtree
   "
   Shell scripts menu:
   "
-  ;; Elpy in venv: %`venv-current-name
   ("R" (progn
-          (buyn-shell-start "sh_restart_plasmashell.sh")
-          (delete-other-windows))
-      "Restart plasmashell")
+         (buyn-shell-start "sh_restart_plasmashell.sh")
+         (delete-other-windows))
+   "Restart plasmashell")
   ("s" (progn
-          (buyn-shell-start "sudo systemctl suspend")
-          (delete-other-windows))
-      "sleep")
+         (buyn-shell-start "sudo systemctl suspend")
+         (delete-other-windows))
+   "sleep")
   ("H" (progn
-          (buyn-shell-start "sudo systemctl hibernate")
-          (delete-other-windows))
-      "hibernate")
+         (buyn-shell-start "sudo systemctl hibernate")
+         (delete-other-windows))
+   "hibernate")
   ("Y" (progn
-          (buyn-shell-start "sudo systemctl hybrid-sleep")
-          (delete-other-windows))
-      "hYbrid-sleep")
+         (buyn-shell-start "sudo systemctl hybrid-sleep")
+         (delete-other-windows))
+   "hYbrid-sleep")
   ("P" (progn
          (buyn-shell-start "sh_off.sh")
          (delete-other-windows))
-      "PoweOFF")
+   "PoweOFF")
   ("q" nil "quit")
   )
 
@@ -840,11 +837,11 @@ _?_ help            _c_urrent file
 
 (defhydra hydra-f1-grimuar-menu (:color blue)
   ("c" (find-file-other-frame "~/Dropbox/Office/Research/Doc/Codex/BuYn_Codex.org") "Codex")
-  ("a" (find-file-other-frame "~/Desktop/orgs/capture/astronomicon.org") "Astronomicon")
-  ("E" (find-file-other-frame "~/Desktop/orgs/capture/emagus.org") "Emagus")
+  ("a" (find-file-other-frame "~/Dropbox/orgs/capture/astronomicon.org") "Astronomicon")
+  ("E" (find-file-other-frame "~/Dropbox/orgs/capture/emagus.org") "Emagus")
   ("n" (find-file-other-frame "~/Dropbox/orgs/capture/Necronomicon.org") "Necronomicon")
   ("t" (find-file-other-frame "~/Dropbox/orgs/capture/Necroteuch.org") "Necroteuch")
-  ("T" (buyn-shell-start "/home/buyn/Dropbox/orgs/capture/Necroteuch.sh") "desk5Necroteuch")
+  ("T" (buyn-shell-start "~/Dropbox/orgs/capture/Necroteuch.sh") "desk5Necroteuch")
   ("s" (find-file-other-frame "~/Dropbox/orgs/capture/Ansible.org") "Ansible")
   ("m" (find-file-other-frame "~/Dropbox/orgs/capture/Manabook.org") "Manabook")
   ("h" (find-file-other-frame "~/Dropbox/orgs/capture/holodeck.org") "Holodeck")

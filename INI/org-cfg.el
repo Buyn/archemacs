@@ -17,6 +17,13 @@
 (global-set-key (kbd "M-<f1>") nil)
 (global-set-key (kbd "M-<f1> M-<f1>") (lambda () (interactive)
                                         (find-file-other-frame "~/homemacs.org")))
+(global-set-key (kbd "M-<f1> M-t") (lambda () (interactive) 
+                                        (find-file-other-frame "~/Dropbox/Office/TechnoSpirism.org"))) 
+(global-set-key (kbd "M-<f1> M-o") (lambda () (interactive)
+                                        (find-file-other-frame"~/Dropbox/Office/MagnaOpus/OSteh.org"))) 
+(global-set-key (kbd "M-<f1> M-b") (lambda () (interactive)
+                                        (find-file-other-frame "~/Dropbox/Office/MagnaOpus/BitConArchaeology.org"))) 
+
 
 (global-set-key (kbd "M-S-<f1>") nil)
 (global-set-key (kbd "M-S-<f1> M-S-<f1>") (lambda () (interactive)
@@ -26,7 +33,15 @@
 (global-set-key (kbd "S-<f1> S-<f1>") (lambda () (interactive)
                                         (find-file-other-frame "~/Dropbox/Office/Research/Doc/Grimoire/Grimoire.org")))
 (global-set-key (kbd "S-<f1> S-<SPC>") (lambda () (interactive)
-                                         (hydra-f1-grimuar-menu/body)))
+                                        (hydra-f1-grimuar-menu/body)))
+(global-set-key (kbd "S-<f1> P") (lambda () (interactive)
+                                        (find-file-other-frame "~/Dropbox/orgs/capture/Pensieve.org"))) 
+(global-set-key (kbd "S-<f1> M") (lambda () (interactive)
+                                        (find-file-other-frame "~/Dropbox/orgs/capture/Manabook.org"))) 
+(global-set-key (kbd "S-<f1> C") (lambda () (interactive)
+                                        (find-file-other-frame "~/Dropbox/Office/Research/Doc/Codex/BuYn_Codex.org"))) 
+
+
 
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (global-set-key (kbd "C-c l") 'org-store-link)
