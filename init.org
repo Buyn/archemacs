@@ -76,8 +76,7 @@ FL timer
 (use-package ranger
 *** [[*browsers configs][browsers configs]]
 [[*EWW-MODE CUSTOMIZATION][EWW-MODE CUSTOMIZATION]]
-
-
+*** [[*INI/other/telegram.el][INI/other/telegram.el]]
 ** mods
 FRAME [[*src INI/frame-control.el][src INI/frame-control.el]]
 global-set-key
@@ -2640,7 +2639,6 @@ CLOSED: [2025-02-21 Fri 21:34]
   )
 #+end_src
 
-
 ****** org-macro-menu
 #+begin_src elisp :results output silent
 (defhydra org-macro-menu (:color blue)
@@ -3142,6 +3140,8 @@ _d_: subtree
 #+RESULTS:
 : hydra-commands-menu/body
 ******* hydra-player-menu
+  ("m" (hydra-player-menu/body) "player...")
+Symbol’s function definition is void: hydra-player-menu/body [2 times]
 #+begin_src elisp
 (defhydra hydra-player-menu (:color blue)
   "
@@ -3156,8 +3156,6 @@ _d_: subtree
          (emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/test.m3u"))
    "test.m3u")
   ("w" (buyn-shell-start (concat "add2watchm3u " (buffer-substring (region-beginning) (region-end)))) "send2watch.m3u")
-
-(find-file "~/Dropbox/Resources/Playlists/Tech/watch.m3u")
   ("W" (progn
           (find-file-other-frame "~/Dropbox/Resources/Playlists/Tech/watch.m3u")
           (emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/Tech/watch.m3u"))
@@ -3168,6 +3166,9 @@ _d_: subtree
 #+end_src
 
 #+RESULTS:
+: hydra-player-menu/body
+
+
 ******* hydra-eshell-menu
 #+begin_src elisp
 (defhydra hydra-eshell-menu (:color blue)
@@ -3176,39 +3177,40 @@ _d_: subtree
   "
   ;; Elpy in venv: %`venv-current-name
   ("e" (let (buffer-name-to-close (buffer-name))
-        (evil-window-split)
-        (eshell)
-        (evil-quit)
-        (switch-to-buffer-other-frame buffer-name-to-close))
-      "Open eshell")
+         (evil-window-split)
+         (eshell)
+         (evil-quit)
+         (switch-to-buffer-other-frame buffer-name-to-close))
+   "Open eshell")
   ("q" nil "quit")
   )
-
+#+end_src
+******* hydra-shell-scripts-menu
+#+begin_src elisp
 (defhydra hydra-shell-scripts-menu (:color blue)
   "
   Shell scripts menu:
   "
-  ;; Elpy in venv: %`venv-current-name
   ("R" (progn
-          (buyn-shell-start "sh_restart_plasmashell.sh")
-          (delete-other-windows))
-      "Restart plasmashell")
+         (buyn-shell-start "sh_restart_plasmashell.sh")
+         (delete-other-windows))
+   "Restart plasmashell")
   ("s" (progn
-          (buyn-shell-start "sudo systemctl suspend")
-          (delete-other-windows))
-      "sleep")
+         (buyn-shell-start "sudo systemctl suspend")
+         (delete-other-windows))
+   "sleep")
   ("H" (progn
-          (buyn-shell-start "sudo systemctl hibernate")
-          (delete-other-windows))
-      "hibernate")
+         (buyn-shell-start "sudo systemctl hibernate")
+         (delete-other-windows))
+   "hibernate")
   ("Y" (progn
-          (buyn-shell-start "sudo systemctl hybrid-sleep")
-          (delete-other-windows))
-      "hYbrid-sleep")
+         (buyn-shell-start "sudo systemctl hybrid-sleep")
+         (delete-other-windows))
+   "hYbrid-sleep")
   ("P" (progn
          (buyn-shell-start "sh_off.sh")
          (delete-other-windows))
-      "PoweOFF")
+   "PoweOFF")
   ("q" nil "quit")
   )
 #+end_src
@@ -3348,11 +3350,11 @@ _?_ help            _c_urrent file
 #+begin_src elisp
 (defhydra hydra-f1-grimuar-menu (:color blue)
   ("c" (find-file-other-frame "~/Dropbox/Office/Research/Doc/Codex/BuYn_Codex.org") "Codex")
-  ("a" (find-file-other-frame "~/Desktop/orgs/capture/astronomicon.org") "Astronomicon")
-  ("E" (find-file-other-frame "~/Desktop/orgs/capture/emagus.org") "Emagus")
+  ("a" (find-file-other-frame "~/Dropbox/orgs/capture/astronomicon.org") "Astronomicon")
+  ("E" (find-file-other-frame "~/Dropbox/orgs/capture/emagus.org") "Emagus")
   ("n" (find-file-other-frame "~/Dropbox/orgs/capture/Necronomicon.org") "Necronomicon")
   ("t" (find-file-other-frame "~/Dropbox/orgs/capture/Necroteuch.org") "Necroteuch")
-  ("T" (buyn-shell-start "/home/buyn/Dropbox/orgs/capture/Necroteuch.sh") "desk5Necroteuch")
+  ("T" (buyn-shell-start "~/Dropbox/orgs/capture/Necroteuch.sh") "desk5Necroteuch")
   ("s" (find-file-other-frame "~/Dropbox/orgs/capture/Ansible.org") "Ansible")
   ("m" (find-file-other-frame "~/Dropbox/orgs/capture/Manabook.org") "Manabook")
   ("h" (find-file-other-frame "~/Dropbox/orgs/capture/holodeck.org") "Holodeck")
@@ -7316,6 +7318,8 @@ The major mode is Calculator mode defined in calc.el:
     (setq telega-server-libs-prefix "/usr")
     (setq telega-emoji-use-images nil)
     (evil-mode 1)
+    (ispell-change-dictionary "ru_RU")
+    (flyspell-mode t)
   #+end_src
 ***** как открывать новый чат
   #+begin_src elisp
@@ -7324,7 +7328,7 @@ The major mode is Calculator mode defined in calc.el:
   #+end_src
               (reusable-frames . visible)
               (inhibit-same-window . t)
-  #+begin_src elisp:tangle no 
+  #+begin_src elisp :tangle no 
     (setq telega-chat--display-buffer-action
           '((display-buffer-reuse-window display-buffer-pop-up-frame)
             (reusable-frames . visible)
