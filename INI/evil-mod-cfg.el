@@ -127,6 +127,7 @@
                                                      (setq x-select-enable-clipboard 1)
                                                      (evil-insert-newline-below)
                                                      (yank)
+                                                     (setq buyn/kde-klipper-current-index 0)
                                                      (setq x-select-enable-clipboard nil)))
 
 (defun buyn/kde-klipper-history-list ()
