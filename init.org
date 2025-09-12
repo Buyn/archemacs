@@ -998,6 +998,7 @@ CLOSED: [2025-02-11 Tue 16:29]
                                                      (setq x-select-enable-clipboard 1)
                                                      (evil-insert-newline-below)
                                                      (yank)
+                                                     (setq buyn/kde-klipper-current-index 0)
                                                      (setq x-select-enable-clipboard nil)))
 #+end_src
 ******* kde clipbord history
