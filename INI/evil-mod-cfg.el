@@ -127,7 +127,7 @@
                                                      (setq x-select-enable-clipboard 1)
                                                      (evil-insert-newline-below)
                                                      (yank)
-                                                     (setq buyn/kde-klipper-current-index 0)
+                                                     (setq buyn/kde-klipper-current-index 1)
                                                      (setq x-select-enable-clipboard nil)))
 
 (defun buyn/kde-klipper-history-list ()
@@ -168,9 +168,9 @@
 (defun buyn/clipboard-insert-next-item ()
   "Вставить следующий элемент из истории Klipper и увеличить индекс."
   (interactive)
+  (newline)
   (buyn/clipboard-insert-item buyn/kde-klipper-current-index)
-  (setq buyn/kde-klipper-current-index (1+ buyn/kde-klipper-current-index))
-  (newline))
+  (setq buyn/kde-klipper-current-index (1+ buyn/kde-klipper-current-index)))
 
 (define-key evil-normal-state-map (kbd "M-p M-a") 'buyn/clipbord-insert-history)
 (define-key evil-normal-state-map (kbd "M-p M-i") 'buyn/clipboard-insert-item)
