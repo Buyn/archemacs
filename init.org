@@ -998,9 +998,11 @@ CLOSED: [2025-02-11 Tue 16:29]
                                                      (setq x-select-enable-clipboard 1)
                                                      (evil-insert-newline-below)
                                                      (yank)
-                                                     (setq buyn/kde-klipper-current-index 0)
+                                                     (setq buyn/kde-klipper-current-index 1)
                                                      (setq x-select-enable-clipboard nil)))
 #+end_src
+
+
 ******* kde clipbord history
 ******** functions
 #+begin_src elisp :results output silent
@@ -1043,9 +1045,9 @@ CLOSED: [2025-02-11 Tue 16:29]
 (defun buyn/clipboard-insert-next-item ()
   "Вставить следующий элемент из истории Klipper и увеличить индекс."
   (interactive)
+  (newline)
   (buyn/clipboard-insert-item buyn/kde-klipper-current-index)
-  (setq buyn/kde-klipper-current-index (1+ buyn/kde-klipper-current-index))
-  (newline))
+  (setq buyn/kde-klipper-current-index (1+ buyn/kde-klipper-current-index)))
 
 #+end_src
 ******** binds: 
