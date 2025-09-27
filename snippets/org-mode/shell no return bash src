@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: shell no return bash src
+# key: shell_norb
+# --
+
+#+begin_src sh :results output silent
+#!/bin/bash
+
+$0
+
+#+end_src
