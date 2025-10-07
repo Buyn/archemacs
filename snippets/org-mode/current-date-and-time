@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: current-date-and-time ru
-# key: ве
+# name: current-date-and-time
+# key: dt
 # --
 `(format-time-string "%Y-%m-%d %H:%M:%S")`

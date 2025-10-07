@@ -134,6 +134,12 @@ done - things I have completed. Gives feeling of satisfaction
 **** ЗАчем?
 **** Что? 
 **** КудА? 
+*** h4w?
+**** why?
+**** what?
+**** when?
+**** where?
+**** how?
 *** Стадии Stages
 **** Concept Stage
 ***** табле
