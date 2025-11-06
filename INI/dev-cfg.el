@@ -189,12 +189,40 @@
 
 ;;  --------------------------------------
 (define-key org-mode-map (kbd "<f8>") nil)
-(define-key org-mode-map (kbd "<f8> <f8>")
-      '(lambda() (interactive)
-        (save-excursion
+
+(defvar my/org-saved-buffer nil
+  "Buffer saved for remote org-babel execution.")
+
+(defun my/org-save-current-buffer ()
+  "Save the current buffer globally to use later."
+  (interactive)
+  (setq my/org-saved-buffer (current-buffer))
+  (message "Saved buffer: %s" (buffer-name)))
+
+(defun my/org-run-remote-or-local-src-block ()
+  "Execute src block either in saved buffer (if exists)
+or locally if not saved."
+  (interactive)
+  (evil-normal-state)
+  (save-excursion
+    (let ((origin-buffer (current-buffer)))
+      (if (and my/org-saved-buffer (buffer-live-p my/org-saved-buffer))
           (progn
+            ;; Переключаемся в сохранённый буфер
+            (switch-to-buffer my/org-saved-buffer)
+            (message "Executing in saved buffer: %s" (buffer-name))
             (org-babel-goto-named-src-block "auto-tangle-block")
-            (org-babel-execute-src-block)))))
+            (org-babel-execute-src-block)
+            ;; Возвращаемся
+            (switch-to-buffer origin-buffer))
+        ;; Если нет – выполняем тут же
+          (org-babel-execute-src-block)))))
+
+;; Привязки клавиш
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "<f8> <S-f8>") #'my/org-save-current-buffer)
+  (define-key org-mode-map (kbd "<f8> <f8>") #'my/org-run-remote-or-local-src-block))
+
 (define-key org-mode-map (kbd "<f8> <f7>")
       '(lambda() (interactive)
         (save-excursion

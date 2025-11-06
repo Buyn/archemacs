@@ -6154,6 +6154,7 @@ gemini-2.5-flash-preview-04-17
   "Execute src block either in saved buffer (if exists)
 or locally if not saved."
   (interactive)
+  (evil-normal-state)
   (save-excursion
     (let ((origin-buffer (current-buffer)))
       (if (and my/org-saved-buffer (buffer-live-p my/org-saved-buffer))
