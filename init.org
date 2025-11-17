@@ -78,6 +78,15 @@ FL timer
 *** [[*browsers configs][browsers configs]]
 [[*EWW-MODE CUSTOMIZATION][EWW-MODE CUSTOMIZATION]]
 *** [[*INI/other/telegram.el][INI/other/telegram.el]]
+*** send to shell
+m-e m-s
+
+(define-key evil-normal-state-map (kbd "M-e M-s M-l") 'send-activ-line-to-eshell-buffer-and-execute)
+(define-key evil-visual-state-map (kbd "M-e M-s M-l") 'send-region-to-eshell-buffer-and-execute)
+
+(defun send-region-to-eshell-buffer-and-execute(start end );&optional INTERCT
+(defun send-activ-line-to-eshell-buffer-and-execute()
+
 ** mods
 FRAME [[*src INI/frame-control.el][src INI/frame-control.el]]
 global-set-key
@@ -1200,8 +1209,15 @@ CLOSED: [2025-02-11 Tue 16:29]
 (define-key evil-normal-state-map (kbd "M-e M-l") 'eval-last-sexp)
 (define-key evil-normal-state-map (kbd "M-e M-e") 'eval-defun)
 ;; *** send to other buffer: 
-(define-key evil-normal-state-map (kbd "M-e M-s M-l") 'send-activ-line-to-eshell-buffer-and-execute)
-(define-key evil-visual-state-map (kbd "M-e M-s M-l") 'send-region-to-eshell-buffer-and-execute)
+;; (define-key evil-normal-state-map (kbd "M-e M-s M-l") 'send-activ-line-to-eshell-buffer-and-execute)
+;; (define-key evil-visual-state-map (kbd "M-e M-s M-l") 'send-region-to-eshell-buffer-and-execute)
+
+(define-key evil-normal-state-map (kbd "M-e M-s M-L")
+  'buyn/set-name-shell-target-buffer)
+(define-key evil-normal-state-map (kbd "M-e M-s M-l")
+  'buyn/send-line-to-target-name-shell)
+(define-key evil-visual-state-map (kbd "M-e M-s M-l")
+  'buyn/send-region-to-target-name-shell)
 ;; *** search-forward & sexp M-e M-j : 
 (define-key evil-normal-state-map (kbd "M-e M-j") 
     '(lambda() (interactive)
@@ -4507,10 +4523,43 @@ CLOSED: [2025-03-03 Пн 06:36]
 :header-args: :tangle ELs/BuYn/shell.el
 :END:
 *** описание
-
+(find-file-other-frame "ELs/BuYn/shell.el")
 *** used in
 ;; (find-file "~/.archemacs/INI/init.el")
+*** bindings
+(define-key evil-normal-state-map (kbd "M-e M-s M-l") 'send-activ-line-to-eshell-buffer-and-execute)
+(define-key evil-visual-state-map (kbd "M-e M-s M-l") 'send-region-to-eshell-buffer-and-execute)
+
+(define-key evil-normal-state-map (kbd "M-e M-s M-L")
+  `buyn/set-name-shell-target-buffer)
+(define-key evil-normal-state-map (kbd "M-e M-s M-l")
+  'buyn/send-line-to-target-name-shell)
+(define-key evil-visual-state-map (kbd "M-e M-s M-l")
+  #'buyn/send-region-to-target-name-shell)
+
+;; ---------------------------
+;; Keybindings
+;; ---------------------------
+
+(define-key evil-normal-state-map (kbd "M-e M-s M-l")
+  #'buyn/send-line-to-target-eshell)
+(define-key evil-normal-state-map (kbd "M-e M-s M-l")
+  'buyn/send-line-to-target-name-shell)
+
+(define-key evil-visual-state-map (kbd "M-e M-s M-l")
+  #'buyn/send-region-to-target-name-shell)
+
+(define-key evil-normal-state-map (kbd "M-e M-s M-L")
+  #'buyn/set-eshell-target-buffer)
+
+(define-key evil-normal-state-map (kbd "M-e M-s M-L")
+  'buyn/set-eshell-target-buffer)
+
+  
+(define-key evil-normal-state-map (kbd "M-e M-s M-L")
+  `buyn/set-name-shell-target-buffer)
 *** src
+**** all
 #+begin_src elisp
 ;; * BUYN's ELISP DEFUNS
 ;; --------------------------------------
@@ -4528,9 +4577,9 @@ CLOSED: [2025-03-03 Пн 06:36]
     get comand to execute
     "
   (shell-command
-    (concat 
-            cmd-params
-            " &")))
+   (concat 
+    cmd-params
+    " &")))
 
 ;; *** buyn-cmd-start :
 (defun buyn-cmd-start (cmd-params)
@@ -4539,11 +4588,11 @@ CLOSED: [2025-03-03 Пн 06:36]
     get comand to execute
     "
   (shell-command
-    (concat "cmd"
-            " /c "
-            " start "
-            cmd-params
-            " &")))
+   (concat "cmd"
+           " /c "
+           " start "
+           cmd-params
+           " &")))
 
 ;; *** buyn-cmd-start-syn :
 (defun buyn-cmd-start-syn (cmd-params)
@@ -4552,12 +4601,12 @@ CLOSED: [2025-03-03 Пн 06:36]
     get comand to execute
     "
   (shell-command
-    (concat "cmd"
-            " /c "
-            " start "
-            cmd-params
-            )
-    )
+   (concat "cmd"
+           " /c "
+           " start "
+           cmd-params
+           )
+   )
   )
 
 ;; *** buyn-far :
@@ -4567,12 +4616,12 @@ CLOSED: [2025-03-03 Пн 06:36]
     get comand to execute
     "
   (buyn-cmd-start
-    (concat path-to-far
-            " "
-            cmd-params
-            ;; " &"
-            )
-    )
+   (concat path-to-far
+           " "
+           cmd-params
+           ;; " &"
+           )
+   )
   )
 
 ;; *** buyn-start-emagus :
@@ -4583,33 +4632,34 @@ CLOSED: [2025-03-03 Пн 06:36]
     unix-path-to-file path to file in unix format
     "
   (shell-command
-    (concat path-to-emagus-cmd
-            " "
-            unix-path-to-file
-            " &"
-            )
-    )
+   (concat path-to-emagus-cmd
+           " "
+           unix-path-to-file
+           " &"
+           )
+   )
   )
 
 ;; *** buyn-start-emagus-win : 
 (defun buyn-start-emagus-win (win-path-to-file)
-   "  buyn start new emacs process
+  "  buyn start new emacs process
     as parametr  
     get file path in Windos format
     win-path-to-file path to file in unix format
     "
-    ;; (message (replace-regexp-in-string "/" (regexp-quote "\\") win-path-to-file t t))
-(buyn-start-emagus
-  ;; (message 
- (replace-regexp-in-string "\\\\" "/" win-path-to-file t t)
- )
-    ;; (message (replace-regexp-in-string "\\\\" "/" win-path-to-file t t ))
-;; (replace-regexp-in-string "/" "\\" path t t)
-    ;; (replace-string "f" win-path-to-file)
-    ;; (message win-path-to-file)
-    )
-
-;; * BUYN's ELISP DEFUNS
+  ;; (message (replace-regexp-in-string "/" (regexp-quote "\\") win-path-to-file t t))
+  (buyn-start-emagus
+   ;; (message 
+   (replace-regexp-in-string "\\\\" "/" win-path-to-file t t)
+   )
+  ;; (message (replace-regexp-in-string "\\\\" "/" win-path-to-file t t ))
+  ;; (replace-regexp-in-string "/" "\\" path t t)
+  ;; (replace-string "f" win-path-to-file)
+  ;; (message win-path-to-file)
+  )
+#+end_src
+**** DONE BUYN's ESHELL DEFUNS old
+#+begin_src elisp :tangle no
 ;; --------------------------------------
 ;; ** send-region-to-eshell-buffer-and-execute:
 (defun send-region-to-eshell-buffer-and-execute(start end );&optional INTERCT
@@ -4621,11 +4671,11 @@ CLOSED: [2025-03-03 Пн 06:36]
     "
   (interactive "r") 
   (let ((buffer-name-to-back (buffer-name)))
-      (prepend-to-buffer (get-buffer "*eshell*") start end)
-      (switch-to-buffer-other-frame (get-buffer "*eshell*"))
-      ;; (evil-insert-state)
-      (execute-kbd-macro "\C-m")
-      (switch-to-buffer-other-frame buffer-name-to-back)))
+    (prepend-to-buffer (get-buffer "*eshell*") start end)
+    (switch-to-buffer-other-frame (get-buffer "*eshell*"))
+    ;; (evil-insert-state)
+    (execute-kbd-macro "\C-m")
+    (switch-to-buffer-other-frame buffer-name-to-back)))
 ;; ** send-activ-line-to-eshell-buffer-and-execute:
 (defun send-activ-line-to-eshell-buffer-and-execute()
   " Make the custom function interactive
@@ -4633,9 +4683,71 @@ CLOSED: [2025-03-03 Пн 06:36]
     with region as from start to end line "
   (interactive) 
   (call-interactively
-    (send-region-to-eshell-buffer-and-execute (line-beginning-position) (line-beginning-position 2))))
+   (send-region-to-eshell-buffer-and-execute (line-beginning-position) (line-beginning-position 2))))
+#+end_src
+
+**** BUYN's NAME SHELl DEFUNS new
+#+begin_src elisp
+;; ---------------------------
+;; Global variable
+;; ---------------------------
+
+(defvar buyn/eshell-target-buffer-name "*eshell*"
+  "Name of the EShell-like buffer to send code to.")
+
+;; ---------------------------
+;; Choose buffer to use
+;; ---------------------------
+
+(defun buyn/set-name-shell-target-buffer ()
+  "Set global target buffer for sending lines/regions."
+  (interactive)
+  (setq buyn/name-shell-target-buffer-name (buffer-name))
+  (message "Target Shell buffer name set to: %s" buyn/name-shell-target-buffer-name))
+
+;; ---------------------------
+;; Core send region function
+;; ---------------------------
+
+(defun buyn/send-region-to-target-name-shell (start end &optional buffer-name-to-send)
+  "Send region to target name-shell buffer and execute.
+If BUFFER-NAME-TO-SEND is nil, uses global `buyn/name-shell-target-buffer-name`."
+  (interactive "r")
+  (let* ((origin (current-buffer))
+         (target (get-buffer (or buffer-name-to-send buyn/name-shell-target-buffer-name))))
+
+    (unless target
+      (error "Target buffer %s does not exist" buyn/name-shell-target-buffer-name))
+
+    ;; append region to name-shell
+    (prepend-to-buffer target start end)
+
+    ;; switch → execute → switch back
+    (switch-to-buffer-other-frame target)
+    (evil-insert-state)
+    ;; (evil-open-below)
+    (execute-kbd-macro "\C-m")
+    (evil-normal-state)
+    (switch-to-buffer-other-frame origin)))
+
+;; ---------------------------
+;; Line version
+;; ---------------------------
+
+(defun buyn/send-line-to-target-name-shell ()
+  "Send current line to target name-shell buffer."
+  (interactive)
+  (call-interactively
+  (buyn/send-region-to-target-name-shell
+   (line-beginning-position)
+   (line-beginning-position 2))))
+
 
 #+end_src
+
+#+RESULTS:
+: buyn/send-line-to-target-name-shell
+
 * **Литературное и текстовые задачи**
 ** описание
    Чтение текстов, работа с переводами, tts, `read-aloud`.  

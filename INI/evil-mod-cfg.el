@@ -300,8 +300,15 @@
 (define-key evil-normal-state-map (kbd "M-e M-l") 'eval-last-sexp)
 (define-key evil-normal-state-map (kbd "M-e M-e") 'eval-defun)
 ;; *** send to other buffer: 
-(define-key evil-normal-state-map (kbd "M-e M-s M-l") 'send-activ-line-to-eshell-buffer-and-execute)
-(define-key evil-visual-state-map (kbd "M-e M-s M-l") 'send-region-to-eshell-buffer-and-execute)
+;; (define-key evil-normal-state-map (kbd "M-e M-s M-l") 'send-activ-line-to-eshell-buffer-and-execute)
+;; (define-key evil-visual-state-map (kbd "M-e M-s M-l") 'send-region-to-eshell-buffer-and-execute)
+
+(define-key evil-normal-state-map (kbd "M-e M-s M-L")
+  'buyn/set-name-shell-target-buffer)
+(define-key evil-normal-state-map (kbd "M-e M-s M-l")
+  'buyn/send-line-to-target-name-shell)
+(define-key evil-visual-state-map (kbd "M-e M-s M-l")
+  'buyn/send-region-to-target-name-shell)
 ;; *** search-forward & sexp M-e M-j : 
 (define-key evil-normal-state-map (kbd "M-e M-j") 
     '(lambda() (interactive)
