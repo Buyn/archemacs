@@ -332,19 +332,20 @@
 (define-key evil-normal-state-map (kbd "QQ") 'evil-record-macro)
 
 ;; *** evil-visual <f7> :
-(define-key evil-visual-state-map (kbd "<f7>") '(lambda() (interactive)
+(define-key evil-visual-state-map (kbd "<f7>") nil)
+(define-key evil-visual-state-map (kbd "<f7> <f7>") '(lambda() (interactive)
   (let ((region-text (buffer-substring (region-beginning) (region-end))))
     (exchange-point-and-mark)
     (evil-normal-state)
     (query-replace
       region-text
       (read-string (concat "replace(" region-text "):")
-            region-text
+            (current-kill 0 "DO-NOT-MOVE")
             nil
-            (current-kill 0 "DO-NOT-MOVE"))
-      ))))
+            (current-kill 0 "DO-NOT-MOVE"))))))
 
-(define-key evil-visual-state-map (kbd "S-<f7>") '(lambda() (interactive)
+(define-key evil-visual-state-map (kbd "S-<f7>") nil)
+(define-key evil-visual-state-map (kbd "S-<f7> S-<f7>") '(lambda() (interactive)
   (let ((region-text (buffer-substring (region-beginning) (region-end))))
     (exchange-point-and-mark)
     (evil-normal-state)

@@ -10,6 +10,8 @@
                 (save-buffer)
                 (evil-normal-state)))
 *** f7
+(define-key evil-visual-state-map (kbd "<f7>") '(lambda() (interactive)
+[[*find&replace][find&replace]]
 *** f8
 **** [[*DEVELOPMENT-KEY CUSTOMIZATION][DEVELOPMENT-KEY CUSTOMIZATION]]
 (global-set-key (kbd "<f8>") nil)
@@ -1245,19 +1247,20 @@ CLOSED: [2025-02-11 Tue 16:29]
 ***** find&replace
 #+begin_src elisp
 ;; *** evil-visual <f7> :
-(define-key evil-visual-state-map (kbd "<f7>") '(lambda() (interactive)
+(define-key evil-visual-state-map (kbd "<f7>") nil)
+(define-key evil-visual-state-map (kbd "<f7> <f7>") '(lambda() (interactive)
   (let ((region-text (buffer-substring (region-beginning) (region-end))))
     (exchange-point-and-mark)
     (evil-normal-state)
     (query-replace
       region-text
       (read-string (concat "replace(" region-text "):")
-            region-text
+            (current-kill 0 "DO-NOT-MOVE")
             nil
-            (current-kill 0 "DO-NOT-MOVE"))
-      ))))
+            (current-kill 0 "DO-NOT-MOVE"))))))
 
-(define-key evil-visual-state-map (kbd "S-<f7>") '(lambda() (interactive)
+(define-key evil-visual-state-map (kbd "S-<f7>") nil)
+(define-key evil-visual-state-map (kbd "S-<f7> S-<f7>") '(lambda() (interactive)
   (let ((region-text (buffer-substring (region-beginning) (region-end))))
     (exchange-point-and-mark)
     (evil-normal-state)
@@ -1295,6 +1298,10 @@ CLOSED: [2025-02-11 Tue 16:29]
             )
         )))
 #+end_src
+
+#+RESULTS:
+| lambda | nil | (interactive) | (let ((start-region-beginning (region-beginning)) (start-region-end (+ (region-end) 1)) (char-to-wrap (read-char enter char to wrap(/~*_+=)))) (unless (= char-to-wrap 27) (evil-normal-state) (goto-char start-region-beginning) (insert-char char-to-wrap) (goto-char start-region-end) (insert-char char-to-wrap))) |
+
 ;; -------------------------------------- }}}
 ***** Insert State
 #+begin_src elisp
@@ -9367,6 +9374,8 @@ CLOSED: [2025-02-25 Tue 01:20]
 (untabify (point-min) (point-max))
 (save-buffer)
 (org-babel-tangle)
+(evil-close-fold)
+(evil-close-fold)
 ;; (find-file-other-frame "~/INI/babel-cfg.el")
 ;; (load "~/INI/hydra-cfg.el")
 ;; (load "~/ELs/BuYn/reader.el")
