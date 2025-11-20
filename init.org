@@ -81,6 +81,7 @@ FL timer
 [[*EWW-MODE CUSTOMIZATION][EWW-MODE CUSTOMIZATION]]
 *** [[*INI/other/telegram.el][INI/other/telegram.el]]
 *** send to shell
+[[*BUYN's NAME SHELl DEFUNS new][BUYN's NAME SHELl DEFUNS new]]
 m-e m-s
 
 (define-key evil-normal-state-map (kbd "M-e M-s M-l") 'send-activ-line-to-eshell-buffer-and-execute)
@@ -96,6 +97,7 @@ evil-normal-state-map
 evil-visual-state-map
 org-mode-map
 org-src-mode-map
+[[*INI/dev/clojure-cfg.el][INI/dev/clojure-cfg.el]]
 * **Core Initialization (Ядро)**
 :PROPERTIES:
 :header-args: :mkdirp yes
@@ -3398,7 +3400,9 @@ _?_ help            _c_urrent file
 ****** hydra-f1-emagus-menu
 #+begin_src elisp
 (defhydra hydra-f1-emagus-menu (:color blue)
-  ("D" (buyn-shell-start "wmctrl -s 4 ; emacs --debug-init") "run debug")
+  ("D" (progn
+         (buyn-shell-start "wmctrl -s 4 ; emacs --debug-init")
+         (delete-other-windows)) "run debug")
   ("T" (find-file "~/Dropbox/orgs/Logs/Todos/log-todo-2024-04-28-W17.org") "log-todo")
   ("E" (find-file-other-frame (expand-file-name "init.org" user-emacs-directory)) "Emacs log")
   ("O" (find-file-other-frame "~/Dropbox/orgs/Code/emacs_GPT_2023-07-20.org") "Init org")
@@ -4699,7 +4703,7 @@ CLOSED: [2025-03-03 Пн 06:36]
 ;; Global variable
 ;; ---------------------------
 
-(defvar buyn/eshell-target-buffer-name "*eshell*"
+(defvar buyn/name-shell-target-buffer-name "*eshell*"
   "Name of the EShell-like buffer to send code to.")
 
 ;; ---------------------------

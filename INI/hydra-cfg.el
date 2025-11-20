@@ -852,7 +852,9 @@ _?_ help            _c_urrent file
   )
 
 (defhydra hydra-f1-emagus-menu (:color blue)
-  ("D" (buyn-shell-start "wmctrl -s 4 ; emacs --debug-init") "run debug")
+  ("D" (progn
+         (buyn-shell-start "wmctrl -s 4 ; emacs --debug-init")
+         (delete-other-windows)) "run debug")
   ("T" (find-file "~/Dropbox/orgs/Logs/Todos/log-todo-2024-04-28-W17.org") "log-todo")
   ("E" (find-file-other-frame (expand-file-name "init.org" user-emacs-directory)) "Emacs log")
   ("O" (find-file-other-frame "~/Dropbox/orgs/Code/emacs_GPT_2023-07-20.org") "Init org")

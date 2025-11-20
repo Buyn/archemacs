@@ -25,9 +25,33 @@ https://www.braveclojure.com/basic-emacs/
 
 ** progn:
 #+begin_src emacs-lisp :results output silent
-;; (load (expand-file-name "INI/other/telegram.el" user-emacs-directory)) 
+;; *** evil-visual <f7> :
+(define-key evil-visual-state-map (kbd "<f7>") nil)
+(define-key evil-visual-state-map (kbd "<f7> <f7>") '(lambda() (interactive)
+  (let ((region-text (buffer-substring (region-beginning) (region-end))))
+    (exchange-point-and-mark)
+    (evil-normal-state)
+    (query-replace
+      region-text
+      (read-string (concat "replace(" region-text "):")
+            (current-kill 0 "DO-NOT-MOVE")
+            nil
+            (current-kill 0 "DO-NOT-MOVE"))))))
 
-;; (setq org-log-done nil)
+(define-key evil-visual-state-map (kbd "S-<f7>") nil)
+(define-key evil-visual-state-map (kbd "S-<f7> S-<f7>") '(lambda() (interactive)
+  (let ((region-text (buffer-substring (region-beginning) (region-end))))
+    (exchange-point-and-mark)
+    (evil-normal-state)
+    (query-replace
+      region-text
+      (read-string (concat "replace(" region-text "):")
+            nil
+            nil
+            (current-kill 0 "DO-NOT-MOVE"))
+      ))))
+
+
 (load (expand-file-name "INI/hydra-cfg.el" user-emacs-directory)) 
 
 (kill-buffer (current-buffer))

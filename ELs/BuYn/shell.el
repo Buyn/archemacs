@@ -99,7 +99,7 @@
 ;; Global variable
 ;; ---------------------------
 
-(defvar buyn/eshell-target-buffer-name "*eshell*"
+(defvar buyn/name-shell-target-buffer-name "*eshell*"
   "Name of the EShell-like buffer to send code to.")
 
 ;; ---------------------------
