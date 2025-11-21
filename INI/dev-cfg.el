@@ -216,7 +216,8 @@ or locally if not saved."
             ;; Возвращаемся
             (switch-to-buffer origin-buffer))
         ;; Если нет – выполняем тут же
-          (org-babel-execute-src-block)))))
+          (progn (org-babel-goto-named-src-block "auto-tangle-block")
+                 (org-babel-execute-src-block))))))
 
 ;; Привязки клавиш
 (with-eval-after-load 'org
