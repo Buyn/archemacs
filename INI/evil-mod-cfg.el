@@ -344,8 +344,18 @@
             nil
             (current-kill 0 "DO-NOT-MOVE"))))))
 
-(define-key evil-visual-state-map (kbd "S-<f7>") nil)
 (define-key evil-visual-state-map (kbd "S-<f7> S-<f7>") '(lambda() (interactive)
+  (let ((region-text (buffer-substring (region-beginning) (region-end))))
+    (exchange-point-and-mark)
+    (evil-normal-state)
+    (query-replace
+      region-text
+      (read-string (concat "replace(" region-text "):")
+            region-text
+            nil
+            region-text)))))
+
+(define-key evil-visual-state-map (kbd "S-<f7> <f7>") '(lambda() (interactive)
   (let ((region-text (buffer-substring (region-beginning) (region-end))))
     (exchange-point-and-mark)
     (evil-normal-state)
@@ -354,8 +364,8 @@
       (read-string (concat "replace(" region-text "):")
             nil
             nil
-            (current-kill 0 "DO-NOT-MOVE"))
-      ))))
+            region-text)))))
+
 ;; *** evil-visual * :
 (define-key evil-visual-state-map (kbd "*") '(lambda() (interactive)
   (let ((region-text (buffer-substring (region-beginning) (region-end))))
