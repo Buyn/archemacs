@@ -214,6 +214,7 @@
 (defhydra org-insert-menu (:color blue)
     ("t" (insert ":tangle no") "tangle no")
     ("r" (insert ":results output silent") "result no")
+    ("R" (insert ":results output replace") "result yes")
     ("h" (insert "#+HEADER: :tangle ../Src/Start.sh") "HEADER")
     ("f" (insert "(find-file-other-frame \" \")") "file frame")
     ("F" (insert "(find-file \" \"") "Find File)")
