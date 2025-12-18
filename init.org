@@ -20,6 +20,8 @@
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
+*** a
+  (define-key evil-normal-state-map (kbd "M-a M-l M-o") 'google-translate-smooth-translate)
 *** e
 (define-key evil-normal-state-map (kbd "M-e M-f M-f") 'xref-find-definitions)
 
@@ -29,6 +31,10 @@
 *** f
 (define-key evil-normal-state-map (kbd "f") 'evil-avy-goto-char-in-line)
 FL timer
+*** p
+evil-normal-state-map (kbd "M-p M-o")
+(kbd "M-p M-n") [[*kde clipbord history][kde clipbord history]]
+
 *** g
 **** gTT
     "gTT" 'elscreen-previous
@@ -991,7 +997,7 @@ CLOSED: [2025-02-11 Tue 16:29]
                                                        (calc-yank 0))))
 #+end_src
 ****** M-p
-******* M-p M-p: 
+******* M-p M-p:
 #+begin_src elisp
 (define-key evil-normal-state-map (kbd "M-p M-p") '(lambda() (interactive)
                                                      (setq x-select-enable-clipboard 1)
@@ -1006,7 +1012,7 @@ CLOSED: [2025-02-11 Tue 16:29]
                                                      (setq x-select-enable-clipboard nil)
                                                      ))
 #+end_src
-******* M-p M-o : 
+******* M-p M-o:
 #+begin_src elisp
 (define-key evil-normal-state-map (kbd "M-p M-o") '(lambda() (interactive)
                                                      (setq x-select-enable-clipboard 1)
@@ -1068,7 +1074,12 @@ CLOSED: [2025-02-11 Tue 16:29]
 #+begin_src elisp :results output silent 
 (define-key evil-normal-state-map (kbd "M-p M-a") 'buyn/clipbord-insert-history)
 (define-key evil-normal-state-map (kbd "M-p M-i") 'buyn/clipboard-insert-item)
-(define-key evil-normal-state-map (kbd "M-p M-n") 'buyn/clipboard-insert-next-item)
+(define-key evil-normal-state-map (kbd "M-p M-N") 'buyn/clipboard-insert-next-item) 
+(define-key evil-normal-state-map (kbd "M-p M-n") '(lambda() (interactive)
+                    (evil-insert-newline-below)
+                    (buyn/clipboard-insert-next-item)))
+
+
 #+end_src
 
 ****** evil-insert-state-map
@@ -6271,6 +6282,7 @@ gemini-2.5-flash-preview-04-17
 ;; *** --------------------------------------
 #+end_src
 ****** org-mode <f8>
+      (if (and my/org-saved-buffer (buffer-live-p my/org-saved-buffer))
 #+begin_src elisp
 ;;  --------------------------------------
 (define-key org-mode-map (kbd "<f8>") nil)
@@ -6281,7 +6293,7 @@ gemini-2.5-flash-preview-04-17
 (defun my/org-save-current-buffer ()
   "Save the current buffer globally to use later."
   (interactive)
-  (setq my/org-saved-buffer (current-buffer))
+  (setq my/org-saved-buffer (buffer-name))
   (message "Saved buffer: %s" (buffer-name)))
 
 (defun my/org-run-remote-or-local-src-block ()
@@ -6290,16 +6302,18 @@ or locally if not saved."
   (interactive)
   (evil-normal-state)
   (save-excursion
-    (let ((origin-buffer (current-buffer)))
-      (if (and my/org-saved-buffer (buffer-live-p my/org-saved-buffer))
+    (let ((origin-buffer (buffer-name)))
+      (if my/org-saved-buffer
           (progn
             ;; Переключаемся в сохранённый буфер
-            (switch-to-buffer my/org-saved-buffer)
+            ;; (switch-to-buffer my/org-saved-buffer)
+            (select-frame-by-name my/org-saved-buffer)
             (message "Executing in saved buffer: %s" (buffer-name))
             (org-babel-goto-named-src-block "auto-tangle-block")
             (org-babel-execute-src-block)
             ;; Возвращаемся
-            (switch-to-buffer origin-buffer))
+            ;; (switch-to-buffer origin-buffer))
+            (select-frame-by-name origin-buffer))
         ;; Если нет – выполняем тут же
           (progn (org-babel-goto-named-src-block "auto-tangle-block")
                  (org-babel-execute-src-block))))))
@@ -6324,10 +6338,10 @@ or locally if not saved."
             ;; (save-some-buffers 'no-confirm)
             (org-save-all-org-buffers)
             (evil-normal-state)
-            (let ((curent-buffer (buffer-name)))
+            (let ((origen-buffer (buffer-name)))
               (select-frame-by-name "*compilation*")
               (recompile)
-              (select-frame-by-name curent-buffer))))))
+              (select-frame-by-name origen-buffer))))))
 ;; --------------------------------------
 #+end_src
 

@@ -174,7 +174,10 @@
 
 (define-key evil-normal-state-map (kbd "M-p M-a") 'buyn/clipbord-insert-history)
 (define-key evil-normal-state-map (kbd "M-p M-i") 'buyn/clipboard-insert-item)
-(define-key evil-normal-state-map (kbd "M-p M-n") 'buyn/clipboard-insert-next-item)
+(define-key evil-normal-state-map (kbd "M-p M-N") 'buyn/clipboard-insert-next-item) 
+(define-key evil-normal-state-map (kbd "M-p M-n") '(lambda() (interactive)
+                    (evil-insert-newline-below)
+                    (buyn/clipboard-insert-next-item)))
 
 (define-key evil-insert-state-map (kbd "M-p ") '(lambda() (interactive)
                                                   (yank)))

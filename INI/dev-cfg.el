@@ -196,7 +196,7 @@
 (defun my/org-save-current-buffer ()
   "Save the current buffer globally to use later."
   (interactive)
-  (setq my/org-saved-buffer (current-buffer))
+  (setq my/org-saved-buffer (buffer-name))
   (message "Saved buffer: %s" (buffer-name)))
 
 (defun my/org-run-remote-or-local-src-block ()
@@ -205,16 +205,18 @@ or locally if not saved."
   (interactive)
   (evil-normal-state)
   (save-excursion
-    (let ((origin-buffer (current-buffer)))
-      (if (and my/org-saved-buffer (buffer-live-p my/org-saved-buffer))
+    (let ((origin-buffer (buffer-name)))
+      (if my/org-saved-buffer
           (progn
             ;; Переключаемся в сохранённый буфер
-            (switch-to-buffer my/org-saved-buffer)
+            ;; (switch-to-buffer my/org-saved-buffer)
+            (select-frame-by-name my/org-saved-buffer)
             (message "Executing in saved buffer: %s" (buffer-name))
             (org-babel-goto-named-src-block "auto-tangle-block")
             (org-babel-execute-src-block)
             ;; Возвращаемся
-            (switch-to-buffer origin-buffer))
+            ;; (switch-to-buffer origin-buffer))
+            (select-frame-by-name origin-buffer))
         ;; Если нет – выполняем тут же
           (progn (org-babel-goto-named-src-block "auto-tangle-block")
                  (org-babel-execute-src-block))))))
@@ -239,10 +241,10 @@ or locally if not saved."
             ;; (save-some-buffers 'no-confirm)
             (org-save-all-org-buffers)
             (evil-normal-state)
-            (let ((curent-buffer (buffer-name)))
+            (let ((origen-buffer (buffer-name)))
               (select-frame-by-name "*compilation*")
               (recompile)
-              (select-frame-by-name curent-buffer))))))
+              (select-frame-by-name origen-buffer))))))
 ;; --------------------------------------
 
   (add-hook 'prog-mode-hook '(lambda ()

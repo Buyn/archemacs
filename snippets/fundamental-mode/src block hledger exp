@@ -1,0 +1,9 @@
+# key: src_exp
+# name: src block hledger exp
+# --
+#+begin_src ${1:hledger1}$0 :results output silent
+`(format-time-string "%Y-%m-%d")` $2
+    $3  exp $4
+    $5
+
+#+end_src
