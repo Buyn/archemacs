@@ -216,7 +216,9 @@ or locally if not saved."
             (org-babel-execute-src-block)
             ;; Возвращаемся
             ;; (switch-to-buffer origin-buffer))
-            (select-frame-by-name origin-buffer))
+            ;; (select-frame-by-name origin-buffer)
+            (let* ((frame (get-buffer-window origin-buffer t)))
+                (select-frame-set-input-focus (window-frame frame)))) 
         ;; Если нет – выполняем тут же
           (progn (org-babel-goto-named-src-block "auto-tangle-block")
                  (org-babel-execute-src-block))))))
