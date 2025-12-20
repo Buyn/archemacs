@@ -529,6 +529,16 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
   ("q" nil "quit")
   )
 
+(defun buyn/convert-markdown-to-org (text)
+  "Конвертирует TEXT из Markdown в Org-mode по правилам.
+На старте конвертирует строки, начинающиеся с '* ', в '- '.
+Можно легко добавлять новые правила в список `rules`."
+  (let ((rules
+         ;; Список правил: (регэксп . замена)
+         '(("^\\* " . "- "))))  ; Markdown '* ' → Org '- '
+    (dolist (rule rules text)
+      (setq text (replace-regexp-in-string (car rule) (cdr rule) text)))))
+
 (defhydra hydra-yank-menu (:color blue)
   ;; (global-map "C-c")
   "yank menu"
@@ -537,8 +547,7 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
       (kill-new (current-kill 0 "DO-NOT-MOVE"))
       ;; (message last-clip)
       (setq x-select-enable-clipboard nil)
-      )
-    "reg2clipbord")
+      ) "reg2clipbord")
   ("s" (copy-to-buffer) "send2Buff")
   ("w" (progn  
       (setq x-select-enable-clipboard t)
@@ -546,8 +555,12 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
       ;; (require 'org-eww "~/.archemacs/ELs/org-eww/org-eww.el")
       (org-eww-copy-for-org-mode)
       (setq x-select-enable-clipboard nil)
-      )
-    "web-page2Org")
+      ) "web-page2Org")
+  ("o" (progn  
+      (setq x-select-enable-clipboard t)
+      (insert (buyn/convert-markdown-to-org (current-kill 0 t)))
+      (setq x-select-enable-clipboard nil)
+      ) "2Org")
   ("q" nil "quit")
   ;; --------------------------------------
   )

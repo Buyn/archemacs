@@ -3029,6 +3029,22 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
 : hydra-zoom/body
 
 ****** yank-menu
+******* suport yank menu functions
+#+begin_src elisp
+(defun buyn/convert-markdown-to-org (text)
+  "Конвертирует TEXT из Markdown в Org-mode по правилам.
+На старте конвертирует строки, начинающиеся с '* ', в '- '.
+Можно легко добавлять новые правила в список `rules`."
+  (let ((rules
+         ;; Список правил: (регэксп . замена)
+         '(("^\\* " . "- "))))  ; Markdown '* ' → Org '- '
+    (dolist (rule rules text)
+      (setq text (replace-regexp-in-string (car rule) (cdr rule) text)))))
+
+
+#+end_src
+
+******* hydra-yank-menu
 #+begin_src elisp
 (defhydra hydra-yank-menu (:color blue)
   ;; (global-map "C-c")
@@ -3038,8 +3054,7 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
       (kill-new (current-kill 0 "DO-NOT-MOVE"))
       ;; (message last-clip)
       (setq x-select-enable-clipboard nil)
-      )
-    "reg2clipbord")
+      ) "reg2clipbord")
   ("s" (copy-to-buffer) "send2Buff")
   ("w" (progn  
       (setq x-select-enable-clipboard t)
@@ -3047,12 +3062,19 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
       ;; (require 'org-eww "~/.archemacs/ELs/org-eww/org-eww.el")
       (org-eww-copy-for-org-mode)
       (setq x-select-enable-clipboard nil)
-      )
-    "web-page2Org")
+      ) "web-page2Org")
+  ("o" (progn  
+      (setq x-select-enable-clipboard t)
+      (insert (buyn/convert-markdown-to-org (current-kill 0 t)))
+      (setq x-select-enable-clipboard nil)
+      ) "2Org")
   ("q" nil "quit")
   ;; --------------------------------------
   )
 #+end_src
+
+#+RESULTS:
+: hydra-yank-menu/body
 
 ****** dev-menu
 #+begin_src elisp
@@ -9511,4 +9533,3 @@ For example:
 журнал для каждого проекат
 или всётаеи проще просто один орг лог фаил
 * 2025-02-07
-
