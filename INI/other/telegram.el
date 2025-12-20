@@ -6,6 +6,7 @@
   :config
     (setq telega-server-libs-prefix "/usr")
     (setq telega-emoji-use-images nil)
+    (setq telega-use-docker t)
     (evil-mode 1)
     (ispell-change-dictionary "ru_RU")
     (flyspell-mode t)

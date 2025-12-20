@@ -7530,6 +7530,7 @@ The major mode is Calculator mode defined in calc.el:
   :config
     (setq telega-server-libs-prefix "/usr")
     (setq telega-emoji-use-images nil)
+    (setq telega-use-docker t)
     (evil-mode 1)
     (ispell-change-dictionary "ru_RU")
     (flyspell-mode t)
@@ -7726,6 +7727,18 @@ The major mode is Calculator mode defined in calc.el:
 :header-args: :tangle no
 :END:
 **** install
+***** docker
+sudo pacman -S docker
+sudo systemctl enable --now docker
+sudo usermod -aG docker $USER
+Перелогинься (важно).
+docker pull zevlg/telega-server:latest
+
+(setq telega-use-docker t)
+
+если есть сомнения в работоспособности Проверь:
+docker run hello-world
+***** or telegram-tdlib
 
 yay -Sy telegram-tdlib
 долгая установка стоит попробывать 
