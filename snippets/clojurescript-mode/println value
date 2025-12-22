@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: println value
+# key: pv
+# --
+
+(println "value = $1" $0)
