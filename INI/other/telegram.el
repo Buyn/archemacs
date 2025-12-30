@@ -62,7 +62,8 @@
   ("n"(telega-chat-with (telega-chat-get -1001232115728)) "novators")
   ("P"(telega-chat-with (telega-chat-get -1001274893255)) "polden")
   ("g"(telega-chat-with (telega-chat-get -1001709303239)) "Godess")
-  ("T"(telega-chat-with (telega-chat-get -4974512492)) "TechoSpirit")
+  ("T"(telega-chat-with (telega-chat-get -1002362784223)) "TechoMagic")
+  ("Z"(telega-chat-with (telega-chat-get -1002389433036)) "Zombrex")
 
 
   ("q" nil "quit"))
