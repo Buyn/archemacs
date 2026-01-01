@@ -8,8 +8,6 @@
     (setq telega-emoji-use-images nil)
     (setq telega-use-docker t)
     (evil-mode 1)
-    (ispell-change-dictionary "ru_RU")
-    (flyspell-mode t)
 
 (evil-define-key 'normal telega-chat-mode-map
   (kbd "t r") 'telega-sticker-choose-favorite-or-recent
@@ -26,6 +24,8 @@
     (add-hook 'telega-chat-mode-hook
               (lambda ()
                 (evil-local-mode 1)
+                (ispell-change-dictionary "ru_RU")
+                (flyspell-mode t)
                 (evil-normalize-keymaps)))
 
 )
@@ -74,7 +74,7 @@
   ("b"(telega-chat-with (telega-chat-get -1001169049438)) "Be or")
   ("n"(telega-chat-with (telega-chat-get -1001231519967)) "Nevsorov")
   ("k"(telega-chat-with (telega-chat-get -1001084173001)) "Kac")
-  ("s"(telega-chat-with (telega-chat-get -1001709303239)) "Shulman")
+  ("s"(telega-chat-with (telega-chat-get -1001485724714)) "Shulman")
   ("p"(telega-chat-with (telega-chat-get -1001098515055)) "Portikov")
   ("V"(telega-chat-with (telega-chat-get -1001662388432)) "Vanek")
   ("c"(telega-chat-with (telega-chat-get -1002001086400)) "Creators")

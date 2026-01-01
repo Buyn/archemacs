@@ -7535,9 +7535,9 @@ The major mode is Calculator mode defined in calc.el:
     (setq telega-emoji-use-images nil)
     (setq telega-use-docker t)
     (evil-mode 1)
-    (ispell-change-dictionary "ru_RU")
-    (flyspell-mode t)
   #+end_src
+    ;; (ispell-change-dictionary "ru_RU")
+    ;; (flyspell-mode t)
 ***** bind keys
 ****** normal
 ;; Определяем бинды только для telega-chat-mode в normal режиме
@@ -7615,6 +7615,8 @@ The major mode is Calculator mode defined in calc.el:
     (add-hook 'telega-chat-mode-hook
               (lambda ()
                 (evil-local-mode 1)
+                (ispell-change-dictionary "ru_RU")
+                (flyspell-mode t)
                 (evil-normalize-keymaps)))
 #+end_src
 
@@ -7686,7 +7688,7 @@ The major mode is Calculator mode defined in calc.el:
   ("b"(telega-chat-with (telega-chat-get -1001169049438)) "Be or")
   ("n"(telega-chat-with (telega-chat-get -1001231519967)) "Nevsorov")
   ("k"(telega-chat-with (telega-chat-get -1001084173001)) "Kac")
-  ("s"(telega-chat-with (telega-chat-get -1001709303239)) "Shulman")
+  ("s"(telega-chat-with (telega-chat-get -1001485724714)) "Shulman")
   ("p"(telega-chat-with (telega-chat-get -1001098515055)) "Portikov")
   ("V"(telega-chat-with (telega-chat-get -1001662388432)) "Vanek")
   ("c"(telega-chat-with (telega-chat-get -1002001086400)) "Creators")
@@ -7967,7 +7969,7 @@ C-c ?                                           telega-describe-chat
 что-то нето с эмодзи, они отображаются страными символами а не привычными картинками. притом что емодзи в томже ореге отображаются без проблем.
 Это же проблема с отображениям реакций.
 Что бы это могло бы быть?
-***** NEXT гидра меню быстрого управления
+***** DONE гидра меню быстрого управления
 ****** открывать нужные чаты
 ****** послать стикер
 ****** поставить реакцию
@@ -7980,7 +7982,7 @@ C-c ?                                           telega-describe-chat
 путём проверки наличия рутого буфера
 telega-chat-with
 ***** DONE (telega-switch-buffer)
-***** настроить ивил кнопки в телеге
+***** DONE настроить ивил кнопки в телеге
 сделть ивл активным но отключёным по умолчанию во всех телеграм буферах
 и включёным в мини буфере телеграма
 ***** DONE (telega-buffer-file-send)
