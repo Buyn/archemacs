@@ -1,7 +1,7 @@
 (use-package org-roam
   ;; :disabled
   :ensure t
-  :after org
+  ;; :after org
   :init (setq org-roam-v2-ack t) ;; Acknowledge V2 upgrade
   :custom
   ;; (org-roam-directory (file-truename org-directory))

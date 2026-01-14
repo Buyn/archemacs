@@ -190,3 +190,5 @@
 (load (expand-file-name "INI/org-brain-cfg.el" user-emacs-directory))
 
 (load (expand-file-name "INI/ORG/graph-tools-cfg.el" user-emacs-directory))
+
+(load (expand-file-name "INI/ORG/org-roam-cfg.el" user-emacs-directory))

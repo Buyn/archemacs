@@ -3800,7 +3800,8 @@ CLOSED: [2025-03-03 Пн 06:36]
 ;; --------------------------------------
 ;; (find-file-other-frame "~/.archemacs/INI/org-brain-cfg.el")
 ;; (load "~/.archemacs/INI/ORG/org-roam-cfg.el")
-#+begin_src elisp :tangle no
+:tangle no
+#+begin_src elisp 
 (load (expand-file-name "INI/ORG/org-roam-cfg.el" user-emacs-directory))
 #+end_src
 
@@ -4341,6 +4342,7 @@ CLOSED: [2025-03-03 Пн 06:36]
 :header-args: :tangle INI/ORG/org-roam-cfg.el
 :END:
 *** описание
+(find-file-other-frame "~/.archemacs/INI/ORG/org-roam-cfg.el")
 
 *** used in
 (find-file-other-frame "~/.archemacs/INI/org-cfg.el")
@@ -4356,7 +4358,7 @@ CLOSED: [2025-03-03 Пн 06:36]
 (use-package org-roam
   ;; :disabled
   :ensure t
-  :after org
+  ;; :after org
   :init (setq org-roam-v2-ack t) ;; Acknowledge V2 upgrade
   :custom
   ;; (org-roam-directory (file-truename org-directory))
@@ -4382,6 +4384,9 @@ CLOSED: [2025-03-03 Пн 06:36]
                  ;; ("C-c n r" . org-roam-node-random)       
                  ("C-c n a" . org-roam-alias-add)))))
 #+end_src
+
+#+RESULTS:
+: org-roam-alias-add
 
 
 ;; --------------------------------------
