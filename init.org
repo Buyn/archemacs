@@ -75,12 +75,15 @@ evil-normal-state-map (kbd "M-p M-o")
     (global-set-key (kbd "C-S-<XF86Eject>") '(lambda()        (emms-player-seek -60)))
 *** hydra
 **** [[*menus for 00][menus for 00]]
+[[*org-roam-menu][org-roam-menu]]
+[[*brain-org][brain-org]]
 [[*spc-main-menu00][spc-main-menu00]]
 ***** ai
 (defhydra hydra-ai-menu (:color blue)
 ***** models
 (defhydra hydra-ai-model-menu (:color blue)
 ***** [[*dev-menu][dev-menu]]
+**** [[*F1 menus][F1 menus]]
 *** ranger
 (use-package ranger
 *** org-roam
@@ -3442,12 +3445,12 @@ _?_ help            _c_urrent file
 #+begin_src elisp
 (defhydra hydra-f1-grimuar-menu (:color blue)
   ("c" (find-file-other-frame "~/Dropbox/Office/Research/Doc/Codex/BuYn_Codex.org") "Codex")
-  ("a" (find-file-other-frame "~/Dropbox/orgs/capture/astronomicon.org") "Astronomicon")
-  ("E" (find-file-other-frame "~/Dropbox/orgs/capture/emagus.org") "Emagus")
+  ("s" (find-file-other-frame "~/Dropbox/orgs/capture/astronomicon.org") "Astronomicon")
+  ("e" (find-file-other-frame "~/Dropbox/orgs/capture/emagus.org") "Emagus")
   ("n" (find-file-other-frame "~/Dropbox/orgs/capture/Necronomicon.org") "Necronomicon")
   ("t" (find-file-other-frame "~/Dropbox/orgs/capture/Necroteuch.org") "Necroteuch")
   ("T" (buyn-shell-start "~/Dropbox/orgs/capture/Necroteuch.sh") "desk5Necroteuch")
-  ("s" (find-file-other-frame "~/Dropbox/orgs/capture/Ansible.org") "Ansible")
+  ("a" (find-file-other-frame "~/Dropbox/orgs/capture/Ansible.org") "Ansible")
   ("m" (find-file-other-frame "~/Dropbox/orgs/capture/Manabook.org") "Manabook")
   ("h" (find-file-other-frame "~/Dropbox/orgs/capture/holodeck.org") "Holodeck")
   ("p" (find-file-other-frame "~/Dropbox/orgs/capture/Pensieve.org") "Pensieve")
@@ -4531,7 +4534,13 @@ CLOSED: [2025-03-03 Пн 06:36]
 
 #+RESULTS:
 : dendroam-node-find-initial-input
-
+*** link
+[[*org-roam-menu][org-roam-menu]]
+**** ranger
+(ranger "~/Dropbox/orgs/Org-roam/default/")
+*** docs
+[[file:~/Dropbox/orgs/Org-roam/default/emacs.packages.org_roam.knowledge_base.принципы.org]]
+[[file:~/Dropbox/orgs/Org-roam/default/emacs.packages.org-roam.org]]
 * **Работа с файлами и менеджмент**
 ** описание
    Конфиги для управления файлами, поиска и т.п.  
