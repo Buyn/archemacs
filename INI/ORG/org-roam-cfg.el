@@ -11,7 +11,7 @@
   (org-roam-setup)
   ;; If you're using a vertical completion framework, you might want a more informative completion interface пологаю 10 максимальное количство символо для тагов - можно убрать
   (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
-  ;; (require 'dendroam)
+  (require 'dendroam)
   ;; (org-roam-db-autosync-mode)
   ;; If using org-roam-protocol
   ;; (require 'org-roam-protocol)

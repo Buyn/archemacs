@@ -7294,6 +7294,12 @@ https://gitlab.com/andreyorst/infinite.el
 *** get buffer name
 (buffer-name)
 (frame-parameter nil 'name)
+*** auto-revert-mode
+(auto-revert-mode 1)
+
+(setq auto-revert-interval 1)          ;; проверка каждую секунду
+(setq auto-revert-check-vc-info t)     ;; учитывать git/hg
+(setq auto-revert-verbose nil)         ;; не спамить сообщениями
 ** keyboard macro
 *** base
 	‘C-u <F3>’
@@ -11398,7 +11404,7 @@ The list-timers command lists all the currently active timers. The command c (ti
 ** Input 
 *** read : 
 	 (read)
-** Functions : 
+** Functions:
 *** 13.4 Defining Functions
 We usually give a name to a function when it is first created.  This
 is called defining a function, and we usually do it with the
@@ -11616,6 +11622,11 @@ Of course, if the optional parameter is only needed once you should just do this
 
 			Open a new file, insert some text that contains file path.
 			Go to a line that's a file path, select it, then Alt+x x-add-prop. The region will be colored blue, and pressing Enter key on it will call x-open-me
+**** run as function
+как вызвать из елиспа команду из меню M-x
+
+(call-interactively #'some-command)
+
 *** lambda:
 **** (lambda (n) (* n 2))
 (define-key evil-normal-state-map (kbd "M-c M-y") '(lambda() (interactive)
