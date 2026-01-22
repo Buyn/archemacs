@@ -123,6 +123,9 @@ org-src-mode-map
 :PROPERTIES:
 :header-args: :tangle init.el
 :END:
+*** from
+(find-file-other-window "~/.archemacs/init.el")
+
 *** Start of manual file
 **** load INI/init.el
 ;; --------------------------------------
@@ -5835,12 +5838,13 @@ spd-say -l ru "Привет, БуЯн!"
 https://github.com/karthink/gptel
 (eww-of https://github.com/karthink/gptel)
 *** used in
+[[file:init.el::'(gptel-model 'gemini-flash-lite-latest)]]
 ;; (find-file "~/.archemacs/INI/init.el")
-*** src
+*** src INI/AI/ai.el
 **** CANCELED use-package gpt
 #+begin_src elisp :tangle no
 (use-package gpt
-  :disabled
+  ;; :disabled
   :ensure t
   :config
   ;; (setq gpt-openai-key "sk-*")
@@ -5862,11 +5866,25 @@ https://github.com/karthink/gptel
   (define-key evil-normal-state-map (kbd "M-a M-j M-h") 'gptel-mode)
   ;; (setq gpt-openai-key "sk-*")
   (setq gptel-default-mode 'org-mode)
-  (custom-set-variables '(gptel-model 'gemini-2.0-flash-exp))
+  (custom-set-variables '(gptel-model 'gemini-flash-lite-latest))
+  (let* ((additional-models
+          '(gemini-flash-latest
+            gemini-2.5-flash
+            gemini-2.0-flash-exp-image-generation
+            gemini-2.5-flash-preview-tts
+            gemini-flash-lite-latest
+            gemini-pro-latest
+            nano-banana-pro-preview
+            veo-3.0-generate-001
+            veo-3.0-fast-generate-001)))
+    (setf (gptel-backend-models gptel-backend)
+          (delete-dups
+          (append additional-models
+                  (gptel-backend-models gptel-backend))))) 
   )
 
-(custom-set-variables '(gptel-model 'gemini-2.0-flash-exp))
 #+end_src
+(custom-set-variables '(gptel-model 'gemini-2.0-flash-exp))
 
 (custom-set-variables '(gptel-model "gpt-4o-mini"))
   ;; (custom-set-variables '(gptel-model "gpt-3.5-turbo-16k"))
@@ -5991,151 +6009,11 @@ https://github.com/karthink/gptel
 #+RESULTS:
 : hydra-ai-chat-menu/body
 
-*** docs
-**** gptel
-***** links
-https://github.com/karthink/gptel
+*** docs INI/AI/ai.el
+[[id:fe7f1a93-048c-47ba-9546-d1e2fb408f00][emacs Gptel]]
 
-***** models
-****** setq
-(setq gptel-model 'gemini-2.0-flash-exp)
-(setq gptel-model 'gemini-2.5-flash-preview-05-20)
-(setq gptel-model 'gemini-2.5-flash-preview-04-17)
-****** link
-******* gemeni
-https://ai.google.dev/gemini-api/docs/rate-limits#free-tier
-Standard API rate limits
-The following table lists the rate limits for all standard Gemini API calls.
+[[id:96341486-cda3-46c8-a3d1-09b59529c377][tech.cyber.ai.google:gemeni]]
 
-Free Tier
-Tier 1
-Tier 2
-Tier 3
-Model   RPM     TPM     RPD
-Text-out models
-Gemini 2.5 Pro  5       250,000 100
-Gemini 2.5 Flash        10      250,000 250
-Gemini 2.5 Flash-Lite Preview 06-17     15      250,000 1,000
-Gemini 2.0 Flash        15      1,000,000       200
-Gemini 2.0 Flash-Lite   30      1,000,000       200
-Live API
-Gemini 2.5 Flash Live   3 sessions      1,000,000       
-Gemini 2.5 Flash Preview Native Audio Dialog    1 session       25,000  5
-Gemini 2.5 Flash Experimental Native Audio Thinking Dialog      1 session       10,000  5
-Gemini 2.0 Flash Live   3 sessions      1,000,000       
-Multi-modal generation models
-Gemini 2.5 Flash Preview TTS    3       10,000  15
-Gemini 2.5 Pro Preview TTS                      
-Gemini 2.0 Flash Preview Image Generation       10      200,000 100
-Imagen 3                        
-Veo 2                   
-Other models
-Gemma 3 & 3n    30      15,000  14,400
-Gemini Embedding        100     30,000  1,000
-Deprecated models
-Gemini 1.5 Flash (Deprecated)   15      250,000 50
-Gemini 1.5 Flash-8B (Deprecated)        15      250,000 50
-Gemini 1.5 Pro (Deprecated)
-***** info
-
-(setq gptel-model 'gemini-2.5-flash-preview-05-20)
-(setq gptel-model 'gemini-2.5-flash-preview-04-17)
-
-gemini-2.5-flash-exp-native-audio-thinking-dialog  
-  (setq gptel-model 'gemini-2.5-flash-exp-native-audio-thinking-dialog)
-gemini-2.0-flash-exp  
-  (setq gptel-model 'gemini-2.0-flash-exp)
-
-(setq gptel-model 'gemini-2.5-flash-preview-04-17)
-  Gemini 2.0 Flash Experimental  10  250,000  1,000    
-(setq gptel-model 'gemini-2.0-flash-lite)
-  Gemini 2.0 Flash-Lite  30  1,000,000  1,500    
-gemini-2.0-flash
-  Gemini 2.0 Flash  15  1,000,000  1,500    
-
-(setq gptel-model 'gemini-1.5-flash-latest)
-
-(setq gptel-include-reasoning "*reason-gpt*")
-(setq gptel-log-level 'info)
-(setq gptel-log-level nil)
-(setq gptel-log-level 'debug)
-***** gptel-include-reasoning
-gptel-include-reasoning is a variable defined in ‘gptel.el’.
-
-Its value is t
-
-How to handle LLM reasoning or "thinking" text blocks.
-
-Some LLMs include in their response a "thinking" section.  This
-text improves the quality of the LLM’s final output, but may not
-be interesting to you by itself.
-
-Supported options are the symbols
-
-    t       - Include with the response, the default
-    nil     - Do not include
-    ignore  - Include with the response but ignore on subsequent
-              conversation turns
-
-It can also be a string naming a buffer, in which case the
-reasoning text will be inserted at the end of that buffer.
-
-  You can customize this variable.
-
-[back]
-***** log-level 'info
-Evaluate (setq gptel-log-level 'info)
-Send a request.
-When you get the error, check the *gptel-log* buffer. Paste the log contents here.
-***** gemini-2.5-flash-preview-04-17
-i get the same, error, it looks like the Gemini Model
-
-gemini-2.5-pro-exp-03-25
-
-which was for free until now is not free any more.
-
-@alienbogart look at
-https://ai.google.dev/gemini-api/docs/rate-limits#free-tier
-
-Gemini 2.5 Flash Preview 04-17
-
-seems to be the only gemini 2.5 model which is still available in the free tier.
-you can enable it by typing
-
-(setq gptel-model 'gemini-2.5-flash-preview-04-17)
-for the other model it seems you have to enable billing and add credit card information.
-
-@karthink we should update the documentation.
-in the gptel menu choser
-there is still the line:
-Gemini:gemini-2.0-pro-exp-02-05 $ 0.00 in,  $  0.00 out
-
-in the table https://ai.google.dev/gemini-api/docs/pricing
-
-for the pro preview model the following info is listed
-
-Free Tier Not available
-
-Paid Tier, per 1M tokens in USD
-$1.25, prompts <= 200k tokens
-$2.50, prompts > 200k tokens
-***** curl gemeni
-gemini-2.5-flash-preview-04-17
-[[file:~/Dropbox/orgs/capture/emagus.org::*key][key]]
-***** commands
-****** To send queries  Description  
- gptel-send  Send all text up to (point), or the selection if region is active. Works anywhere in Emacs.  
- gptel  Create a new dedicated chat buffer. Not required to use gptel.  
- gptel-rewrite  Rewrite, refactor or change the selected region. Can diff/ediff changes before merging/applying.  
-****** To tweak behavior    
- C-u gptel-send  Transient menu for preferences, input/output redirection etc.  
- gptel-menu  (Same)  
-****** To add context    
- gptel-add  Add/remove a region or buffer to gptel’s context. In Dired, add/remove marked files.  
- gptel-add-file  Add a file (text or supported media type) to gptel’s context. Also available from the transient menu.  
-****** Org mode bonuses    
- gptel-org-set-topic  Limit conversation context to an Org heading. (For branching conversations see below.)  
- gptel-org-set-properties  Write gptel configuration as Org properties, for per-heading chat configuration.  
 * **Программирование и языковые конфигурации**
 ** описание
    Отдельные категории для Python, Clojure, JavaScript, Lua и т.д. + автодополнения и проверки синтаксиса.  

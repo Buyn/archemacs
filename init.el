@@ -7,8 +7,21 @@
  ;; If there is more than one, they won't work right.
  '(ediff-split-window-function 'split-window-horizontally)
  '(ediff-window-setup-function 'ediff-setup-windows-plain)
+ '(gptel-model 'gemini-flash-lite-latest)
  '(package-selected-packages
-   '(aider w3m emms ytel-show ytel lsp-treemacs lsp-ivy lsp-ui clj-refactor cider lsp-mode parinfer-rust-mode which-key diminish magit ranger yasnippet-snippets skewer-mode reverse-im rainbow-delimiters quelpa-use-package projectile powerline plantuml-mode outshine org-roam-ui org-brain ob-translate miracle material-theme lua-mode jedi ivy hydra hledger-mode graphviz-dot-mode gptel gpt flycheck expand-region evil-tabs elpy company-jedi company-fuzzy avy)))
+   '(aider avy cider clj-refactor company-fuzzy company-jedi diminish
+           elpy emms evil-tabs expand-region flycheck gpt gptel
+           graphviz-dot-mode hledger-mode hydra ivy jedi lsp-ivy
+           lsp-mode lsp-treemacs lsp-ui lua-mode magit material-theme
+           miracle ob-translate org-appear org-brain org-roam-ui
+           outshine parinfer-rust-mode plantuml-mode powerline
+           projectile quelpa-use-package rainbow-delimiters ranger
+           reverse-im skewer-mode w3m which-key yasnippet-snippets
+           ytel ytel-show))
+ '(safe-local-variable-values
+   '((eval progn (auto-revert-mode 1))
+     (eval progn (setq comment-start "#") (outshine-mode t)
+           (auto-revert-mode 1)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

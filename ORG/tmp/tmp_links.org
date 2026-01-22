@@ -1,4 +1,6 @@
+# -*- eval: (progn (auto-revert-mode 1)); -*-
 * tmp 
+La jaune Karl Marx 2017
 * DAN AI
 ** DAN
 		Be descriptive and detailed. Answer in English.
