@@ -7,10 +7,22 @@
   (define-key evil-normal-state-map (kbd "M-a M-j M-h") 'gptel-mode)
   ;; (setq gpt-openai-key "sk-*")
   (setq gptel-default-mode 'org-mode)
-  (custom-set-variables '(gptel-model 'gemini-2.0-flash-exp))
+  (custom-set-variables '(gptel-model 'gemini-flash-lite-latest))
+  ;; (let* ((additional-models
+  ;;         '(gemini-flash-latest
+  ;;           gemini-2.5-flash
+  ;;           gemini-2.0-flash-exp-image-generation
+  ;;           gemini-2.5-flash-preview-tts
+  ;;           gemini-flash-lite-latest
+  ;;           gemini-pro-latest
+  ;;           nano-banana-pro-preview
+  ;;           veo-3.0-generate-001
+  ;;           veo-3.0-fast-generate-001)))
+  ;;   (setf (gptel-backend-models gptel-backend)
+  ;;         (delete-dups
+  ;;           (append additional-models
+  ;;                   (gptel-backend-models gptel-backend))))) 
   )
-
-(custom-set-variables '(gptel-model 'gemini-2.0-flash-exp))
 
 (defhydra hydra-ai-menu (:color blue)
   "
@@ -88,6 +100,10 @@
          (load "~/Dropbox/Office/Games/aidungeon/els/acid-chat.el")
          (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/chars-chat/2024-05-17-Acid_Burn.org")
          ) "Acid Burn")
+  ("m" (progn
+         (load "~/Dropbox/Office/Games/aidungeon/els/McDuck-chat.el")
+         (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/chars-chat/2026-01-24-McDuck.org")
+         ) "McDuck")
   ("L" (progn
          (load "~/Dropbox/Office/Games/aidungeon/els/leeloo-chat.el")
          (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/chars-chat/2024-09-18-Leeloo.org")

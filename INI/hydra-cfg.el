@@ -323,6 +323,16 @@
   ("E" evil-mode "evil mode")
 ;; ****** R : 
   ("R" revert-buffer "revert buffer") 
+;; ****** A : 
+  ("A" auto-revert-mode "auto-revert buffer") 
+;; ****** p : 
+  ("p"
+   (let ((file (or (buffer-file-name)
+                  (user-error "Buffer is not visiting a file"))))
+    (kill-new file)         ;; копирует в kill-ring
+    (insert file)           ;; вставляет в текст
+    (message "Inserted and copied: %s" file)) "buffpath") 
+
 ;; ****** W : 
   ("W" (revert-buffer-with-coding-system 'windows-1251) "win-1251") 
 ;; ****** q : 

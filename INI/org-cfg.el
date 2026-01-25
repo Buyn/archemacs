@@ -189,6 +189,12 @@
 ;; (find-file-other-frame "~/.archemacs/INI/org-brain-cfg.el")
 (load (expand-file-name "INI/org-brain-cfg.el" user-emacs-directory))
 
+(use-package org-appear
+  :ensure t
+  :config
+    (setq org-hide-emphasis-markers t)
+    (org-appear-mode))
+
 (load (expand-file-name "INI/ORG/graph-tools-cfg.el" user-emacs-directory))
 
 (load (expand-file-name "INI/ORG/org-roam-cfg.el" user-emacs-directory))

@@ -64,18 +64,25 @@ evil-normal-state-map (kbd "M-p M-o")
 ** by mods
 *** hydra
 **** [[*menus for 00][menus for 00]]
-[[*org-roam-menu][org-roam-menu]]
-[[*brain-org][brain-org]]
-[[*spc-main-menu00][spc-main-menu00]]
+***** [[*org-roam-menu][org-roam-menu]]
+***** [[*brain-org][brain-org]]
+***** [[*spc-main-menu00][spc-main-menu00]]
+***** [[*emacs-menu][emacs-menu]]
+
+
 ***** ai
 (defhydra hydra-ai-menu (:color blue)
-***** models
+
+hydra-ai-role-menu
+(defhydra hydra-ai-chat-menu (:color blue)
+****** models
 (defhydra hydra-ai-model-menu (:color blue)
 ***** [[*dev-menu][dev-menu]]
+***** 
 **** [[*F1 menus][F1 menus]]
 *** ranger
 (use-package ranger
-*** org-roam
+*** [[*INI/org-cfg.el][org-roam]]
 [[*INI/ORG/org-roam-cfg.el][INI/ORG/org-roam-cfg.el]]
 
 *** [[*browsers configs][browsers configs]]
@@ -104,7 +111,8 @@ m-e m-s
     (global-set-key (kbd "C-<XF86AudioStop>") '(lambda()        (emms-player-seek 60)))
 
     (global-set-key (kbd "C-S-<XF86Eject>") '(lambda()        (emms-player-seek -60)))
-** mods
+*** [[*INI/AI/ai.el][INI/AI/ai.el]]
+** by mode-maps
 FRAME [[*src INI/frame-control.el][src INI/frame-control.el]]
 global-set-key
 evil-normal-state-map
@@ -2836,6 +2844,16 @@ CLOSED: [2025-02-21 Fri 21:34]
   ("E" evil-mode "evil mode")
 ;; ****** R : 
   ("R" revert-buffer "revert buffer") 
+;; ****** A : 
+  ("A" auto-revert-mode "auto-revert buffer") 
+;; ****** p : 
+  ("p"
+   (let ((file (or (buffer-file-name)
+                  (user-error "Buffer is not visiting a file"))))
+    (kill-new file)         ;; копирует в kill-ring
+    (insert file)           ;; вставляет в текст
+    (message "Inserted and copied: %s" file)) "buffpath") 
+
 ;; ****** W : 
   ("W" (revert-buffer-with-coding-system 'windows-1251) "win-1251") 
 ;; ****** q : 
@@ -2880,6 +2898,10 @@ CLOSED: [2025-02-21 Fri 21:34]
 ;; **** q : 
   ("q" nil "quit"))
 #+end_src
+
+#+RESULTS:
+: hydra-emaks-fonts/body
+
 ****** www-menu
 #+begin_src elisp
 (defhydra www-menu (:color blue)
@@ -3539,7 +3561,7 @@ CLOSED: [2025-03-03 Пн 06:36]
 без орга вроде оно не втему
 **** список туду активировать репор баг фиксет
 поскольку тогда можно рубрицировать поиски по ошибкам
-*** src
+*** src INI/org-cfg.el
 **** ORG-MODE CUSTOMIZATION
 ;; --------------------------------------
 ***** ORG setup
@@ -3725,7 +3747,7 @@ CLOSED: [2025-03-03 Пн 06:36]
 (setq org-confirm-elisp-link-function nil)
 #+end_src
 ;; (setq org-log-done t)
-***** ORG binding : 
+***** ORG binding:
 ****** ORG heders : 
 ;; (define-key org-mode-map
 ;;       [S-M-return] 'org-insert-subheading)
@@ -3802,6 +3824,15 @@ CLOSED: [2025-03-03 Пн 06:36]
 ;; ** ORG-BRAIN 
 ;; (find-file-other-frame "~/.archemacs/INI/org-brain-cfg.el")
 (load (expand-file-name "INI/org-brain-cfg.el" user-emacs-directory))
+#+end_src
+;; --------------------------------------
+***** emphasis appear customization
+#+begin_src elisp
+(use-package org-appear
+  :ensure t
+  :config
+    (setq org-hide-emphasis-markers t)
+    (org-appear-mode))  
 #+end_src
 ;; --------------------------------------
 ***** GRAPH ORG TOOLS
@@ -4241,7 +4272,6 @@ CLOSED: [2025-03-03 Пн 06:36]
 ;;  major-modes in the same buffer. If you have required the package you can use
 ;;  M-x org-brain-polymode inside org-brain-visualize, or (as in the example above)
 ;;  add org-brain-polymode to org-brain-visualize-mode-hook.
-
 
 ** INI/ORG/graph-tools-cfg.el
 :PROPERTIES:
@@ -5867,20 +5897,20 @@ https://github.com/karthink/gptel
   ;; (setq gpt-openai-key "sk-*")
   (setq gptel-default-mode 'org-mode)
   (custom-set-variables '(gptel-model 'gemini-flash-lite-latest))
-  (let* ((additional-models
-          '(gemini-flash-latest
-            gemini-2.5-flash
-            gemini-2.0-flash-exp-image-generation
-            gemini-2.5-flash-preview-tts
-            gemini-flash-lite-latest
-            gemini-pro-latest
-            nano-banana-pro-preview
-            veo-3.0-generate-001
-            veo-3.0-fast-generate-001)))
-    (setf (gptel-backend-models gptel-backend)
-          (delete-dups
-          (append additional-models
-                  (gptel-backend-models gptel-backend))))) 
+  ;; (let* ((additional-models
+  ;;         '(gemini-flash-latest
+  ;;           gemini-2.5-flash
+  ;;           gemini-2.0-flash-exp-image-generation
+  ;;           gemini-2.5-flash-preview-tts
+  ;;           gemini-flash-lite-latest
+  ;;           gemini-pro-latest
+  ;;           nano-banana-pro-preview
+  ;;           veo-3.0-generate-001
+  ;;           veo-3.0-fast-generate-001)))
+  ;;   (setf (gptel-backend-models gptel-backend)
+  ;;         (delete-dups
+  ;;           (append additional-models
+  ;;                   (gptel-backend-models gptel-backend))))) 
   )
 
 #+end_src
@@ -5990,6 +6020,10 @@ https://github.com/karthink/gptel
          (load "~/Dropbox/Office/Games/aidungeon/els/acid-chat.el")
          (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/chars-chat/2024-05-17-Acid_Burn.org")
          ) "Acid Burn")
+  ("m" (progn
+         (load "~/Dropbox/Office/Games/aidungeon/els/McDuck-chat.el")
+         (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/chars-chat/2026-01-24-McDuck.org")
+         ) "McDuck")
   ("L" (progn
          (load "~/Dropbox/Office/Games/aidungeon/els/leeloo-chat.el")
          (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/chars-chat/2024-09-18-Leeloo.org")
