@@ -3831,8 +3831,9 @@ CLOSED: [2025-03-03 Пн 06:36]
 (use-package org-appear
   :ensure t
   :config
+    ;; (org-appear-mode)
     (setq org-hide-emphasis-markers t)
-    (org-appear-mode))  
+    (add-hook 'org-mode-hook 'org-appear-mode))  
 #+end_src
 ;; --------------------------------------
 ***** GRAPH ORG TOOLS

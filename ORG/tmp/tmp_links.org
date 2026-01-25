@@ -1,5 +1,9 @@
 # -*- eval: (progn (auto-revert-mode 1)); -*-
 * tmp
+  * Заголовок
+  ** /Курсив/ и *жирный текст*
+
+*полужирный*, /курсив/, _подчёркнутый_, =код=, ~текст~
 * DAN AI
 ** DAN
 		Be descriptive and detailed. Answer in English.
