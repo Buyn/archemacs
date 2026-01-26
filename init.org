@@ -3831,10 +3831,14 @@ CLOSED: [2025-03-03 Пн 06:36]
 (use-package org-appear
   :ensure t
   :config
-    ;; (org-appear-mode)
-    (setq org-hide-emphasis-markers t)
+    (setq org-hide-emphasis-markers t
+        org-appear-autoemphasis t
+        org-appear-autolinks t
+        org-appear-inside-latex t)
     (add-hook 'org-mode-hook 'org-appear-mode))  
 #+end_src
+    ;; (org-appear-mode)
+    ;; (setq org-hide-emphasis-markers t)
 ;; --------------------------------------
 ***** GRAPH ORG TOOLS
 ;; --------------------------------------
@@ -5934,6 +5938,7 @@ https://github.com/karthink/gptel
   ("c" (hydra-ai-chat-menu/body) "AI chat")
   ("m" (hydra-ai-model-menu/body) "AI model")
   ("r" (hydra-ai-role-menu/body) "AI roles")
+  ("i" (hydra-ai-insert-menu/body) "insert")
   ("d" (hydra-ai-docs-menu/body) "AI docs")
   ("q" nil) 
   )
@@ -5941,6 +5946,18 @@ https://github.com/karthink/gptel
 
 #+RESULTS:
 : hydra-ai-menu/body
+***** hydra-ai-insert-menu
+#+begin_src elisp
+
+(defhydra hydra-ai-insert-menu (:color blue)
+  ("v" (insert "дай тезесный список контента видео") "contents video")
+  ("q" nil) 
+  )
+#+end_src
+
+#+RESULTS:
+: hydra-ai-insert-menu/body
+
 
 ***** hydra-commands-menu
 #+begin_src elisp
@@ -9410,6 +9427,8 @@ CLOSED: [2025-02-25 Tue 01:20]
 ;; (find-file-other-frame "~/INI/babel-cfg.el")
 ;; (load "~/INI/hydra-cfg.el")
 ;; (load "~/ELs/BuYn/reader.el")
+(buyn-shell-start "wmctrl -s 4 ; emacs --debug-init")
+(delete-other-windows)
  #+end_src
 ** package-upgrade
 (setq package-check-signature nil) ;; временно, если будут ошибки

@@ -192,8 +192,10 @@
 (use-package org-appear
   :ensure t
   :config
-    ;; (org-appear-mode)
-    (setq org-hide-emphasis-markers t)
+    (setq org-hide-emphasis-markers t
+        org-appear-autoemphasis t
+        org-appear-autolinks t
+        org-appear-inside-latex t)
     (add-hook 'org-mode-hook 'org-appear-mode))
 
 (load (expand-file-name "INI/ORG/graph-tools-cfg.el" user-emacs-directory))

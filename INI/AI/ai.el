@@ -32,7 +32,13 @@
   ("c" (hydra-ai-chat-menu/body) "AI chat")
   ("m" (hydra-ai-model-menu/body) "AI model")
   ("r" (hydra-ai-role-menu/body) "AI roles")
+  ("i" (hydra-ai-insert-menu/body) "insert")
   ("d" (hydra-ai-docs-menu/body) "AI docs")
+  ("q" nil) 
+  )
+
+(defhydra hydra-ai-insert-menu (:color blue)
+  ("v" (insert "дай тезесный список контента видео") "contents video")
   ("q" nil) 
   )
 
