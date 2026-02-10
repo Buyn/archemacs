@@ -199,7 +199,7 @@
 (define-key evil-normal-state-map (kbd "gj") 'next-logical-line)
 (define-key evil-normal-state-map (kbd "gk") 'previous-logical-line)
 
-
+(define-key evil-normal-state-map (kbd "M-e M-i M-i") 'imenu)
 
 (define-key evil-normal-state-map (kbd "G") nil)
 (define-key evil-visual-state-map (kbd "G") nil)

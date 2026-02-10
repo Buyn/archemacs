@@ -31,7 +31,4 @@
 
 ;; *** outshine startup state
   (setq outshine-startup-folded-p 1)
-;; *** autoload
-  (add-hook 'outline-minor-mode-hook 'outshine-mode)
-  (add-hook 'prog-mode-hook '(lambda () (outshine-mode t)))
   )

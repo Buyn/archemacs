@@ -97,6 +97,11 @@ m-e m-s
 
 (defun send-region-to-eshell-buffer-and-execute(start end );&optional INTERCT
 (defun send-activ-line-to-eshell-buffer-and-execute()
+*** evil
+[[*EVIL-MOD CUSTOMIZATION][EVIL-MOD CUSTOMIZATION]]
+(define-key evil-normal-state-map (kbd "M-e M-i M-i") 'imenu)
+
+
 *** telega
 [[*INI/other/telegram.el][INI/other/telegram.el]]
 
@@ -863,7 +868,7 @@ CLOSED: [2025-02-11 Tue 16:29]
 ;; ** --------------------------------------
 #+end_src
 * **горячие клавиши**
-** **Evil и навигация**
+** **evil и навигация**
 *** evil-mod
 :PROPERTIES:
 :header-args: :tangle INI/evil-mod-cfg.el
@@ -1130,7 +1135,7 @@ CLOSED: [2025-02-11 Tue 16:29]
 (define-key evil-normal-state-map (kbd "gj") 'next-logical-line)
 (define-key evil-normal-state-map (kbd "gk") 'previous-logical-line)
 
-
+(define-key evil-normal-state-map (kbd "M-e M-i M-i") 'imenu)
 
 (define-key evil-normal-state-map (kbd "G") nil)
 (define-key evil-visual-state-map (kbd "G") nil)
@@ -6125,7 +6130,7 @@ https://github.com/karthink/gptel
               ("ZPRE" . 'projectile-replace-regexp)
               ("M-e M-p M-o" . 'projectile-multi-occur)
               ("M-e M-t M-t" . 'projectile-toggle-between-implementation-and-test)
-          :map evil-normal-state-map
+          :map evil-visual-state-map
               ("M-e M-p M-o" . (lambda() (interactive)
                                  (projectile-multi-occur
                                   (buffer-substring (region-beginning) (region-end)))))
@@ -6136,80 +6141,119 @@ https://github.com/karthink/gptel
     ;; test project (s-p T)
 ))
 #+end_src
+
+#+RESULTS:
+: #[nil ((projectile-find-references (buffer-substring (region-beginning) (region-end)))) nil nil nil nil]
+
 **** load els
-#+begin_src elisp
+***** DELIMITERS-MOD CUSTOMIZATION
 ;; --------------------------------------
-;; ** DELIMITERS-MOD CUSTOMIZATION
 ;; (find-file "~/.archemacs/INI/delimiters-cfg.el")
 ;; (load "~/.archemacs/INI/dev/delimiters-cfg.el")
+#+begin_src elisp
 (load (expand-file-name "INI/dev/delimiters-cfg.el" user-emacs-directory))
+#+end_src
+
 ;; --------------------------------------
-;; ** PYTHON-MOD CUSTOMIZATION
+***** PYTHON-MOD CUSTOMIZATION
 ;; (find-file "~/.archemacs/INI/python-cfg.el") 
 ;; (find-file-other-frame "~/.archemacs/INI/python-cfg.el")
 ;; (load "~/.archemacs/INI/dev/python-cfg.el")
+#+begin_src elisp
 (load (expand-file-name "INI/dev/python-cfg.el" user-emacs-directory))
+#+end_src
+
 ;; --------------------------------------
-;; ** LUA-MOD CUSTOMIZATION
+***** LUA-MOD CUSTOMIZATION
 ;; --------------------------------------
 ;; (find-file "~/.archemacs/INI/lua-cfg.el")
 ;; (load "~/.archemacs/INI/dev/lua-cfg.el")
+#+begin_src elisp
 (load (expand-file-name "INI/dev/lua-cfg.el" user-emacs-directory))
+#+end_src
 ;; --------------------------------------
-;; ** OUTSHINE-MOD CUSTOMIZATION
+***** RENPY-MOD CUSTOMIZATION
+;; --------------------------------------
+;; (find-file "~/.archemacs/INI/dev/renpy-cfg.el")
+;; (load "~/.archemacs/INI/dev/renpy-cfg.el")
+#+begin_src elisp
+(load (expand-file-name "INI/dev/renpy-cfg.el" user-emacs-directory))
+#+end_src
+;; --------------------------------------
+***** OUTSHINE-MOD CUSTOMIZATION
 ;; --------------------------------------
 ;; (load "~/.archemacs/INI/dev/outshine_cfg.el")
+#+begin_src elisp
 (load (expand-file-name "INI/dev/outshine_cfg.el" user-emacs-directory))
+#+end_src
 ;; --------------------------------------
-;; ** AHK-MODE CUSTOMIZATION
+***** CANCELED AHK-MODE CUSTOMIZATION
 ;; --------------------------------------
 ;; (find-file-other-frame "~/.archemacs/INI/dev/autohotkey-cfg.el")
 ;; (load "~/.archemacs/INI/dev/autohotkey-cfg.el")
+#+begin_src elisp :tangle no
 ;; (load (expand-file-name "INI/dev/autohotkey-cfg.el" user-emacs-directory))
-;; --------------------------------------
-;; ** C#-MOD CUSTOMIZATION
+#+end_src
+***** CANCELED C#-MOD CUSTOMIZATION
 ;; (find-file-other-frame "~/.archemacs/INI/dev/csharp-cfg.el")
-;; (load "~/.archemacs/INI/dev/csharp-cfg.el")
-;; (load (expand-file-name "INI/dev/csharp-cfg.el" user-emacs-directory))
 ;; --------------------------------------
-;; ** C-MOD CUSTOMIZATION
+;; (load "~/.archemacs/INI/dev/csharp-cfg.el")
+#+begin_src elisp :tangle no
+;; (load (expand-file-name "INI/dev/csharp-cfg.el" user-emacs-directory))
+#+end_src
+;; --------------------------------------
+***** CANCELED C-MOD CUSTOMIZATION
 ;; (find-file-other-frame "~/.archemacs/INI/dev/c-mode-cfg.el")
 ;; (load "~/.archemacs/INI/dev/c-mode-cfg.el")
+#+begin_src elisp :tangle no
 ;; (load (expand-file-name "INI/dev/c-mode-cfg.el" user-emacs-directory))
+#+end_src
 ;; --------------------------------------
-;; ** CLOJURE-MODE CUSTOMIZATION
+***** CLOJURE-MODE CUSTOMIZATION
 ;; (find-file-other-frame "~/.archemacs/INI/dev/clojure-cfg.el")
 ;; (load "~/.archemacs/INI/dev/clojure-cfg.el")
+#+begin_src elisp
 (load (expand-file-name "INI/dev/clojure-cfg.el" user-emacs-directory))
 ;; --------------------------------------
-;; ** UNITY CUSTOMIZATION
+#+end_src
+***** CANCELED UNITY CUSTOMIZATION
 ;; (find-file-other-frame "~/.archemacs/INI/dev/unity-cfg.el")
+#+begin_src elisp :tangle no
 ;; (load "~/.archemacs/INI/dev/unity-cfg.el")
+#+end_src
 ;; (load (expand-file-name "INI/dev/unity-cfg.el" user-emacs-directory))
+
 ;; --------------------------------------
-;; ** JS-MOD CUSTOMIZATION
+***** JS-MOD CUSTOMIZATION
 ;; (find-file-other-frame "~/.archemacs/INI/js-cfg.el") 
 ;; (load "~/.archemacs/INI/dev/js-cfg.el")
+#+begin_src elisp
 (load (expand-file-name "INI/dev/js-cfg.el" user-emacs-directory))
+#+end_src
 ;; --------------------------------------
-;; ** FORMATS-MOD CUSTOMIZATION
+***** FORMATS-MOD CUSTOMIZATION
 ;; (find-file-other-frame "~/.archemacs/INI/dev/formats-mods-cfg.el")
 ;; (load "~/.archemacs/INI/dev/formats-mods-cfg.el")
+#+begin_src elisp
 (load (expand-file-name "INI/dev/formats-mods-cfg.el" user-emacs-directory))
+#+end_src
 ;; --------------------------------------
-;; ** FLYCHECK CUSTOMIZATION
+***** FLYCHECK CUSTOMIZATION
 ;; (load "~/.archemacs/INI/dev/flycheck-cfg.el")
+#+begin_src elisp
 (load (expand-file-name "INI/dev/flycheck-cfg.el" user-emacs-directory))
+#+end_src
 ;; (find-file "~/.archemacs/INI/flycheck-cfg.el") 
 ;; --------------------------------------
-;; ** DEVELOPMENT SETINGS CUSTOMIZATION
+***** DEVELOPMENT SETINGS CUSTOMIZATION
+#+begin_src elisp
 (setq compilation-scroll-output nil)
+#+end_src
 ;; (defun my-compilation-finish-function (buffer desc)
 ;;   (message "Buffer %s: %s" buffer desc)
 ;;  (evil-goto-first-line)
 ;;  )
 ;; (add-to-list 'compilation-finish-functions 'my-compilation-finish-function)
-#+end_src
 **** DEVELOPMENT-KEY CUSTOMIZATION
 ***** save & recompile
 ****** global-set-key <f8> :
@@ -6531,17 +6575,17 @@ or locally if not saved."
 
 *** used in
 ;; (find-file "~/INI/dev-cfg.el")
-*** src
-#+begin_src elisp
-;; * LUA-MOD CUSTOMIZATION
-;; --------------------------------------
-;; ** install lua-mode : 
-(require 'use-package)
-(use-package lua-mode 
-  :ensure t
+*** src lua-cfg.el
   :init
   ;; (elpy-enable)
 ;; ** :config : 
+;; * LUA-MOD CUSTOMIZATION
+;; --------------------------------------
+;; ** install lua-mode : 
+#+begin_src elisp
+(require 'use-package)
+(use-package lua-mode 
+  :ensure t
   :config
 ;; ** command : 
   ;; 2. Next, you need to make sure that lua-mode.el is on your load-path (and optionally byte-compile it) and to set up Emacs to automatically enable it for *.lua files or ones that contain lua hash-bang line (`#!/usr/bin/lua`). Putting this snippet to .emacs should be enough in most cases:
@@ -6555,6 +6599,67 @@ or locally if not saved."
 ;; ** ) : 
   )
 ;; --------------------------------------
+#+end_src
+** INI/dev/renpy-cfg.el
+:PROPERTIES:
+:header-args: :tangle INI/dev/renpy-cfg.el
+:END:
+*** описание
+
+*** used in
+;; (find-file "~/INI/dev-cfg.el")
+*** src renpy-cfg.el
+;; * renpy-mode CUSTOMIZATION
+;; --------------------------------------
+;; ** install renpy-mode : 
+  ;; Install the package unless installed already.
+  ;; Uncomment and tweak if renpy-mode was downloaded into a custom.
+  ;; location.
+  ;; :load-path "path/to/renpy/dir"
+    ;; Path to the Ren'Py launcher or renpy.sh / renpy.exe.
+    ;; Bind some useful commands.
+(require 'use-package)
+#+begin_src elisp :results output silent 
+(use-package renpy-mode
+  :ensure t
+  :defer t
+  :custom
+    (renpy-program "/home/buyn/Game/Tools/renpy-8.5.2-sdk/renpy.sh")
+  :hook
+    ;; Enable on-the-fly linting and code overview.
+    ((renpy-mode . flymake-mode)
+    (renpy-mode . outline-minor-mode)))
+#+end_src
+  :bind
+    (:map evil-normal-state-map
+        ("M-e M-i M-i" . imenu))
+    ("C-c C-r" . renpy-run)
+    ("C-c C-l" . renpy-lint)
+
+    ("m-e e-i e-i" . renpy-compile)
+*** docs
+**** link
+https://github.com/Reagankm/renpy-mode
+**** keys
+Once configured, try within a renpy-mode buffer:
+
+- M-x renpy-run - launch the project.
+- M-x renpy-lint - run lint with compilation-mode.
+- M-x renpy-compile - run compile with compilation-mode.
+- C-c < - shift lines left.
+- C-c > - shift lines right.
+- TAB - cycle through possible indentation levels.
+- C-c C-n - next statement.
+- C-c C-p - previous statement.
+- C-c C-u - beginning of black.
+- C-c C-k - mark block.
+- C-c C-j show Imenu.
+- M-. jump to definition.
+**** edit
+The package comes with the emacs.edit.py script that configures
+Ren’py integration with Emacs. Having the RENPY_EDIT_PY
+environment variable set to the path of the file would force Ren’py
+launcher to use Emacs as a default editor.
 #+end_src
 ** INI/dev/outshine_cfg.el
 :PROPERTIES:
@@ -6601,11 +6706,14 @@ or locally if not saved."
 
 ;; *** outshine startup state
   (setq outshine-startup-folded-p 1)
+  )
+#+end_src
+убрал из конфига -если не отключится то вернуть и устновить состояни на nil
 ;; *** autoload
   (add-hook 'outline-minor-mode-hook 'outshine-mode)
   (add-hook 'prog-mode-hook '(lambda () (outshine-mode t)))
-  )
-#+end_src
+
+  
   ;; (add-hook 'outline-minor-mode-hook 'outshine-hook-function)
 ;; -------------------------------------- }}}
   ;; (add-hook 'prog-mode-hook '(lambda () (outline-minor-mode t)))

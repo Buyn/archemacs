@@ -43,7 +43,7 @@
               ("ZPRE" . 'projectile-replace-regexp)
               ("M-e M-p M-o" . 'projectile-multi-occur)
               ("M-e M-t M-t" . 'projectile-toggle-between-implementation-and-test)
-          :map evil-normal-state-map
+          :map evil-visual-state-map
               ("M-e M-p M-o" . (lambda() (interactive)
                                  (projectile-multi-occur
                                   (buffer-substring (region-beginning) (region-end)))))
@@ -54,77 +54,26 @@
     ;; test project (s-p T)
 ))
 
-;; --------------------------------------
-;; ** DELIMITERS-MOD CUSTOMIZATION
-;; (find-file "~/.archemacs/INI/delimiters-cfg.el")
-;; (load "~/.archemacs/INI/dev/delimiters-cfg.el")
 (load (expand-file-name "INI/dev/delimiters-cfg.el" user-emacs-directory))
-;; --------------------------------------
-;; ** PYTHON-MOD CUSTOMIZATION
-;; (find-file "~/.archemacs/INI/python-cfg.el") 
-;; (find-file-other-frame "~/.archemacs/INI/python-cfg.el")
-;; (load "~/.archemacs/INI/dev/python-cfg.el")
+
 (load (expand-file-name "INI/dev/python-cfg.el" user-emacs-directory))
-;; --------------------------------------
-;; ** LUA-MOD CUSTOMIZATION
-;; --------------------------------------
-;; (find-file "~/.archemacs/INI/lua-cfg.el")
-;; (load "~/.archemacs/INI/dev/lua-cfg.el")
+
 (load (expand-file-name "INI/dev/lua-cfg.el" user-emacs-directory))
-;; --------------------------------------
-;; ** OUTSHINE-MOD CUSTOMIZATION
-;; --------------------------------------
-;; (load "~/.archemacs/INI/dev/outshine_cfg.el")
+
+(load (expand-file-name "INI/dev/renpy-cfg.el" user-emacs-directory))
+
 (load (expand-file-name "INI/dev/outshine_cfg.el" user-emacs-directory))
-;; --------------------------------------
-;; ** AHK-MODE CUSTOMIZATION
-;; --------------------------------------
-;; (find-file-other-frame "~/.archemacs/INI/dev/autohotkey-cfg.el")
-;; (load "~/.archemacs/INI/dev/autohotkey-cfg.el")
-;; (load (expand-file-name "INI/dev/autohotkey-cfg.el" user-emacs-directory))
-;; --------------------------------------
-;; ** C#-MOD CUSTOMIZATION
-;; (find-file-other-frame "~/.archemacs/INI/dev/csharp-cfg.el")
-;; (load "~/.archemacs/INI/dev/csharp-cfg.el")
-;; (load (expand-file-name "INI/dev/csharp-cfg.el" user-emacs-directory))
-;; --------------------------------------
-;; ** C-MOD CUSTOMIZATION
-;; (find-file-other-frame "~/.archemacs/INI/dev/c-mode-cfg.el")
-;; (load "~/.archemacs/INI/dev/c-mode-cfg.el")
-;; (load (expand-file-name "INI/dev/c-mode-cfg.el" user-emacs-directory))
-;; --------------------------------------
-;; ** CLOJURE-MODE CUSTOMIZATION
-;; (find-file-other-frame "~/.archemacs/INI/dev/clojure-cfg.el")
-;; (load "~/.archemacs/INI/dev/clojure-cfg.el")
+
 (load (expand-file-name "INI/dev/clojure-cfg.el" user-emacs-directory))
 ;; --------------------------------------
-;; ** UNITY CUSTOMIZATION
-;; (find-file-other-frame "~/.archemacs/INI/dev/unity-cfg.el")
-;; (load "~/.archemacs/INI/dev/unity-cfg.el")
-;; (load (expand-file-name "INI/dev/unity-cfg.el" user-emacs-directory))
-;; --------------------------------------
-;; ** JS-MOD CUSTOMIZATION
-;; (find-file-other-frame "~/.archemacs/INI/js-cfg.el") 
-;; (load "~/.archemacs/INI/dev/js-cfg.el")
+
 (load (expand-file-name "INI/dev/js-cfg.el" user-emacs-directory))
-;; --------------------------------------
-;; ** FORMATS-MOD CUSTOMIZATION
-;; (find-file-other-frame "~/.archemacs/INI/dev/formats-mods-cfg.el")
-;; (load "~/.archemacs/INI/dev/formats-mods-cfg.el")
+
 (load (expand-file-name "INI/dev/formats-mods-cfg.el" user-emacs-directory))
-;; --------------------------------------
-;; ** FLYCHECK CUSTOMIZATION
-;; (load "~/.archemacs/INI/dev/flycheck-cfg.el")
+
 (load (expand-file-name "INI/dev/flycheck-cfg.el" user-emacs-directory))
-;; (find-file "~/.archemacs/INI/flycheck-cfg.el") 
-;; --------------------------------------
-;; ** DEVELOPMENT SETINGS CUSTOMIZATION
+
 (setq compilation-scroll-output nil)
-;; (defun my-compilation-finish-function (buffer desc)
-;;   (message "Buffer %s: %s" buffer desc)
-;;  (evil-goto-first-line)
-;;  )
-;; (add-to-list 'compilation-finish-functions 'my-compilation-finish-function)
 
 ;;  --------------------------------------
 (global-set-key (kbd "<f8>") nil)
