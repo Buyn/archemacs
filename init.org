@@ -69,16 +69,14 @@ evil-normal-state-map (kbd "M-p M-o")
 ***** [[*spc-main-menu00][spc-main-menu00]]
 ***** [[*emacs-menu][emacs-menu]]
 
-
 ***** ai
+[[*hydra-ai-insert-menu][hydra-ai-insert-menu]]
 (defhydra hydra-ai-menu (:color blue)
-
 hydra-ai-role-menu
 (defhydra hydra-ai-chat-menu (:color blue)
 ****** models
 (defhydra hydra-ai-model-menu (:color blue)
 ***** [[*dev-menu][dev-menu]]
-***** 
 **** [[*F1 menus][F1 menus]]
 *** ranger
 (use-package ranger
@@ -100,7 +98,6 @@ m-e m-s
 *** evil
 [[*EVIL-MOD CUSTOMIZATION][EVIL-MOD CUSTOMIZATION]]
 (define-key evil-normal-state-map (kbd "M-e M-i M-i") 'imenu)
-
 
 *** telega
 [[*INI/other/telegram.el][INI/other/telegram.el]]
@@ -4662,6 +4659,11 @@ CLOSED: [2025-03-03 Пн 06:36]
               ))
 ;; --------------------------------------
 #+end_src
+*** docs
+**** ranger
+***** keys
+Dired-буфер — это можно сделать командой M-x ranger-minimal-toggle или z P
+
 ** ELs/BuYn/shell.el
 :PROPERTIES:
 :header-args: :tangle ELs/BuYn/shell.el
@@ -5952,10 +5954,13 @@ https://github.com/karthink/gptel
 #+RESULTS:
 : hydra-ai-menu/body
 ***** hydra-ai-insert-menu
+instead of the image, show prompt message in English, which you would use to get the image.
+Instead of an image, show the English prompt that you will use to get the image.
 #+begin_src elisp
 
 (defhydra hydra-ai-insert-menu (:color blue)
   ("v" (insert "дай тезесный список контента видео") "contents video")
+  ("i" (insert "Instead of an image, show the English prompt that you will use to get the image.") "img promt")
   ("q" nil) 
   )
 #+end_src

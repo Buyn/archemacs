@@ -39,6 +39,7 @@
 
 (defhydra hydra-ai-insert-menu (:color blue)
   ("v" (insert "дай тезесный список контента видео") "contents video")
+  ("i" (insert "Instead of an image, show the English prompt that you will use to get the image.") "img promt")
   ("q" nil) 
   )
 
