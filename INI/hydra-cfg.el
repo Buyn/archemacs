@@ -342,6 +342,11 @@
 ;; ****** i : 
   ("i" insert-register "insReg2buff" :color blue ) 
   ("L" menu-bar--toggle-truncate-long-lines "long-lines")
+
+  ("h" org-appear-mode "auto-emphasis")
+  ("H" (if org-hide-emphasis-markers
+           (setq org-hide-emphasis-markers nil)
+           (setq org-hide-emphasis-markers t)) "emphasis")
 ;; ***** END of def
   )
 
