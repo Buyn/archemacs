@@ -222,8 +222,8 @@
     ("S" (insert "(find-file-other-frame \"/sudo:: \")") "Sudo")
     ("h" (insert "(find-file-other-frame \"/ssh:buyn@192.168.0.1/~/ \")") "ssh")
     ("H" (insert "(find-file-other-frame \"/ssh:buyn@192.168.0.1|sudo::/etc/ \")") "ssh")
-
-    ("k" (insert "(buyn-shell-start \"konsole -e ' '\")") "konsole")
+    ("k" (insert "(buyn-runin-konsole-commаnd \"\")") "konsole")
+    ("d" (insert "(delete-other-windows)") "del wins")
 
     ("q" nil)
   )

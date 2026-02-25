@@ -116,6 +116,11 @@ m-e m-s
 
     (global-set-key (kbd "C-S-<XF86Eject>") '(lambda()        (emms-player-seek -60)))
 *** [[*INI/AI/ai.el][INI/AI/ai.el]]
+** my functions
+
+(defun buyn-runin-konsole-commаnd (cmd-params)
+
+(defun buyn-shell-start (cmd-params)
 ** by mode-maps
 FRAME [[*src INI/frame-control.el][src INI/frame-control.el]]
 global-set-key
@@ -2708,8 +2713,8 @@ CLOSED: [2025-02-21 Fri 21:34]
     ("S" (insert "(find-file-other-frame \"/sudo:: \")") "Sudo")
     ("h" (insert "(find-file-other-frame \"/ssh:buyn@192.168.0.1/~/ \")") "ssh")
     ("H" (insert "(find-file-other-frame \"/ssh:buyn@192.168.0.1|sudo::/etc/ \")") "ssh")
-
-    ("k" (insert "(buyn-shell-start \"konsole -e ' '\")") "konsole")
+    ("k" (insert "(buyn-runin-konsole-commаnd \"\")") "konsole")
+    ("d" (insert "(delete-other-windows)") "del wins")
 
     ("q" nil)
   )
@@ -4726,7 +4731,7 @@ Dired-буфер — это можно сделать командой M-x range
 ;; ** functions
 ;; *** buyn-shell-start :
 (defun buyn-shell-start (cmd-params)
-  " buyn start new process
+  " start new process
     as parametr  
     get comand to execute
     "
@@ -4734,6 +4739,21 @@ Dired-буфер — это можно сделать командой M-x range
    (concat 
     cmd-params
     " &")))
+
+(defun buyn-runin-konsole-command (cmd-params)
+  "Start new konsole and execute CMD-PARAMS.
+   CMD-PARAMS can be a string or a list of strings."
+  (let* ((cmd-string
+          (cond
+           ((stringp cmd-params)
+            cmd-params)
+           ((listp cmd-params)
+            (mapconcat #'identity cmd-params " ; "))
+           (t
+            (error "cmd-params must be string or list of strings")))))
+    (buyn-shell-start
+     (format "konsole -e \"%s\"" cmd-string))))
+
 
 ;; *** buyn-cmd-start :
 (defun buyn-cmd-start (cmd-params)
@@ -4812,6 +4832,22 @@ Dired-буфер — это можно сделать командой M-x range
   ;; (message win-path-to-file)
   )
 #+end_src
+
+#+RESULTS:
+: buyn-start-emagus-win
+
+**** DONE arhiv
+***** 
+(defun buyn-runin-konsole-commаnd (cmd-params)
+  " start new process konsole
+    as parametr get comand to execute in new konsole
+    "
+  (buyn-shell-start
+   (concat 
+      "konsole -e \""
+      cmd-params
+      "\"")))
+
 **** DONE BUYN's ESHELL DEFUNS old
 #+begin_src elisp :tangle no
 ;; --------------------------------------

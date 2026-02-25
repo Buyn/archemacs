@@ -9,7 +9,7 @@
 ;; ** functions
 ;; *** buyn-shell-start :
 (defun buyn-shell-start (cmd-params)
-  " buyn start new process
+  " start new process
     as parametr  
     get comand to execute
     "
@@ -17,6 +17,17 @@
    (concat 
     cmd-params
     " &")))
+
+(defun buyn-runin-konsole-commаnd (cmd-params)
+  " start new process konsole
+    as parametr get comand to execute in new konsole
+    "
+  (buyn-shell-start
+   (concat 
+      "konsole -e \""
+      cmd-params
+      "\"")))
+
 
 ;; *** buyn-cmd-start :
 (defun buyn-cmd-start (cmd-params)
