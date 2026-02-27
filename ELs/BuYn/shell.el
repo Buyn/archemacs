@@ -18,15 +18,19 @@
     cmd-params
     " &")))
 
-(defun buyn-runin-konsole-commаnd (cmd-params)
-  " start new process konsole
-    as parametr get comand to execute in new konsole
-    "
-  (buyn-shell-start
-   (concat 
-      "konsole -e \""
-      cmd-params
-      "\"")))
+(defun buyn-runin-konsole-command (cmd-params)
+  "Start new konsole and execute CMD-PARAMS.
+   CMD-PARAMS can be a string or a list of strings."
+  (let* ((cmd-string
+          (cond
+           ((stringp cmd-params)
+            cmd-params)
+           ((listp cmd-params)
+            (mapconcat #'identity cmd-params " ; "))
+           (t
+            (error "cmd-params must be string or list of strings")))))
+    (buyn-shell-start
+     (format "konsole -e \"%s\"" cmd-string))))
 
 
 ;; *** buyn-cmd-start :
