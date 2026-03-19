@@ -18,7 +18,7 @@
     cmd-params
     " &")))
 
-(defun buyn-runin-konsole-command (cmd-params)
+(defun buyn-runin-konsole-commаnd (cmd-params)
   "Start new konsole and execute CMD-PARAMS.
    CMD-PARAMS can be a string or a list of strings."
   (let* ((cmd-string

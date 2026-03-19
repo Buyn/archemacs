@@ -2707,15 +2707,15 @@ CLOSED: [2025-02-21 Fri 21:34]
     ("r" (insert ":results output silent") "result no")
     ("R" (insert ":results output replace") "result yes")
     ("h" (insert "#+HEADER: :tangle ../Src/Start.sh") "HEADER")
+    ("P" (insert ":PROPERTIES:\n:header-args: :tangle ~/.vimrc\n:END:") "PROPERTIES")
     ("f" (insert "(find-file-other-frame \"\")") "file frame")
-    ("F" (insert "(find-file \"\"") "Find File)")
+    ("Ff" (insert "(find-file \"\")") "Find File)")
     ("s" (insert "(buyn-shell-start \" \")") "shell")
-    ("S" (insert "(find-file-other-frame \"/sudo:: \")") "Sudo")
-    ("h" (insert "(find-file-other-frame \"/ssh:buyn@192.168.0.1/~/ \")") "ssh")
-    ("H" (insert "(find-file-other-frame \"/ssh:buyn@192.168.0.1|sudo::/etc/ \")") "ssh")
+    ("Fs" (insert "(find-file-other-frame \"/sudo:: \")") "Sudo")
+    ("FN" (insert "(find-file-other-frame \"/ssh:buyn@192.168.0.1/~/ \")") "ssh")
+    ("FS" (insert "(find-file-other-frame \"/ssh:buyn@192.168.0.1|sudo::/etc/ \")") "ssh sudo")
     ("k" (insert "(buyn-runin-konsole-commаnd \"\")") "konsole")
     ("d" (insert "(delete-other-windows)") "del wins")
-
     ("q" nil)
   )
 #+end_src
@@ -4741,7 +4741,6 @@ Dired-буфер — это можно сделать командой M-x range
     " &")))
 
 (defun buyn-runin-konsole-commаnd (cmd-params)
-
   "Start new konsole and execute CMD-PARAMS.
    CMD-PARAMS can be a string or a list of strings."
   (let* ((cmd-string
