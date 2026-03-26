@@ -2641,6 +2641,9 @@ CLOSED: [2025-02-21 Fri 21:34]
     ("o" org-roam-menu/body "Org-rOam-menu" :color blue)
     ("i" org-insert-menu/body "insert-menu" :color blue)
     ("m" org-macro-menu/body "macros-menu" :color blue)
+    ("a" (let* ((current-file (buffer-file-name))
+         (archived-name (concat current-file "_archive")))
+      (find-file-other-frame archived-name)) "open-arhiv" :color blue)
   )
 #+end_src
 

@@ -25,29 +25,17 @@ https://www.braveclojure.com/basic-emacs/
 
 ** progn:
 #+begin_src emacs-lisp :results output silent
-(defun buyn-shell-start (cmd-params)
-  " start new process
-    as parametr  
-    get comand to execute
-    "
-  (shell-command
-   (concat 
-    cmd-params
-    " &")))
-
-(defun buyn-runin-konsole-command (cmd-params)
-  "Start new konsole and execute CMD-PARAMS.
-   CMD-PARAMS can be a string or a list of strings."
-  (let* ((cmd-string
-          (cond
-           ((stringp cmd-params)
-            cmd-params)
-           ((listp cmd-params)
-            (mapconcat #'identity cmd-params " ; "))
-           (t
-            (error "cmd-params must be string or list of strings")))))
-    (buyn-shell-start
-     (format "konsole -e \"%s\"" cmd-string))))
+(defhydra org-menu (:color pink)
+    ("d" org-babel-demarcate-block "demarcate" :color blue)
+    ("s" org-toggle-inline-images "Show image")
+    ("q" nil "quit") 
+    ("o" org-roam-menu/body "Org-rOam-menu" :color blue)
+    ("i" org-insert-menu/body "insert-menu" :color blue)
+    ("m" org-macro-menu/body "macros-menu" :color blue)
+    ("a" (let* ((current-file (buffer-file-name))
+         (archived-name (concat current-file "_archive")))
+      (find-file-other-frame archived-name)) "open-arhiv" :color blue)
+  )
 
 
 (load (expand-file-name "INI/hydra-cfg.el" user-emacs-directory)) 

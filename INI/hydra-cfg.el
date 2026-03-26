@@ -184,6 +184,9 @@
     ("o" org-roam-menu/body "Org-rOam-menu" :color blue)
     ("i" org-insert-menu/body "insert-menu" :color blue)
     ("m" org-macro-menu/body "macros-menu" :color blue)
+    ("a" (let* ((current-file (buffer-file-name))
+         (archived-name (concat current-file "_archive")))
+      (find-file-other-frame archived-name)) "open-arhiv" :color blue)
   )
 
 (defhydra org-roam-menu (:color blue)
@@ -218,14 +221,13 @@
     ("h" (insert "#+HEADER: :tangle ../Src/Start.sh") "HEADER")
     ("P" (insert ":PROPERTIES:\n:header-args: :tangle ~/.vimrc\n:END:") "PROPERTIES")
     ("f" (insert "(find-file-other-frame \"\")") "file frame")
-    ("Ff" (insert "(find-file \"\"") "Find File)")
+    ("Ff" (insert "(find-file \"\")") "Find File)")
     ("s" (insert "(buyn-shell-start \" \")") "shell")
     ("Fs" (insert "(find-file-other-frame \"/sudo:: \")") "Sudo")
     ("FN" (insert "(find-file-other-frame \"/ssh:buyn@192.168.0.1/~/ \")") "ssh")
     ("FS" (insert "(find-file-other-frame \"/ssh:buyn@192.168.0.1|sudo::/etc/ \")") "ssh sudo")
     ("k" (insert "(buyn-runin-konsole-commаnd \"\")") "konsole")
     ("d" (insert "(delete-other-windows)") "del wins")
-
     ("q" nil)
   )
 
