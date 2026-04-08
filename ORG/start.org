@@ -24,20 +24,8 @@ https://www.braveclojure.com/basic-emacs/
 =================================
 
 ** progn:
+#+NAME: auto-tangle-block
 #+begin_src emacs-lisp :results output silent
-(defhydra org-menu (:color pink)
-    ("d" org-babel-demarcate-block "demarcate" :color blue)
-    ("s" org-toggle-inline-images "Show image")
-    ("q" nil "quit") 
-    ("o" org-roam-menu/body "Org-rOam-menu" :color blue)
-    ("i" org-insert-menu/body "insert-menu" :color blue)
-    ("m" org-macro-menu/body "macros-menu" :color blue)
-    ("a" (let* ((current-file (buffer-file-name))
-         (archived-name (concat current-file "_archive")))
-      (find-file-other-frame archived-name)) "open-arhiv" :color blue)
-  )
-
-
 (load (expand-file-name "INI/hydra-cfg.el" user-emacs-directory)) 
 
 (kill-buffer (current-buffer))

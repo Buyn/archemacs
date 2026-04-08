@@ -65,6 +65,11 @@ evil-normal-state-map (kbd "M-p M-o")
 *** hydra
 **** [[*menus for 00][menus for 00]]
 ***** [[*org-roam-menu][org-roam-menu]]
+[[*org-insert-menu][org-insert-menu]]
+[[*brain-org][brain-org]]
+[[*org-macro-menu][org-macro-menu]]
+[[*org-roam-menu][org-roam-menu]]
+
 ***** [[*brain-org][brain-org]]
 ***** [[*spc-main-menu00][spc-main-menu00]]
 ***** [[*emacs-menu][emacs-menu]]
@@ -2704,6 +2709,7 @@ CLOSED: [2025-02-21 Fri 21:34]
   )
 #+end_src
 ****** org-insert-menu
+    ;; ("f" (insert "(find-file-other-frame \"\")") "file frame")
 #+begin_src elisp :results output silent
 (defhydra org-insert-menu (:color blue)
     ("t" (insert ":tangle no") "tangle no")
@@ -2711,7 +2717,15 @@ CLOSED: [2025-02-21 Fri 21:34]
     ("R" (insert ":results output replace") "result yes")
     ("h" (insert "#+HEADER: :tangle ../Src/Start.sh") "HEADER")
     ("P" (insert ":PROPERTIES:\n:header-args: :tangle ~/.vimrc\n:END:") "PROPERTIES")
-    ("f" (insert "(find-file-other-frame \"\")") "file frame")
+    ("f" (if (use-region-p)
+            (let ((text (buffer-substring-no-properties
+                        (region-beginning)
+                        (region-end))))
+              (delete-region (region-beginning) (region-end))
+              (insert (format "(find-file-other-frame \"%s\")" text)))
+            (progn (insert "(find-file-other-frame \"\")")
+              (backward-char 2))
+          ) "file frame")
     ("Ff" (insert "(find-file \"\")") "Find File)")
     ("s" (insert "(buyn-shell-start \" \")") "shell")
     ("Fs" (insert "(find-file-other-frame \"/sudo:: \")") "Sudo")
