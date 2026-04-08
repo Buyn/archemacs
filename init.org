@@ -5202,9 +5202,58 @@ If BUFFER-NAME-TO-SEND is nil, uses global `buyn/name-shell-target-buffer-name`.
     (lax-plist-put read-aloud-engines "spd.en.amy"
       '(cmd "spd-say"
         args ("-t" "amy" "-l" "en" "-e"))) 
-  )
+
+    (lax-plist-put read-aloud-engines "google.tr.ru"
+      '(cmd "google-tts"
+        args ("ru")))
+    (lax-plist-put read-aloud-engines "google.tr.en"
+      '(cmd "google-tts"
+        args ("en")))
+    (lax-plist-put read-aloud-engines "google.tr.uk"
+      '(cmd "google-tts"
+        args ("uk")))
+    )
 #+end_src
+
+#+RESULTS:
+: t
+
 *** docs
+**** read-aloud
+***** emacs read-aloud git
+https://github.com/gromnitsky/read-aloud.el
+***** Configuration
+To add/modify a tts engine, you'll need to edit read-aloud-engines
+plist. Here is the example for Windows:
+
+(lax-plist-put read-aloud-engines "jampal.en"
+  '(cmd "cscript"
+                args ("C:\\Program Files\\Jampal\\ptts.vbs" "-r" "8")) )
+
+args should be a list or nil. To select a new entry,
+
+(setq read-aloud-engine "jampal.en")
+
+The CL util that communicates w/ the engine must wait until the
+text was fully pronounced (e.g. not exit immediately), otherwise
+(read-aloud-buf) won't be able to distinguish whether it's time to
+feed the engine w/ another chunk of the text. This is why we use
+spd-say w/ -w CLO.
+
+You can edit the face that (read-aloud-buf) uses w/ the usual
+
+M-x customize-face RET read-aloud-text-face
+***** оно не передаёт текс параметром
+оно передаёт пайп
+***** A Smoke Test
+After you have configured your system tts engine, do
+
+M-x eval-expression RET (read-aloud-test) RET
+
+It should open 2 tmp windows: 1 log window & 1 w/ a sample text,
+then it should start reading automatically. After it finishes you may
+safely kill those 2 buffers.
+
 **** piper
 ***** unsort
 

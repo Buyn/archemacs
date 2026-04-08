@@ -14,4 +14,14 @@
     (lax-plist-put read-aloud-engines "spd.en.amy"
       '(cmd "spd-say"
         args ("-t" "amy" "-l" "en" "-e"))) 
-  )
+
+    (lax-plist-put read-aloud-engines "google.tr.ru"
+      '(cmd "google-tts"
+        args ("ru")))
+    (lax-plist-put read-aloud-engines "google.tr.en"
+      '(cmd "google-tts"
+        args ("en")))
+    (lax-plist-put read-aloud-engines "google.tr.uk"
+      '(cmd "google-tts"
+        args ("uk")))
+    )
