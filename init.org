@@ -102,6 +102,12 @@ m-e m-s
 
 (defun send-region-to-eshell-buffer-and-execute(start end );&optional INTERCT
 (defun send-activ-line-to-eshell-buffer-and-execute()
+*** read-aloud
+("B" read-aloud-buf "aloudBuffer")
+[[*hydra-reader-menu][hydra-reader-menu]]
+[[*INI/lit-cfg/read-aloud-cfg.el][INI/lit-cfg/read-aloud-cfg.el]]
+
+
 *** evil
 [[*EVIL-MOD CUSTOMIZATION][EVIL-MOD CUSTOMIZATION]]
 (define-key evil-normal-state-map (kbd "M-e M-i M-i") 'imenu)
@@ -2434,8 +2440,8 @@ CLOSED: [2025-02-21 Fri 21:34]
 ****** spc-main-menu00
 #+begin_src elisp
 (defhydra spc-main-menu00 (:color blue)
-;; ***** hint
-    "
+  ;; ***** hint
+  "
     ^Main^                00                ^Menus^          
     ^─────^───────────────────────────────────^─────^────────────
     _a_I      _d_ev menu    _o_rg-mode   _b_Org-Brain                       
@@ -2443,55 +2449,58 @@ CLOSED: [2025-02-21 Fri 21:34]
     _c_ommands   _e_macs-menu   ya_s_nippet      
     _p_rev-menu   _q_uit   _SPC_ next  _n_ext-menu    
     "
-;; ***** keys
-    ("q" nil)
-    ("o" org-menu/body)
-    ("d" hydra-dev-menu/body)
-    ("w" www-menu/body)
-    ("t" telega-menu/body)
-    ("e" hydra-emacs-menu/body)
-    ("c" hydra-commands-menu/body)
-    ("a" hydra-ai-menu/body)
-    ("SPC" spc-main-menu01/body )
-    ("y" hydra-yank-menu/body)
-    ("n" spc-main-menu01/body)
-    ("s" hydra-yasnippet/body )
-    ("r" hydra-reader-menu/body )
-    ("b" hydra-brain-org-menu/body)
-    ("p" spc-main-menu99/body)
-;; ***** END of def
+  ;; ***** keys
+  ("q" nil)
+  ("o" org-menu/body)
+  ("d" hydra-dev-menu/body)
+  ("w" www-menu/body)
+  ("t" telega-menu/body)
+  ("e" hydra-emacs-menu/body)
+  ("c" hydra-commands-menu/body)
+  ("a" hydra-ai-menu/body)
+  ("SPC" spc-main-menu01/body )
+  ("y" hydra-yank-menu/body)
+  ("n" spc-main-menu01/body)
+  ("s" hydra-yasnippet/body )
+  ("r" hydra-reader-menu/body )
+  ("b" hydra-brain-org-menu/body)
+  ("p" spc-main-menu99/body)
+  ;; ***** END of def
   )
-
+#+end_src
+****** hydra-reader-menu
+#+begin_src elisp :results output silent
 (setq pixel-wait 0)
 (defhydra hydra-reader-menu (:color blue)
   ;; "Reader menu spd: % 'pixel-wait"
   "Reader menu "
   ;; "Reader menu spd: %(* 10 (- 1 pixel-wait))"
-;; **** r : 
+  ;; **** r : 
   ("r" (if (bound-and-true-p pixel-scroll-mode)
-          (buyn-reader-end)
-          (buyn-reader-start))
-        "toggle reader")
-;; **** f : 
+           (buyn-reader-end)
+         (buyn-reader-start))
+   "toggle reader")
+  ;; **** f : 
   ("f" (setq pixel-wait (- pixel-wait 0.1))
-          (format "faster spd:%s" (- 1 pixel-wait)) :color pink)
-;; **** s : 
+   (format "faster spd:%s" (- 1 pixel-wait)) :color pink)
+  ;; **** s : 
   ("s" (setq pixel-wait (+ pixel-wait 0.1)) "slower":color pink)
-;; **** t : 
+  ;; **** t : 
   ("t" read-aloud-this "aloudThis")
-;; **** B : 
+  ;; **** B : 
   ("B" read-aloud-buf "aloudBuffer")
-;; **** s : 
+  ;; **** "F9 F9" : 
+  ("F9 F9" buyn/read-aloud-start "toggle aloudBuffer")
+  ;; **** s : 
   ("S" read-aloud-stop "StopAloud")
-;; **** E : 
+  ;; **** E : 
   ("E" read-aloud-change-engine "AloudEngine")
-;; **** q : 
+  ;; **** q : 
   ("q" nil "quit"))
 ;; --------------------------------------
 #+end_src
 
-#+RESULTS:
-: hydra-reader-menu/body
+  ;; ("B" read-aloud-buf "aloudBuffer")
 
 ****** main-menu01
 #+begin_src elisp
@@ -5184,7 +5193,7 @@ If BUFFER-NAME-TO-SEND is nil, uses global `buyn/name-shell-target-buffer-name`.
 ;; (find-file "~/INI/lit-cfg.el")
 ;; (find-file-other-frame "~/INI/lit-cfg.el") 
 *** src read-aloud
-**** new
+**** use-package read-aloud
 #+begin_src elisp
 (use-package read-aloud
   :ensure t
@@ -5217,6 +5226,59 @@ If BUFFER-NAME-TO-SEND is nil, uses global `buyn/name-shell-target-buffer-name`.
 
 #+RESULTS:
 : t
+
+**** read-aloud defs
+***** state
+#+begin_src elisp :results output silent
+(defvar buyn/read-aloud-origin-buffer nil
+  "Buffer from which read aloud was started.")
+
+(defvar buyn/read-aloud-buffer nil
+  "Buffer where read aloud is active.")
+
+(defvar buyn/read-aloud-paused nil
+  "State of read aloud: nil = playing, t = paused.")
+
+#+end_src
+***** первый запуск
+#+begin_src elisp :results output silent
+(defun buyn/read-aloud-start ()
+  "Toggle read aloud play/pause with buffer switching."
+  (interactive)
+  (setq buyn/read-aloud-origin-buffer (current-buffer))
+  (call-interactively #'read-aloud-buf)
+  (setq buyn/read-aloud-buffer (current-buffer))
+  (setq buyn/read-aloud-paused nil)
+  (global-set-key (kbd "<f9> <f9>") #'buyn/read-aloud-toggle)
+  (message "Read aloud started. f9 f9 set to pause"))
+#+end_src
+
+***** toggle function
+#+begin_src elisp :results output silent
+(defun buyn/read-aloud-toggle ()
+  "Toggle read aloud play/pause with buffer switching."
+  (interactive)
+  (cond
+   ;; пауза
+   ((not buyn/read-aloud-paused)
+    (let ((origin (current-buffer)))
+      (when (buffer-live-p buyn/read-aloud-buffer)
+        (switch-to-buffer buyn/read-aloud-buffer)
+        (call-interactively #'read-aloud-stop))
+      (switch-to-buffer origin))
+    (setq buyn/read-aloud-paused t)
+    (message "Read aloud paused"))
+
+   ;; продолжение
+   (buyn/read-aloud-paused
+    (let ((origin (current-buffer)))
+      (when (buffer-live-p buyn/read-aloud-buffer)
+        (switch-to-buffer buyn/read-aloud-buffer)
+        (call-interactively #'read-aloud-buf))
+      (switch-to-buffer origin))
+    (setq buyn/read-aloud-paused nil)
+    (message "Read aloud resumed"))))
+#+end_src
 
 *** docs
 **** read-aloud

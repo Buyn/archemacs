@@ -2,8 +2,8 @@
   )
 
 (defhydra spc-main-menu00 (:color blue)
-;; ***** hint
-    "
+  ;; ***** hint
+  "
     ^Main^                00                ^Menus^          
     ^─────^───────────────────────────────────^─────^────────────
     _a_I      _d_ev menu    _o_rg-mode   _b_Org-Brain                       
@@ -11,23 +11,23 @@
     _c_ommands   _e_macs-menu   ya_s_nippet      
     _p_rev-menu   _q_uit   _SPC_ next  _n_ext-menu    
     "
-;; ***** keys
-    ("q" nil)
-    ("o" org-menu/body)
-    ("d" hydra-dev-menu/body)
-    ("w" www-menu/body)
-    ("t" telega-menu/body)
-    ("e" hydra-emacs-menu/body)
-    ("c" hydra-commands-menu/body)
-    ("a" hydra-ai-menu/body)
-    ("SPC" spc-main-menu01/body )
-    ("y" hydra-yank-menu/body)
-    ("n" spc-main-menu01/body)
-    ("s" hydra-yasnippet/body )
-    ("r" hydra-reader-menu/body )
-    ("b" hydra-brain-org-menu/body)
-    ("p" spc-main-menu99/body)
-;; ***** END of def
+  ;; ***** keys
+  ("q" nil)
+  ("o" org-menu/body)
+  ("d" hydra-dev-menu/body)
+  ("w" www-menu/body)
+  ("t" telega-menu/body)
+  ("e" hydra-emacs-menu/body)
+  ("c" hydra-commands-menu/body)
+  ("a" hydra-ai-menu/body)
+  ("SPC" spc-main-menu01/body )
+  ("y" hydra-yank-menu/body)
+  ("n" spc-main-menu01/body)
+  ("s" hydra-yasnippet/body )
+  ("r" hydra-reader-menu/body )
+  ("b" hydra-brain-org-menu/body)
+  ("p" spc-main-menu99/body)
+  ;; ***** END of def
   )
 
 (setq pixel-wait 0)
@@ -35,25 +35,27 @@
   ;; "Reader menu spd: % 'pixel-wait"
   "Reader menu "
   ;; "Reader menu spd: %(* 10 (- 1 pixel-wait))"
-;; **** r : 
+  ;; **** r : 
   ("r" (if (bound-and-true-p pixel-scroll-mode)
-          (buyn-reader-end)
-          (buyn-reader-start))
-        "toggle reader")
-;; **** f : 
+           (buyn-reader-end)
+         (buyn-reader-start))
+   "toggle reader")
+  ;; **** f : 
   ("f" (setq pixel-wait (- pixel-wait 0.1))
-          (format "faster spd:%s" (- 1 pixel-wait)) :color pink)
-;; **** s : 
+   (format "faster spd:%s" (- 1 pixel-wait)) :color pink)
+  ;; **** s : 
   ("s" (setq pixel-wait (+ pixel-wait 0.1)) "slower":color pink)
-;; **** t : 
+  ;; **** t : 
   ("t" read-aloud-this "aloudThis")
-;; **** B : 
+  ;; **** B : 
   ("B" read-aloud-buf "aloudBuffer")
-;; **** s : 
+  ;; **** "F9 F9" : 
+  ("F9 F9" buyn/read-aloud-start "toggle aloudBuffer")
+  ;; **** s : 
   ("S" read-aloud-stop "StopAloud")
-;; **** E : 
+  ;; **** E : 
   ("E" read-aloud-change-engine "AloudEngine")
-;; **** q : 
+  ;; **** q : 
   ("q" nil "quit"))
 ;; --------------------------------------
 
