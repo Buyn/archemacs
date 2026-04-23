@@ -878,10 +878,14 @@ CLOSED: [2025-02-11 Tue 16:29]
   (define-key evil-insert-state-map (kbd "C-U") '(lambda () (interactive) 
             (reverse-im-translate-word 1)
             (toggle-input-method)))
+  (define-key evil-insert-state-map (kbd "C-M-u") '(lambda () (interactive) 
+            (reverse-im-translate-word 1)
+            (toggle-input-method)))
 ;; ** use-package END)
   )
 ;; ** --------------------------------------
 #+end_src
+
 * **горячие клавиши**
 ** **evil и навигация**
 *** evil-mod
