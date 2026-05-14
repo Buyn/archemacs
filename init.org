@@ -15,13 +15,13 @@
 *** f8
 **** [[*DEVELOPMENT-KEY CUSTOMIZATION][DEVELOPMENT-KEY CUSTOMIZATION]]
 (global-set-key (kbd "<f8>") nil)
+*** a
+  (define-key evil-normal-state-map (kbd "M-a M-l M-o") 'google-translate-smooth-translate)
 *** c
 **** C-c
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
-*** a
-  (define-key evil-normal-state-map (kbd "M-a M-l M-o") 'google-translate-smooth-translate)
 *** e
 (define-key evil-normal-state-map (kbd "M-e M-f M-f") 'xref-find-definitions)
 
@@ -31,10 +31,6 @@
 *** f
 (define-key evil-normal-state-map (kbd "f") 'evil-avy-goto-char-in-line)
 FL timer
-*** p
-evil-normal-state-map (kbd "M-p M-o")
-(kbd "M-p M-n") [[*kde clipbord history][kde clipbord history]]
-
 *** g
 **** gTT
     "gTT" 'elscreen-previous
@@ -49,10 +45,17 @@ evil-normal-state-map (kbd "M-p M-o")
 **** C-h
 ***** evil-insert-state-map
 (define-key evil-insert-state-map (kbd "C-h") '(lambda() (interactive)
+*** p
+evil-normal-state-map (kbd "M-p M-o")
+(kbd "M-p M-n") [[*kde clipbord history][kde clipbord history]]
+
 *** s
 **** C-s
 ***** evil-insert-state-map
 (define-key evil-insert-state-map (kbd "C-s") '(lambda() (interactive)
+*** u
+[[*src REVERSE-IM][src REVERSE-IM]]
+(define-key evil-insert-state-map (kbd "M-U") 'reverse-im-translate-word)
 *** z
 (define-key evil-normal-state-map "ZO" 'switch-to-buffer-other-frame)
 (define-key evil-normal-state-map "ZI" '(lambda() (interactive)
@@ -856,7 +859,7 @@ CLOSED: [2025-02-11 Tue 16:29]
 
 *** used in
 ;; (find-file "~/.archemacs/INI/interface-mods.el")
-*** src
+*** src REVERSE-IM
 #+begin_src elisp
 ;; * REVERSE-IM CUSTOMIZATION:
 ;; --------------------------------------
@@ -870,21 +873,24 @@ CLOSED: [2025-02-11 Tue 16:29]
   :config
   (reverse-im-mode t)
 ;; ** define-key:
-  ;; (define-key evil-visual-state-map (kbd "M-U") 'reverse-im-translate-region)
+  (define-key evil-normal-state-map (kbd "M-U") 'toggle-input-method)
   (define-key evil-visual-state-map (kbd "M-U") '(lambda () (interactive) 
             (reverse-im-translate-region (region-beginning) (region-end))
             (toggle-input-method)))
-  (define-key evil-insert-state-map (kbd "M-U") 'reverse-im-translate-word)
+  (define-key evil-insert-state-map (kbd "C-M-u") 'reverse-im-translate-word)
   (define-key evil-insert-state-map (kbd "C-U") '(lambda () (interactive) 
             (reverse-im-translate-word 1)
             (toggle-input-method)))
-  (define-key evil-insert-state-map (kbd "C-M-u") '(lambda () (interactive) 
+  (define-key evil-insert-state-map (kbd "M-U") '(lambda () (interactive) 
             (reverse-im-translate-word 1)
             (toggle-input-method)))
 ;; ** use-package END)
   )
 ;; ** --------------------------------------
 #+end_src
+
+#+RESULTS:
+: t
 
 * **горячие клавиши**
 ** **evil и навигация**

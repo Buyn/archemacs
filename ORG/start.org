@@ -582,12 +582,12 @@ A minimum viable product is a version of a product with just enough features to 
 в него переносятся дела из бекloga оргa проекта
 ***** org
 
-*** Ezenhaur 
+*** Ezenhaur
 **** Срочное и важное
 **** Срочное но не важное
 **** Важное но не срочное 
 **** Не Срочное и не важное
-*** SWOT 
+*** SWOT
 **** Strengths +
 **** Weaknesses -
 **** Opportunities
