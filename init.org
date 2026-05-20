@@ -2966,182 +2966,185 @@ CLOSED: [2025-02-21 Fri 21:34]
 : hydra-emaks-fonts/body
 
 ****** www-menu
-******* src www-menu 
-#+begin_src elisp
+******* src www-menu
+#+begin_src elisp :results output silent
 (defhydra www-menu (:color blue)
-;; ***** hint
-    "
+  ;; ***** hint
+  "
                                    ^WWW  Menus^          
 ───────────────────────────────────^──────────^────────────────────────────────
 _L_ist  _y_t  _B_ookmarks  _v_isual  _r_enameBuf _m_pv _f_irefox(s) _c_hromium
 _S_earchOtherF _s_earch _E_WordOthrF s_W_itch _p_ast&go _k_hinsider        
 _Y_ankPageUrl  _o_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
     "
-;; ***** keys
-;; ****** one-line keys
-    ("L" (eww-list-buffers))
-    ("W" (eww-switch-to-buffer))
-    ("B" (eww-list-bookmarks))
-    ("o" org-open-link-in-new-frame)
-    ("z" hydra-zoom/body)
-    ("r" rename-buffer)
+  ;; ***** keys
+  ;; ****** one-line keys
+  ("L" (eww-list-buffers))
+  ("W" (eww-switch-to-buffer))
+  ("B" (eww-list-bookmarks))
+  ("o" org-open-link-in-new-frame)
+  ("z" hydra-zoom/body)
+  ("r" rename-buffer)
   ("q" nil) 
-;; ****** "v" : 
-    ("v" (progn
-      ;; (global-visual-line-mode t)
-      (setq truncate-lines nil)
-      (setq line-move-visual t)
-      (setq word-wrap t)
-       )
+  ;; ****** "v" : 
+  ("v" (progn
+         ;; (global-visual-line-mode t)
+         (setq truncate-lines nil)
+         (setq line-move-visual t)
+         (setq word-wrap t)
+         )
    )
-;; ****** "m" : 
-    ("m" (progn
-          (eww-copy-page-url)
-                                        (message (current-kill 0))
-          ;; (buyn-shell-start (concat "mpv " (current-kill 0)))
-                                        ))
+  ;; ****** "m" : 
+  ("m" (progn
+         (eww-copy-page-url)
+         (message (current-kill 0))
+         ;; (buyn-shell-start (concat "mpv " (current-kill 0)))
+         ))
 
-;; ****** "f" : 
-    ("f" )
-        (if (use-region-p)
-            (progn
-              (buyn-shell-start (concat
-                    "firefox "
-                    "\""
-                    "https://www.google.com/search?q="
-                    (buffer-substring
+  ;; ****** "f" : 
+  ("f" )
+  (if (use-region-p)
+      (progn
+        (buyn-shell-start (concat
+                           "firefox "
+                           "\""
+                           "https://www.google.com/search?q="
+                           (buffer-substring
                             (region-beginning)
                             (region-end))
-                    "\""))
-              (delete-other-windows))
-            (progn
-              (eww-copy-page-url)
-              (buyn-shell-start (concat "firefox " (current-kill 0)))))
-;; ****** "c" : 
-    ("c" (progn
-          (eww-copy-page-url)
-          (buyn-shell-start (concat "chromium " (current-kill 0)))))
-;; ****** "s" : 
-    ("s"  (
-      let (buffer-name-to-close (buffer-name))
-          (if (use-region-p)
-            (eww (buffer-substring
-                (region-beginning)
-                (region-end)))
-            (eww (buffer-substring
-                (line-beginning-position)
-                (line-beginning-position 2))))
-          (switch-to-buffer buffer-name-to-close)))
-;; ****** "S" : 
-    ("S"  (
-      let (buffer-name-to-close (buffer-name))
-          (evil-window-split)
-          (if (use-region-p)
-            (eww (buffer-substring
-                (region-beginning)
-                (region-end)))
-            (eww (buffer-substring
-                (line-beginning-position)
-                (line-beginning-position 2))))
-          (evil-quit)
-          (switch-to-buffer-other-frame buffer-name-to-close)))
-;; ****** "w" : 
-    ("w"  (
-      let (buffer-name-to-close (buffer-name))
-          (evil-window-split)
-          (if (use-region-p)
-            (eww (concat (buffer-substring
-                            (region-beginning)
-                            (region-end))
-                         " site:en.wikipedia.org"))
-            (eww (buffer-substring
-                (line-beginning-position)
-                (line-beginning-position 2))))
-          (evil-quit)
-          (switch-to-buffer-other-frame buffer-name-to-close)))
-;; ****** "y" : 
-    ("y"  (
-      let (buffer-name-to-close (buffer-name))
-          (evil-window-split)
-          (if (use-region-p)
-              (eww (concat
-                    "https://vid.puffyan.us/search?q="
-                    (buffer-substring
-                            (region-beginning)
-                            (region-end))))
-            (eww (buffer-substring
-                (line-beginning-position)
-                (line-beginning-position 2))))
-          (evil-quit)
-          (switch-to-buffer-other-frame buffer-name-to-close)))
-;; ****** "k" : 
-    ("k"  (
-      let (buffer-name-to-close (buffer-name))
-          (evil-window-split)
-          (if (use-region-p)
-              (eww (concat
-                    "https://downloads.khinsider.com/search?search="
-                    (buffer-substring
-                            (region-beginning)
-                            (region-end))))
-            (eww (buffer-substring
-                (line-beginning-position)
-                (line-beginning-position 2))))
-          (evil-quit)
-          (switch-to-buffer-other-frame buffer-name-to-close)))
-;; ****** "i" : 
-    ("i"  (
-      let (buffer-name-to-close (buffer-name))
-          (evil-window-split)
-          (if (use-region-p)
-            (buyn-shell-start (concat
-                  "firefox "
-                  "\""
-                  "https://www.google.com/search?q="
-                  (buffer-substring
-                          (region-beginning)
-                          (region-end))
-                  "&sclient=gws-wiz-img"
-                  "\""))
-            (buyn-shell-start (concat
-                  "firefox "
-                  "\""
-                  "https://www.google.com/search?q="
-                  (buffer-substring
-                      (line-beginning-position)
-                      (line-beginning-position 2))
-                  "&sclient=gws-wiz-img"
-                  "\""))
-          (delete-other-windows))))
-;; ****** "E" : 
-    ("E"  (
-      let (buffer-name-to-close (buffer-name))
-          (evil-window-split)
-          (if (use-region-p)
-              (eww-search-words)
-            (progn 
-                ;; According to C-h f region-active-p, it seems that you should use use-region-p instead.
-                ;; EDIT: I think that rebinding the key to the new command is a cleaner approach than the advice (other commands may be relying on the original version of eww-search).
-                ;; (line-beginning-position)
-                ;; (line-beginning-position 2)
-                ;; (eww-search-words)))
-                (eww (read-string "Query: ")))
-          (evil-quit)
-          (switch-to-buffer-other-frame buffer-name-to-close))))
-;; ****** "Y" : 
-    ("Y" (progn  
-      (setq x-select-enable-clipboard t)
+                           "\""))
+        (delete-other-windows))
+    (progn
       (eww-copy-page-url)
-      (setq x-select-enable-clipboard nil)
-      ))
-;; ****** "p" : 
+      (buyn-shell-start (concat "firefox " (current-kill 0)))))
+  ;; ****** "c" : 
+  ("c" (progn
+         (eww-copy-page-url)
+         (buyn-shell-start (concat "chromium " (current-kill 0)))))
+  ;; ****** "s" : 
+  ("s"  (
+         let (buffer-name-to-close (buffer-name))
+         (if (use-region-p)
+             (eww (buffer-substring
+                   (region-beginning)
+                   (region-end)))
+           (eww (buffer-substring
+                 (line-beginning-position)
+                 (line-beginning-position 2))))
+         (switch-to-buffer buffer-name-to-close)))
+  ;; ****** "S" : 
+  ("S"  (
+         let (buffer-name-to-close (buffer-name))
+         (evil-window-split)
+         (if (use-region-p)
+             (eww (buffer-substring
+                   (region-beginning)
+                   (region-end)))
+           (eww (buffer-substring
+                 (line-beginning-position)
+                 (line-beginning-position 2))))
+         (evil-quit)
+         (switch-to-buffer-other-frame buffer-name-to-close)))
+  ;; ****** "w" : 
+  ("w"  (
+         let (buffer-name-to-close (buffer-name))
+         (evil-window-split)
+         (if (use-region-p)
+             (eww (concat (buffer-substring
+                           (region-beginning)
+                           (region-end))
+                          " site:en.wikipedia.org"))
+           (eww (buffer-substring
+                 (line-beginning-position)
+                 (line-beginning-position 2))))
+         (evil-quit)
+         (switch-to-buffer-other-frame buffer-name-to-close)))
+  ;; ****** "y" : 
+  ("y"  (
+         let (buffer-name-to-close (buffer-name))
+         (evil-window-split)
+         (if (use-region-p)
+             (eww (concat
+                   "https://vid.puffyan.us/search?q="
+                   (buffer-substring
+                    (region-beginning)
+                    (region-end))))
+           (eww (buffer-substring
+                 (line-beginning-position)
+                 (line-beginning-position 2))))
+         (evil-quit)
+         (switch-to-buffer-other-frame buffer-name-to-close)))
+  ;; ****** "k" : 
+  ("k"  (
+         let (buffer-name-to-close (buffer-name))
+         (evil-window-split)
+         (if (use-region-p)
+             (eww (concat
+                   "https://downloads.khinsider.com/search?search="
+                   (buffer-substring
+                    (region-beginning)
+                    (region-end))))
+           (eww (buffer-substring
+                 (line-beginning-position)
+                 (line-beginning-position 2))))
+         (evil-quit)
+         (switch-to-buffer-other-frame buffer-name-to-close)))
+  ;; ****** "i" : 
+  ("i"  (
+         let (buffer-name-to-close (buffer-name))
+         (evil-window-split)
+         (if (use-region-p)
+             (buyn-shell-start (concat
+                                "firefox "
+                                "\""
+                                "https://www.google.com/search?q="
+                                (buffer-substring
+                                 (region-beginning)
+                                 (region-end))
+                                "&sclient=gws-wiz-img"
+                                "\""))
+           (buyn-shell-start (concat
+                              "firefox "
+                              "\""
+                              "https://www.google.com/search?q="
+                              (buffer-substring
+                               (line-beginning-position)
+                               (line-beginning-position 2))
+                              "&sclient=gws-wiz-img"
+                              "\""))
+           (delete-other-windows))))
+  ;; ****** "E" : 
+  ("E"  (
+         let (buffer-name-to-close (buffer-name))
+         (evil-window-split)
+         (if (use-region-p)
+             (eww-search-words)
+           (progn 
+             ;; According to C-h f region-active-p, it seems that you should use use-region-p instead.
+             ;; EDIT: I think that rebinding the key to the new command is a cleaner approach than the advice (other commands may be relying on the original version of eww-search).
+             ;; (line-beginning-position)
+             ;; (line-beginning-position 2)
+             ;; (eww-search-words)))
+             (eww (read-string "Query: ")))
+           (evil-quit)
+           (switch-to-buffer-other-frame buffer-name-to-close))))
+  ;; ****** "Y" : 
+  ("Y" (progn  
+         (setq x-select-enable-clipboard t)
+         (eww-copy-page-url)
+         (setq x-select-enable-clipboard nil)
+         ))
+  ;; ****** "p" : 
   ("p" (progn  
-      (setq x-select-enable-clipboard t)
-      (eww (current-kill 0 "DO-NOT-MOVE"))
-      (setq x-select-enable-clipboard nil)
-      ))
-;; ***** END of def
+         (setq x-select-enable-clipboard t)
+         (eww (current-kill 0 "DO-NOT-MOVE"))
+         (setq x-select-enable-clipboard nil)
+         ))
+  ;; ***** END of def
   )
+#+end_src
+******* src hydra-zoom
+#+begin_src elisp :results output silent
 
 (defhydra hydra-zoom (:color pink)
   ;; (global-map "C-c")
@@ -3152,9 +3155,6 @@ _Y_ankPageUrl  _o_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
   ("q" nil "quit")
   )
 #+end_src
-
-#+RESULTS:
-: hydra-zoom/body
 
 ******* arhiv
 ******** i
