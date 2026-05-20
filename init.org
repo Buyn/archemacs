@@ -85,6 +85,19 @@ hydra-ai-role-menu
 ****** models
 (defhydra hydra-ai-model-menu (:color blue)
 ***** [[*dev-menu][dev-menu]]
+***** [[*www-menu][www-menu]]
+***** [[*commands-menu][commands-menu]]
+
+[[*hydra-applancher-menu][hydra-applancher-menu]]
+
+[[*hydra-shell-scripts-menu][hydra-shell-scripts-menu]]
+
+[[*hydra-eshell-menu][hydra-eshell-menu]]
+
+[[*hydra-player-menu][hydra-player-menu]]
+
+[[*hydra-commands-menu][hydra-commands-menu]]
+
 **** [[*F1 menus][F1 menus]]
 *** org
   ("h" org-appear-mode "auto-emphasis")
@@ -2953,22 +2966,23 @@ CLOSED: [2025-02-21 Fri 21:34]
 : hydra-emaks-fonts/body
 
 ****** www-menu
+******* src www-menu 
 #+begin_src elisp
 (defhydra www-menu (:color blue)
 ;; ***** hint
     "
                                    ^WWW  Menus^          
 ───────────────────────────────────^──────────^────────────────────────────────
-_L_ist  _y_t  _B_ookmarks  _v_isual  _r_enameBuf _m_pv _f_irefox _c_hromium
+_L_ist  _y_t  _B_ookmarks  _v_isual  _r_enameBuf _m_pv _f_irefox(s) _c_hromium
 _S_earchOtherF _s_earch _E_WordOthrF s_W_itch _p_ast&go _k_hinsider        
-_Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
+_Y_ankPageUrl  _o_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
     "
 ;; ***** keys
 ;; ****** one-line keys
     ("L" (eww-list-buffers))
     ("W" (eww-switch-to-buffer))
     ("B" (eww-list-bookmarks))
-    ("f" org-open-link-in-new-frame)
+    ("o" org-open-link-in-new-frame)
     ("z" hydra-zoom/body)
     ("r" rename-buffer)
   ("q" nil) 
@@ -2988,10 +3002,21 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
                                         ))
 
 ;; ****** "f" : 
-    ("f" (progn
-          (eww-copy-page-url)
-          (buyn-shell-start (concat "firefox " (current-kill 0)))))
-
+    ("f" )
+        (if (use-region-p)
+            (progn
+              (buyn-shell-start (concat
+                    "firefox "
+                    "\""
+                    "https://www.google.com/search?q="
+                    (buffer-substring
+                            (region-beginning)
+                            (region-end))
+                    "\""))
+              (delete-other-windows))
+            (progn
+              (eww-copy-page-url)
+              (buyn-shell-start (concat "firefox " (current-kill 0)))))
 ;; ****** "c" : 
     ("c" (progn
           (eww-copy-page-url)
@@ -3069,16 +3094,25 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
       let (buffer-name-to-close (buffer-name))
           (evil-window-split)
           (if (use-region-p)
-              (eww (concat
-                    "https://www.google.com/search?gbv=1&bih=&biw=&source=hp&hl=en&ie=ISO-8859-1&tbm=isch&q="
-                    (buffer-substring
-                            (region-beginning)
-                            (region-end))))
-            (eww (buffer-substring
-                (line-beginning-position)
-                (line-beginning-position 2))))
-          (evil-quit)
-          (switch-to-buffer-other-frame buffer-name-to-close)))
+            (buyn-shell-start (concat
+                  "firefox "
+                  "\""
+                  "https://www.google.com/search?q="
+                  (buffer-substring
+                          (region-beginning)
+                          (region-end))
+                  "&sclient=gws-wiz-img"
+                  "\""))
+            (buyn-shell-start (concat
+                  "firefox "
+                  "\""
+                  "https://www.google.com/search?q="
+                  (buffer-substring
+                      (line-beginning-position)
+                      (line-beginning-position 2))
+                  "&sclient=gws-wiz-img"
+                  "\""))
+          (delete-other-windows))))
 ;; ****** "E" : 
     ("E"  (
       let (buffer-name-to-close (buffer-name))
@@ -3122,6 +3156,32 @@ _Y_ankPageUrl  _f_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
 #+RESULTS:
 : hydra-zoom/body
 
+******* arhiv
+******** i
+    ("i"  (
+      let (buffer-name-to-close (buffer-name))
+          (evil-window-split)
+          (if (use-region-p)
+              (eww (concat
+                    "https://www.google.com/search?gbv=1&bih=&biw=&source=hp&hl=en&ie=ISO-8859-1&tbm=isch&q="
+                    (buffer-substring
+                            (region-beginning)
+                            (region-end))))
+            (eww (buffer-substring
+                (line-beginning-position)
+                (line-beginning-position 2))))
+          (evil-quit)
+          (switch-to-buffer-other-frame buffer-name-to-close)))
+
+(buyn-shell-start (concat
+                  "firefox "
+                  "\""
+                  "https://www.google.com/search?q="
+                  (buffer-substring
+                          (region-beginning)
+                          (region-end))
+                  "&sclient=gws-wiz-img"
+                  "\""))
 ****** yank-menu
 ******* suport yank menu functions
 #+begin_src elisp

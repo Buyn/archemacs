@@ -34,15 +34,15 @@ https://www.braveclojure.com/basic-emacs/
   :config
   (reverse-im-mode t)
 ;; ** define-key:
-  ;; (define-key evil-visual-state-map (kbd "M-U") 'reverse-im-translate-region)
+  (define-key evil-normal-state-map (kbd "M-U") 'toggle-input-method)
   (define-key evil-visual-state-map (kbd "M-U") '(lambda () (interactive) 
             (reverse-im-translate-region (region-beginning) (region-end))
             (toggle-input-method)))
-  (define-key evil-insert-state-map (kbd "M-U") 'reverse-im-translate-word)
+  (define-key evil-insert-state-map (kbd "C-M-u") 'reverse-im-translate-word)
   (define-key evil-insert-state-map (kbd "C-U") '(lambda () (interactive) 
             (reverse-im-translate-word 1)
             (toggle-input-method)))
-  (define-key evil-insert-state-map (kbd "C-M-u") '(lambda () (interactive) 
+  (define-key evil-insert-state-map (kbd "M-U") '(lambda () (interactive) 
             (reverse-im-translate-word 1)
             (toggle-input-method)))
 ;; ** use-package END)
@@ -97,6 +97,20 @@ https://www.braveclojure.com/basic-emacs/
 **** todo
 **** backlog
 **** done
+*** SWOT
+**** Strengths +
+**** Weaknesses -
+**** Opportunities
+**** Threats
+**** Описание
+***** вначале заполняем +-
+всё делам на плюсы и минусы
+***** потом заполняем ОТ 
+на основе +- даём ответ на вопросы
+что за возможности открываются
+какие угрозы врезультати встают
+***** если впроцесе вспоминается новое 
+за носии в + или -
 *** Kanban table
 **** Kanban Bord 01
 | planning | dezine | Implementing | blocked | review | done |
@@ -587,20 +601,6 @@ A minimum viable product is a version of a product with just enough features to 
 **** Срочное но не важное
 **** Важное но не срочное 
 **** Не Срочное и не важное
-*** SWOT
-**** Strengths +
-**** Weaknesses -
-**** Opportunities
-**** Threats
-**** Описание
-***** вначале заполняем +-
-всё делам на плюсы и минусы
-***** потом заполняем ОТ 
-на основе +- даём ответ на вопросы
-что за возможности открываются
-какие угрозы врезультати встают
-***** если впроцесе вспоминается новое 
-за носии в + или -
 *** Туду
 **** сделать
 **** в процесе
@@ -1262,6 +1262,43 @@ initial-scratch-message
 ;; This buffer is for text that is not saved, and for Lisp evaluation.
 ;; To create a file, visit it with C-x C-f and enter text in its buffer.
 ")
+
+** install on new system
+*** Archimacs
+**** chemacs2 docs
+https://github.com/plexus/chemacs2
+**** install chemacs2
+git clone https://github.com/plexus/chemacs2.git ~/.emacs.d
+**** install archimacs
+git clone https://github.com/Buyn/archemacs.git ~/.archemacs
+**** set to stable
+git checkout stable
+git status
+git log
+git pull
+еслю всё плохо и нужно срочно получит работаюший имакс с нуля
+**** copy to ~/
+emacs-debug.sh
+.emacs-profiles.el 
+
+from ~/.archemacs
+**** set commits
+git remote set-url origin git@github.com:Buyn/archemacs.git
+git remote set-url origin https://github.com/Buyn/archemacs.git
+
+**** checout experemental
+если всё хорошо то стоит начать с мастера
+и если всё стабильно запускается апнуть его к нему стабильный
+ну или поправить всё
+**** stable version org coments
+#+begin_src elisp :results output silent
+(find-file-other-frame "~/.archemacs/ORG/stable-comment.org")
+(evil-previous-line)
+(org-cycle)
+(delete-other-windows)
+#+end_src
+
+**** test
 
 * Pathes
 ** init.org file
