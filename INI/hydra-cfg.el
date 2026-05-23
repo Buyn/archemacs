@@ -429,144 +429,129 @@ _Y_ankPageUrl  _o_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
          ))
 
   ;; ****** "f" : 
-  ("f" )
-  (if (use-region-p)
-      (progn
-        (buyn-shell-start (concat
-                           "firefox "
-                           "\""
-                           "https://www.google.com/search?q="
-                           (buffer-substring
-                            (region-beginning)
-                            (region-end))
-                           "\""))
-        (delete-other-windows))
-    (progn
-      (eww-copy-page-url)
-      (buyn-shell-start (concat "firefox " (current-kill 0)))))
+  ("f" (if (use-region-p)
+        (progn
+          (buyn-shell-start (concat
+                            "firefox "
+                            "\""
+                            "https://www.google.com/search?q="
+                            (buffer-substring
+                              (region-beginning)
+                              (region-end))
+                            "\""))
+          (delete-other-windows))
+        (progn
+          (eww-copy-page-url)
+          (buyn-shell-start (concat "firefox " (current-kill 0))))))
   ;; ****** "c" : 
   ("c" (progn
          (eww-copy-page-url)
          (buyn-shell-start (concat "chromium " (current-kill 0)))))
   ;; ****** "s" : 
-  ("s"  (
-         let (buffer-name-to-close (buffer-name))
-         (if (use-region-p)
-             (eww (buffer-substring
-                   (region-beginning)
-                   (region-end)))
-           (eww (buffer-substring
-                 (line-beginning-position)
-                 (line-beginning-position 2))))
-         (switch-to-buffer buffer-name-to-close)))
+  ("s"  (let (buffer-name-to-close (buffer-name))
+          (if (use-region-p)
+              (eww (buffer-substring
+                (region-beginning)
+                (region-end)))
+              (eww (buffer-substring
+                (line-beginning-position)
+                (line-beginning-position 2))))
+          (switch-to-buffer buffer-name-to-close)))
   ;; ****** "S" : 
-  ("S"  (
-         let (buffer-name-to-close (buffer-name))
-         (evil-window-split)
-         (if (use-region-p)
-             (eww (buffer-substring
-                   (region-beginning)
-                   (region-end)))
-           (eww (buffer-substring
-                 (line-beginning-position)
-                 (line-beginning-position 2))))
-         (evil-quit)
-         (switch-to-buffer-other-frame buffer-name-to-close)))
+  ("S"  (let (buffer-name-to-close (buffer-name))
+          (evil-window-split)
+          (if (use-region-p)
+              (eww (buffer-substring
+                  (region-beginning)
+                  (region-end)))
+              (eww (buffer-substring
+                  (line-beginning-position)
+                  (line-beginning-position 2))))
+          (evil-quit)
+          (switch-to-buffer-other-frame buffer-name-to-close)))
   ;; ****** "w" : 
-  ("w"  (
-         let (buffer-name-to-close (buffer-name))
-         (evil-window-split)
-         (if (use-region-p)
-             (eww (concat (buffer-substring
-                           (region-beginning)
-                           (region-end))
-                          " site:en.wikipedia.org"))
-           (eww (buffer-substring
-                 (line-beginning-position)
-                 (line-beginning-position 2))))
-         (evil-quit)
-         (switch-to-buffer-other-frame buffer-name-to-close)))
+  ("w"  (let (buffer-name-to-close (buffer-name))
+          (evil-window-split)
+          (if (use-region-p)
+              (eww (concat (buffer-substring
+                            (region-beginning)
+                            (region-end))
+                            " site:en.wikipedia.org"))
+            (eww (buffer-substring
+                  (line-beginning-position)
+                  (line-beginning-position 2))))
+          (evil-quit)
+          (switch-to-buffer-other-frame buffer-name-to-close)))
   ;; ****** "y" : 
-  ("y"  (
-         let (buffer-name-to-close (buffer-name))
-         (evil-window-split)
-         (if (use-region-p)
-             (eww (concat
-                   "https://vid.puffyan.us/search?q="
-                   (buffer-substring
-                    (region-beginning)
-                    (region-end))))
-           (eww (buffer-substring
-                 (line-beginning-position)
-                 (line-beginning-position 2))))
-         (evil-quit)
-         (switch-to-buffer-other-frame buffer-name-to-close)))
+  ("y"  (let (buffer-name-to-close (buffer-name))
+          (evil-window-split)
+          (if (use-region-p)
+              (eww (concat
+                    "https://vid.puffyan.us/search?q="
+                    (buffer-substring
+                      (region-beginning)
+                      (region-end))))
+            (eww (buffer-substring
+                  (line-beginning-position)
+                  (line-beginning-position 2))))
+          (evil-quit)
+          (switch-to-buffer-other-frame buffer-name-to-close)))
   ;; ****** "k" : 
-  ("k"  (
-         let (buffer-name-to-close (buffer-name))
-         (evil-window-split)
-         (if (use-region-p)
-             (eww (concat
-                   "https://downloads.khinsider.com/search?search="
-                   (buffer-substring
-                    (region-beginning)
-                    (region-end))))
-           (eww (buffer-substring
-                 (line-beginning-position)
-                 (line-beginning-position 2))))
-         (evil-quit)
-         (switch-to-buffer-other-frame buffer-name-to-close)))
+  ("k"  (let (buffer-name-to-close (buffer-name))
+          (evil-window-split)
+          (if (use-region-p)
+              (eww (concat
+                    "https://downloads.khinsider.com/search?search="
+                    (buffer-substring
+                      (region-beginning)
+                      (region-end))))
+            (eww (buffer-substring
+                  (line-beginning-position)
+                  (line-beginning-position 2))))
+          (evil-quit)
+          (switch-to-buffer-other-frame buffer-name-to-close)))
   ;; ****** "i" : 
-  ("i"  (
-         let (buffer-name-to-close (buffer-name))
-         (evil-window-split)
-         (if (use-region-p)
-             (buyn-shell-start (concat
-                                "firefox "
-                                "\""
-                                "https://www.google.com/search?q="
-                                (buffer-substring
-                                 (region-beginning)
-                                 (region-end))
-                                "&sclient=gws-wiz-img"
-                                "\""))
-           (buyn-shell-start (concat
-                              "firefox "
-                              "\""
-                              "https://www.google.com/search?q="
-                              (buffer-substring
-                               (line-beginning-position)
-                               (line-beginning-position 2))
-                              "&sclient=gws-wiz-img"
-                              "\""))
-           (delete-other-windows))))
+  ("i"  (let (buffer-name-to-close (buffer-name))
+          (evil-window-split)
+          (if (use-region-p)
+              (buyn-shell-start (concat
+                                  "firefox "
+                                  "\""
+                                  "https://www.google.com/search?q="
+                                  (buffer-substring
+                                  (region-beginning)
+                                  (region-end))
+                                  "&sclient=gws-wiz-img"
+                                  "\""))
+              (buyn-shell-start (concat
+                                  "firefox "
+                                  "\""
+                                  "https://www.google.com/search?q="
+                                  (buffer-substring
+                                  (line-beginning-position)
+                                  (line-beginning-position 2))
+                                  "&sclient=gws-wiz-img"
+                                  "\""))
+              (delete-other-windows))))
   ;; ****** "E" : 
-  ("E"  (
-         let (buffer-name-to-close (buffer-name))
+  ("E"  (let (buffer-name-to-close (buffer-name))
          (evil-window-split)
-         (if (use-region-p)
-             (eww-search-words)
-           (progn 
-             ;; According to C-h f region-active-p, it seems that you should use use-region-p instead.
-             ;; EDIT: I think that rebinding the key to the new command is a cleaner approach than the advice (other commands may be relying on the original version of eww-search).
-             ;; (line-beginning-position)
-             ;; (line-beginning-position 2)
-             ;; (eww-search-words)))
-             (eww (read-string "Query: ")))
-           (evil-quit)
-           (switch-to-buffer-other-frame buffer-name-to-close))))
+         (if  (use-region-p)
+              (eww-search-words)
+              (progn 
+                (eww (read-string "Query: "))
+                (evil-quit)
+                (switch-to-buffer-other-frame buffer-name-to-close)))))
   ;; ****** "Y" : 
   ("Y" (progn  
          (setq x-select-enable-clipboard t)
          (eww-copy-page-url)
-         (setq x-select-enable-clipboard nil)
-         ))
+         (setq x-select-enable-clipboard nil)))
   ;; ****** "p" : 
   ("p" (progn  
          (setq x-select-enable-clipboard t)
          (eww (current-kill 0 "DO-NOT-MOVE"))
-         (setq x-select-enable-clipboard nil)
-         ))
+         (setq x-select-enable-clipboard nil)))
   ;; ***** END of def
   )
 
@@ -672,6 +657,61 @@ _Y_ankPageUrl  _o_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
 ;; **** END )
   )
 
+(defhydra elpy-nav-errors (:color red)
+;; ***** Hint
+  "
+  Navigate errors
+  "
+;; ***** Keys
+  ("n" next-error "next error")
+  ("p" previous-error "previous error")
+  ("s" (progn
+         (switch-to-buffer-other-window "*compilation*")
+         (goto-char (point-max))) "switch to compilation buffer" :color blue)
+  ("w" (venv-workon) "Workon venv…")
+  ("q" nil "quit")
+  ("Q" (kill-buffer "*compilation*") "quit and kill compilation buffer" :color blue)
+;; ***** END )
+  )
+
+(defhydra hydra-outline (:color pink :hint nil)
+;; **** Hint
+  "
+^Hide^             ^Show^           ^Move
+^^^^^^------------------------------------------------------
+_q_: sublevels     _a_: all         _u_: up
+_t_: body          _e_: entry       _n_: next visible
+_o_: other         _i_: children    _p_: previous visible
+_c_: entry         _k_: branches    _f_: forward same level
+_l_: leaves        _s_: subtree     _b_: backward same level
+_d_: subtree
+
+"
+;; **** Keys
+  ;; Hide
+  ("q" hide-sublevels)    ; Hide everything but the top-level headings
+  ("t" hide-body)         ; Hide everything but headings (all body lines)
+  ("o" hide-other)        ; Hide other branches
+  ("c" hide-entry)        ; Hide this entry's body
+  ("l" hide-leaves)       ; Hide body lines in this entry and sub-entries
+  ("d" hide-subtree)      ; Hide everything in this entry and sub-entries
+  ;; Show
+  ("a" show-all)          ; Show (expand) everything
+  ("e" show-entry)        ; Show this heading's body
+  ("i" show-children)     ; Show this heading's immediate child sub-headings
+  ("k" show-branches)     ; Show all sub-headings under this heading
+  ("s" show-subtree)      ; Show (expand) everything in this heading & below
+  ;; Move
+  ("u" outline-up-heading)                ; Up
+  ("n" outline-next-visible-heading)      ; Next
+  ("p" outline-previous-visible-heading)  ; Previous
+  ("f" outline-forward-same-level)        ; Forward - same level
+  ("b" outline-backward-same-level)       ; Backward - same level
+  ("z" nil "leave")
+;; (global-set-key (kbd "C-c #") 'hydra-outline/body) ; by example
+;; **** END )
+  )
+
 (defhydra hydra-commands-menu (:color blue)
   "
   commands menu:
@@ -684,3 +724,205 @@ _Y_ankPageUrl  _o_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
   ("p" (emms-pause) "playe/pause")
   ("q" nil "quit")
   )
+
+(defhydra hydra-player-menu (:color blue)
+  "
+  commands menu:
+  "
+  ;; Elpy in venv: %`venv-current-name
+  ("e" (emms) "emms")
+  ("m" (buyn-shell-start (concat "haruna " (buffer-substring (region-beginning) (region-end)))) "2haruna")
+  ("M" (buyn-shell-start (concat "mpv " (buffer-substring (region-beginning) (region-end)))) "2mpv")
+  ("T" (progn
+         (find-file-other-frame "~/Dropbox/Resources/Playlists/test.m3u")
+         (emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/test.m3u"))
+   "test.m3u")
+  ("w" (buyn-shell-start (concat "add2watchm3u " (buffer-substring (region-beginning) (region-end)))) "send2watch.m3u")
+  ("W" (progn
+          (find-file-other-frame "~/Dropbox/Resources/Playlists/Tech/watch.m3u")
+          (emms-play-m3u-playlist "~/Dropbox/Resources/Playlists/Tech/watch.m3u"))
+   "watch.m3u")
+  ("s" (emms-streams) "streams")
+  ("q" nil "quit")
+  )
+
+(defhydra hydra-eshell-menu (:color blue)
+  "
+  Eshell menu:
+  "
+  ;; Elpy in venv: %`venv-current-name
+  ("e" (let (buffer-name-to-close (buffer-name))
+         (evil-window-split)
+         (eshell)
+         (evil-quit)
+         (switch-to-buffer-other-frame buffer-name-to-close))
+   "Open eshell")
+  ("q" nil "quit")
+  )
+
+(defhydra hydra-shell-scripts-menu (:color blue)
+  "
+  Shell scripts menu:
+  "
+  ("R" (progn
+         (buyn-shell-start "sh_restart_plasmashell.sh")
+         (delete-other-windows))
+   "Restart plasmashell")
+  ("s" (progn
+         (buyn-shell-start "sudo systemctl suspend")
+         (delete-other-windows))
+   "sleep")
+  ("H" (progn
+         (buyn-shell-start "sudo systemctl hibernate")
+         (delete-other-windows))
+   "hibernate")
+  ("Y" (progn
+         (buyn-shell-start "sudo systemctl hybrid-sleep")
+         (delete-other-windows))
+   "hYbrid-sleep")
+  ("P" (progn
+         (buyn-shell-start "sh_off.sh")
+         (delete-other-windows))
+   "PoweOFF")
+  ("q" nil "quit")
+  )
+
+(defhydra hydra-applancher-menu (:color blue)
+  "
+  App Lancher menu
+  "
+  ;; Elpy in venv: %`venv-current-name
+  ("d" (progn
+          (buyn-shell-start "emacs --debug-init")
+          (delete-other-windows))
+      "emacs debug")
+  ("m" (progn
+         (buyn-shell-start "chromium --profile-directory=Default --app-id=cbgioneaoelhfonhmabneendhdhileho")
+            (setq x-select-enable-clipboard t)
+            (kill-new "https://meet.google.com/ttu-evry-rvj")
+            (setq x-select-enable-clipboard nil)
+            (delete-other-windows))
+      "my google meetup")
+  ("g" (progn
+         (buyn-shell-start "chromium --profile-directory=Default --app-id=bbfcdomagcggnpdkfbjfagpgafbehnkk")
+         (delete-other-windows))
+      "Gemeni")
+  ("q" nil "quit")
+  )
+
+(defhydra hydra-ediff (:color blue :hint nil)
+  "
+;; **** Hint
+^Buffers           Files           VC                     Ediff regions
+----------------------------------------------------------------------
+_b_uffers           _f_iles (_=_)       _r_evisions              _l_inewise
+_B_uffers (3-way)   _F_iles (3-way)                           _w_ordwise
+_?_ help            _c_urrent file                            
+"
+;; **** Keys
+  ("b" ediff-buffers)
+  ("B" ediff-buffers3)
+  ("=" ediff-files)
+  ("f" ediff-files)
+  ("F" ediff-files3)
+  ("c" ediff-current-file)
+  ("r" ediff-revision)
+  ("l" ediff-regions-linewise)
+  ("w" ediff-regions-wordwise)
+  ("?" (info "(ediff) Introduction"))
+;; **** END )
+  )
+
+(defhydra hydra-transpose (:color red)
+;; **** Hint
+    "Transpose"
+;; **** Keys
+     ("c" transpose-chars "characters")
+     ("w" transpose-words "words")
+     ("o" org-transpose-words "Org mode words")
+     ("l" transpose-lines "lines")
+     ("s" transpose-sentences "sentences")
+     ("e" org-transpose-elements "Org mode elements")
+     ("p" transpose-paragraphs "paragraphs")
+     ("t" org-table-transpose-table-at-point "Org mode table")
+     ("q" nil "cancel" :color blue)
+;; **** END )
+  )
+
+(defhydra lit-menu (:color pink)
+    "
+                ^OrphoGrammus  Menus^ z M-=         
+    ────────────^───────────────────^───────────────────
+     _[_ prev err    _]_ next err    _w_ word
+     _p_rev cor err  _n_ext cor err  
+     _f_lyspell      _c_omment chek  _q_uit
+     _a_ll buffer    _r_egion cheak
+     _R_u-RU    _D_ictonar chenge    _E_n-US
+    "
+    ("[" evil-prev-flyspell-error :color pink)
+    ("]" evil-next-flyspell-error :color pink)
+    ("n" flyspell-auto-correct-word :color pink)
+    ("p" flyspell-auto-correct-previous-word :color pink)
+    ("f" flyspell-mode :color pink)
+    ("c" flyspell-prog-mode)
+    ("a" flyspell-buffer)
+    ("R" (progn
+            (ispell-change-dictionary "ru_RU")
+            (flyspell-mode t)) :color blue)
+    ("D" ispell-change-dictionary)
+    ("E" (progn
+            (ispell-change-dictionary "en_US")
+            (flyspell-mode t)) :color blue)
+    ("r" ispell-region)
+    ("w" ispell-word :color pink)
+  ("q" nil) 
+  )
+
+(defhydra hydra-help-menu (:color blue)
+  ;; (global-map "C-c")
+  "help menu"
+  ("a" apropos "apropos")
+  ("f" describe-face "describe-face")
+  ("q" nil "quit")
+  )
+
+(defhydra hydra-f1-grimuar-menu (:color blue)
+  ("c" (find-file-other-frame "~/Dropbox/Office/Research/Doc/Codex/BuYn_Codex.org") "Codex")
+  ("s" (find-file-other-frame "~/Dropbox/orgs/capture/astronomicon.org") "Astronomicon")
+  ("e" (find-file-other-frame "~/Dropbox/orgs/capture/emagus.org") "Emagus")
+  ("n" (find-file-other-frame "~/Dropbox/orgs/capture/Necronomicon.org") "Necronomicon")
+  ("t" (find-file-other-frame "~/Dropbox/orgs/capture/Necroteuch.org") "Necroteuch")
+  ("T" (buyn-shell-start "~/Dropbox/orgs/capture/Necroteuch.sh") "desk5Necroteuch")
+  ("a" (find-file-other-frame "~/Dropbox/orgs/capture/Ansible.org") "Ansible")
+  ("m" (find-file-other-frame "~/Dropbox/orgs/capture/Manabook.org") "Manabook")
+  ("h" (find-file-other-frame "~/Dropbox/orgs/capture/holodeck.org") "Holodeck")
+  ("p" (find-file-other-frame "~/Dropbox/orgs/capture/Pensieve.org") "Pensieve")
+  ("q" nil)
+  )
+
+(defhydra hydra-f1-emagus-menu (:color blue)
+  ("D" (progn
+         (buyn-shell-start "wmctrl -s 4 ; emacs --debug-init")
+         (delete-other-windows)) "run debug")
+  ("T" (find-file "~/Dropbox/orgs/Logs/Todos/log-todo-2024-04-28-W17.org") "log-todo")
+  ("E" (find-file-other-frame (expand-file-name "init.org" user-emacs-directory)) "Emacs log")
+  ("O" (find-file-other-frame "~/Dropbox/orgs/Code/emacs_GPT_2023-07-20.org") "Init org")
+  ("S" (find-file-other-frame "~/Dropbox/orgs_code/archlinux/arh_script.org") "Script org")
+  ("B" (find-file-other-frame "~/Dropbox/Office/Dev/Pytho/app/browserchuser.org") "browserScript org")
+  ("d" (ranger "~/Dropbox/") "rager Dropbox")
+  ("t" (ranger "~/Desktop/") "rager Desktop")
+  ("w" (ranger "~/Downloads/") "rager Downloads")
+  ("v" (ranger "~/Dev/") "rager Dev")
+  ("q" nil)
+  )
+
+(global-set-key (kbd "M-<SPC>") 'spc-main-menu00/body)
+(define-key evil-normal-state-map (kbd "z M-=") 'lit-menu/body)
+
+(define-key evil-normal-state-map (kbd "M-a M-f M-o") 'lit-menu/body)
+
+(define-key evil-normal-state-map (kbd "M-a M-f M-w") 'ispell-word)
+(define-key evil-normal-state-map (kbd "M-a M-f M-n") 'evil-next-flyspell-error)
+(define-key evil-normal-state-map (kbd "M-a M-f M-p") 'evil-prev-flyspell-error)
+(define-key evil-normal-state-map (kbd "M-a M-f M-<SPC>") 'lit-menu/body)
+(define-key evil-normal-state-map (kbd "M-a M-f M-r") 'ispell-region)
