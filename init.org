@@ -2978,20 +2978,20 @@ CLOSED: [2025-02-21 Fri 21:34]
 "
                                    ^WWW  Menus^          
 ───────────────────────────────────^──────────^────────────────────────────────
-_L_ist  _y_t  _B_ookmarks  _v_isual  _r_enameBuf _m_pv _f_irefox(s) _c_hromium
+_L_ist  _y_t  _B_ookmarks  _v_isual  _r_enameBuf _m_pv _c_hromium
 _S_earchOtherF _s_earch _E_WordOthrF s_W_itch _p_ast&go _k_hinsider        
-_Y_ankPageUrl  _o_rameLink _w_iki-trm  _z_oom _i_mgS _R_eddit _P_erplex _q_uit 
+_Y_ankPageUrl  _o_rameLink _w_ww-menu  _z_oom _q_uit 
     "
 #+end_src
 ******** ;; ***** keys
 ******** ;; ****** one-line keys
 #+begin_src elisp :results output silent
-
 ("L" (eww-list-buffers))
 ("W" (eww-switch-to-buffer))
 ("B" (eww-list-bookmarks))
 ("o" org-open-link-in-new-frame)
 ("z" hydra-zoom/body)
+("w" www-search-menu/body)
 ("r" rename-buffer)
 ("q" nil) 
 #+end_src
@@ -3012,57 +3012,6 @@ _Y_ankPageUrl  _o_rameLink _w_iki-trm  _z_oom _i_mgS _R_eddit _P_erplex _q_uit
        (message (current-kill 0))
        ;; (buyn-shell-start (concat "mpv " (current-kill 0)))
        ))
-#+end_src
-******** ;; ****** "f" : 
-#+begin_src elisp :results output silent
-("f" (if (use-region-p)
-         (progn
-           (buyn-shell-start (concat
-                              "firefox "
-                              "\""
-                              "https://www.google.com/search?q="
-                              (buffer-substring
-                               (region-beginning)
-                               (region-end))
-                              "\""))
-           (delete-other-windows))
-       (progn
-         (eww-copy-page-url)
-         (buyn-shell-start (concat "firefox " (current-kill 0))))))
-#+end_src
-******** ;; ****** "P" : 
-#+begin_src elisp :results output silent
-("P" (if (use-region-p)
-         (progn
-           (buyn-shell-start (concat
-                              "firefox "
-                              "\""
-                              "https://www.perplexity.ai/search?q="
-                              (buffer-substring
-                               (region-beginning)
-                               (region-end))
-                              "\""))
-           (delete-other-windows))
-       (progn
-         (eww-copy-page-url)
-         (buyn-shell-start (concat "firefox " (current-kill 0))))))
-#+end_src
-******** ;; ****** "R" : 
-#+begin_src elisp :results output silent
-("R" (if (use-region-p)
-         (progn
-           (buyn-shell-start (concat
-                              "firefox "
-                              "\""
-                              "https://www.reddit.com/search?q="
-                              (buffer-substring
-                               (region-beginning)
-                               (region-end))
-                              "\""))
-           (delete-other-windows))
-       (progn
-         (eww-copy-page-url)
-         (buyn-shell-start (concat "firefox " (current-kill 0))))))
 #+end_src
 ******** ;; ****** "c" : 
 #+begin_src elisp :results output silent
@@ -3090,21 +3039,6 @@ _Y_ankPageUrl  _o_rameLink _w_iki-trm  _z_oom _i_mgS _R_eddit _P_erplex _q_uit
             (eww (buffer-substring
                   (region-beginning)
                   (region-end)))
-          (eww (buffer-substring
-                (line-beginning-position)
-                (line-beginning-position 2))))
-        (evil-quit)
-        (switch-to-buffer-other-frame buffer-name-to-close)))
-#+end_src
-******** ;; ****** "w" : 
-#+begin_src elisp :results output silent
-("w"  (let (buffer-name-to-close (buffer-name))
-        (evil-window-split)
-        (if (use-region-p)
-            (eww (concat (buffer-substring
-                          (region-beginning)
-                          (region-end))
-                         " site:en.wikipedia.org"))
           (eww (buffer-substring
                 (line-beginning-position)
                 (line-beginning-position 2))))
@@ -3142,31 +3076,6 @@ _Y_ankPageUrl  _o_rameLink _w_iki-trm  _z_oom _i_mgS _R_eddit _P_erplex _q_uit
                 (line-beginning-position 2))))
         (evil-quit)
         (switch-to-buffer-other-frame buffer-name-to-close)))
-#+end_src
-******** ;; ****** "i" : 
-#+begin_src elisp :results output silent
-("i"  (let (buffer-name-to-close (buffer-name))
-        (evil-window-split)
-        (if (use-region-p)
-            (buyn-shell-start (concat
-                               "firefox "
-                               "\""
-                               "https://www.google.com/search?q="
-                               (buffer-substring
-                                (region-beginning)
-                                (region-end))
-                               "&sclient=gws-wiz-img"
-                               "\""))
-          (buyn-shell-start (concat
-                             "firefox "
-                             "\""
-                             "https://www.google.com/search?q="
-                             (buffer-substring
-                              (line-beginning-position)
-                              (line-beginning-position 2))
-                             "&sclient=gws-wiz-img"
-                             "\""))
-          (delete-other-windows))))
 #+end_src
 ******** ;; ****** "E" : 
 #+begin_src elisp :results output silent
