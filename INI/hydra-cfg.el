@@ -402,7 +402,7 @@
 ───────────────────────────────────^──────────^────────────────────────────────
 _L_ist  _y_t  _B_ookmarks  _v_isual  _r_enameBuf _m_pv _f_irefox(s) _c_hromium
 _S_earchOtherF _s_earch _E_WordOthrF s_W_itch _p_ast&go _k_hinsider        
-_Y_ankPageUrl  _o_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
+_Y_ankPageUrl  _o_rameLink _w_iki-trm  _z_oom _i_mgS _P_erplex _q_uit 
     "
 
 ("L" (eww-list-buffers))
@@ -433,6 +433,21 @@ _Y_ankPageUrl  _o_rameLink _w_iki-trm  _z_oom  _q_uit _i_mgS
                               "firefox "
                               "\""
                               "https://www.google.com/search?q="
+                              (buffer-substring
+                               (region-beginning)
+                               (region-end))
+                              "\""))
+           (delete-other-windows))
+       (progn
+         (eww-copy-page-url)
+         (buyn-shell-start (concat "firefox " (current-kill 0))))))
+
+("P" (if (use-region-p)
+         (progn
+           (buyn-shell-start (concat
+                              "firefox "
+                              "\""
+                              "https://www.perplexity.ai/search?q="
                               (buffer-substring
                                (region-beginning)
                                (region-end))
