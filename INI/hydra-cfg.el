@@ -400,9 +400,9 @@
 "
                                    ^WWW  Menus^          
 ───────────────────────────────────^──────────^────────────────────────────────
-_L_ist  _y_t  _B_ookmarks  _v_isual  _r_enameBuf _m_pv _f_irefox(s) _c_hromium
+_L_ist  _y_t  _B_ookmarks  _v_isual  _r_enameBuf _m_pv _c_hromium
 _S_earchOtherF _s_earch _E_WordOthrF s_W_itch _p_ast&go _k_hinsider        
-_Y_ankPageUrl  _o_rameLink _w_iki-trm  _z_oom _i_mgS _R_eddit _P_erplex _q_uit 
+_Y_ankPageUrl  _o_rameLink _w_ww-menu  _z_oom _q_uit 
     "
 
 ("L" (eww-list-buffers))
@@ -410,6 +410,7 @@ _Y_ankPageUrl  _o_rameLink _w_iki-trm  _z_oom _i_mgS _R_eddit _P_erplex _q_uit
 ("B" (eww-list-bookmarks))
 ("o" org-open-link-in-new-frame)
 ("z" hydra-zoom/body)
+("w" www-search-menu/body)
 ("r" rename-buffer)
 ("q" nil)
 
@@ -426,51 +427,6 @@ _Y_ankPageUrl  _o_rameLink _w_iki-trm  _z_oom _i_mgS _R_eddit _P_erplex _q_uit
        (message (current-kill 0))
        ;; (buyn-shell-start (concat "mpv " (current-kill 0)))
        ))
-
-("f" (if (use-region-p)
-         (progn
-           (buyn-shell-start (concat
-                              "firefox "
-                              "\""
-                              "https://www.google.com/search?q="
-                              (buffer-substring
-                               (region-beginning)
-                               (region-end))
-                              "\""))
-           (delete-other-windows))
-       (progn
-         (eww-copy-page-url)
-         (buyn-shell-start (concat "firefox " (current-kill 0))))))
-
-("P" (if (use-region-p)
-         (progn
-           (buyn-shell-start (concat
-                              "firefox "
-                              "\""
-                              "https://www.perplexity.ai/search?q="
-                              (buffer-substring
-                               (region-beginning)
-                               (region-end))
-                              "\""))
-           (delete-other-windows))
-       (progn
-         (eww-copy-page-url)
-         (buyn-shell-start (concat "firefox " (current-kill 0))))))
-
-("R" (if (use-region-p)
-         (progn
-           (buyn-shell-start (concat
-                              "firefox "
-                              "\""
-                              "https://www.reddit.com/search?q="
-                              (buffer-substring
-                               (region-beginning)
-                               (region-end))
-                              "\""))
-           (delete-other-windows))
-       (progn
-         (eww-copy-page-url)
-         (buyn-shell-start (concat "firefox " (current-kill 0))))))
 
 ("c" (progn
        (eww-copy-page-url)
@@ -492,19 +448,6 @@ _Y_ankPageUrl  _o_rameLink _w_iki-trm  _z_oom _i_mgS _R_eddit _P_erplex _q_uit
             (eww (buffer-substring
                   (region-beginning)
                   (region-end)))
-          (eww (buffer-substring
-                (line-beginning-position)
-                (line-beginning-position 2))))
-        (evil-quit)
-        (switch-to-buffer-other-frame buffer-name-to-close)))
-
-("w"  (let (buffer-name-to-close (buffer-name))
-        (evil-window-split)
-        (if (use-region-p)
-            (eww (concat (buffer-substring
-                          (region-beginning)
-                          (region-end))
-                         " site:en.wikipedia.org"))
           (eww (buffer-substring
                 (line-beginning-position)
                 (line-beginning-position 2))))
@@ -539,6 +482,116 @@ _Y_ankPageUrl  _o_rameLink _w_iki-trm  _z_oom _i_mgS _R_eddit _P_erplex _q_uit
         (evil-quit)
         (switch-to-buffer-other-frame buffer-name-to-close)))
 
+("E"  (let (buffer-name-to-close (buffer-name))
+        (evil-window-split)
+        (if  (use-region-p)
+            (eww-search-words)
+          (progn 
+            (eww (read-string "Query: "))
+            (evil-quit)
+            (switch-to-buffer-other-frame buffer-name-to-close)))))
+
+("Y" (progn  
+       (setq x-select-enable-clipboard t)
+       (eww-copy-page-url)
+       (setq x-select-enable-clipboard nil)))
+
+("p" (progn  
+       (setq x-select-enable-clipboard t)
+       (eww (current-kill 0 "DO-NOT-MOVE"))
+       (setq x-select-enable-clipboard nil)))
+
+)
+
+(defhydra www-search-menu (:color blue)
+
+("q" nil)
+
+("f" (if (use-region-p)
+         (progn
+           (buyn-shell-start (concat
+                              "firefox "
+                              "\""
+                              "https://www.google.com/search?q="
+                              (buffer-substring
+                               (region-beginning)
+                               (region-end))
+                              "\""))
+           (delete-other-windows))
+       (progn
+         (eww-copy-page-url)
+         (buyn-shell-start (concat "firefox " (current-kill 0))))) "google")
+
+("p" (if (use-region-p)
+         (progn
+           (buyn-shell-start (concat
+                              "firefox "
+                              "\""
+                              "https://www.perplexity.ai/search?q="
+                              (buffer-substring
+                               (region-beginning)
+                               (region-end))
+                              "\""))
+           (delete-other-windows))
+       (progn
+         (eww-copy-page-url)
+         (buyn-shell-start (concat "firefox " (current-kill 0)))))"perplexity")
+
+("r" (if (use-region-p)
+         (progn
+           (buyn-shell-start (concat
+                              "firefox "
+                              "\""
+                              "https://www.reddit.com/search?q="
+                              (buffer-substring
+                               (region-beginning)
+                               (region-end))
+                              "\""))
+           (delete-other-windows))
+       (progn
+         (eww-copy-page-url)
+         (buyn-shell-start (concat "firefox " (current-kill 0))))) "reddit")
+
+("W"  (let (buffer-name-to-close (buffer-name))
+        (evil-window-split)
+        (if (use-region-p)
+            (eww (concat (buffer-substring
+                          (region-beginning)
+                          (region-end))
+                         " site:en.wikipedia.org"))
+          (eww (buffer-substring
+                (line-beginning-position)
+                (line-beginning-position 2))))
+        (evil-quit)
+        (switch-to-buffer-other-frame buffer-name-to-close))"Wikipedia")
+
+("w"  (let (buffer-name-to-close (buffer-name))
+        (evil-window-split)
+        (if (use-region-p)
+            (eww (concat (buffer-substring
+                          (region-beginning)
+                          (region-end))
+                         " watch online"))
+          (eww (buffer-substring
+                (line-beginning-position)
+                (line-beginning-position 2))))
+        (evil-quit)
+        (switch-to-buffer-other-frame buffer-name-to-close))"watch-online")
+
+("k"  (let (buffer-name-to-close (buffer-name))
+        (evil-window-split)
+        (if (use-region-p)
+            (eww (concat
+                  "https://downloads.khinsider.com/search?search="
+                  (buffer-substring
+                   (region-beginning)
+                   (region-end))))
+          (eww (buffer-substring
+                (line-beginning-position)
+                (line-beginning-position 2))))
+        (evil-quit)
+        (switch-to-buffer-other-frame buffer-name-to-close))"khinsider")
+
 ("i"  (let (buffer-name-to-close (buffer-name))
         (evil-window-split)
         (if (use-region-p)
@@ -560,26 +613,7 @@ _Y_ankPageUrl  _o_rameLink _w_iki-trm  _z_oom _i_mgS _R_eddit _P_erplex _q_uit
                               (line-beginning-position 2))
                              "&sclient=gws-wiz-img"
                              "\""))
-          (delete-other-windows))))
-
-("E"  (let (buffer-name-to-close (buffer-name))
-        (evil-window-split)
-        (if  (use-region-p)
-            (eww-search-words)
-          (progn 
-            (eww (read-string "Query: "))
-            (evil-quit)
-            (switch-to-buffer-other-frame buffer-name-to-close)))))
-
-("Y" (progn  
-       (setq x-select-enable-clipboard t)
-       (eww-copy-page-url)
-       (setq x-select-enable-clipboard nil)))
-
-("p" (progn  
-       (setq x-select-enable-clipboard t)
-       (eww (current-kill 0 "DO-NOT-MOVE"))
-       (setq x-select-enable-clipboard nil)))
+          (delete-other-windows)))"googleIMG")
 
 )
 

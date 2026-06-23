@@ -3106,23 +3106,20 @@ _Y_ankPageUrl  _o_rameLink _w_ww-menu  _z_oom _q_uit
 #+begin_src elisp :results output silent
 )
 #+end_src
-******* CANCELED src www-search-menu
-:PROPERTIES:
-:header-args: :tangle no
-:END:
+******* src www-search-menu
 ******** defhydra www-search-menu
 #+begin_src elisp :results output silent
 (defhydra www-search-menu (:color blue)
 #+end_src
 ******** ;; ***** keys
-******** CANCELED ;; ****** one-line keys
-#+begin_src elisp :results output silent :tangle no
+******** ;; ****** one-line keys
 ("L" (eww-list-buffers))
 ("W" (eww-switch-to-buffer))
 ("B" (eww-list-bookmarks))
 ("o" org-open-link-in-new-frame)
 ("z" hydra-zoom/body)
 ("r" rename-buffer)
+#+begin_src elisp :results output silent
 ("q" nil) 
 #+end_src
 ******** ;; ****** "f" google: 
@@ -3245,7 +3242,7 @@ _Y_ankPageUrl  _o_rameLink _w_ww-menu  _z_oom _q_uit
                               (line-beginning-position 2))
                              "&sclient=gws-wiz-img"
                              "\""))
-          (delete-other-windows))))
+          (delete-other-windows)))"googleIMG")
 #+end_src
 ******** ;; ***** END of def
 #+begin_src elisp :results output silent
