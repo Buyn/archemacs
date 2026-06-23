@@ -80,8 +80,8 @@ https://www.braveclojure.com/basic-emacs/
 
 ** Templats
 *** Kanban
-**** in progress 
 **** urgent 
+**** in progress 
 **** dezine 
 **** todo
 **** backlog

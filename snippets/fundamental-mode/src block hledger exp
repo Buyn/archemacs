@@ -1,9 +1,8 @@
 # key: src_exp
 # name: src block hledger exp
 # --
-#+begin_src ${1:hledger1}$0 :results output silent
-`(format-time-string "%Y-%m-%d")` $2
-    $3  exp $4
-    $5
-
+#+begin_src hledger${4:1} :results output silent
+`(format-time-string "%Y-%m-%d")` `(car(last (org-get-outline-path t)))`$0
+    `(buyn/hledger-ivy-account-from-activ)`  exp $2
+    `(buyn/hledger-ivy-account-from-activ)`
 #+end_src
