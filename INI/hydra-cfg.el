@@ -565,18 +565,20 @@ _Y_ankPageUrl  _o_rameLink _w_ww-menu  _z_oom _q_uit
         (evil-quit)
         (switch-to-buffer-other-frame buffer-name-to-close))"Wikipedia")
 
-("w"  (let (buffer-name-to-close (buffer-name))
-        (evil-window-split)
-        (if (use-region-p)
-            (eww (concat (buffer-substring
-                          (region-beginning)
-                          (region-end))
-                         " watch online"))
-          (eww (buffer-substring
-                (line-beginning-position)
-                (line-beginning-position 2))))
-        (evil-quit)
-        (switch-to-buffer-other-frame buffer-name-to-close))"watch-online")
+("w" (if (use-region-p)
+         (progn
+           (buyn-shell-start (concat
+                              "firefox "
+                              "\""
+                              (buffer-substring
+                               (region-beginning)
+                               (region-end))
+                              " смотреть онлайн"
+                              "\""))
+           (delete-other-windows))
+         (progn
+            (eww-copy-page-url)
+            (buyn-shell-start (concat "firefox " (current-kill 0))))) "watch-online")
 
 ("k"  (let (buffer-name-to-close (buffer-name))
         (evil-window-split)

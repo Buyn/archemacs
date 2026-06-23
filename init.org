@@ -3190,19 +3190,22 @@ _Y_ankPageUrl  _o_rameLink _w_ww-menu  _z_oom _q_uit
 #+end_src
 ******** ;; ****** "w" watch-online: 
 #+begin_src elisp :results output silent
-("w"  (let (buffer-name-to-close (buffer-name))
-        (evil-window-split)
-        (if (use-region-p)
-            (eww (concat (buffer-substring
-                          (region-beginning)
-                          (region-end))
-                         " watch online"))
-          (eww (buffer-substring
-                (line-beginning-position)
-                (line-beginning-position 2))))
-        (evil-quit)
-        (switch-to-buffer-other-frame buffer-name-to-close))"watch-online")
+("w" (if (use-region-p)
+         (progn
+           (buyn-shell-start (concat
+                              "firefox "
+                              "\""
+                              (buffer-substring
+                               (region-beginning)
+                               (region-end))
+                              " смотреть онлайн"
+                              "\""))
+           (delete-other-windows))
+         (progn
+            (eww-copy-page-url)
+            (buyn-shell-start (concat "firefox " (current-kill 0))))) "watch-online")
 #+end_src
+
 ******** ;; ****** "k" khinsider: 
 #+begin_src elisp :results output silent
 ("k"  (let (buffer-name-to-close (buffer-name))
@@ -6457,6 +6460,8 @@ spd-say -l ru "Привет, БуЯн!"
 :header-args: :tangle INI/AI/ai.el
 :END:
 *** описание
+(find-file-other-frame "~/.archemacs/INI/AI/ai.el")
+
 **** gpt
 **** gptel
 https://github.com/karthink/gptel
@@ -6599,7 +6604,6 @@ Instead of an image, show the English prompt that you will use to get the image.
   ("m" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/multiagent-ai.org") "multiagent-ai")
   ("a" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/al-Audio-gen.org") "al-Audio-gen")
   ("s" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/Stable_Diffusion.org") "Stable_Diffusion")
-  ("S" (find-file-other-frame "~/Dropbox/Office/Games/Game-logs/AI/2024-06-07-SD-story.org") "SD-log")
   ("d" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/worlds.org") "aiworlds")
   ("C" (find-file-other-frame "~/Dropbox/Office/Research/Doc/Codex/BuYn_Codex.org") "BuYn_Codex")
   ("q" nil) 
@@ -6642,6 +6646,7 @@ Instead of an image, show the English prompt that you will use to get the image.
          (load "~/Dropbox/Office/Games/aidungeon/els/ai-synod.el")
          (find-file-other-frame "~/Dropbox/Office/Games/Game-logs/Tomb-of-Tyrants/2023-09-09-AI-story.org")
          ) "LogFile")
+  ("s" (find-file-other-frame "~/Dropbox/Office/Games/Game-logs/AI/2024-06-07-SD-story.org") "SD-log")
   ("t" (progn
          (load "~/Dropbox/Office/Games/aidungeon/els/tpol-chat.el")
          (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/chars-chat/2024-05-18-T-Pol.org"))

@@ -80,7 +80,6 @@
   ("m" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/multiagent-ai.org") "multiagent-ai")
   ("a" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/al-Audio-gen.org") "al-Audio-gen")
   ("s" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/Stable_Diffusion.org") "Stable_Diffusion")
-  ("S" (find-file-other-frame "~/Dropbox/Office/Games/Game-logs/AI/2024-06-07-SD-story.org") "SD-log")
   ("d" (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/worlds.org") "aiworlds")
   ("C" (find-file-other-frame "~/Dropbox/Office/Research/Doc/Codex/BuYn_Codex.org") "BuYn_Codex")
   ("q" nil) 
@@ -119,6 +118,7 @@
          (load "~/Dropbox/Office/Games/aidungeon/els/ai-synod.el")
          (find-file-other-frame "~/Dropbox/Office/Games/Game-logs/Tomb-of-Tyrants/2023-09-09-AI-story.org")
          ) "LogFile")
+  ("s" (find-file-other-frame "~/Dropbox/Office/Games/Game-logs/AI/2024-06-07-SD-story.org") "SD-log")
   ("t" (progn
          (load "~/Dropbox/Office/Games/aidungeon/els/tpol-chat.el")
          (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/chars-chat/2024-05-18-T-Pol.org"))
