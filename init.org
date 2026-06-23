@@ -2980,7 +2980,7 @@ CLOSED: [2025-02-21 Fri 21:34]
 ───────────────────────────────────^──────────^────────────────────────────────
 _L_ist  _y_t  _B_ookmarks  _v_isual  _r_enameBuf _m_pv _f_irefox(s) _c_hromium
 _S_earchOtherF _s_earch _E_WordOthrF s_W_itch _p_ast&go _k_hinsider        
-_Y_ankPageUrl  _o_rameLink _w_iki-trm  _z_oom _i_mgS _P_erplex _q_uit 
+_Y_ankPageUrl  _o_rameLink _w_iki-trm  _z_oom _i_mgS _R_eddit _P_erplex _q_uit 
     "
 #+end_src
 ******** ;; ***** keys
@@ -3030,7 +3030,7 @@ _Y_ankPageUrl  _o_rameLink _w_iki-trm  _z_oom _i_mgS _P_erplex _q_uit
          (eww-copy-page-url)
          (buyn-shell-start (concat "firefox " (current-kill 0))))))
 #+end_src
-******** ;; ****** "f" : 
+******** ;; ****** "P" : 
 #+begin_src elisp :results output silent
 ("P" (if (use-region-p)
          (progn
@@ -3038,6 +3038,23 @@ _Y_ankPageUrl  _o_rameLink _w_iki-trm  _z_oom _i_mgS _P_erplex _q_uit
                               "firefox "
                               "\""
                               "https://www.perplexity.ai/search?q="
+                              (buffer-substring
+                               (region-beginning)
+                               (region-end))
+                              "\""))
+           (delete-other-windows))
+       (progn
+         (eww-copy-page-url)
+         (buyn-shell-start (concat "firefox " (current-kill 0))))))
+#+end_src
+******** ;; ****** "R" : 
+#+begin_src elisp :results output silent
+("R" (if (use-region-p)
+         (progn
+           (buyn-shell-start (concat
+                              "firefox "
+                              "\""
+                              "https://www.reddit.com/search?q="
                               (buffer-substring
                                (region-beginning)
                                (region-end))
