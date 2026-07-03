@@ -238,6 +238,8 @@
     ("FS" (insert "(find-file-other-frame \"/ssh:buyn@192.168.0.1|sudo::/etc/ \")") "ssh sudo")
     ("k" (insert "(buyn-runin-konsole-commаnd \"\")") "konsole")
     ("d" (insert "(delete-other-windows)") "del wins")
+    ("egt" (insert "buyn.tex@gmail.com") ".tex@gm")
+    ("egm" (insert "buyn.max@gmail.com") ".max@gm")
     ("q" nil)
   )
 
