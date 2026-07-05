@@ -24,6 +24,20 @@
     (lax-plist-put read-aloud-engines "google.tr.uk"
       '(cmd "google-tts"
         args ("uk")))
+
+    ;; А теперь мои, самые вкусные и качественные (DashScope Qwen) Katerina
+    (lax-plist-put read-aloud-engines "qwen.ru.cherry"
+      '(cmd "qwen-tts" args ("ru" "Cherry")))
+    (lax-plist-put read-aloud-engines "qwen.ru.katerina"
+      '(cmd "qwen-tts" args ("ru" "Katerina")))
+    (lax-plist-put read-aloud-engines "qwen.en.ethan"
+      '(cmd "qwen-tts" args ("en" "Ethan")))
+    (lax-plist-put read-aloud-engines "qwen.auto.cherry"
+      '(cmd "qwen-tts" args ("auto" "Cherry")))
+    (lax-plist-put read-aloud-engines "qwen.auto.katerina"
+      '(cmd "qwen-tts" args ("auto" "Katerina")))
+    (lax-plist-put read-aloud-engines "qwen.auto.zhitian"
+      '(cmd "qwen-tts" args ("auto" "zhitian_emo")))
     )
 
 (defvar buyn/read-aloud-origin-buffer nil

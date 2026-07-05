@@ -29,6 +29,8 @@ https://www.braveclojure.com/basic-emacs/
 (global-set-key (kbd "M-<SPC>") 'spc-main-menu00/body)
 
 (load (expand-file-name "INI/hydra-cfg.el" user-emacs-directory)) 
+(load (expand-file-name "INI/lit-cfg/read-aloud-cfg.el" user-emacs-directory)) 
+
 
 (kill-buffer (current-buffer))
 (evil-quit)
