@@ -124,7 +124,6 @@ m-e m-s
 [[*hydra-reader-menu][hydra-reader-menu]]
 [[*INI/lit-cfg/read-aloud-cfg.el][INI/lit-cfg/read-aloud-cfg.el]]
 
-
 *** evil
 [[*EVIL-MOD CUSTOMIZATION][EVIL-MOD CUSTOMIZATION]]
 (define-key evil-normal-state-map (kbd "M-e M-i M-i") 'imenu)
