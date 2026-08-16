@@ -85,11 +85,7 @@
         (let ((curent-buffer (buffer-name)))
           (select-frame-by-name "*compilation*")
           (recompile)
-          (select-frame-by-name curent-buffer))))       
-
-;; (setq compilation-scroll-output nil)
-;; (add-to-list 'compilation-finish-functions 'my-compilation-finish-function)
-;;  --------------------------------------
+          (select-frame-by-name curent-buffer))))
 
 ;;  --------------------------------------
 (global-set-key (kbd "M-<f8>") nil)
@@ -196,7 +192,6 @@ or locally if not saved."
               (select-frame-by-name "*compilation*")
               (recompile)
               (select-frame-by-name origen-buffer))))))
-;; --------------------------------------
 
   (add-hook 'prog-mode-hook '(lambda ()
 ;; *** line-numbers-mode

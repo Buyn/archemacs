@@ -11,14 +11,35 @@
               ("g g" . ranger-goto-top)
               ("G G" . ranger-goto-bottom)
               ("Z F F" . find-file-other-frame)
-              ("C-S-F" . toggle-frame-maximized)
-              ("Z D D" . mkdir)
+              ("Z G T T" . (lambda () (interactive)
+                    (dired "/home/buyn/Desktop/")))
+              ("c d" . (lambda () (interactive)
+                  (let ((target (read-directory-name "Jump to dir: ")))
+                    (dired target))))
+              ;; ("C-S-F" . (lambda () (interactive)
+              ;;     (toggle-frame-maximized)
+              ;;     ;; (ranger-minimal-toggle)
+              ;;     (r--fset ranger-minimal nil)
+              ;;     (ranger-revert)
+              ;;     ))
+              ("C-S-F" . (lambda () (interactive)
+                (if (eq (frame-parameter nil 'fullscreen) 'maximized)
+                    (progn
+                      (set-frame-parameter nil 'fullscreen nil)
+                      ;; If we weren't in minimal mode, switch to minimal deer mode
+                      (unless (r--fget ranger-minimal)
+                        (ranger-minimal-toggle)))
+                    (progn
+                      (set-frame-parameter nil 'fullscreen 'maximized)
+                      ;; If we were in minimal mode, switch back to full ranger
+                      (when (r--fget ranger-minimal)
+                        (ranger-minimal-toggle))))))
+              ; dire edit
               ("Z F I" . (lambda() (interactive)
                            (find-file-other-frame
                             (expand-file-name
                              "INI/file-mng-cfg.el"
-                             user-emacs-directory))))
-              ))
+                             user-emacs-directory))))))
 
 ;; --------------------------------------
 ;; ** DIRED-MOD CUSTOMIZATION
