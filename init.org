@@ -642,8 +642,9 @@ There are two things you can do about this warning:
 
 *** used in
 ;; (find-file "~/.archemacs/INI/init.el")
-*** src
+*** src interface elements
 **** IVY CUSTOMIZATION
+***** use-package ivy
 ;; --------------------------------------
 #+begin_src elisp
 (require 'use-package)
@@ -656,6 +657,17 @@ There are two things you can do about this warning:
   )
 #+end_src
 
+***** ivy smart toggle input method
+#+begin_src emacs-lisp
+(defun my-ivy-smart-toggle-input-method ()
+  (interactive)
+  (if current-input-method
+      (deactivate-input-method)
+      (activate-input-method default-input-method)))
+
+;; And bind it specifically to the Ivy minibuffer map so it intercepts it right where we want!
+(define-key ivy-minibuffer-map (kbd "C-\\") #'my-ivy-smart-toggle-input-method)
+#+end_src
 ;;  --------------------------------------
 **** AVY CUSTOMIZATION
 ;; --------------------------------------
@@ -874,11 +886,11 @@ CLOSED: [2025-02-11 Tue 16:29]
 *** used in
 ;; (find-file "~/.archemacs/INI/interface-mods.el")
 *** src REVERSE-IM
-#+begin_src elisp
 ;; * REVERSE-IM CUSTOMIZATION:
 ;; --------------------------------------
 ;; ** install
 ;; https://github.com/a13/reverse-im.el
+#+begin_src elisp
 (use-package reverse-im
   :ensure t
 ;; ** :config:
@@ -900,11 +912,8 @@ CLOSED: [2025-02-11 Tue 16:29]
             (toggle-input-method)))
 ;; ** use-package END)
   )
-;; ** --------------------------------------
 #+end_src
-
-#+RESULTS:
-: t
+;; ** --------------------------------------
 
 * **горячие клавиши**
 ** **evil и навигация**
@@ -1449,7 +1458,7 @@ CLOSED: [2025-04-29 Tue 18:46]
   (define-key evil-motion-state-map (kbd "T") 'khaoos-evil-find-char-to-backward)
 ;; --------------------------------------
 #+end_src
-**** ONE CHAR ADD  
+**** ONE CHAR ADD
 #+begin_src elisp
 ;; ** load el
 ;; (load "~/.archemacs/ELs/Evil/onecharadd.el")
@@ -1461,7 +1470,7 @@ CLOSED: [2025-04-29 Tue 18:46]
 (define-key evil-normal-state-map (kbd "RET") 'khaoos-append-one-char)
 ;; --------------------------------------  
 #+end_src
-**** EVIL TABS  
+**** EVIL TABS
 #+begin_src elisp
 ;; ** load el
 ;; (find-file-other-frame "~/.archemacs/INI/Evil/evil-tabs-cfg.el")
@@ -5066,12 +5075,6 @@ CLOSED: [2025-03-03 Пн 06:36]
               ("c d" . (lambda () (interactive)
                   (let ((target (read-directory-name "Jump to dir: ")))
                     (dired target))))
-              ;; ("C-S-F" . (lambda () (interactive)
-              ;;     (toggle-frame-maximized)
-              ;;     ;; (ranger-minimal-toggle)
-              ;;     (r--fset ranger-minimal nil)
-              ;;     (ranger-revert)
-              ;;     ))
               ("C-S-F" . (lambda () (interactive)
                 (if (eq (frame-parameter nil 'fullscreen) 'maximized)
                     (progn

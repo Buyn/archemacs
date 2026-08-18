@@ -1,7 +1,3 @@
-;; * REVERSE-IM CUSTOMIZATION:
-;; --------------------------------------
-;; ** install
-;; https://github.com/a13/reverse-im.el
 (use-package reverse-im
   :ensure t
 ;; ** :config:
@@ -23,4 +19,3 @@
             (toggle-input-method)))
 ;; ** use-package END)
   )
-;; ** --------------------------------------

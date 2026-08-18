@@ -7,6 +7,15 @@
   (ido-mode nil)
   )
 
+(defun my-ivy-smart-toggle-input-method ()
+  (interactive)
+  (if current-input-method
+      (deactivate-input-method)
+      (activate-input-method default-input-method)))
+
+;; And bind it specifically to the Ivy minibuffer map so it intercepts it right where we want!
+(define-key ivy-minibuffer-map (kbd "C-\\") #'my-ivy-smart-toggle-input-method)
+
 (use-package avy :ensure t
   ;; :init
   ;; (elpy-enable)

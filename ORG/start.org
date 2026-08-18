@@ -31,6 +31,40 @@ https://www.braveclojure.com/basic-emacs/
 (load (expand-file-name "INI/hydra-cfg.el" user-emacs-directory)) 
 (load (expand-file-name "INI/lit-cfg/read-aloud-cfg.el" user-emacs-directory)) 
 
+(use-package ranger
+  :ensure t
+  :defer t
+  ;; :config
+  :bind (:map ranger-mode-map
+              ("r r" . ranger-refresh)
+              ("M-f" . avy-goto-word-1)
+              ("g g" . ranger-goto-top)
+              ("G G" . ranger-goto-bottom)
+              ("Z F F" . find-file-other-frame)
+              ("Z G T T" . (lambda () (interactive)
+                    (dired "/home/buyn/Desktop/")))
+              ("c d" . (lambda () (interactive)
+                  (let ((target (read-directory-name "Jump to dir: ")))
+                    (dired target))))
+              ("C-S-F" . (lambda () (interactive)
+                (if (eq (frame-parameter nil 'fullscreen) 'maximized)
+                    (progn
+                      (set-frame-parameter nil 'fullscreen nil)
+                      ;; If we weren't in minimal mode, switch to minimal deer mode
+                      (unless (r--fget ranger-minimal)
+                        (ranger-minimal-toggle)))
+                    (progn
+                      (set-frame-parameter nil 'fullscreen 'maximized)
+                      ;; If we were in minimal mode, switch back to full ranger
+                      (when (r--fget ranger-minimal)
+                        (ranger-minimal-toggle))))))
+              ; dire edit
+              ("Z F I" . (lambda() (interactive)
+                           (find-file-other-frame
+                            (expand-file-name
+                             "INI/file-mng-cfg.el"
+                             user-emacs-directory))))))
+
 
 (kill-buffer (current-buffer))
 (evil-quit)
@@ -2765,298 +2799,6 @@ Replace With: ^J
 So how does it work? Well, we tell Emacs to search for any two or more newlines that are at the beginning of a string – where each line is considered a string by Emacs – and because we search for two or more we skip the ones that only have a single newline. So if there are 10 newlines in a row, we replace them all in one fell swoop with a single newline. You can omit the replacement newline to remove them altogether!
 * Help Docs Emacs
 ** Tools
-*** debuging : 
-**** toggle-debug-on-error
-(toggle-debug-on-error)
-debug-on-error t
-debug-on-error nil
-**** Edebug
-***** Instrumenting for Edebug : 
-To debug a Lisp program with Edebug, you must first instrument the Lisp code that you want to debug. A simple way to do this is to first move point into the definition of a function or macro and then do C-u C-M-x (eval-defun with a prefix argument). See Instrumenting for Edebug, for alternative ways to instrument code.  
-***** special commands of Edebug are available : 
-The special commands of Edebug are available in the source code buffer in addition to the commands of Emacs Lisp mode. For example, you can type the Edebug command SPC to execute until the next stop point. If you type SPC once after entry to fac, here is the display you will see:
-
-(defun fac (n)
-=>(if ∗(< 0 n)
-      (* n (fac (1- n)))
-    1))
-
-When Edebug stops execution after an expression, it displays the expression’s value in the echo area.
-
-Other frequently used commands are ~b~ to set a breakpoint at a stop point, ~g~ to execute until a breakpoint is reached, and ~q~ to exit Edebug and return to the top-level command loop. Type ~?~ to display a list of all Edebug commands. 
-~u~ unset brekepoint
-***** command I : 
-While Edebug is active, the command I (edebug-instrument-callee) instruments the definition of the function or macro called by the list form after point, if it is not already instrumented. This is possible only if Edebug knows where to find the source for that function; for this reason, after loading Edebug, eval-region records the position of every definition it evaluates, even if not instrumenting it. 
-***** i command : 
-See also the 
-i command (see Jumping), which steps into the call after instrumenting the function. 
-***** 19.2.4 Jumping
-The commands described in this section execute until they reach a specified location. All except i make a temporary breakpoint to establish the place to stop, then switch to go mode. Any other breakpoint reached before the intended stop point will also stop execution. See Edebug Breakpoints, for the details on breakpoints.
-
-These commands may fail to work as expected in case of nonlocal exit, as that can bypass the temporary breakpoint where you expected the program to stop.
-
-h
-
-    Proceed to the stop point near where point is (edebug-goto-here).
-f
-
-    Run the program for one expression (edebug-forward-sexp).
-o
-
-    Run the program until the end of the containing sexp (edebug-step-out).
-i
-
-    Step into the function or macro called by the form after point (edebug-step-in). 
-
-The h command proceeds to the stop point at or after the current location of point, using a temporary breakpoint.
-
-The f command runs the program forward over one expression. More precisely, it sets a temporary breakpoint at the position that forward-sexp would reach, then executes in go mode so that the program will stop at breakpoints.
-
-With a prefix argument n, the temporary breakpoint is placed n sexps beyond point. If the containing list ends before n more elements, then the place to stop is after the containing expression.
-
-You must check that the position forward-sexp finds is a place that the program will really get to. In cond, for example, this may not be true.
-
-For flexibility, the f command does forward-sexp starting at point, rather than at the stop point. If you want to execute one expression from the current stop point, first type w (edebug-where) to move point there, and then type f.
-
-The o command continues out of an expression. It places a temporary breakpoint at the end of the sexp containing point. If the containing sexp is a function definition itself, o continues until just before the last sexp in the definition. If that is where you are now, it returns from the function and then stops. In other words, this command does not exit the currently executing function unless you are positioned after the last sexp.
-
-Normally, the h, f, and o commands display “Break” and pause for edebug-sit-for-seconds before showing the result of the form just evaluated. You can avoid this pause by setting edebug-sit-on-break to nil. See Edebug Options.
-
-The i command steps into the function or macro called by the list form after point, and stops at its first stop point. Note that the form need not be the one about to be evaluated. But if the form is a function call about to be evaluated, remember to use this command before any of the arguments are evaluated, since otherwise it will be too late.
-
-The i command instruments the function or macro it’s supposed to step into, if it isn’t instrumented already. This is convenient, but keep in mind that the function or macro remains instrumented unless you explicitly arrange to deinstrument it. 
-***** different way to remove the instrumentation : 
-A different way to remove the instrumentation from a definition is to use the edebug-remove-instrumentation command. It also allows removing the instrumentation from everything that has been instrumented. 
-***** 19.2.9 Evaluation
-
-While within Edebug, you can evaluate expressions as if Edebug were not running. Edebug tries to be invisible to the expression’s evaluation and printing. Evaluation of expressions that cause side effects will work as expected, except for changes to data that Edebug explicitly saves and restores. See The Outside Context, for details on this process.
-
-e exp RET
-
-    Evaluate expression exp in the context outside of Edebug (edebug-eval-expression). That is, Edebug tries to minimize its interference with the evaluation.
-M-: exp RET
-
-    Evaluate expression exp in the context of Edebug itself (eval-expression).
-C-x C-e
-
-    Evaluate the expression before point, in the context outside of Edebug (edebug-eval-last-sexp). With the prefix argument of zero (C-u 0 C-x C-e), don’t shorten long items (like strings and lists). 
-
-Edebug supports evaluation of expressions containing references to lexically bound symbols created by the following constructs in cl.el: lexical-let, macrolet, and symbol-macrolet. 
-***** 19.2.4 Jumping
-
-The commands described in this section execute until they reach a specified location. All except i make a temporary breakpoint to establish the place to stop, then switch to go mode. Any other breakpoint reached before the intended stop point will also stop execution. See Edebug Breakpoints, for the details on breakpoints.
-
-These commands may fail to work as expected in case of nonlocal exit, as that can bypass the temporary breakpoint where you expected the program to stop.
-
-h
-
-    Proceed to the stop point near where point is (edebug-goto-here).
-f
-
-    Run the program for one expression (edebug-forward-sexp).
-o
-
-    Run the program until the end of the containing sexp (edebug-step-out).
-i
-
-    Step into the function or macro called by the form after point (edebug-step-in). 
-
-The h command proceeds to the stop point at or after the current location of point, using a temporary breakpoint.
-
-The f command runs the program forward over one expression. More precisely, it sets a temporary breakpoint at the position that forward-sexp would reach, then executes in go mode so that the program will stop at breakpoints.
-
-With a prefix argument n, the temporary breakpoint is placed n sexps beyond point. If the containing list ends before n more elements, then the place to stop is after the containing expression.
-
-You must check that the position forward-sexp finds is a place that the program will really get to. In cond, for example, this may not be true.
-
-For flexibility, the f command does forward-sexp starting at point, rather than at the stop point. If you want to execute one expression from the current stop point, first type w (edebug-where) to move point there, and then type f.
-
-The o command continues out of an expression. It places a temporary breakpoint at the end of the sexp containing point. If the containing sexp is a function definition itself, o continues until just before the last sexp in the definition. If that is where you are now, it returns from the function and then stops. In other words, this command does not exit the currently executing function unless you are positioned after the last sexp.
-
-Normally, the h, f, and o commands display “Break” and pause for edebug-sit-for-seconds before showing the result of the form just evaluated. You can avoid this pause by setting edebug-sit-on-break to nil. See Edebug Options.
-
-The i command steps into the function or macro called by the list form after point, and stops at its first stop point. Note that the form need not be the one about to be evaluated. But if the form is a function call about to be evaluated, remember to use this command before any of the arguments are evaluated, since otherwise it will be too late.
-
-The i command instruments the function or macro it’s supposed to step into, if it isn’t instrumented already. This is convenient, but keep in mind that the function or macro remains instrumented unless you explicitly arrange to deinstrument it. 
-***** 19.2.6.1 Edebug Breakpoints
-
-While using Edebug, you can specify breakpoints in the program you are testing: these are places where execution should stop. You can set a breakpoint at any stop point, as defined in Using Edebug. For setting and unsetting breakpoints, the stop point that is affected is the first one at or after point in the source code buffer. Here are the Edebug commands for breakpoints:
-
-b
-
-    Set a breakpoint at the stop point at or after point (edebug-set-breakpoint). If you use a prefix argument, the breakpoint is temporary—it turns off the first time it stops the program. An overlay with the edebug-enabled-breakpoint or edebug-disabled-breakpoint faces is put at the breakpoint.
-u
-
-    Unset the breakpoint (if any) at the stop point at or after point (edebug-unset-breakpoint).
-U
-
-    Unset any breakpoints in the current form (edebug-unset-breakpoints).
-D
-
-    Toggle whether to disable the breakpoint near point (edebug-toggle-disable-breakpoint). This command is mostly useful if the breakpoint is conditional and it would take some work to recreate the condition.
-x condition RET
-
-    Set a conditional breakpoint which stops the program only if evaluating condition produces a non-nil value (edebug-set-conditional-breakpoint). With a prefix argument, the breakpoint is temporary.
-B
-
-    Move point to the next breakpoint in the current definition (edebug-next-breakpoint). 
-
-While in Edebug, you can set a breakpoint with b and unset one with u. First move point to the Edebug stop point of your choice, then type b or u to set or unset a breakpoint there. Unsetting a breakpoint where none has been set has no effect.
-
-Re-evaluating or reinstrumenting a definition removes all of its previous breakpoints.
-
-A conditional breakpoint tests a condition each time the program gets there. Any errors that occur as a result of evaluating the condition are ignored, as if the result were nil. To set a conditional breakpoint, use x, and specify the condition expression in the minibuffer. Setting a conditional breakpoint at a stop point that has a previously established conditional breakpoint puts the previous condition expression in the minibuffer so you can edit it.
-
-You can make a conditional or unconditional breakpoint temporary by using a prefix argument with the command to set the breakpoint. When a temporary breakpoint stops the program, it is automatically unset.
-
-Edebug always stops or pauses at a breakpoint, except when the Edebug mode is Go-nonstop. In that mode, it ignores breakpoints entirely.
-
-To find out where your breakpoints are, use the B command, which moves point to the next breakpoint following point, within the same function, or to the first breakpoint if there are no following breakpoints. This command does not continue execution—it just moves point in the buffer. 
-**** (debug) 
-***** (debug) 
-debug is an autoloaded interactive compiled Lisp function in
-‘debug.el’.
-
-(debug &rest ARGS)
-
-  Probably introduced at or before Emacs version 1.2.
-
-Enter debugger.  ‘c’ returns from the debugger.
-Arguments are mainly for use when this is called from the internals
-of the evaluator.
-
-You may call with no args, or you may pass nil as the first arg and
-any other args you like.  In that case, the list of args after the
-first will be printed into the backtrace buffer.
-
-If ‘inhibit-redisplay’ is non-nil when this function is called,
-the debugger will not be entered.
-
-[back]
-***** debug-on-entry : 
-debug-on-entry is an autoloaded interactive compiled Lisp function in
-‘debug.el’.
-
-(debug-on-entry FUNCTION)
-
-  Probably introduced at or before Emacs version 1.2.
-
-Request FUNCTION to invoke debugger each time it is called.
-
-When called interactively, prompt for FUNCTION in the minibuffer.
-
-This works by modifying the definition of FUNCTION.  If you tell the
-debugger to continue, FUNCTION’s execution proceeds.  If FUNCTION is a
-normal function or a macro written in Lisp, you can also step through
-its execution.  FUNCTION can also be a primitive that is not a special
-form, in which case stepping is not possible.  Break-on-entry for
-primitive functions only works when that function is called from Lisp.
-
-Use M-x cancel-debug-on-entry to cancel the effect of this command.
-Redefining FUNCTION also cancels it.
-
-[back]
-***** backtrace : 
-backtrace is an autoloaded compiled Lisp function in ‘backtrace.el’.
-
-(backtrace)
-
-  Probably introduced at or before Emacs version 1.2.
-
-Print a trace of Lisp function calls currently active.
-Output stream used is value of ‘standard-output’.
-
-[back]
-**** ielm : 
-***** See ‘inferior-emacs-lisp-mode’ : 
-ielm is an autoloaded interactive Lisp function in ‘ielm.el’.
-
-(ielm &optional BUF-NAME)
-
-  Probably introduced at or before Emacs version 19.24.
-
-Interactively evaluate Emacs Lisp expressions.
-Switches to the buffer named BUF-NAME if provided (‘*ielm*’ by default),
-or creates it if it does not exist.
-See ‘inferior-emacs-lisp-mode’ for details.
-
-[back]
-***** IELM: The Interactive Emacs-Lisp Mode C-c C-b
-
-IELM is a hidden gem. No, really: I’ve met Emacs users with decades of experience who’ve never heard of it. It really is hidden.
-
-And it’s a proper REPL. Type M-x ielm to launch it. It comes with all the useful features you would expect from an interactive shell:
-
-Multi-line editing
-
-    When you press RET IELM will check whether you did so at the end of the input, or in the middle. If it’s the latter, it’ll insert a newline and let you continue editing and writing. Great if you want to write multi-line code.
-
-    In all other instances it’ll evaluate what you wrote.
-Output Variables
-
-    The variables *, ** and *** contain the last three outputs from the shell.
-History
-
-    ielm inherits from comint mode, although it talks to no external process. That means it inherits a lot of the core functionality present in comint mode. I’ve written about comint history commands before so I won’t repeat myself here.
-
-Another useful feature is the concept of a working buffer - a buffer through which your changes are evaluated. If you type C-c C-b you can change ielm’s working buffer to one of your choosing and then all the code you evaluate thereafter is treated as if you executed it in the context of that buffer. So in this sense it works like M-:. Not only is it useful, it’s downright essential as some variables are local to a particular buffer or directory on your file system.
-
-**** lisp-interaction-mode : 
-***** (lisp-interaction-mode) : 
-lisp-interaction-mode is an interactive compiled Lisp function in
-‘elisp-mode.el’.
-(lisp-interaction-mode)
-
-  Parent mode: ‘emacs-lisp-mode’.
-  Probably introduced at or before Emacs version 21.2.
-
-Major mode for typing and evaluating Lisp forms.
-Like Lisp mode except that M-x eval-print-last-sexp evals the Lisp expression
-before point, and prints its value into the buffer, advancing point.
-Note that printing is controlled by ‘eval-expression-print-length’
-and ‘eval-expression-print-level’.
-***** Commands:
-Delete converts tabs to spaces as it moves back.
-Paragraphs are separated only by blank lines.
-Semicolons start comments.
-***** key             binding
----             -------
-
-C-j		eval-print-last-sexp
-ESC		Prefix Command
-DEL		backward-delete-char-untabify
-
-C-M-i		completion-at-point
-C-M-q		indent-pp-sexp
-C-M-x		eval-defun
-
-C-M-q		indent-sexp
-  (that binding is currently shadowed by another mode)
-
-C-M-q		prog-indent-sexp
-  (that binding is currently shadowed by another mode)
-
-
-***** hooks : 
-In addition to any hooks its parent mode ‘emacs-lisp-mode’ might have run,
-this mode runs the hook ‘lisp-interaction-mode-hook’, as the final or penultimate step
-during initialization.
-
-[back]
-**** litable 
-On-the-fly evaluation/substitution of emacs lisp code
-
-Inspired by Light Table's similar feature.
-
-To start this up, simply enable the litable minor mode in the buffer by calling M-x litable-mode.
-
-Litable keeps a list of pure functions as a safeguard for unwanted evaluations. A function must first be accepted into this list (using M-x litable-accept-as-pure) before it can be evaluated on-the-fly. You should take care of what function you accept as pure to avoid any unfortunate accidents. Also, note that the pure functions list persists across sessions.
-
-Not meant to be used in production yet, be warned!
-In action
-
-    Presentation of the basic prototype: http://www.youtube.com/watch?v=TgHvRcbYJ-8 [2:32] (you don't have to watch this)
-    New features, less slow awkward typing: https://www.youtube.com/watch?v=mNO-vgq3Avg [1:50]
 *** ediff : 
 **** set vertical
 I've been using ediff for about a year now, and always pressing "|" to switch from the default horizontal split to a vertical split.
@@ -11006,6 +10748,324 @@ Use Per-Directory Local Variables in .dir-locals.el.
 		 (list v0 v))
 	 ;; => ([1 2 3 4] [2 3 4 5])
 	 [[https://emacs.stackexchange.com/a/45946][share]]
+** debuging : 
+*** trace-function
+(trace-function 'toggle-input-method)
+And then, when you trigger it in the Ivy prompt, check the =*trace-output/== buffer. It’ll lay out the whole dirty crime scene for us. 
+(untrace-function 'toggle-input-method)
+*** add-hook
+#+begin_src emacs-lisp
+;; Turn on the traps for our suspects
+(trace-function 'activate-input-method)
+(trace-function 'evil--refresh-input-method)
+
+;; Let's also create a quick watcher/advice for when current-input-method changes, 
+;; or we can just print their values right when we trigger the minibuffer!
+(defun my-inspect-input-state ()
+  (message "DEBUG STATE -> current: %S | default: %S | evil-state: %S"
+           current-input-method
+           default-input-method
+           (and (boundp 'evil-state) evil-state)))
+
+(add-hook 'minibuffer-setup-hook #'my-inspect-input-state)
+#+end_src
+
+#+begin_src elisp
+(untrace-function 'activate-input-method)
+(untrace-function 'evil--refresh-input-method)
+(remove-hook 'minibuffer-setup-hook #'my-inspect-input-state)
+#+end_src
+*** toggle-debug-on-error
+(toggle-debug-on-error)
+debug-on-error t
+debug-on-error nil
+*** Edebug
+**** Instrumenting for Edebug : 
+To debug a Lisp program with Edebug, you must first instrument the Lisp code that you want to debug. A simple way to do this is to first move point into the definition of a function or macro and then do C-u C-M-x (eval-defun with a prefix argument). See Instrumenting for Edebug, for alternative ways to instrument code.  
+**** special commands of Edebug are available : 
+The special commands of Edebug are available in the source code buffer in addition to the commands of Emacs Lisp mode. For example, you can type the Edebug command SPC to execute until the next stop point. If you type SPC once after entry to fac, here is the display you will see:
+
+(defun fac (n)
+=>(if ∗(< 0 n)
+      (* n (fac (1- n)))
+    1))
+
+When Edebug stops execution after an expression, it displays the expression’s value in the echo area.
+
+Other frequently used commands are ~b~ to set a breakpoint at a stop point, ~g~ to execute until a breakpoint is reached, and ~q~ to exit Edebug and return to the top-level command loop. Type ~?~ to display a list of all Edebug commands. 
+~u~ unset brekepoint
+**** command I : 
+While Edebug is active, the command I (edebug-instrument-callee) instruments the definition of the function or macro called by the list form after point, if it is not already instrumented. This is possible only if Edebug knows where to find the source for that function; for this reason, after loading Edebug, eval-region records the position of every definition it evaluates, even if not instrumenting it. 
+**** i command : 
+See also the 
+i command (see Jumping), which steps into the call after instrumenting the function. 
+**** 19.2.4 Jumping
+The commands described in this section execute until they reach a specified location. All except i make a temporary breakpoint to establish the place to stop, then switch to go mode. Any other breakpoint reached before the intended stop point will also stop execution. See Edebug Breakpoints, for the details on breakpoints.
+
+These commands may fail to work as expected in case of nonlocal exit, as that can bypass the temporary breakpoint where you expected the program to stop.
+
+h
+
+    Proceed to the stop point near where point is (edebug-goto-here).
+f
+
+    Run the program for one expression (edebug-forward-sexp).
+o
+
+    Run the program until the end of the containing sexp (edebug-step-out).
+i
+
+    Step into the function or macro called by the form after point (edebug-step-in). 
+
+The h command proceeds to the stop point at or after the current location of point, using a temporary breakpoint.
+
+The f command runs the program forward over one expression. More precisely, it sets a temporary breakpoint at the position that forward-sexp would reach, then executes in go mode so that the program will stop at breakpoints.
+
+With a prefix argument n, the temporary breakpoint is placed n sexps beyond point. If the containing list ends before n more elements, then the place to stop is after the containing expression.
+
+You must check that the position forward-sexp finds is a place that the program will really get to. In cond, for example, this may not be true.
+
+For flexibility, the f command does forward-sexp starting at point, rather than at the stop point. If you want to execute one expression from the current stop point, first type w (edebug-where) to move point there, and then type f.
+
+The o command continues out of an expression. It places a temporary breakpoint at the end of the sexp containing point. If the containing sexp is a function definition itself, o continues until just before the last sexp in the definition. If that is where you are now, it returns from the function and then stops. In other words, this command does not exit the currently executing function unless you are positioned after the last sexp.
+
+Normally, the h, f, and o commands display “Break” and pause for edebug-sit-for-seconds before showing the result of the form just evaluated. You can avoid this pause by setting edebug-sit-on-break to nil. See Edebug Options.
+
+The i command steps into the function or macro called by the list form after point, and stops at its first stop point. Note that the form need not be the one about to be evaluated. But if the form is a function call about to be evaluated, remember to use this command before any of the arguments are evaluated, since otherwise it will be too late.
+
+The i command instruments the function or macro it’s supposed to step into, if it isn’t instrumented already. This is convenient, but keep in mind that the function or macro remains instrumented unless you explicitly arrange to deinstrument it. 
+**** different way to remove the instrumentation : 
+A different way to remove the instrumentation from a definition is to use the edebug-remove-instrumentation command. It also allows removing the instrumentation from everything that has been instrumented. 
+**** 19.2.9 Evaluation
+
+While within Edebug, you can evaluate expressions as if Edebug were not running. Edebug tries to be invisible to the expression’s evaluation and printing. Evaluation of expressions that cause side effects will work as expected, except for changes to data that Edebug explicitly saves and restores. See The Outside Context, for details on this process.
+
+e exp RET
+
+    Evaluate expression exp in the context outside of Edebug (edebug-eval-expression). That is, Edebug tries to minimize its interference with the evaluation.
+M-: exp RET
+
+    Evaluate expression exp in the context of Edebug itself (eval-expression).
+C-x C-e
+
+    Evaluate the expression before point, in the context outside of Edebug (edebug-eval-last-sexp). With the prefix argument of zero (C-u 0 C-x C-e), don’t shorten long items (like strings and lists). 
+
+Edebug supports evaluation of expressions containing references to lexically bound symbols created by the following constructs in cl.el: lexical-let, macrolet, and symbol-macrolet. 
+**** 19.2.4 Jumping
+
+The commands described in this section execute until they reach a specified location. All except i make a temporary breakpoint to establish the place to stop, then switch to go mode. Any other breakpoint reached before the intended stop point will also stop execution. See Edebug Breakpoints, for the details on breakpoints.
+
+These commands may fail to work as expected in case of nonlocal exit, as that can bypass the temporary breakpoint where you expected the program to stop.
+
+h
+
+    Proceed to the stop point near where point is (edebug-goto-here).
+f
+
+    Run the program for one expression (edebug-forward-sexp).
+o
+
+    Run the program until the end of the containing sexp (edebug-step-out).
+i
+
+    Step into the function or macro called by the form after point (edebug-step-in). 
+
+The h command proceeds to the stop point at or after the current location of point, using a temporary breakpoint.
+
+The f command runs the program forward over one expression. More precisely, it sets a temporary breakpoint at the position that forward-sexp would reach, then executes in go mode so that the program will stop at breakpoints.
+
+With a prefix argument n, the temporary breakpoint is placed n sexps beyond point. If the containing list ends before n more elements, then the place to stop is after the containing expression.
+
+You must check that the position forward-sexp finds is a place that the program will really get to. In cond, for example, this may not be true.
+
+For flexibility, the f command does forward-sexp starting at point, rather than at the stop point. If you want to execute one expression from the current stop point, first type w (edebug-where) to move point there, and then type f.
+
+The o command continues out of an expression. It places a temporary breakpoint at the end of the sexp containing point. If the containing sexp is a function definition itself, o continues until just before the last sexp in the definition. If that is where you are now, it returns from the function and then stops. In other words, this command does not exit the currently executing function unless you are positioned after the last sexp.
+
+Normally, the h, f, and o commands display “Break” and pause for edebug-sit-for-seconds before showing the result of the form just evaluated. You can avoid this pause by setting edebug-sit-on-break to nil. See Edebug Options.
+
+The i command steps into the function or macro called by the list form after point, and stops at its first stop point. Note that the form need not be the one about to be evaluated. But if the form is a function call about to be evaluated, remember to use this command before any of the arguments are evaluated, since otherwise it will be too late.
+
+The i command instruments the function or macro it’s supposed to step into, if it isn’t instrumented already. This is convenient, but keep in mind that the function or macro remains instrumented unless you explicitly arrange to deinstrument it. 
+**** 19.2.6.1 Edebug Breakpoints
+
+While using Edebug, you can specify breakpoints in the program you are testing: these are places where execution should stop. You can set a breakpoint at any stop point, as defined in Using Edebug. For setting and unsetting breakpoints, the stop point that is affected is the first one at or after point in the source code buffer. Here are the Edebug commands for breakpoints:
+
+b
+
+    Set a breakpoint at the stop point at or after point (edebug-set-breakpoint). If you use a prefix argument, the breakpoint is temporary—it turns off the first time it stops the program. An overlay with the edebug-enabled-breakpoint or edebug-disabled-breakpoint faces is put at the breakpoint.
+u
+
+    Unset the breakpoint (if any) at the stop point at or after point (edebug-unset-breakpoint).
+U
+
+    Unset any breakpoints in the current form (edebug-unset-breakpoints).
+D
+
+    Toggle whether to disable the breakpoint near point (edebug-toggle-disable-breakpoint). This command is mostly useful if the breakpoint is conditional and it would take some work to recreate the condition.
+x condition RET
+
+    Set a conditional breakpoint which stops the program only if evaluating condition produces a non-nil value (edebug-set-conditional-breakpoint). With a prefix argument, the breakpoint is temporary.
+B
+
+    Move point to the next breakpoint in the current definition (edebug-next-breakpoint). 
+
+While in Edebug, you can set a breakpoint with b and unset one with u. First move point to the Edebug stop point of your choice, then type b or u to set or unset a breakpoint there. Unsetting a breakpoint where none has been set has no effect.
+
+Re-evaluating or reinstrumenting a definition removes all of its previous breakpoints.
+
+A conditional breakpoint tests a condition each time the program gets there. Any errors that occur as a result of evaluating the condition are ignored, as if the result were nil. To set a conditional breakpoint, use x, and specify the condition expression in the minibuffer. Setting a conditional breakpoint at a stop point that has a previously established conditional breakpoint puts the previous condition expression in the minibuffer so you can edit it.
+
+You can make a conditional or unconditional breakpoint temporary by using a prefix argument with the command to set the breakpoint. When a temporary breakpoint stops the program, it is automatically unset.
+
+Edebug always stops or pauses at a breakpoint, except when the Edebug mode is Go-nonstop. In that mode, it ignores breakpoints entirely.
+
+To find out where your breakpoints are, use the B command, which moves point to the next breakpoint following point, within the same function, or to the first breakpoint if there are no following breakpoints. This command does not continue execution—it just moves point in the buffer. 
+*** (debug) 
+**** (debug) 
+debug is an autoloaded interactive compiled Lisp function in
+‘debug.el’.
+
+(debug &rest ARGS)
+
+  Probably introduced at or before Emacs version 1.2.
+
+Enter debugger.  ‘c’ returns from the debugger.
+Arguments are mainly for use when this is called from the internals
+of the evaluator.
+
+You may call with no args, or you may pass nil as the first arg and
+any other args you like.  In that case, the list of args after the
+first will be printed into the backtrace buffer.
+
+If ‘inhibit-redisplay’ is non-nil when this function is called,
+the debugger will not be entered.
+
+[back]
+**** debug-on-entry : 
+debug-on-entry is an autoloaded interactive compiled Lisp function in
+‘debug.el’.
+
+(debug-on-entry FUNCTION)
+
+  Probably introduced at or before Emacs version 1.2.
+
+Request FUNCTION to invoke debugger each time it is called.
+
+When called interactively, prompt for FUNCTION in the minibuffer.
+
+This works by modifying the definition of FUNCTION.  If you tell the
+debugger to continue, FUNCTION’s execution proceeds.  If FUNCTION is a
+normal function or a macro written in Lisp, you can also step through
+its execution.  FUNCTION can also be a primitive that is not a special
+form, in which case stepping is not possible.  Break-on-entry for
+primitive functions only works when that function is called from Lisp.
+
+Use M-x cancel-debug-on-entry to cancel the effect of this command.
+Redefining FUNCTION also cancels it.
+
+[back]
+**** backtrace : 
+backtrace is an autoloaded compiled Lisp function in ‘backtrace.el’.
+
+(backtrace)
+
+  Probably introduced at or before Emacs version 1.2.
+
+Print a trace of Lisp function calls currently active.
+Output stream used is value of ‘standard-output’.
+
+[back]
+*** ielm : 
+**** See ‘inferior-emacs-lisp-mode’ : 
+ielm is an autoloaded interactive Lisp function in ‘ielm.el’.
+
+(ielm &optional BUF-NAME)
+
+  Probably introduced at or before Emacs version 19.24.
+
+Interactively evaluate Emacs Lisp expressions.
+Switches to the buffer named BUF-NAME if provided (‘*ielm*’ by default),
+or creates it if it does not exist.
+See ‘inferior-emacs-lisp-mode’ for details.
+
+[back]
+**** IELM: The Interactive Emacs-Lisp Mode C-c C-b
+
+IELM is a hidden gem. No, really: I’ve met Emacs users with decades of experience who’ve never heard of it. It really is hidden.
+
+And it’s a proper REPL. Type M-x ielm to launch it. It comes with all the useful features you would expect from an interactive shell:
+
+Multi-line editing
+
+    When you press RET IELM will check whether you did so at the end of the input, or in the middle. If it’s the latter, it’ll insert a newline and let you continue editing and writing. Great if you want to write multi-line code.
+
+    In all other instances it’ll evaluate what you wrote.
+Output Variables
+
+    The variables *, ** and *** contain the last three outputs from the shell.
+History
+
+    ielm inherits from comint mode, although it talks to no external process. That means it inherits a lot of the core functionality present in comint mode. I’ve written about comint history commands before so I won’t repeat myself here.
+
+Another useful feature is the concept of a working buffer - a buffer through which your changes are evaluated. If you type C-c C-b you can change ielm’s working buffer to one of your choosing and then all the code you evaluate thereafter is treated as if you executed it in the context of that buffer. So in this sense it works like M-:. Not only is it useful, it’s downright essential as some variables are local to a particular buffer or directory on your file system.
+
+*** lisp-interaction-mode : 
+**** (lisp-interaction-mode) : 
+lisp-interaction-mode is an interactive compiled Lisp function in
+‘elisp-mode.el’.
+(lisp-interaction-mode)
+
+  Parent mode: ‘emacs-lisp-mode’.
+  Probably introduced at or before Emacs version 21.2.
+
+Major mode for typing and evaluating Lisp forms.
+Like Lisp mode except that M-x eval-print-last-sexp evals the Lisp expression
+before point, and prints its value into the buffer, advancing point.
+Note that printing is controlled by ‘eval-expression-print-length’
+and ‘eval-expression-print-level’.
+**** Commands:
+Delete converts tabs to spaces as it moves back.
+Paragraphs are separated only by blank lines.
+Semicolons start comments.
+**** key             binding
+---             -------
+
+C-j		eval-print-last-sexp
+ESC		Prefix Command
+DEL		backward-delete-char-untabify
+
+C-M-i		completion-at-point
+C-M-q		indent-pp-sexp
+C-M-x		eval-defun
+
+C-M-q		indent-sexp
+  (that binding is currently shadowed by another mode)
+
+C-M-q		prog-indent-sexp
+  (that binding is currently shadowed by another mode)
+
+
+**** hooks : 
+In addition to any hooks its parent mode ‘emacs-lisp-mode’ might have run,
+this mode runs the hook ‘lisp-interaction-mode-hook’, as the final or penultimate step
+during initialization.
+
+[back]
+*** litable 
+On-the-fly evaluation/substitution of emacs lisp code
+
+Inspired by Light Table's similar feature.
+
+To start this up, simply enable the litable minor mode in the buffer by calling M-x litable-mode.
+
+Litable keeps a list of pure functions as a safeguard for unwanted evaluations. A function must first be accepted into this list (using M-x litable-accept-as-pure) before it can be evaluated on-the-fly. You should take care of what function you accept as pure to avoid any unfortunate accidents. Also, note that the pure functions list persists across sessions.
+
+Not meant to be used in production yet, be warned!
+In action
+
+    Presentation of the basic prototype: http://www.youtube.com/watch?v=TgHvRcbYJ-8 [2:32] (you don't have to watch this)
+    New features, less slow awkward typing: https://www.youtube.com/watch?v=mNO-vgq3Avg [1:50]
 ** Comparison:
 *** 4.5 Comparison of Characters and Strings
 **** Function: char-equal character1 character2

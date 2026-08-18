@@ -16,12 +16,6 @@
               ("c d" . (lambda () (interactive)
                   (let ((target (read-directory-name "Jump to dir: ")))
                     (dired target))))
-              ;; ("C-S-F" . (lambda () (interactive)
-              ;;     (toggle-frame-maximized)
-              ;;     ;; (ranger-minimal-toggle)
-              ;;     (r--fset ranger-minimal nil)
-              ;;     (ranger-revert)
-              ;;     ))
               ("C-S-F" . (lambda () (interactive)
                 (if (eq (frame-parameter nil 'fullscreen) 'maximized)
                     (progn
