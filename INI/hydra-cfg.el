@@ -594,30 +594,55 @@ _Y_ankPageUrl  _o_rameLink _w_ww-menu  _z_oom _q_uit
                 (line-beginning-position)
                 (line-beginning-position 2))))
         (evil-quit)
-        (switch-to-buffer-other-frame buffer-name-to-close))"khinsider")
+        (switch-to-buffer-other-frame buffer-name-to-close)) "khinsider")
 
-("i"  (let (buffer-name-to-close (buffer-name))
+("i"  (let ((buffer-name-to-close (buffer-name))
+            (before-search-term (concat
+                               "firefox "
+                               "\""
+                               "https://www.google.com/search?q="))
+            (after-search-term (concat
+                               "&sclient=gws-wiz-img"
+                               "\"")))
         (evil-window-split)
         (if (use-region-p)
             (buyn-shell-start (concat
+                               before-search-term
+                               (buffer-substring
+                                  (region-beginning)
+                                  (region-end))
+                               after-search-term))
+          (buyn-shell-start (concat
+                             before-search-term
+                             (buffer-substring
+                                (line-beginning-position)
+                                (line-beginning-position 2))
+                             after-search-term)))
+          (delete-other-windows)) "googleIMG")
+
+("t"  (let ((buffer-name-to-close (buffer-name))
+            (before-search-term (concat
                                "firefox "
                                "\""
-                               "https://www.google.com/search?q="
-                               (buffer-substring
-                                (region-beginning)
-                                (region-end))
+                               "https://www.google.com/search?q="))
+            (after-search-term (concat
                                "&sclient=gws-wiz-img"
-                               "\""))
+                               "\"")))
+        (evil-window-split)
+        (if (use-region-p)
+            (buyn-shell-start (concat
+                               before-search-term
+                               (buffer-substring
+                                  (region-beginning)
+                                  (region-end))
+                               after-search-term))
           (buyn-shell-start (concat
-                             "firefox "
-                             "\""
-                             "https://www.google.com/search?q="
+                             before-search-term
                              (buffer-substring
-                              (line-beginning-position)
-                              (line-beginning-position 2))
-                             "&sclient=gws-wiz-img"
-                             "\""))
-          (delete-other-windows)))"googleIMG")
+                                (line-beginning-position)
+                                (line-beginning-position 2))
+                             after-search-term)))
+          (delete-other-windows)) "torrent")
 
 )
 
@@ -989,6 +1014,8 @@ _?_ help            _c_urrent file
 
 (define-key evil-normal-state-map (kbd "M-a M-f M-w") 'ispell-word)
 (define-key evil-normal-state-map (kbd "M-a M-f M-n") 'evil-next-flyspell-error)
+(define-key evil-normal-state-map (kbd "M-a M-f M-l") 'evil-next-flyspell-error)
+(define-key evil-normal-state-map (kbd "M-a M-f M-h") 'evil-prev-flyspell-error)
 (define-key evil-normal-state-map (kbd "M-a M-f M-p") 'evil-prev-flyspell-error)
 (define-key evil-normal-state-map (kbd "M-a M-f M-<SPC>") 'lit-menu/body)
 (define-key evil-normal-state-map (kbd "M-a M-f M-r") 'ispell-region)

@@ -31,39 +31,18 @@ https://www.braveclojure.com/basic-emacs/
 (load (expand-file-name "INI/hydra-cfg.el" user-emacs-directory)) 
 (load (expand-file-name "INI/lit-cfg/read-aloud-cfg.el" user-emacs-directory)) 
 
-(use-package ranger
-  :ensure t
-  :defer t
-  ;; :config
-  :bind (:map ranger-mode-map
-              ("r r" . ranger-refresh)
-              ("M-f" . avy-goto-word-1)
-              ("g g" . ranger-goto-top)
-              ("G G" . ranger-goto-bottom)
-              ("Z F F" . find-file-other-frame)
-              ("Z G T T" . (lambda () (interactive)
-                    (dired "/home/buyn/Desktop/")))
-              ("c d" . (lambda () (interactive)
-                  (let ((target (read-directory-name "Jump to dir: ")))
-                    (dired target))))
-              ("C-S-F" . (lambda () (interactive)
-                (if (eq (frame-parameter nil 'fullscreen) 'maximized)
-                    (progn
-                      (set-frame-parameter nil 'fullscreen nil)
-                      ;; If we weren't in minimal mode, switch to minimal deer mode
-                      (unless (r--fget ranger-minimal)
-                        (ranger-minimal-toggle)))
-                    (progn
-                      (set-frame-parameter nil 'fullscreen 'maximized)
-                      ;; If we were in minimal mode, switch back to full ranger
-                      (when (r--fget ranger-minimal)
-                        (ranger-minimal-toggle))))))
-              ; dire edit
-              ("Z F I" . (lambda() (interactive)
-                           (find-file-other-frame
-                            (expand-file-name
-                             "INI/file-mng-cfg.el"
-                             user-emacs-directory))))))
+
+(defun my-ivy-smart-toggle-input-method ()
+  (interactive)
+  (if current-input-method
+      (deactivate-input-method)
+      (activate-input-method default-input-method)))
+
+;; And bind it specifically to the Ivy minibuffer map so it intercepts it right where we want!
+(define-key ivy-minibuffer-map (kbd "C-\\") #'my-ivy-smart-toggle-input-method)
+
+(define-key evil-normal-state-map (kbd "M-a M-f M-l") 'evil-next-flyspell-error)
+(define-key evil-normal-state-map (kbd "M-a M-f M-h") 'evil-prev-flyspell-error)
 
 
 (kill-buffer (current-buffer))
