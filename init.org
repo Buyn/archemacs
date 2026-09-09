@@ -3269,29 +3269,32 @@ _Y_ankPageUrl  _o_rameLink _w_ww-menu  _z_oom _q_uit
 #+end_src
 ******** ;; ****** "t" torrent: 
 #+begin_src elisp :results output silent
-("t"  (let ((buffer-name-to-close (buffer-name))
-            (before-search-term (concat
-                               "firefox "
-                               "\""
-                               "https://www.google.com/search?q="))
-            (after-search-term (concat
-                               "&sclient=gws-wiz-img"
-                               "\"")))
-        (evil-window-split)
-        (if (use-region-p)
-            (buyn-shell-start (concat
-                               before-search-term
-                               (buffer-substring
-                                  (region-beginning)
-                                  (region-end))
-                               after-search-term))
-          (buyn-shell-start (concat
-                             before-search-term
-                             (buffer-substring
-                                (line-beginning-position)
-                                (line-beginning-position 2))
-                             after-search-term)))
-          (delete-other-windows)) "torrent")
+("t"  (let* ((query (if (use-region-p)
+                        (buffer-substring-no-properties (region-beginning) (region-end))
+                        (string-trim (buffer-substring-no-properties
+                                      (line-beginning-position) (line-end-position)))))
+              ;; Our array of search targets
+              (search-targets 
+                '(("Google torrent" "https://www.google.com/search?q=" " torrent")
+                  ("duckduckgo torrent" "https://duckduckgo.com/?q=" " torrent")
+                  ("FitGirl" "https://www.google.com/search?q=" " FitGirl Repacks")
+                  ("ggfile" "https://www.google.com/search?q=" " site:ggfile.com")
+                  ("itorrents" "https://www.google.com/search?q=" " site:itorrents-igruha.org")
+                  ("vsetop" "https://www.google.com/search?q=" " site:vsetop.org")
+                  ("rutracker" "https://rutracker.org/forum/tracker.php?nm=" "")
+                  ("smallgame" "https://www.google.com/search?q=" " site:small-games.info")))
+              ;; Map over targets and collect individual command strings into a list
+              (commands (mapcar (lambda (target)
+                                  (let ((prefix (nth 1 target))
+                                        (suffix (nth 2 target)))
+                                    (concat "\"" prefix (url-hexify-string query) suffix "\"")))
+                                search-targets))
+              ;; Stitch them all together into one long, dirty compound string
+              (compound-cmd (concat "firefox " (mapconcat #'identity commands " "))))
+            (evil-window-split)
+            ;; Fire the whole monstrous payload at once
+            (buyn-shell-start compound-cmd)
+            (delete-other-windows)) "torrent")
 #+end_src
 ******** ;; ***** END of def
 #+begin_src elisp :results output silent
