@@ -30,6 +30,8 @@ https://www.braveclojure.com/basic-emacs/
 
 (load (expand-file-name "INI/hydra-cfg.el" user-emacs-directory)) 
 (load (expand-file-name "INI/lit-cfg/read-aloud-cfg.el" user-emacs-directory)) 
+(load (expand-file-name "INI/AI/ai.el" user-emacs-directory)) 
+
 
 
 (defun my-ivy-smart-toggle-input-method ()
@@ -41,8 +43,9 @@ https://www.braveclojure.com/basic-emacs/
 ;; And bind it specifically to the Ivy minibuffer map so it intercepts it right where we want!
 (define-key ivy-minibuffer-map (kbd "C-\\") #'my-ivy-smart-toggle-input-method)
 
-(define-key evil-normal-state-map (kbd "M-a M-f M-l") 'evil-next-flyspell-error)
-(define-key evil-normal-state-map (kbd "M-a M-f M-h") 'evil-prev-flyspell-error)
+(define-key evil-normal-state-map (kbd "<f8>") nil) 
+(define-key evil-normal-state-map (kbd "<f8> <S-f8>") #'my/org-save-current-buffer) 
+(define-key evil-normal-state-map (kbd "<f8> <f8>") #'my/org-run-remote-or-local-src-block) 
 
 
 (kill-buffer (current-buffer))
@@ -89,8 +92,8 @@ https://www.braveclojure.com/basic-emacs/
 **** urgent 
 **** done
 **** in progress 
-**** todo
 **** dezine 
+**** todo
 **** backlog
 *** SWOT
 **** Strengths +
