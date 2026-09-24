@@ -5266,6 +5266,8 @@ There are a number of ways to execute (evaluate, in Lisp lingo) an Emacs Lisp fo
   C-h a 	command-apropos: prompts for a string and
   then searches for all emacs commands that contains that string
   	ESC ? 	also does command-apropos
+*** describe-keymap
+describe-keymap with zt-minor-mode-map to see the default keybindings.
 *** coment line 
 26.5.1 Comment Commands
 The following commands operate on comments:

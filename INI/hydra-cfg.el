@@ -620,6 +620,30 @@ _Y_ankPageUrl  _o_rameLink _w_ww-menu  _z_oom _q_uit
                              after-search-term)))
           (delete-other-windows)) "googleIMG")
 
+("i"  (let ((buffer-name-to-close (buffer-name))
+            (before-search-term (concat
+                               "firefox "
+                               "\""
+                               "https://www.google.com/search?q="))
+            (after-search-term (concat
+                               " -youtube"
+                               "\"")))
+        (evil-window-split)
+        (if (use-region-p)
+            (buyn-shell-start (concat
+                               before-search-term
+                               (buffer-substring
+                                  (region-beginning)
+                                  (region-end))
+                               after-search-term))
+          (buyn-shell-start (concat
+                             before-search-term
+                             (buffer-substring
+                                (line-beginning-position)
+                                (line-beginning-position 2))
+                             after-search-term)))
+          (delete-other-windows)) "-youtube")
+
 ("t"  (let* ((query (if (use-region-p)
                         (buffer-substring-no-properties (region-beginning) (region-end))
                         (string-trim (buffer-substring-no-properties
@@ -628,9 +652,9 @@ _Y_ankPageUrl  _o_rameLink _w_ww-menu  _z_oom _q_uit
               (search-targets 
                 '(("Google torrent" "https://www.google.com/search?q=" " torrent")
                   ("duckduckgo torrent" "https://duckduckgo.com/?q=" " torrent")
-                  ("FitGirl" "https://www.google.com/search?q=" " FitGirl Repacks")
                   ("ggfile" "https://www.google.com/search?q=" " site:ggfile.com")
                   ("itorrents" "https://www.google.com/search?q=" " site:itorrents-igruha.org")
+                  ("FitGirl" "https://www.google.com/search?q=" " site:fitgirl-repacks.to")
                   ("vsetop" "https://www.google.com/search?q=" " site:vsetop.org")
                   ("rutracker" "https://rutracker.org/forum/tracker.php?nm=" "")
                   ("smallgame" "https://www.google.com/search?q=" " site:small-games.info")))
