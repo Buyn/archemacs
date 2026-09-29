@@ -165,14 +165,22 @@ evil-visual-state-map
 org-mode-map
 org-src-mode-map
 [[*INI/dev/clojure-cfg.el][INI/dev/clojure-cfg.el]]
-* **Core Initialization (Ядро)**
+* *Core Initialization (Ядро)*
 :PROPERTIES:
 :header-args: :mkdirp yes
 :END:
 ** описание
    Всё, что связано с базовой загрузкой, включая `init.el`, пакеты и первоначальные настройки.
    установка пкетменеджеров страйта и юз-пакеджера.
-** TODO init.el
+** early-init.el
+:PROPERTIES:
+:header-args: :tangle early-init.el
+:END:
+*** src early-init.el
+#+begin_src elisp
+(setq package-enable-at-startup nil)
+#+end_src
+** TODO init.el Основной
 :PROPERTIES:
 :header-args: :tangle init.el
 :END:
@@ -224,7 +232,7 @@ org-src-mode-map
  '(package-vc-selected-packages '((aider :url "https://github.com/tninja/aider.el"))))
 *** TODO сменить "gpt-3.5-turbo-16k"
  '(gptel-model "gpt-3.5-turbo-16k")
-** "INI/init.el"
+** INI/init.el внутрений
 :PROPERTIES:
 :header-args: :tangle INI/init.el
 :END:
@@ -289,15 +297,34 @@ org-src-mode-map
 
 (message "Load of init.el is ended")
 #+end_src
-** INI/inpak.el
+** INI/inpak.el Установка пакет менеджеров
+*** file INI/inpak.el
+;; (find-file "~/INI/init.el")
+*** src INI/inpak.el
 :PROPERTIES:
 :header-args: :tangle INI/inpak.el
 :END:
-
-;; (find-file "~/INI/init.el")
-#+begin_src elisp
-;; ** add package-archives
+**** straight.el
 ;; --------------------------------------
+#+begin_src elisp
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el"
+                         user-emacs-directory))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+#+end_src
+;; --------------------------------------
+**** add package-archives
+;; --------------------------------------
+#+begin_src elisp
 (require 'package)
 ;; add from melpa site;  {{{
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
@@ -316,14 +343,15 @@ There are two things you can do about this warning:
   (when (< emacs-major-version 24)
     ;; For important compatibility libraries like cl-lib
     (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
-; }}}
+                                        ; }}}
 ;; (add-to-list 'package-archives
 ;; ;;        '("melpa" . "http://melpa.org/packages/") t)
 ;;        '("melpa" . "http://melpa.org/packages/") )
 ;; (add-to-list 'package-archives 
 ;;     '("org" . "http://orgmode.org/elpa/") t)
 (add-to-list 'package-archives 
-     '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+             '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+#+end_src
 ;; --------------------------------------
 ;; ** Automatically Installing Packages
 ;; --------------------------------------
@@ -334,20 +362,22 @@ There are two things you can do about this warning:
 ;; M-x package-install RET evil
 ;; if you're going to call (package-initialize) yourself.
 ;;(setq package-enable-at-startup nil)
-
+**** first packages install
+#+begin_src elisp
 (package-initialize)
 (when (not package-archive-contents)
   (package-refresh-contents))
 
 (defvar myPackages '(
-  better-defaults
-  use-package
-    material-theme))
+                     better-defaults
+                     use-package
+                     material-theme))
 
 (mapc #'(lambda (package)
-    (unless (package-installed-p package)
-      (package-install package)))
+          (unless (package-installed-p package)
+            (package-install package)))
       myPackages)
+#+end_src
 ;; (require 'use-package)
 
 ;; tar not found when trying to install from melpa 
@@ -358,9 +388,11 @@ There are two things you can do about this warning:
 ;;   ;; Following line is not needed if use-package.el is in ~/.emacs.d
 ;;   (add-to-list 'load-path "<path where use-package is installed>")
 ;;   (require 'use-package))
+
 ;; --------------------------------------
-;; ** quelpa-use-package :
+**** quelpa-use-package :
 ;; --------------------------------------
+#+begin_src elisp
 (require 'use-package) 
 (use-package quelpa-use-package :ensure t)
 ;; --------------------------------------
@@ -4419,6 +4451,17 @@ CLOSED: [2025-03-03 Пн 06:36]
 : t
 
 ;; --------------------------------------
+***** zetstack.el CUSTOMIZATION
+;; --------------------------------------
+(find-file-other-frame "~/.archemacs/INI/zetstack.el")
+(find-file "~/.archemacs/INI/ORG/zetstack.el")
+:tangle no
+#+begin_src elisp 
+(load (expand-file-name "INI/ORG/zetstack.el" user-emacs-directory))
+#+end_src
+
+
+;; --------------------------------------
 ** INI/org_agend_cfg.el
 :PROPERTIES:
 :header-args: :tangle INI/org_agend_cfg.el
@@ -5137,6 +5180,28 @@ CLOSED: [2025-03-03 Пн 06:36]
 *** docs
 [[file:~/Dropbox/orgs/Org-roam/default/emacs.packages.org_roam.knowledge_base.принципы.org]]
 [[file:~/Dropbox/orgs/Org-roam/default/emacs.packages.org-roam.org]]
+** INI/ORG/zetstack.el
+:PROPERTIES:
+:header-args: :tangle INI/ORG/zetstack.el
+:END:
+*** описание
+(find-file-other-frame "~/.archemacs/INI/ORG/zetstack.el")
+(find-file "~/.archemacs/INI/ORG/zetstack.el")
+*** used in
+(find-file-other-frame "~/.archemacs/INI/org-cfg.el")
+(find-file "~/.archemacs/INI/org-cfg.el")
+*** src zetstack.el
+**** ZETSTACK.EL CUSTOMIZATION
+#+begin_src elisp
+(use-package zetstack
+  :straight (:host github
+             :repo "Buyn/zetstack.el"))
+
+#+end_src
+*** link
+
+*** docs
+
 * **Работа с файлами и менеджмент**
 ** описание
    Конфиги для управления файлами, поиска и т.п.  
@@ -6601,6 +6666,7 @@ https://github.com/karthink/gptel
 ;; (find-file "~/.archemacs/INI/init.el")
 *** file
 (load (expand-file-name "INI/AI/ai.el" user-emacs-directory)) 
+(find-file-other-frame (expand-file-name "INI/AI/ai.el" user-emacs-directory)) 
 *** src INI/AI/ai.el
 **** CANCELED use-package gpt
 #+begin_src elisp :tangle no
@@ -6715,31 +6781,35 @@ Instead of an image, show the English prompt that you will use to get the image.
   gptel-model: %`gptel-model
   "
   ;; (find-file-other-frame "~/Dropbox/backup/models/gemeni1-5.el")
-  ("gt" (load "~/Dropbox/backup/models/gemeni1-5.el") "GemeniT")
+  ("gf" (load "~/Dropbox/backup/models/gemeni1-5.el") "Gemeniflash")
   ;; (find-file-other-frame "~/Dropbox/backup/models/fast-gemeni.el")
-  ("gg" (load "~/Dropbox/backup/models/fast-gemeni.el") "FastGemeni")
+  ("gg" (load "~/Dropbox/backup/models/fast-gemeni.el") "Gemenilite")
+  ;; (find-file-other-frame "~/Dropbox/backup/models/gemeni.el")
+  ("gl" (progn (load "~/Dropbox/backup/models/gemeni.el") (setq gptel-model 'gemini-pro-latest)) "gemeni-pro")
   ;; (find-file-other-frame "~/Dropbox/backup/models/claude.el")
   ("c" (load "~/Dropbox/backup/models/claude.el") "Claude")
   ;; (find-file-other-frame "~/Dropbox/backup/models/openai.el")
   ("o" (load "~/Dropbox/backup/models/openai.el") "gpt-4o-mini")
   ;; (find-file-other-frame "~/Dropbox/backup/models/mixtral.el")
   ("mm" (load "~/Dropbox/backup/models/mixtral.el") "Mistral-def")
-  ("ml" (progn (load "~/Dropbox/backup/models/mixtral.el")
-               (setq gptel-model 'mistral-large-latest)) "Mistral-lrg")
-  ("mM" (progn (load "~/Dropbox/backup/models/mixtral.el")
-               (setq gptel-model 'mistral-large-latest)) "mistral-med")
-  ("mc" (progn (load "~/Dropbox/backup/models/mixtral.el")
-               (setq gptel-model 'mistral-large-latest)) "mistral-cod")
-  ("mv" (progn (load "~/Dropbox/backup/models/mixtral.el")
-               (setq gptel-model 'mistral-large-latest)) "mistral-vib")
+  ("ml" (progn (load "~/Dropbox/backup/models/mixtral.el") (setq gptel-model 'mistral-large-latest)) "Mistral-lrg")
+  ("mM" (progn (load "~/Dropbox/backup/models/mixtral.el") (setq gptel-model 'mistral-medium-latest)) "Mistral-med")
+  ("mc" (progn (load "~/Dropbox/backup/models/mixtral.el") (setq gptel-model 'mistral-code-latest)) "mistral-cod")
+  ("mv" (progn (load "~/Dropbox/backup/models/mixtral.el") (setq gptel-model 'mistral-vibe-cli-latest)) "mistral-vib")
   ;; (find-file-other-frame "~/Dropbox/backup/models/Qwen.el")
   ("ww" (load "~/Dropbox/backup/models/Qwen.el") "Qwen-def")
   ("wC" (progn (load "~/Dropbox/backup/models/Qwen.el")
                (setq gptel-model 'qwen-7b-chat)) "Qwen-cht")
   ("wm" (progn (load "~/Dropbox/backup/models/Qwen.el")
-               (setq gptel-model 'qwen3-max)) "Qwen-max")
+               (setq gptel-model 'qwen3.8-max)) "Qwen-max")
   ("wc" (progn (load "~/Dropbox/backup/models/Qwen.el")
                (setq gptel-model 'qwen3-coder-plus))"Qwen-cod")
+  ("wd" (progn (load "~/Dropbox/backup/models/Qwen.el")
+               (setq gptel-model 'deepseek-v4.1-flash))"Qwen-dsf")
+  ("wg" (progn (load "~/Dropbox/backup/models/Qwen.el")
+               (setq gptel-model 'glm-5.3))"Qwen-glm")
+
+
   ;; (find-file-other-frame "~/Dropbox/backup/models/llama70v.el")
   ("ll" (load "~/Dropbox/backup/models/llama70v.el") "llama70v")
   ;; (find-file-other-frame "~/Dropbox/backup/models/grog-mixtral.el")

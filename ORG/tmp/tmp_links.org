@@ -1,5 +1,8 @@
 # -*- eval: (progn (auto-revert-mode 1)); -*-
 * tmp
+Bonner school
+школа елены боннер
+
 299 792 458 м/с
 10 м/с2
 
