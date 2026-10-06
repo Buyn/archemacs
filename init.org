@@ -5208,6 +5208,7 @@ CLOSED: [2025-03-03 Пн 06:36]
       ("cp" zetstack-insert-new-prev-to-name "creat-new-before")
       ("cn" zetstack-insert-new-next-to-name "creat-new-after")
       ("o" zetstack-open-by-name "open-by-name")
+      ("O" zetstack-open-in-frame-by-name "openf-by-name")
       ("L" zetstack-add-link "add-link")
       ("l" zetstack-add-stub-link "stub-link") 
       ("DD" zetstack-remove-current-file "Del") 
@@ -6704,12 +6705,14 @@ https://github.com/karthink/gptel
   ;; :disabled
   :ensure t
   :config
-  (define-key evil-normal-state-map (kbd "M-a M-j M-S-h") 'gptel-system-prompt)
-  (define-key evil-normal-state-map (kbd "M-a M-j M-j") 'gptel-send)
-  (define-key evil-normal-state-map (kbd "M-a M-j M-h") 'gptel-mode)
+    (define-key evil-normal-state-map (kbd "M-a M-j M-S-h") 'gptel-system-prompt)
+    (define-key evil-normal-state-map (kbd "M-a M-j M-j") 'gptel-send)
+    (define-key evil-normal-state-map (kbd "M-a M-j M-h") 'gptel-mode)
+    (setq gptel-default-mode 'org-mode)
+    (custom-set-variables '(gptel-model 'gemini-flash-lite-latest)))
+
+#+end_src
   ;; (setq gpt-openai-key "sk-*")
-  (setq gptel-default-mode 'org-mode)
-  (custom-set-variables '(gptel-model 'gemini-flash-lite-latest))
   ;; (let* ((additional-models
   ;;         '(gemini-flash-latest
   ;;           gemini-2.5-flash
@@ -6724,9 +6727,6 @@ https://github.com/karthink/gptel
   ;;         (delete-dups
   ;;           (append additional-models
   ;;                   (gptel-backend-models gptel-backend))))) 
-  )
-
-#+end_src
 (custom-set-variables '(gptel-model 'gemini-2.0-flash-exp))
 
 (custom-set-variables '(gptel-model "gpt-4o-mini"))
@@ -6903,10 +6903,24 @@ Instead of an image, show the English prompt that you will use to get the image.
 #+RESULTS:
 : hydra-ai-chat-menu/body
 
+**** aider
+  (find-file-other-frame "~/Dropbox/backup/models/aider-cfg.el")
+  (load "~/Dropbox/backup/models/aider-cfg.el")
+#+begin_src emacs-lisp :results output silent
+(use-package aider
+  :config
+    (setq aider-args '("--model" "gemini/gemini-flash-lite-latest" "--weak-model" "mistral/open-mistral-7b"))
+    (setq aider--switch-to-buffer-other-frame t)
+    (load "~/Dropbox/backup/models/aider-cfg.el")
+    (global-set-key (kbd "M-a") nil)
+    (global-set-key (kbd "M-a M-j M-a") 'aider-transient-menu))
+#+end_src
+
 *** docs INI/AI/ai.el
 [[id:fe7f1a93-048c-47ba-9546-d1e2fb408f00][emacs Gptel]]
-
 [[id:96341486-cda3-46c8-a3d1-09b59529c377][tech.cyber.ai.google:gemeni]]
+(find-file-other-frame "~/Dropbox/orgs/Org-roam/default/tech.cyber.ai.tools.aider_aider.org")
+
 
 * **Программирование и языковые конфигурации**
 ** описание

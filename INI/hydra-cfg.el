@@ -336,7 +336,8 @@
   ("f" hydra-emaks-fonts/body "fonts")
   ("t" (untabify (point-min) (point-max)) "untabify all")
 ;; ****** E : 
-  ("E" evil-mode "evil mode")
+  ("E" (progn (evil-mode) (evil-mode)) "evil toggle")
+  ("e" evil-mode "evil mode")
 ;; ****** R : 
   ("R" revert-buffer "revert buffer") 
 ;; ****** A : 

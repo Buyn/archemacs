@@ -13,6 +13,7 @@
       ("cp" zetstack-insert-new-prev-to-name "creat-new-before")
       ("cn" zetstack-insert-new-next-to-name "creat-new-after")
       ("o" zetstack-open-by-name "open-by-name")
+      ("O" zetstack-open-in-frame-by-name "openf-by-name")
       ("L" zetstack-add-link "add-link")
       ("l" zetstack-add-stub-link "stub-link") 
       ("DD" zetstack-remove-current-file "Del") 

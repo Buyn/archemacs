@@ -2,27 +2,11 @@
   ;; :disabled
   :ensure t
   :config
-  (define-key evil-normal-state-map (kbd "M-a M-j M-S-h") 'gptel-system-prompt)
-  (define-key evil-normal-state-map (kbd "M-a M-j M-j") 'gptel-send)
-  (define-key evil-normal-state-map (kbd "M-a M-j M-h") 'gptel-mode)
-  ;; (setq gpt-openai-key "sk-*")
-  (setq gptel-default-mode 'org-mode)
-  (custom-set-variables '(gptel-model 'gemini-flash-lite-latest))
-  ;; (let* ((additional-models
-  ;;         '(gemini-flash-latest
-  ;;           gemini-2.5-flash
-  ;;           gemini-2.0-flash-exp-image-generation
-  ;;           gemini-2.5-flash-preview-tts
-  ;;           gemini-flash-lite-latest
-  ;;           gemini-pro-latest
-  ;;           nano-banana-pro-preview
-  ;;           veo-3.0-generate-001
-  ;;           veo-3.0-fast-generate-001)))
-  ;;   (setf (gptel-backend-models gptel-backend)
-  ;;         (delete-dups
-  ;;           (append additional-models
-  ;;                   (gptel-backend-models gptel-backend))))) 
-  )
+    (define-key evil-normal-state-map (kbd "M-a M-j M-S-h") 'gptel-system-prompt)
+    (define-key evil-normal-state-map (kbd "M-a M-j M-j") 'gptel-send)
+    (define-key evil-normal-state-map (kbd "M-a M-j M-h") 'gptel-mode)
+    (setq gptel-default-mode 'org-mode)
+    (custom-set-variables '(gptel-model 'gemini-flash-lite-latest)))
 
 (defhydra hydra-ai-menu (:color blue)
   "
@@ -152,3 +136,11 @@
   ("s" (find-file-other-frame "~/Dropbox/Office/Games/Game-logs/AI/2024-06-07-SD-story.org") "SD-log")
   ("q" nil) 
   )
+
+(use-package aider
+  :config
+    (setq aider-args '("--model" "gemini/gemini-flash-lite-latest" "--weak-model" "mistral/open-mistral-7b"))
+    (setq aider--switch-to-buffer-other-frame t)
+    (load "~/Dropbox/backup/models/aider-cfg.el")
+    (global-set-key (kbd "M-a") nil)
+    (global-set-key (kbd "M-a M-j M-a") 'aider-transient-menu))
