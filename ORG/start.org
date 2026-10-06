@@ -5129,6 +5129,13 @@ To set the VisualLineMode on a file by file basis using emacs local variables, t
      (define-key company-active-map (kbd "C-:") 'helm-company)))
 *** describe-package (найти пакаджи на сервере и описанить)
 describe-package
+*** after emaks update
+#+begin_src elisp
+(package-recompile-all)
+(package-refresh-contents)
+(package-upgrade-all)
+#+end_src
+
 ** Help Docs Emacs 
 *** To set on a file by file 
 To set the VisualLineMode on a file by file basis using emacs local variables, try:

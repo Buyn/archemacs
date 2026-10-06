@@ -2518,9 +2518,9 @@ CLOSED: [2025-02-21 Fri 21:34]
   "
     ^Main^                00                ^Menus^          
     ^─────^───────────────────────────────────^─────^────────────
-    _a_I      _d_ev menu    _o_rg-mode   _b_Org-Brain                       
-    _w_ww     _t_elega      _y_nke-menu  _r_eader
-    _c_ommands   _e_macs-menu   ya_s_nippet      
+    _a_I      _d_ev menu     _o_rg-mode    _b_Org-Brain                       
+    _w_ww     _t_elega       _y_nke-menu   _r_eader
+    _c_ommands  _e_macs-menu  ya_s_nippet  _z_etstack     
     _p_rev-menu   _q_uit   _SPC_ next  _n_ext-menu    
     "
   ;; ***** keys
@@ -2538,6 +2538,7 @@ CLOSED: [2025-02-21 Fri 21:34]
   ("s" hydra-yasnippet/body )
   ("r" hydra-reader-menu/body )
   ("b" hydra-brain-org-menu/body)
+  ("z" hydra-zetstack-menu/body)
   ("p" spc-main-menu99/body)
   ;; ***** END of def
   )
@@ -2910,7 +2911,7 @@ CLOSED: [2025-02-21 Fri 21:34]
   ;;   "Hline2file")
   ;; --------------------------------------
 ****** emacs-menu
-#+begin_src elisp
+#+begin_src elisp :results output silent
 (defhydra hydra-emacs-menu (:color blue)
 ;; ***** keys
 ;; ****** w : 
@@ -2952,7 +2953,8 @@ CLOSED: [2025-02-21 Fri 21:34]
   ("f" hydra-emaks-fonts/body "fonts")
   ("t" (untabify (point-min) (point-max)) "untabify all")
 ;; ****** E : 
-  ("E" evil-mode "evil mode")
+  ("E" (progn (evil-mode) (evil-mode)) "evil toggle")
+  ("e" evil-mode "evil mode")
 ;; ****** R : 
   ("R" revert-buffer "revert buffer") 
 ;; ****** A : 
@@ -3015,8 +3017,6 @@ CLOSED: [2025-02-21 Fri 21:34]
   ("q" nil "quit"))
 #+end_src
 
-#+RESULTS:
-: hydra-emaks-fonts/body
 
 ****** www-menu
 ******* src www-menu
@@ -5195,7 +5195,23 @@ CLOSED: [2025-03-03 Пн 06:36]
 #+begin_src elisp
 (use-package zetstack
   :straight (:host github
-             :repo "Buyn/zetstack.el"))
+             :repo "Buyn/zetstack.el")
+  :config
+  (defhydra hydra-zetstack-menu (:color blue)
+      ("P" zetstack-create-prev "create-prev")
+      ("N" zetstack-create-next "create-next")
+      ("s" zetstack-rename-and-save "rename&save" :color red)
+      ("p" zetstack-goto-prev "goto-prev" :color pink)
+      ("n" zetstack-goto-next "goto-next" :color pink)
+      ("in" zetstack-insert-current-at-name-next "insert-at-next")
+      ("ip" zetstack-insert-current-at-name-prev "insert-at-prev")
+      ("cp" zetstack-insert-new-prev-to-name "creat-new-before")
+      ("cn" zetstack-insert-new-next-to-name "creat-new-after")
+      ("o" zetstack-open-by-name "open-by-name")
+      ("L" zetstack-add-link "add-link")
+      ("l" zetstack-add-stub-link "stub-link") 
+      ("DD" zetstack-remove-current-file "Del") 
+      ("q" nil "quit")))
 
 #+end_src
 *** link

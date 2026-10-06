@@ -6,9 +6,9 @@
   "
     ^Main^                00                ^Menus^          
     ^─────^───────────────────────────────────^─────^────────────
-    _a_I      _d_ev menu    _o_rg-mode   _b_Org-Brain                       
-    _w_ww     _t_elega      _y_nke-menu  _r_eader
-    _c_ommands   _e_macs-menu   ya_s_nippet      
+    _a_I      _d_ev menu     _o_rg-mode    _b_Org-Brain                       
+    _w_ww     _t_elega       _y_nke-menu   _r_eader
+    _c_ommands  _e_macs-menu  ya_s_nippet  _z_etstack     
     _p_rev-menu   _q_uit   _SPC_ next  _n_ext-menu    
     "
   ;; ***** keys
@@ -26,6 +26,7 @@
   ("s" hydra-yasnippet/body )
   ("r" hydra-reader-menu/body )
   ("b" hydra-brain-org-menu/body)
+  ("z" hydra-zetstack-menu/body)
   ("p" spc-main-menu99/body)
   ;; ***** END of def
   )
