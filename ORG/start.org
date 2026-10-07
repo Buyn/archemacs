@@ -30,9 +30,8 @@ https://www.braveclojure.com/basic-emacs/
 
 (load (expand-file-name "INI/hydra-cfg.el" user-emacs-directory)) 
 (load (expand-file-name "INI/lit-cfg/read-aloud-cfg.el" user-emacs-directory)) 
+(load (expand-file-name "INI/ORG/zetstack.el" user-emacs-directory)) 
 (load (expand-file-name "INI/AI/ai.el" user-emacs-directory)) 
-
-
 
 (defun my-ivy-smart-toggle-input-method ()
   (interactive)
@@ -5135,6 +5134,8 @@ describe-package
 (package-refresh-contents)
 (package-upgrade-all)
 #+end_src
+*** straight обновить пакет с рицепта\перекачать
+(straight-pull-package "zetstack")
 
 ** Help Docs Emacs 
 *** To set on a file by file 

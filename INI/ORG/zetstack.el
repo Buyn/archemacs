@@ -8,6 +8,8 @@
       ("s" zetstack-rename-and-save "rename&save" :color red)
       ("p" zetstack-goto-prev "goto-prev" :color pink)
       ("n" zetstack-goto-next "goto-next" :color pink)
+      ("d" zetstack-go-deeper "go-deeper" :color pink)
+      ("u" zetstack-go-up "go-up" :color pink)
       ("in" zetstack-insert-current-at-name-next "insert-at-next")
       ("ip" zetstack-insert-current-at-name-prev "insert-at-prev")
       ("cp" zetstack-insert-new-prev-to-name "creat-new-before")
