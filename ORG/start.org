@@ -29,18 +29,12 @@ https://www.braveclojure.com/basic-emacs/
 (global-set-key (kbd "M-<SPC>") 'spc-main-menu00/body)
 
 (load (expand-file-name "INI/hydra-cfg.el" user-emacs-directory)) 
-(load (expand-file-name "INI/lit-cfg/read-aloud-cfg.el" user-emacs-directory)) 
+;; (load (expand-file-name "INI/lit-cfg/read-aloud-cfg.el" user-emacs-directory)) 
+;; (load (expand-file-name "INI/AI/ai.el" user-emacs-directory)) 
+
+(straight-pull-package "zetstack")
+(straight-pull-package `zetstack)
 (load (expand-file-name "INI/ORG/zetstack.el" user-emacs-directory)) 
-(load (expand-file-name "INI/AI/ai.el" user-emacs-directory)) 
-
-(defun my-ivy-smart-toggle-input-method ()
-  (interactive)
-  (if current-input-method
-      (deactivate-input-method)
-      (activate-input-method default-input-method)))
-
-;; And bind it specifically to the Ivy minibuffer map so it intercepts it right where we want!
-(define-key ivy-minibuffer-map (kbd "C-\\") #'my-ivy-smart-toggle-input-method)
 
 (define-key evil-normal-state-map (kbd "<f8>") nil) 
 (define-key evil-normal-state-map (kbd "<f8> <S-f8>") #'my/org-save-current-buffer) 
