@@ -190,6 +190,7 @@ org-src-mode-map
 <<elisp-header>>
 (setq package-enable-at-startup nil)
 #+end_src
+(setq debug-on-error t)
 ** TODO init.el стартовы Основной
 :PROPERTIES:
 :header-args: :tangle init.el
@@ -711,7 +712,7 @@ There are two things you can do about this warning:
 *** описание
 
 *** used in
-;; (find-file "~/.archemacs/INI/init.el")
+(find-file-other-frame "~/.archemacs/INI/init.el")
 *** src interface elements
 **** header
 #+begin_src elisp :noweb yes
@@ -847,19 +848,22 @@ There are two things you can do about this warning:
 *** описание
 
 *** used in
-;; (find-file "~/.archemacs/INI/interface-mods.el")
+(find-file-other-frame "~/.archemacs/INI/interface-mods.el")
+(find-file-other-frame "./INI/interface/powerline-cfg.el")
 *** src
 **** header
 #+begin_src elisp :noweb yes
 <<elisp-header>>
 #+end_src
-
-#+begin_src elisp
-;; * POWERLINE CUSTOMIZATION
-;; --------------------------------------
+**** POWERLINE CUSTOMIZATION
 ;; (find-file-other-frame "~/.archemacs/INI/interface/jonathanchu-emacs-powerline-cfg.el") 
 ;; (load "~/.archemacs/INI/interface/jonathanchu-emacs-powerline-cfg.el")
+
+#+begin_src elisp
 (load (expand-file-name "INI/interface/jonathanchu-emacs-powerline-cfg.el" user-emacs-directory))
+
+#+end_src
+**** CANCELED SPACELINE CUSTOMIZATION
 ;; --------------------------------------;; 
 ;; * SPACELINE CUSTOMIZATION
 ;; --------------------------------------;; 
@@ -867,14 +871,15 @@ There are two things you can do about this warning:
 ;; (load "~/.archemacs/INI/interface/spaceline-cfg.el")
 ;; (load (expand-file-name "INI/interface/spaceline-cfg.el" user-emacs-directory))
 ;; --------------------------------------;; 
-#+end_src
 ** INI/interface/jonathanchu-emacs-powerline-cfg.el
 :PROPERTIES:
 :header-args: :tangle INI/interface/jonathanchu-emacs-powerline-cfg.el
 :END:
+:header-args: :tangle no
 *** описание
 *** used in
-;; (find-file "~/INI/interface/powerline-cfg.el")
+(find-file-other-frame "./INI/interface/powerline-cfg.el")
+(find-file-other-frame "./INI/interface/jonathanchu-emacs-powerline-cfg.el")
 *** src
 **** header
 #+begin_src elisp :noweb yes
@@ -8716,10 +8721,11 @@ irony-install-server
 *** docs
 
 The major mode is Calculator mode defined in calc.el:
-** INI/other/telegram.el
+** CANCELED INI/other/telegram.el
 :PROPERTIES:
-:header-args: :tangle INI/other/telegram.el
+:header-args: no
 :END:
+:header-args: :tangle INI/other/telegram.el
 *** описание
 *** file
 (find-file-other-frame "~/.archemacs/INI/other/telegram.el")
@@ -10744,6 +10750,19 @@ find ~/.archemacs \
   -not -path '*/quelpa/*' \
   | sort
 #+end_src
+
+*** поск строки по репозиториям всем 
+#+begin_src eshell
+rg -n -i \
+  'set-face-attribute|set-face-foreground|set-face-background|custom-set-faces|:foreground[[:space:]]+nil|:background[[:space:]]+nil' \
+  ~/.archemacs ~/.emacs.d \
+  -g '*.org' -g '*.el'
+#+end_src
+
+   rg -n "(:foreground\s+nil|:background\s+nil)" ~/.archemacs ~/.emacs.d
+*** 
+** debug
+   (setq debug-on-error t)
 
 * TODO орг файла
 ** add file to tagle evil-respect-input.el
