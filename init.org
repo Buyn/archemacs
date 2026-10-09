@@ -185,12 +185,71 @@ org-src-mode-map
 *** file
 (find-file-other-frame "early-init.el")
 *** src early-init.el
+**** header
 ;;; -*- lexical-binding: nil; -*-
 #+begin_src elisp :noweb yes
 <<elisp-header>>
+#+end_src
+**** constant
+#+begin_src elisp :noweb yes
 (setq package-enable-at-startup nil)
 #+end_src
+**** CANCELED debug
+#+begin_src elisp :tangle no
 (setq debug-on-error t)
+#+end_src
+**** CANCELED Trace face warnings and capture the Lisp backtrace.
+:tangle no
+#+begin_src elisp :tangle no
+;;; Trace face warnings and capture the Lisp backtrace.
+(require 'advice)
+
+(defun my/trace-face-nil-warning (orig-fn type message &optional level buffer-name)
+  (when (and (stringp message)
+             (string-match-p
+              "setting attribute.*face.*nil value is invalid"
+              message))
+    (with-current-buffer
+        (get-buffer-create "*face-nil-backtrace*")
+      (let ((inhibit-read-only t)
+            (standard-output (current-buffer)))
+        (goto-char (point-max))
+        (insert "\n\n========== FACE WARNING ==========\n"
+                message "\n\n")
+        (backtrace))))
+  (funcall orig-fn type message level buffer-name))
+
+(advice-add 'display-warning :around
+            #'my/trace-face-nil-warning)
+#+end_src
+
+#+RESULTS:
+
+**** CANCELED Trace invalid face attributes.
+#+begin_src elisp :tangle no
+(defun my/trace-face-attribute (orig-fn face frame &rest args)
+  (when (let ((tail args)
+              found)
+          (while tail
+            (when (and (memq (car tail) '(:foreground :background))
+                       (null (cadr tail)))
+              (setq found t))
+            (setq tail (cddr tail)))
+          found)
+    (with-current-buffer (get-buffer-create "*face-nil-backtrace*")
+      (let ((inhibit-read-only t))
+        (goto-char (point-max))
+        (insert "\n\n========== set-face-attribute ==========\n"
+                (format "Face: %S, frame: %S, args: %S\n"
+                        face frame args))
+        (let ((standard-output (current-buffer)))
+          (backtrace)))))
+  (apply orig-fn face frame args))
+
+(advice-add 'set-face-attribute :around
+            #'my/trace-face-attribute)
+#+end_src
+
 ** TODO init.el стартовы Основной
 :PROPERTIES:
 :header-args: :tangle init.el
@@ -437,7 +496,7 @@ There are two things you can do about this warning:
 #+end_src
 
 **** VANILA CUSTOMIZATION
-***** startup :
+***** startup:
 ;; --------------------------------------
 ;; Disables the startup message (this is the screen with all the tutorial information)
 #+begin_src elisp
@@ -453,17 +512,266 @@ There are two things you can do about this warning:
 (defalias 'yes-or-no-p 'y-or-n-p)
 ;; ------------------------------------------------------
 #+end_src
-***** load-theme :
+***** load-theme:
 ;; ------------------------------------------------------
-#+begin_src elisp
-(load-theme 'material t) ;; load material theme
+****** CANCELED catppuccin-theme
+#+begin_src elisp :tangle no 
+(use-package catppuccin-theme
+  :ensure t
+  :config
+  (setq catppuccin-flavor 'mocha) ;; выбери вариант: latte, frappe, macchiato, mocha
+  (load-theme 'catppuccin t))
 #+end_src
 ;;(global-linum-mode t) ;; enable line numbers globally
 ;;(set-frame-font "Trebuchet MS")
 ;;(set-frame-font "Ubuntu Mono")
 ;;(set-default-font "Ubuntu Mono")
 ;; ------------------------------------------------------
-***** font :
+****** CANCELED doom-themes
+#+begin_src elisp :tangle no 
+(use-package doom-themes
+  :ensure t
+  :config
+  ;; Глобальные настройки для тем Doom
+  (setq doom-themes-enable-bold t    ; разрешить жирный шрифт в темах
+        doom-themes-enable-italic t) ; разрешить курсив
+
+  ;; Подсветка всяких мелочей (флажки, кастомные иконки и т.д.)
+  (doom-themes-visual-bell-config)
+  
+  ;; Установка самой темы (выбери одну из них):
+  ;; (load-theme 'doom-material t)   ;; тот самый Material, но современный и чистый!
+  (load-theme 'doom-one t)     ;; классический темный Doom One
+  ;; (load-theme 'doom-one-light t)     ;; классический темный Doom One
+
+  
+  ;; Исправление мигания курсора / буферов при необходимости
+  (doom-themes-org-config))
+#+end_src
+;;(global-linum-mode t) ;; enable line numbers globally
+;;(set-frame-font "Trebuchet MS")
+;;(set-frame-font "Ubuntu Mono")
+;;(set-default-font "Ubuntu Mono")
+;; ------------------------------------------------------
+****** CANCELED kaolin-themes
+#+begin_src elisp :tangle no 
+(use-package kaolin-themes
+  :ensure t
+  :config
+  ;; (load-theme 'kaolin-valley-dark t)
+  (load-theme 'kaolin-dark t)
+  )
+#+end_src
+
+#+RESULTS:
+: t
+
+****** CANCELED ef-themes
+#+begin_src elisp :tangle no 
+(use-package ef-themes
+  :ensure t
+  :config
+  ;; (load-theme 'kaolin-valley-dark t)
+  (load-theme 'ef-dark t)
+  )
+#+end_src
+
+#+RESULTS:
+: t
+
+ ;; load material theme
+, ef-melissa-dark, ef-night
+#+RESULTS:
+: t
+
+****** CANCELED material
+#+begin_src elisp :tangle no 
+(load-theme 'material t) ;; load material theme
+#+end_src
+****** CANCELED vanila
+#+begin_src elisp :tangle no 
+(load-theme 'material-theme-light t) ;; load material theme
+#+end_src
+
+****** CANCELED zenburn-theme
+#+begin_src elisp :tangle no 
+;; (package-refresh-contents)
+(use-package zenburn-theme :ensure t)
+(load-theme `zenburn)
+;; (disable-theme 'material)
+ #+end_src
+
+****** CANCELED solarized-theme
+#+begin_src elisp :tangle no 
+;; (package-refresh-contents)
+(use-package solarized-theme :ensure t)
+(load-theme 'solarized-dark t)
+;; (disable-theme 'material)
+ #+end_src
+
+****** spacemacs-theme
+:tangle no 
+#+begin_src elisp 
+;; (package-refresh-contents)
+(use-package spacemacs-theme :ensure t)
+(load-theme 'spacemacs-dark t)
+;; (disable-theme 'material)
+ #+end_src
+
+****** CANCELED material theme
+#+begin_src elisp :tangle no 
+;; (package-refresh-contents)
+;; (use-package spacemacs-theme :ensure t)
+;; (load-theme 'spacemacs-dark-theme t)
+(load-theme 'material t) ;; load material theme
+;; (disable-theme 'material)
+ #+end_src
+
+****** CANCELED dracula-theme
+#+begin_src elisp :tangle no 
+;; (package-refresh-contents)
+(use-package dracula-theme :ensure t)
+(load-theme 'dracula t)
+;; (disable-theme 'material)
+ #+end_src
+
+****** CANCELED color-theme-sanityinc-tomorrow
+#+begin_src elisp :tangle no 
+;; (package-refresh-contents)
+(use-package color-theme-sanityinc-tomorrow :ensure t)
+(load-theme 'gotham t)
+;; (disable-theme 'material)
+(require 'color-theme-sanityinc-tomorrow)
+(color-theme-sanityinc-tomorrow-night)
+ #+end_src
+
+(color-theme-sanityinc-tomorrow-bright)
+(color-theme-sanityinc-tomorrow-blue)
+(color-theme-sanityinc-tomorrow-eighties)
+
+****** CANCELED doom-themes
+#+begin_src elisp :tangle no 
+;; (package-refresh-contents)
+(use-package doom-themes :ensure t
+         :config
+         ;; Global settings (defaults)
+         (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+                                 doom-themes-enable-italic t) ; if nil, italics is universally disabled
+         (load-theme 'doom-one t)
+
+         ;; Enable flashing mode-line on errors
+         (doom-themes-visual-bell-config)
+         ;; Enable custom neotree theme (all-the-icons must be installed!)
+         ;; (doom-themes-neotree-config)
+         ;; or for treemacs users
+         ;; (setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
+         ;; (doom-themes-treemacs-config)
+         ;; Corrects (and improves) org-mode's native fontification.
+         (doom-themes-org-config))
+        
+;; (load-theme 'solarized-dark t)
+;; (disable-theme 'material)
+ #+end_src
+********* (load-theme 'doom-one t)
+(load-theme 'doom-one t)
+(load-theme 'doom-1337 t)       link    ported from VSCode's 1337 theme (ported by @ccmywish)
+(load-theme 'doom-acario-dark t)        original        an original dark theme (ported by @gagbo)
+(load-theme 'doom-acario-light t)       original        an original light theme (ported by @gagbo)
+(load-theme 'doom-ayu-dark t)   link    inspired by Ayu Dark (ported by @ashton)
+(load-theme 'doom-ayu-light t)  link    inspirted by Ayu Light (ported by @LoveSponge)
+(load-theme 'doom-ayu-mirage t)         link    inspired by Ayu Mirage (ported by @LoveSponge)
+(load-theme 'doom-badger t)     link    inspired by cann's Badger colorscheme (ported by @jsoa)
+(load-theme 'doom-challenger-deep t)    link    inspired by Vim's Challenger Deep theme (ported by @fuxialexander)
+(load-theme 'doom-city-lights t)        link    inspired by Atom's City Lights theme (ported by @fuxialexander)
+(load-theme 'doom-dark+ t)      n/a     ported from equinusocio's VSCode Theme, dark+ (ported by @ema2159)
+(load-theme 'doom-dracula t)    link    inspired by the popular Dracula theme (ported by @fuxialexander)
+(load-theme 'doom-earl-grey t)  original        a gentle color scheme, for code (ported by @JuneKelly)
+(load-theme 'doom-ephemeral t)  link    inspired by the Ephemeral Theme from elenapan's dotfiles (ported by @karetsu)
+(load-theme 'doom-fairy-floss t)        link    a candy colored theme by sailorhg (ported by @ema2159)
+(load-theme 'doom-feather-dark t)       original        a candy colored theme by sailorhg (ported by @Plunne)
+(load-theme 'doom-feather-light t)      original        a candy colored theme by sailorhg (ported by @Plunne)
+(load-theme 'doom-flatwhite t)  link    inspired by Atom's Flatwhite Syntax theme (ported by @JuneKelly)
+(load-theme 'doom-gruvbox t)    link    inspired by morhetz's Gruvbox (ported by @JongW)
+(load-theme 'doom-gruvbox-light t)      link    inspired by morhetz's Gruvbox (light) (ported by @jsoa)
+(load-theme 'doom-henna t)      link    based on VSCode's Henna theme (ported by @jsoa)
+(load-theme 'doom-homage-black t)       original        a minimalistic, colorless theme inspired by eziam, tao, and jbeans (ported by @mskorzhinskiy)
+(load-theme 'doom-homage-white t)       original        minimal white theme inspired by editors from 2000s (ported by @mskorzhinskiy)
+(load-theme 'doom-horizon t)    link    ported from VSCode Horizon (ported by @karetsu)
+(load-theme 'doom-Iosvkem t)    link    ported from the default dark theme for Adobe Brackets (ported by @neutaaaaan)
+(load-theme 'doom-ir-black t)   link    ported from Vim's ir_black colorscheme (ported by @legendre6891)
+(load-theme 'doom-lantern t)    link    based on Gitleptune's Lantern theme (ported by @paladhammika)
+(load-theme 'doom-laserwave t)  link    a clean synthwave/outrun theme inspired by VSCode's Laserwave (ported by @hyakt)
+(load-theme 'doom-manegarm t)   original        an original autumn-inspired dark theme (ported by @kenranunderscore)
+(load-theme 'doom-material t)   link    adapted from equinusocio's Material themes (ported by @tam5)
+(load-theme 'doom-material-dark t)      link    inspired by Material Theme by xrei (ported by @trev-dev)
+(load-theme 'doom-meltbus t)    link    a dark (mostly) monochromatic theme (ported by @spacefrogg)
+(load-theme 'doom-miramare t)   link    a port of Franbach's Miramare theme; a variant of Grubox (ported by @sagittaros)
+(load-theme 'doom-molokai t)    link    inspired by Tomas Restrepo's Molokai (ported by @hlissner)
+(load-theme 'doom-monokai-classic t)    link    port of Monokai Classic (ported by @ema2159)
+(load-theme 'doom-monokai-machine t)    link    port of Monokai Classic (ported by @minikN)
+(load-theme 'doom-monokai-octagon t)    link    port of Monokai Octagon (ported by @minikN)
+(load-theme 'doom-monokai-pro t)        link    Port of Monokai Pro (ported by @minikN)
+(load-theme 'doom-monokai-ristretto t)  link    Port of Monokai Ristretto (ported by @minikN)
+(load-theme 'doom-monokai-spectrum t)   link    port of Monokai Spectrum (ported by @minikN)
+(load-theme 'doom-moonlight t)  link    inspired by VS code's Moonlight (ported by @Brettm12345)
+(load-theme 'doom-nord t)       link    dark variant of Nord (ported by @fuxialexander)
+(load-theme 'doom-nord-aurora t)        link    a light variant of Nord (ported by @MoskitoHero)
+(load-theme 'doom-nord-light t)         link    light variant of Nord (ported by @fuxialexander)
+(load-theme 'doom-nova t)       link    inspired by Trevord Miller's Nova (ported by @bigardone)
+(load-theme 'doom-oceanic-next t)       link    inspired by Oceanic Next (ported by @juanwolf)
+(load-theme 'doom-old-hope t)   link    inspired by An Old Hope, in a galaxy far far away (ported by @teesloane)
+(load-theme 'doom-one t)        link    inspired by Atom One Dark (ported by @hlissner)
+(load-theme 'doom-one-light t)  link    inspired by Atom One Light (ported by @ztlevi)
+(load-theme 'doom-opera t)      original        an original light theme (ported by @jwintz)
+(load-theme 'doom-opera-light t)        original        an original light theme (ported by @jwintz)
+(load-theme 'doom-outrun-electric t)    link    a high contrast, neon theme inspired by Outrun Electric on VSCode (ported by @ema2159)
+(load-theme 'doom-palenight t)  link    adapted from equinusocio's Material themes (ported by @Brettm12345)
+(load-theme 'doom-peacock t)    link    inspired by daylerees' Peacock (ported by @teesloane)
+(load-theme 'doom-pine t)       link    a green-tinged Gruvbox (by @RomanHargrave)
+(load-theme 'doom-plain t)      link    inspired by gko's plain theme for VSCode (ported by @das-s)
+(load-theme 'doom-plain-dark t)         link    inspired by gko's plain theme for VSCode (ported by @das-s)
+(load-theme 'doom-rouge t)      link    ported from VSCode's Rouge Theme (ported by @das-s)
+(load-theme 'doom-shades-of-purple t)   link    a port of VSCode's Shades of Purple (ported by @jwbaldwin)
+(load-theme 'doom-snazzy t)     link    inspired by Hyper Snazzy (ported by @ar1a)
+(load-theme 'doom-solarized-dark t)     link    a dark variant of Solarized (ported by @ema2159)
+(load-theme 'doom-solarized-dark-high-contrast t)       link    a high-contrast variant of Solarized Dark (ported by @jmorag)
+(load-theme 'doom-solarized-light t)    link    a light variant of Solarized (ported by @fuxialexander)
+(load-theme 'doom-sourcerer t)  link    a port of xero's Sourcerer (ported by @fm0xb)
+(load-theme 'doom-spacegrey t)  link    I'm sure you've heard of it (ported by @teesloane)
+(load-theme 'doom-tokyo-night t)        link    inspired by VSCode's Tokyo Night theme (ported by @FosterHangdaan)
+(load-theme 'doom-tomorrow-day t)       link    a light variant of Tomorrow (ported by @emacswatcher)
+(load-theme 'doom-tomorrow-night t)     link    One of the dark variants of Tomorrow (ported by @hlissner)
+(load-theme 'doom-vibrant t)    doom-one        a more vibrant variant of doom-one (ported by @hlissner)
+(load-theme 'doom-wilmersdorf t)        link    port of Ian Pan's Wilmersdorf (ported by @ema2159)
+(load-theme 'doom-xcode t)      Xcode.app       based off of Apple's Xcode Dark Theme (ported by @kadenbarlow)
+(load-theme 'doom-zenburn t)    link    port of the popular Zenburn theme (ported by @jsoa)
+
+****** CANCELED modus-themes
+#+begin_src elisp :tangle no 
+;; (package-refresh-contents)
+(use-package modus-themes :ensure t)
+(load-theme 'modus-vivendi t)
+;; (disable-theme 'material)
+ #+end_src
+
+****** CANCELED monokai-theme
+#+begin_src elisp :tangle no 
+;; (package-refresh-contents)
+(use-package monokai-theme :ensure t)
+(load-theme 'monokai t)
+;; (disable-theme 'material)
+ #+end_src
+
+****** CANCELED gotham-theme
+#+begin_src elisp :tangle no 
+;; (package-refresh-contents)
+(use-package gotham-theme :ensure t)
+(load-theme 'gotham t)
+;; (disable-theme 'material)
+ #+end_src
+
+
+***** font:
 ;; ------------------------------------------------------
 #+begin_src elisp
 (set-language-environment "UTF-8")
@@ -475,7 +783,7 @@ There are two things you can do about this warning:
   (set-fontset-font t 'emoji "Noto Color Emoji" nil 'prepend))
 ;; ------------------------------------------------------
 #+end_src
-***** tab-width : 
+***** tab-width:
 ;; ------------------------------------------------------
 ;; (setq-default tab-width 2)
 #+begin_src elisp
@@ -484,7 +792,7 @@ There are two things you can do about this warning:
 #+end_src
 ;; (setq tab-width 8) 
 ;; ------------------------------------------------------
-***** line-numbers-mode : 
+***** line-numbers-mode:
 ;; ------------------------------------------------------
 ;;Unfortunately, Emacs's help message is pretty bad in this case. The menu button is bound to an anonymous function, and the help system is basically displaying the byte-compiled version of that function. I got the Emacs source, searched for the unique looking string "Relative line numbers enabled", and found the function in lisp/menu-bar.el:
 ;;
@@ -504,7 +812,7 @@ There are two things you can do about this warning:
 ;; (setq display-line-numbers-type 'relative)
 ;;Relative line numbers enabled
 ;; ------------------------------------------------------
-***** Warp line :
+***** Warp line:
 ;; ------------------------------------------------------
 ;; Warp line on visula line end
 #+begin_src elisp
@@ -521,7 +829,7 @@ There are two things you can do about this warning:
 #+end_src
 ;; (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 ;; ------------------------------------------------------
-***** paren :
+***** paren:
 ;; ------------------------------------------------------
 ****** paren-mode :
 ;; ------------------------------------------------------
@@ -658,7 +966,7 @@ There are two things you can do about this warning:
 (global-set-key (kbd "<f10> <f10>") 'buyn-menu-bar-open)
 ;; ------------------------------------------------------
 #+end_src
-***** initial-scratch-message : 
+***** initial-scratch-message:
 #+begin_src elisp
 (setq initial-scratch-message ";; * This buffer for Lisp evaluation.
 ;; This buffer is for text that is not saved, and for Lisp evaluation.
@@ -7481,26 +7789,24 @@ or locally if not saved."
 #+begin_src elisp :noweb yes
 <<elisp-header>>
 #+end_src
-
-#+begin_src elisp
-
-;; * DELIMITERS-MOD CUSTOMIZATION
+**** DELIMITERS-MOD CUSTOMIZATION
 ;; --------------------------------------
 ;; ** rainbow-delimiters
 ;; *** install
 ;; M-x package-install RET rainbow-delimiters RET
+#+begin_src elisp
 (require 'use-package)
 (use-package rainbow-delimiters :ensure t
-;; *** :config
+  ;; :disabled
   :config
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
   (custom-theme-set-faces
-    'material
-    `(rainbow-delimiters-depth-1-face ((t
-        (:foreground ,"aquamarine"))))
-    )
-;; *** END )
+   'material
+   `(rainbow-delimiters-depth-1-face ((t
+                                       (:foreground ,"aquamarine")))))
   )
+#+end_src
+**** Docs rainbow-delimiters
 ;; *** Docs 
 ;; **** links:
 ;; https://github.com/Fanael/rainbow-delimiters
@@ -7522,8 +7828,10 @@ or locally if not saved."
 ;; Stop Highlighting Certain Delimiters
 
 ;; You can disable highlighting of any of the supported delimiter types through the customize interface, in the Toggle Delimiters section.
+**** parinfer
 ;; ** parinfer
 ;; *** install
+#+begin_src elisp
 (use-package parinfer
   :disabled
   :defer t
@@ -7545,28 +7853,31 @@ or locally if not saved."
     (add-hook 'common-lisp-mode-hook #'parinfer-mode)
     (add-hook 'scheme-mode-hook #'parinfer-mode)
     (add-hook 'lisp-mode-hook #'parinfer-mode))
-;; *** END )
-  )
-;; ** parinfer-rust-mode
-;; *** install
-(use-package parinfer-rust-mode
-  ;; :disabled
-  :defer t
-  :ensure t
-  ;; :hook emacs-lisp-mode
-  ;; :init
-    ;; (setq parinfer-rust-auto-download t)
-  :config
-    (setq  parinfer-rust-disable-troublesome-modes t)
-    ;; (parinfer-rust-mode -1)
-    (add-hook 'clojure-mode-hook #'parinfer-rust-mode)
-    ;; (add-hook 'emacs-lisp-mode-hook #'parinfer-rust-mode)
-    ;; (add-hook 'common-lisp-mode-hook #'parinfer-rust-mode)
-    ;; (add-hook 'scheme-mode-hook #'parinfer-rust-mode)
-    ;; (add-hook 'lisp-mode-hook #'parinfer-rust-mode)
-;; *** END )
   )
 #+end_src
+  ;; *** END )
+;; ** parinfer-rust-mode
+;; *** install
+**** parinfer-rust-mode
+#+begin_src elisp
+(use-package parinfer-rust-mode
+  :disabled
+  :defer t
+  :ensure t
+  :config
+  (setq  parinfer-rust-disable-troublesome-modes t)
+  ;; (parinfer-rust-mode -1)
+  (add-hook 'clojure-mode-hook #'parinfer-rust-mode)
+  )
+#+end_src
+  ;; :hook emacs-lisp-mode
+  ;; :init
+  ;; (setq parinfer-rust-auto-download t)
+  ;; (add-hook 'emacs-lisp-mode-hook #'parinfer-rust-mode)
+  ;; (add-hook 'common-lisp-mode-hook #'parinfer-rust-mode)
+  ;; (add-hook 'scheme-mode-hook #'parinfer-rust-mode)
+  ;; (add-hook 'lisp-mode-hook #'parinfer-rust-mode)
+  ;; *** END )
 ** INI/dev/python-cfg.el
 :PROPERTIES:
 :header-args: :tangle INI/dev/python-cfg.el
@@ -10751,15 +11062,35 @@ find ~/.archemacs \
   | sort
 #+end_src
 
-*** поск строки по репозиториям всем 
+*** поск строки по репозиториям всем
 #+begin_src eshell
 rg -n -i \
   'set-face-attribute|set-face-foreground|set-face-background|custom-set-faces|:foreground[[:space:]]+nil|:background[[:space:]]+nil' \
   ~/.archemacs ~/.emacs.d \
   -g '*.org' -g '*.el'
 #+end_src
+*** поск строки по репозиториям всем .el
+#+begin_src eshell
+rg -n "(:foreground\s+nil|:background\s+nil|:box\s+nil)" ~/.archemacs/ ~/.emacs.d -g "*.el"
+#+end_src
 
-   rg -n "(:foreground\s+nil|:background\s+nil)" ~/.archemacs ~/.emacs.d
+#+RESULTS:
+: /home/buyn/.archemacs/init.el
+: 19: '(mode-line ((t (:foreground "Black" :background "DarkOrange" :box nil)))))
+: 
+: /home/buyn/.archemacs/INI/interface/jonathanchu-emacs-powerline-cfg.el
+: 24:  ;;                      :box nil)
+: 34:                        :box nil)
+: 41:                      :box nil)))))
+: 45:    ;;                  :box nil)))))
+
+
+rg -n "(:foreground\s+nil|:background\s+nil)" ~/.archemacs ~/.emacs.d
+
+rg -n "(:foreground\s+nil|:background\s+nil|:box\s+nil)" ~/.archemacs/ -g "*.el" -g "*.org"
+
+rg -n "load-theme" ~/.archemacs/ -g "*.el"
+
 *** 
 ** debug
    (setq debug-on-error t)

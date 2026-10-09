@@ -12,7 +12,10 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 ;; ------------------------------------------------------
 
-(load-theme 'material t) ;; load material theme
+;; (package-refresh-contents)
+(use-package spacemacs-theme :ensure t)
+(load-theme 'spacemacs-dark t)
+;; (disable-theme 'material)
 
 (set-language-environment "UTF-8")
 (add-to-list 'default-frame-alist
