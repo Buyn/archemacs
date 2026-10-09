@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 ;; * POWERLINE CUSTOMIZATION
 ;; --------------------------------------
 ;; ** install

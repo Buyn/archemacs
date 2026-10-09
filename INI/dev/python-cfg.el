@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 ;; * PYTHON-MOD CUSTOMIZATION
 ;; --------------------------------------
 ;; ** (use-package elpy

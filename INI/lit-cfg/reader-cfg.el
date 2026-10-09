@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 ;; * READERS MODS CUSTOMIZATION 
 ;; ** fb2-mode
 ;; *** load

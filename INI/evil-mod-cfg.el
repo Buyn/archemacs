@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 (global-visual-line-mode t)
 (setq evil-respect-visual-line-mode t)
 (setq evil-cross-lines t)

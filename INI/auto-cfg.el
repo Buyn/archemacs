@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 ;; ** AUTOCOMPLETE-MOD CUSTOMIZATION
 ;; (find-file-other-frame "~/.archemacs/INI/auto/autocomplete-cfg.el")
 (load (expand-file-name "INI/auto/autocomplete-cfg.el" user-emacs-directory))

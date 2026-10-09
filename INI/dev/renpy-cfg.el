@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 (use-package renpy-mode
   :ensure t
   :defer t

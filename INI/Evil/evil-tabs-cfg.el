@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 ;; * EVIL TABS CONFIGURATION 
 ;; ** install evil-tabs
 (use-package evil-tabs :ensure t

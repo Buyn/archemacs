@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 ;; * FILE-MANAGEMENT-MODs CUSTOMIZATION
 ;; --------------------------------------
 ;; ** RANGER-MOD CUSTOMIZATION

@@ -1,3 +1,7 @@
+:PROPERTIES:
+:header-args: :tangle no :noweb yes
+:END:
+
 * Index links
 ** by keys
 *** f1
@@ -167,20 +171,26 @@ org-src-mode-map
 [[*INI/dev/clojure-cfg.el][INI/dev/clojure-cfg.el]]
 * *Core Initialization (Ядро)*
 :PROPERTIES:
-:header-args: :mkdirp yes
+:header-args: :mkdirp yes :noweb yes
 :END:
 ** описание
    Всё, что связано с базовой загрузкой, включая `init.el`, пакеты и первоначальные настройки.
    установка пкетменеджеров страйта и юз-пакеджера.
+   
+
 ** early-init.el
 :PROPERTIES:
 :header-args: :tangle early-init.el
 :END:
+*** file
+(find-file-other-frame "early-init.el")
 *** src early-init.el
-#+begin_src elisp
+;;; -*- lexical-binding: nil; -*-
+#+begin_src elisp :noweb yes
+<<elisp-header>>
 (setq package-enable-at-startup nil)
 #+end_src
-** TODO init.el Основной
+** TODO init.el стартовы Основной
 :PROPERTIES:
 :header-args: :tangle init.el
 :END:
@@ -188,6 +198,11 @@ org-src-mode-map
 (find-file-other-window "~/.archemacs/init.el")
 
 *** Start of manual file
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 **** load INI/init.el
 ;; --------------------------------------
 ;; .emacs --- Emacs configuration
@@ -234,10 +249,14 @@ org-src-mode-map
  '(gptel-model "gpt-3.5-turbo-16k")
 ** INI/init.el внутрений
 :PROPERTIES:
-:header-args: :tangle INI/init.el
+:header-args: :tangle INI/init.el :noweb yes
 :END:
+*** file
+(find-file-other-frame "INI/init.el")
 *** els load list
+;;; -*- lexical-binding: nil; -*-
 #+begin_src elisp
+<<elisp-header>>
 (load (expand-file-name "INI/inpak.el" user-emacs-directory))
 
 (load (expand-file-name "INI/vanila_cfg.el" user-emacs-directory))
@@ -300,10 +319,16 @@ org-src-mode-map
 ** INI/inpak.el Установка пакет менеджеров
 *** file INI/inpak.el
 ;; (find-file "~/INI/init.el")
+(find-file-other-frame "INI/inpak.el")
 *** src INI/inpak.el
 :PROPERTIES:
 :header-args: :tangle INI/inpak.el
 :END:
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 **** straight.el
 ;; --------------------------------------
 #+begin_src elisp
@@ -405,6 +430,11 @@ There are two things you can do about this warning:
 ;; (find-file "~/INI/init.el")
 [[*els load list][els load list]]
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 **** VANILA CUSTOMIZATION
 ***** startup :
 ;; --------------------------------------
@@ -683,6 +713,11 @@ There are two things you can do about this warning:
 *** used in
 ;; (find-file "~/.archemacs/INI/init.el")
 *** src interface elements
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 **** IVY CUSTOMIZATION
 ***** use-package ivy
 ;; --------------------------------------
@@ -814,6 +849,11 @@ There are two things you can do about this warning:
 *** used in
 ;; (find-file "~/.archemacs/INI/interface-mods.el")
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp
 ;; * POWERLINE CUSTOMIZATION
 ;; --------------------------------------
@@ -836,6 +876,11 @@ There are two things you can do about this warning:
 *** used in
 ;; (find-file "~/INI/interface/powerline-cfg.el")
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp
 ;; * POWERLINE CUSTOMIZATION
 ;; --------------------------------------
@@ -898,6 +943,11 @@ CLOSED: [2025-02-11 Tue 16:29]
 *** used in
 ;; (find-file "~/INI/interface/powerline-cfg.el")
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp
 ;; * SPACELINE CUSTOMIZATION
 ;; ** spaceline powerline : 
@@ -926,6 +976,11 @@ CLOSED: [2025-02-11 Tue 16:29]
 *** used in
 ;; (find-file "~/.archemacs/INI/interface-mods.el")
 *** src REVERSE-IM
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 ;; * REVERSE-IM CUSTOMIZATION:
 ;; --------------------------------------
 ;; ** install
@@ -961,10 +1016,16 @@ CLOSED: [2025-02-11 Tue 16:29]
 :PROPERTIES:
 :header-args: :tangle INI/evil-mod-cfg.el
 :END:
+**** file
 **** описание
   Всё, связанное с `evil-mode`, табами и улучшением навигации по буферам/фреймам.  
 **** used in
 ;; (find-file "~/.archemacs/INI/init.el")
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 **** EVIL-MOD CUSTOMIZATION
 ***** use-package evil
 ;; --------------------------------------
@@ -1526,6 +1587,11 @@ CLOSED: [2025-04-29 Tue 18:46]
 
 **** used in
 ;; (find-file "~/INI/evil-mod-cfg.el")
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 **** src
 ***** use-package evil-tabs
 #+begin_src elisp
@@ -1778,6 +1844,11 @@ CLOSED: [2025-02-27 Чт 19:07]
 
 **** used in
 ;; (find-file "~/.archemacs/INI/init.el")
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 **** src INI/frame-control.el
 ***** WINDMOVE&FRAMEMOVE SETUP
 ;; --------------------------------------
@@ -2259,6 +2330,11 @@ CLOSED: [2025-04-14 Mon 09:51]
 ;; (find-file-other-frame "~/.archemacs/INI/fullscreen-cfg.el")
 "INI/fullscreen-cfg.el"
 [[*FULLSCREEN-MOD CUSTOMIZATION load][FULLSCREEN-MOD CUSTOMIZATION load]]
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 **** src INI/fullscreen-cfg.el
 ***** star comment
 #+begin_src elisp
@@ -2496,13 +2572,20 @@ CLOSED: [2025-02-21 Fri 21:34]
 :END:
 **** описание
 (find-file-other-frame "INI/hydra-cfg.el")
+**** file
 **** TODO разбить на несколько файлов
 и загружать их из тела юз пака
 фаили меинменю
 фаил остальных меню
 и загружать только после первого открытия меню
+а те которые относятся к нужным модам добавить самим модам
 **** used in
 ;; (find-file "~/.archemacs/INI/init.el")
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 **** src INI/hydra-cfg.el
 ***** use-package hydra
 ;; * HYDRA CUSTOMIZATION
@@ -4152,6 +4235,11 @@ CLOSED: [2025-03-03 Пн 06:36]
 **** список туду активировать репор баг фиксет
 поскольку тогда можно рубрицировать поиски по ошибкам
 *** src INI/org-cfg.el
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 **** ORG-MODE CUSTOMIZATION
 ;; --------------------------------------
 ***** ORG setup
@@ -4473,6 +4561,11 @@ CLOSED: [2025-03-03 Пн 06:36]
 ;; (find-file "~/INI/org-cfg.el")
 ;; (find-file-other-frame "~/INI/org-cfg.el")
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 **** ageda setings
 ;; --------------------- 
 #+begin_src elisp
@@ -4723,6 +4816,11 @@ CLOSED: [2025-03-03 Пн 06:36]
 *** used in
 ;; (find-file "~/INI/org-cfg.el")
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp
 (setq org-confirm-babel-evaluate nil)
 
@@ -4754,6 +4852,11 @@ CLOSED: [2025-03-03 Пн 06:36]
 *** used in
 ;; (find-file "~/INI/org-cfg.el")
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 **** ORG BRAIN CUSTOMIZATION
 ***** org-brain use-package: start
 #+begin_src elisp
@@ -4889,6 +4992,11 @@ CLOSED: [2025-03-03 Пн 06:36]
 *** used in
 ;; (find-file "~/INI/org-cfg.el")
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp
 ;; * PLANTUML MODE
 ;; ** plantuml use-package: 
@@ -5001,6 +5109,11 @@ CLOSED: [2025-03-03 Пн 06:36]
 (find-file-other-frame "~/.archemacs/INI/org-cfg.el")
 (find-file "~/.archemacs/INI/org-cfg.el")
 *** src org-roam-cfg.el
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 **** ORG-ROAM CUSTOMIZATION
 ;; --------------------------------------
 ;; Org-Roam basic configuration
@@ -5192,6 +5305,11 @@ CLOSED: [2025-03-03 Пн 06:36]
 (find-file-other-frame "~/.archemacs/INI/org-cfg.el")
 (find-file "~/.archemacs/INI/org-cfg.el")
 *** src zetstack.el
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 **** ZETSTACK.EL CUSTOMIZATION
 #+begin_src elisp
 (use-package zetstack
@@ -5234,6 +5352,11 @@ CLOSED: [2025-03-03 Пн 06:36]
 *** used in
 ;; (find-file "~/.archemacs/INI/init.el")
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp :results output silent
 ;; * FILE-MANAGEMENT-MODs CUSTOMIZATION
 ;; --------------------------------------
@@ -5361,6 +5484,11 @@ Dired-буфер — это можно сделать командой M-x range
 (define-key evil-normal-state-map (kbd "M-e M-s M-L")
   `buyn/set-name-shell-target-buffer)
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 **** all
 #+begin_src elisp
 ;; * BUYN's ELISP DEFUNS
@@ -5593,6 +5721,11 @@ If BUFFER-NAME-TO-SEND is nil, uses global `buyn/name-shell-target-buffer-name`.
 *** used in
 ;; (find-file "~/.archemacs/INI/init.el")
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp
 ;; * LITERARY-MOD CUSTOMIZATION 
 ;; --------------------------------------
@@ -5632,6 +5765,11 @@ If BUFFER-NAME-TO-SEND is nil, uses global `buyn/name-shell-target-buffer-name`.
 *** used in
 ;; (find-file "~/.archemacs/INI/init.el")
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp
 ;; * ADVNSED SELECTIONS CUSTOMIZATION
 ;; --------------------------------------
@@ -5714,6 +5852,11 @@ If BUFFER-NAME-TO-SEND is nil, uses global `buyn/name-shell-target-buffer-name`.
 ;; (find-file "~/INI/lit-cfg.el")
 ;; (find-file-other-frame "~/INI/lit-cfg.el") 
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp
 ;; * TRANSLATE-MOD CUSTOMIZATION 
 ;; *** ob-translate
@@ -5775,6 +5918,11 @@ If BUFFER-NAME-TO-SEND is nil, uses global `buyn/name-shell-target-buffer-name`.
 ;; (find-file "~/INI/lit-cfg.el")
 ;; (find-file-other-frame "~/INI/lit-cfg.el") 
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp
 ;; * GRAMMER-MOD CUSTOMIZATION 
 ;; *** ispell
@@ -5810,6 +5958,11 @@ If BUFFER-NAME-TO-SEND is nil, uses global `buyn/name-shell-target-buffer-name`.
 ;; (find-file "~/INI/lit-cfg.el")
 ;; (find-file-other-frame "~/INI/lit-cfg.el") 
 *** src read-aloud
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 **** use-package read-aloud
 #+begin_src elisp
 (use-package read-aloud
@@ -6219,6 +6372,11 @@ spd-say -l ru "Привет, БуЯн!"
 ;; (find-file "~/INI/lit-cfg.el")
 ;; (find-file-other-frame "~/INI/lit-cfg.el") 
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp
 ;; * READERS MODS CUSTOMIZATION 
 ;; ** fb2-mode
@@ -6299,6 +6457,11 @@ spd-say -l ru "Привет, БуЯн!"
 *** used in
 ;; (find-file-other-frame "~/INI/lit-cfg.el")
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp
 ;; * BUYN's ELISP DEFUNS
 ;; --------------------------------------
@@ -6487,6 +6650,11 @@ spd-say -l ru "Привет, БуЯн!"
 *** used in
 ;; (find-file "~/.archemacs/INI/init.el")
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp
 ;; ** AUTOCOMPLETE-MOD CUSTOMIZATION
 ;; (find-file-other-frame "~/.archemacs/INI/auto/autocomplete-cfg.el")
@@ -6506,6 +6674,11 @@ spd-say -l ru "Привет, БуЯн!"
 *** used in
 ;; (find-file "~/INI/dev-cfg.el")
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp
 ;; * AUTO-COMPLETE  CUSTOMIZATION
 ;; ** old vanila setings
@@ -6622,6 +6795,11 @@ spd-say -l ru "Привет, БуЯн!"
 *** used in
 ;; (find-file "~/INI/dev-cfg.el")
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp
 ;; * SNIPPETS  CUSTOMIZATION
 ;; ** yasnippet 
@@ -6688,6 +6866,11 @@ https://github.com/karthink/gptel
 (load (expand-file-name "INI/AI/ai.el" user-emacs-directory)) 
 (find-file-other-frame (expand-file-name "INI/AI/ai.el" user-emacs-directory)) 
 *** src INI/AI/ai.el
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 **** CANCELED use-package gpt
 #+begin_src elisp :tangle no
 (use-package gpt
@@ -6924,7 +7107,6 @@ Instead of an image, show the English prompt that you will use to get the image.
 [[id:96341486-cda3-46c8-a3d1-09b59529c377][tech.cyber.ai.google:gemeni]]
 (find-file-other-frame "~/Dropbox/orgs/Org-roam/default/tech.cyber.ai.tools.aider_aider.org")
 
-
 * **Программирование и языковые конфигурации**
 ** описание
    Отдельные категории для Python, Clojure, JavaScript, Lua и т.д. + автодополнения и проверки синтаксиса.  
@@ -6937,6 +7119,11 @@ Instead of an image, show the English prompt that you will use to get the image.
 *** used in
 ;; (find-file "~/.archemacs/INI/init.el")
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 **** projectile
 #+begin_src elisp
 ;; * DEVELOPMENT-MODs CUSTOMIZATION
@@ -7285,6 +7472,11 @@ or locally if not saved."
 *** used in
 ;; (find-file "~/INI/dev-cfg.el")
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp
 
 ;; * DELIMITERS-MOD CUSTOMIZATION
@@ -7379,6 +7571,11 @@ or locally if not saved."
 *** used in
 ;; (find-file "~/INI/dev-cfg.el")
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp
 ;; * PYTHON-MOD CUSTOMIZATION
 ;; --------------------------------------
@@ -7430,6 +7627,11 @@ or locally if not saved."
 *** used in
 ;; (find-file "~/INI/dev-cfg.el")
 *** src lua-cfg.el
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
   :init
   ;; (elpy-enable)
 ;; ** :config : 
@@ -7463,6 +7665,11 @@ or locally if not saved."
 *** used in
 ;; (find-file "~/INI/dev-cfg.el")
 *** src renpy-cfg.el
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 ;; * renpy-mode CUSTOMIZATION
 ;; --------------------------------------
 ;; ** install renpy-mode : 
@@ -7524,6 +7731,11 @@ launcher to use Emacs as a default editor.
 *** used in
 ;; (find-file "~/INI/folding-cfg.el")
 *** src OUTSHINE-MOD CUSTOMIZATION 
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 ;; * OUTSHINE-MOD CUSTOMIZATION 
 ;; --------------------------------------
 #+begin_src elisp
@@ -7618,6 +7830,11 @@ CLOSED: [2025-02-24 Mon 23:15]
 ;; (load (expand-file-name "INI/dev/autohotkey-cfg.el" user-emacs-directory))
 
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp
 ;; * AHK-MODE CUSTOMIZATION
 ;; --------------------------------------
@@ -7647,6 +7864,11 @@ CLOSED: [2025-02-24 Mon 23:24]
 ;; (load (expand-file-name "INI/dev/csharp-cfg.el" user-emacs-directory))
 
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 да он был пуст сам в шоке
 #+begin_src elisp
 ;; * C#-MOD CUSTOMIZATION
@@ -7662,6 +7884,11 @@ CLOSED: [2025-02-24 Mon 23:24]
 ;; (find-file "~/INI/dev-cfg.el")
 (load (expand-file-name "INI/dev/clojure-cfg.el" user-emacs-directory))
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp
 ;; * CLOJURE-MODE CUSTOMIZATION
 ;; --------------------------------------
@@ -7778,6 +8005,11 @@ CLOSED: [2025-02-25 Tue 00:16]
 (load (expand-file-name "INI/dev/unity-cfg.el" user-emacs-directory))
 
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp
 ;; * UNITY CUSTOMIZATION
 ;; --------------------------------------
@@ -7831,6 +8063,11 @@ CLOSED: [2025-02-25 Tue 00:16]
 ;; (find-file "~/INI/dev-cfg.el")
 (load (expand-file-name "INI/dev/js-cfg.el" user-emacs-directory))
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp
 ;; * Setting up js2-mode
 ;; ** use-package js2-mode
@@ -7974,6 +8211,11 @@ yaml-mode
 ;; (find-file-other-frame "~/INI/dev-cfg.el") 
 (load (expand-file-name "INI/dev/formats-mods-cfg.el" user-emacs-directory))
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp
 ;; * MODS CUSTOMIZATION 
 ;; ** yaml-mode
@@ -8002,6 +8244,11 @@ yaml-mode
 ;; (find-file "~/INI/dev-cfg.el")
 (load (expand-file-name "INI/dev/flycheck-cfg.el" user-emacs-directory))
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp
 ;; * FLYCHECK CUSTOMIZATION
 ;; --------------------------------------
@@ -8044,6 +8291,11 @@ CLOSED: [2025-02-25 Tue 01:08]
 ;; (find-file "~/INI/dev-cfg.el")
 (load (expand-file-name "INI/dev/c-mode-cfg.el" user-emacs-directory))
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp
 ;; INSTALL IRONY
 ;; --------------------------------------
@@ -8114,6 +8366,11 @@ irony-install-server
 *** used in
 ;; (find-file "~/.archemacs/INI/init.el")
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp
 (use-package hledger-mode
   ;; :disabled
@@ -8154,6 +8411,11 @@ irony-install-server
 *** used in
 ;; (find-file "~/.archemacs/INI/init.el")
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 **** EWW-MODE CUSTOMIZATION 
 ;; --------------------------------------
 ***** open-link-in-new-frame
@@ -8387,6 +8649,11 @@ irony-install-server
 ;; (find-file "~/.archemacs/INI/init.el")
 *** src
 **** CANCELED emms
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 #+begin_src elisp
 (use-package emms
   ;; :disabled
@@ -8423,6 +8690,11 @@ irony-install-server
 *** used in
 ;; (find-file "~/.archemacs/INI/init.el")
 *** src
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 **** use-package calc
 #+begin_src elisp
 (use-package calc
@@ -8456,6 +8728,11 @@ The major mode is Calculator mode defined in calc.el:
 *** used in
 ;; (find-file "~/.archemacs/INI/init.el")
 *** src INI/other/telegram.el
+**** header
+#+begin_src elisp :noweb yes
+<<elisp-header>>
+#+end_src
+
 **** start use-package telega
 #+begin_src elisp
 (use-package telega
@@ -10311,6 +10588,36 @@ Also telega-autoplay-mode can be used, to automatically animate messages contain
   (find-file-other-frame "~/ELs/BuYn/ai-dungon.el")
   (find-file-other-frame "~/ELs/tts/tts-editor/tts-editor.el")
   (find-file-other-frame "~/ELs/BuYn/tts.el")
+  ----- model
+  ;; (find-file-other-frame "~/Dropbox/backup/models/gemeni1-5.el")
+  ;; (find-file-other-frame "~/Dropbox/backup/models/fast-gemeni.el")
+  ;; (find-file-other-frame "~/Dropbox/backup/models/gemeni.el")
+  ;; (find-file-other-frame "~/Dropbox/backup/models/claude.el")
+  ;; (find-file-other-frame "~/Dropbox/backup/models/openai.el")
+  ;; (find-file-other-frame "~/Dropbox/backup/models/mixtral.el")
+  ;; (find-file-other-frame "~/Dropbox/backup/models/Qwen.el")
+  ;; (find-file-other-frame "~/Dropbox/backup/models/llama70v.el")
+  ;; (find-file-other-frame "~/Dropbox/backup/models/grog-mixtral.el")
+  ;; (find-file-other-frame "~/Dropbox/backup/models/grog-llama70v.el")
+
+(find-file-other-frame "/home/buyn/Dropbox/backup/models/aider-cfg.el")
+
+/home/buyn/.archemacs/ELs/BuYn/ai-dungon.el
+/home/buyn/.archemacs/ELs/BuYn/reader.el
+/home/buyn/.archemacs/ELs/BuYn/shell.el
+/home/buyn/Dropbox/backup/models/aider-cfg.el
+
+
+(find-file-other-frame "~/.archemacs/ELs/Evil/evil-respect-input.el")
+(find-file-other-frame "~/Dropbox/orgs/org-Brain/.org-brain-data.el")
+(find-file-other-frame "~/.archemacs/ELs/Org/Babel/ob-dot.el")
+(find-file-other-frame "~/.archemacs/INI/ORG/zetstack.el")
+(find-file-other-frame "~/.archemacs/ELs/framemove/framemove.el")
+(find-file-other-frame "~/.archemacs/ELs/Readers/fb2-mode/fb2-mode.el")
+(find-file-other-frame "~/.archemacs/ELs/Readers/fb2-mode/fb2.el")
+(find-file-other-frame "~/Dropbox/backup/models/aider-cfg.el")
+(find-file-other-frame "~/.emacs.d/ArchSRV.el")
+
 ** PC scripts
 (find-file-other-frame "~/.emacs.d/ArchSRV.el")
 (load "~/.emacs.d/ArchSRV.el")
@@ -10396,12 +10703,48 @@ CLOSED: [2025-02-25 Tue 01:20]
 (define-key evil-normal-state-map (kbd "<f8> <S-f8>") #'my/org-save-current-buffer) 
 (define-key evil-normal-state-map (kbd "<f8> <f8>") #'my/org-run-remote-or-local-src-block) 
  #+end_src
+** noweb blocks
+*** elisp-header
+#+name: elisp-header
+#+begin_src elisp
+;;; -*- lexical-binding: nil; -*-
+#+end_src
+
 ** package-upgrade
 (setq package-check-signature nil) ;; временно, если будут ошибки
 (package-refresh-contents)
 (package-upgrade-all)
 
 from ELPA by either using ‘M-x package-upgrade’ or
+** команды управления
+:PROPERTIES:
+:header-args: :tangle no :noweb yes
+:END:
+*** показать заглавия нужных файлов
+#+begin_src eshell
+head -5 ~/.archemacs/init.el
+head -5 ~/.archemacs/early-init.el
+head -5 ~/.archemacs/INI/init.el
+#+end_src
+
+
+*** выполнить имакс скрипт как отельный процес
+#+begin_src eshell
+emacs --batch \
+  --eval '(setq warning-minimum-level :warning)' \
+  --eval '(load "~/.archemacs/init.el")'
+#+end_src
+
+*** найти ел исключая заданые папки
+#+begin_src eshell
+find ~/.archemacs \
+  -type f -name '*.el' \
+  -not -path '*/straight/*' \
+  -not -path '*/elpa/*' \
+  -not -path '*/quelpa/*' \
+  | sort
+#+end_src
+
 * TODO орг файла
 ** add file to tagle evil-respect-input.el
 (load (expand-file-name "ELs/Evil/evil-respect-input.el" user-emacs-directory))

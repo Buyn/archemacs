@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 ;; * BUYN's ELISP DEFUNS
 ;; --------------------------------------
 ;; ** varibls

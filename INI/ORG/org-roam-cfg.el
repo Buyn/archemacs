@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 (use-package org-roam
   ;; :disabled
   :ensure t

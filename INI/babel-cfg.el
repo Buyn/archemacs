@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 (setq org-confirm-babel-evaluate nil)
 
 (org-babel-do-load-languages

@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 ;; * DEVELOPMENT-MODs CUSTOMIZATION
 ;; --------------------------------------
 ;; ** PROJECTILE CUSTOMIZATION

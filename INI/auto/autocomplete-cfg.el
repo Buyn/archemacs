@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 ;; * AUTO-COMPLETE  CUSTOMIZATION
 ;; ** old vanila setings
 ;; --------------------------------------

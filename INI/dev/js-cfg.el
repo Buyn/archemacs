@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 ;; * Setting up js2-mode
 ;; ** use-package js2-mode
 (use-package js2-mode :ensure t

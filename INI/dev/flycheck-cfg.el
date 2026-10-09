@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 ;; * FLYCHECK CUSTOMIZATION
 ;; --------------------------------------
 ;; ** use-package flycheck 

@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 ;; * POWERLINE CUSTOMIZATION
 ;; --------------------------------------
 ;; (find-file-other-frame "~/.archemacs/INI/interface/jonathanchu-emacs-powerline-cfg.el") 

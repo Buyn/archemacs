@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 (setq org-agenda-sticky 1)
 ;; default active on l \ g l
 ;; (setq org-agenda-log-mode-items '(closed clock))

@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 ;; * CLOJURE-MODE CUSTOMIZATION
 ;; --------------------------------------
 ;; ** clojure-mode

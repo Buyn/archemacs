@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 (require 'use-package)
 (use-package lua-mode 
   :ensure t

@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 ;; * MODS CUSTOMIZATION 
 ;; ** yaml-mode
 ;; *** load

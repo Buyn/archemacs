@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 ;; ** use-package outshine
 (use-package outshine :ensure t
   ;; uncoment to instal

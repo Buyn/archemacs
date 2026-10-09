@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: nil; -*-
 (require 'subr-x)
 
 (defvar fb2-images-height 500

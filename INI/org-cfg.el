@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 (require 'org)
 (global-set-key (kbd "C-<f1>") nil)
 (global-set-key (kbd "C-<f1> C-<f1>") (lambda () (interactive)

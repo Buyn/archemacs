@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 ;; * TRANSLATE-MOD CUSTOMIZATION 
 ;; *** ob-translate
 ;; **** use-package ob-translate 

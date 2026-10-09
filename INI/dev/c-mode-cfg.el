@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 ;; INSTALL IRONY
 ;; --------------------------------------
 ;; (package-install irony)

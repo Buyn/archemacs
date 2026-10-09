@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 ;; * SNIPPETS  CUSTOMIZATION
 ;; ** yasnippet 
 ;; *** del: 

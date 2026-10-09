@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 (setq inhibit-startup-message t) ;; hide the startup message
 (tool-bar-mode -1)
 (menu-bar-mode -1)

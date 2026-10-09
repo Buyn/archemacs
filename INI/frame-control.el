@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 (require 'cl) ;;used to Fix error if theres an error with above code
 ;; (load "~/.archemacs/ELs/framemove/framemove.el")
 (load (expand-file-name "ELs/framemove/framemove.el" user-emacs-directory))

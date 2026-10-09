@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 ;; * ADVNSED SELECTIONS CUSTOMIZATION
 ;; --------------------------------------
 ;; * expand-region cfg

@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 (defun open-link-in-new-frame ()
   "open-link-in-new-frame"
   (interactive)

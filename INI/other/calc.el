@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 (use-package calc
   ;; :disabled
   ;; :defer t

@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 ;; * FULLSCREEN-MOD CUSTOMIZATION
 ;; --------------------------------------
 

@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 ;; * LITERARY-MOD CUSTOMIZATION 
 ;; --------------------------------------
 ;; ** LOAD TRANSLATE-MOD CUSTOMIZATION 

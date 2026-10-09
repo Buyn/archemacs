@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 ;; * PLANTUML MODE
 ;; ** plantuml use-package: 
 (use-package plantuml-mode :ensure t

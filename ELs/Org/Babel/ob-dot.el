@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: nil; -*-
 ;;; ob-dot.el --- org-babel functions for dot evaluation
 
 ;; Copyright (C) 2009-2012  Free Software Foundation, Inc.

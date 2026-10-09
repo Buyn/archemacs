@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 ;; * GRAMMER-MOD CUSTOMIZATION 
 ;; *** ispell
 ;; (setq ispell-program-name "~/AddApps/hunspell-1.3.2-3-w32-bin/bin/hunspell.exe")   

@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 (use-package reverse-im
   :ensure t
 ;; ** :config:

@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: nil; -*-
 (require 'fb2)
 
 (defvar fb2-mode-hook nil)

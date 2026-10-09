@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 (use-package hledger-mode
   ;; :disabled
   :ensure t

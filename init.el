@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 (load (expand-file-name "INI/init.el" user-emacs-directory))
 
 (custom-set-variables

@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: nil; -*-
 (load (expand-file-name "INI/inpak.el" user-emacs-directory))
 
 (load (expand-file-name "INI/vanila_cfg.el" user-emacs-directory))

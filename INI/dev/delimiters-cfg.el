@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: nil; -*-
+
 ;; * DELIMITERS-MOD CUSTOMIZATION
 ;; --------------------------------------
 ;; ** rainbow-delimiters
