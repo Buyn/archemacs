@@ -5,10 +5,10 @@
   ;; :disabled
   :config
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-  (custom-theme-set-faces
-   'material
-   `(rainbow-delimiters-depth-1-face ((t
-                                       (:foreground ,"aquamarine")))))
+  ;; (custom-theme-set-faces
+  ;;  'material
+  ;;  `(rainbow-delimiters-depth-1-face ((t
+  ;;                                      (:foreground ,"aquamarine")))))
   )
 
 (use-package parinfer

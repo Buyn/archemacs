@@ -7408,12 +7408,16 @@ Instead of an image, show the English prompt that you will use to get the image.
 #+begin_src emacs-lisp :results output silent
 (use-package aider
   :config
-    (setq aider-args '("--model" "gemini/gemini-flash-lite-latest" "--weak-model" "mistral/open-mistral-7b"))
+    (setq aider-args '("--model" "gemini/gemini-flash-latest" "--weak-model" "mistral/open-mistral-7b" "--no-show-model-warnings"))
     (setq aider--switch-to-buffer-other-frame t)
     (load "~/Dropbox/backup/models/aider-cfg.el")
     (global-set-key (kbd "M-a") nil)
     (global-set-key (kbd "M-a M-j M-a") 'aider-transient-menu))
 #+end_src
+    (setq aider-args '("--model" "gemini/gemini-flash-lite-latest" "--weak-model" "mistral/open-mistral-7b"))
+
+
+
 
 *** docs INI/AI/ai.el
 [[id:fe7f1a93-048c-47ba-9546-d1e2fb408f00][emacs Gptel]]
@@ -7800,10 +7804,10 @@ or locally if not saved."
   ;; :disabled
   :config
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-  (custom-theme-set-faces
-   'material
-   `(rainbow-delimiters-depth-1-face ((t
-                                       (:foreground ,"aquamarine")))))
+  ;; (custom-theme-set-faces
+  ;;  'material
+  ;;  `(rainbow-delimiters-depth-1-face ((t
+  ;;                                      (:foreground ,"aquamarine")))))
   )
 #+end_src
 **** Docs rainbow-delimiters

@@ -141,7 +141,7 @@
 
 (use-package aider
   :config
-    (setq aider-args '("--model" "gemini/gemini-flash-lite-latest" "--weak-model" "mistral/open-mistral-7b"))
+    (setq aider-args '("--model" "gemini/gemini-flash-latest" "--weak-model" "mistral/open-mistral-7b" "--no-show-model-warnings"))
     (setq aider--switch-to-buffer-other-frame t)
     (load "~/Dropbox/backup/models/aider-cfg.el")
     (global-set-key (kbd "M-a") nil)
