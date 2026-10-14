@@ -127,9 +127,14 @@
          (load "~/Dropbox/Office/Games/aidungeon/els/leeloo-chat.el")
          (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/chars-chat/2024-09-18-Leeloo.org")
          ) "LeeLoo")
+  ("Q" (progn
+         (load "~/Dropbox/Office/Games/aidungeon/els/quorra-chat.el")
+         (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/chars-chat/Quorra-chat.org")
+         ) "Quorra")
   ("w" (progn
           (load "~/Dropbox/Office/Games/aidungeon/els/Washu-chat.el")
-          (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/els/Washu-chat.el")
+          ;; (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/els/Washu-chat.el")
+          (find-file-other-frame "~/Dropbox/Office/Games/aidungeon/chars-chat/Washu-2025-08-09.org")
          ) "Washu")
   ("l" (progn
          (load "~/Dropbox/Office/Games/aidungeon/els/ai-synod.el")
